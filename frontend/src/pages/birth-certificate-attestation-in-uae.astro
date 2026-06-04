@@ -1,0 +1,507 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1", label: "US +1" },
+  { code: "+973", label: "BH +973" },
+]
+
+const personalDocs = [
+  "Marriage Certificate Attestation",
+  "Transfer Certificate Attestation",
+  "Divorce Certificate Attestation",
+  "Single Status / Singleness Certificate Attestation",
+  "Death Certificate Attestation",
+  "Medical Certificate Attestation",
+  "Affidavit",
+]
+
+const commercialDocs = [
+  "Memorandum of Association (MOA)",
+  "Articles of Association (AOA)",
+  "Certificate of Incorporation",
+  "Certificate of Incumbency",
+  "Certificate of Good Standing",
+  "Board Resolution Attestation",
+  "Commercial Invoice Attestation",
+]
+
+const educationalDocs = [
+  "Degree Certificate Attestation",
+  "Diploma Certificate Attestation",
+  "Bachelor Degree Certificate",
+  "Master Degree Certificate",
+  "Associate Degree Certificate",
+  "Engineering Certificate Attestation",
+  "Nursing Certificate Attestation",
+  "Transcript Attestation",
+]
+
+const notaryServices = [
+  "Online Power of Attorney",
+  "Signature Verification",
+  "True Copy Attestation",
+  "Embassy Attestation",
+  "MOFA Attestation",
+  "Company Document",
+  "Legal Translation Services",
+]
+
+const faqs = [
+  {
+    q: "How long does birth certificate attestation usually take in the UAE?",
+    a: "The duration of birth certificate attestation depends on factors such as the country where the document was issued, the authorities involved, and whether additional verification is required. Index AUH carefully reviews each case and manages the process efficiently to avoid unnecessary delays."
+  },
+  {
+    q: "What are the typical costs for birth certificate attestation in the UAE?",
+    a: "The cost of birth certificate attestation can vary based on the document’s origin, embassy requirements, and the services involved. At Index AUH, we assess your requirements first and then guide you clearly on the applicable charges, ensuring transparency at every step."
+  },
+  {
+    q: "Do I need to translate my birth certificate before attestation?",
+    a: "If the birth certificate is not issued in English or Arabic, certified translation may be required for acceptance by UAE authorities. Index AUH will confirm whether translation is necessary and assist you in arranging approved translation services if needed."
+  },
+  {
+    q: "Can a digitally issued birth certificate be attested?",
+    a: "Digitally issued birth certificates may be accepted if they are issued by an official government authority and meet verification requirements. Acceptance can vary depending on the reviewing authority. Index AUH evaluates digital documents and advises on the correct approach."
+  },
+  {
+    q: "What happens if my birth certificate is damaged or has errors?",
+    a: "If a birth certificate is damaged, unclear, laminated, or contains errors such as incorrect names or dates, it may not be accepted for attestation. In such cases, correction or reissuance is usually required. Index AUH helps identify such issues early and guides you on the next step."
+  }
+]
+---
+
+<BaseLayout title="Birth Certificate Attestation in UAE — Index Office Services" description="Secure and fast birth certificate attestation services in the UAE. We manage verification across embassies and MOFA.">
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+
+  /* pills */
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  /* form */
+  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
+  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize: none; }
+  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
+  .idx-submit:hover { background: #1A202C; }
+
+  /* step list */
+  .step-list-item { background: #fff; border: 1px solid #eef0f6; border-radius: 12px; padding: 16px 20px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s; }
+  .step-list-item:hover { border-color: #B2F5EA; box-shadow: 0 8px 20px rgba(56,178,172,0.06); }
+
+  /* FAQ */
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 200px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  @media(max-width:768px){
+    .about-hero-title { font-size: 2rem !important; }
+    .about-hero-desc { font-size: 0.88rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  }
+</style>
+
+<!-- ════════════ HERO — image bg, centered text ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <!-- Background image -->
+  <img
+    src="https://images.unsplash.com/photo-1584438784894-089d6a128f3e?w=1600&q=80"
+    alt="Birth Certificate Attestation"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <!-- Dark overlay -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.88) 0%,rgba(45,55,72,0.82) 100%);"></div>
+  <!-- Dot pattern -->
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Convenient</span>
+      <span class="idx-pill">Budget-Friendly</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="about-hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      BIRTH CERTIFICATE ATTESTATION<br/>IN UAE
+    </h1>
+    <p class="about-hero-desc" style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:640px;">
+      Birth is a continuation, not a beginning. Make sure to have your birth certificate verified because it is the next step in your life’s journey.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;" class="split-grid">
+    <!-- Left Text -->
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why Attest Your Birth Certificate?</h2>
+      
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
+        Index Office Service provide you a quick and effortless service with our experts and we have 25 years of experience in the field of certificate attestation. In UAE, birth certificates must undergo birth certificate attestation as a critical step in the legalisation and validation of their credibility.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
+        To protect the legitimacy and integrity of all foreign papers inside the UAE, the government has made attestation essential. The attestation of birth certificates is essential for many governmental and private processes, including getting a visa, requesting admission to a school, sponsoring dependents, and conducting business in the United Arab Emirates.
+      </p>
+
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-top:24px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">What is a birth certificate?</h3>
+        <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
+          A birth certificate is an official record of a person’s birth information. It is often provided immediately after a child is born by a government entity, like a vital statistics office or registrar’s office. A person’s identity, age, and parentage may all be legally proven with the use of a birth certificate.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&q=80" alt="Attestation verification documents" style="width:100%;height:380px;object-fit:cover;" />
+        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.78rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          Verified Globally
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ REGISTRATION PROCEDURES ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <!-- Image banner -->
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="https://images.unsplash.com/photo-1564939558297-fc396f18e5c7?w=1400&q=80" alt="Birth certificate registration process UAE" style="width:100%;height:240px;object-fit:cover;object-position:center 40%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.85) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Legal Process Guide</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:460px;line-height:1.25;">Issuing &amp; Acquiring Birth Certificates in UAE</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;" class="split-grid">
+      <!-- Issuing Birth Certificate -->
+      <div>
+        <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin-bottom:20px;border-left:3px solid #38B2AC;padding-left:12px;">How to Lawfully Issue a Birth Certificate in UAE</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">01</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Hospital Notification</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Hospital staff notifies the relevant authorities immediately about the birth.</p>
+            </div>
+          </div>
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">02</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Register the Birth</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Visit Public Health or Preventive Medicine Department within 30 days. Provide original & photocopy of child's hospital birth notification.</p>
+            </div>
+          </div>
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">03</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Pay the Fees</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Pay required nominal registration fees at the designated counter.</p>
+            </div>
+          </div>
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">04</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Collection</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Once verified, the authorities issue the birth certificate. Visit the office with the receipt to collect.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acquiring Legally Recognized Certificate -->
+      <div>
+        <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin-bottom:20px;border-left:3px solid #38B2AC;padding-left:12px;">How to Acquire a Legally Recognized Birth Certificate</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">01</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Medical Alert</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Confirm hospital staff alerts appropriate UAE public health authorities regarding the baby's birth.</p>
+            </div>
+          </div>
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">02</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Submit Required Documents</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Provide parents' passports + Emirates ID copies, original hospital notification, and marriage licence (if necessary).</p>
+            </div>
+          </div>
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">03</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Verification of Documents</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Government authorities check all supplied documentation for absolute correctness and completeness.</p>
+            </div>
+          </div>
+          <div class="step-list-item">
+            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">04</span>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Biometric Verification</p>
+              <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Provide biometric details such as parent fingerprints and photos for identity validation purposes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRING ATTESTATION GRID ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+  
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:0.8fr 1fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <!-- Left image -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&q=80" alt="Attestation document types UAE" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">All Document Types Covered</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Personal · Commercial · Educational · Notary</p>
+        </div>
+      </div>
+      <!-- Right text -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Complete Legalization Coverage</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Documents That Require Attestation for Use in the UAE</h2>
+        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;">Index Office Services handles all categories of document attestation — from personal and educational certificates to commercial and notary documents. We manage every step to ensure smooth verification.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
+      <!-- Personal -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+        <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 16px;display:flex;align-items:center;gap:10px;">
+          <span style="color:#38B2AC;font-size:1.3rem;">👤</span> Personal Certificate
+        </h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+          {personalDocs.map(d => (
+            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+              <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Commercial -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+        <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 16px;display:flex;align-items:center;gap:10px;">
+          <span style="color:#38B2AC;font-size:1.3rem;">🏢</span> Commercial & Business
+        </h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+          {commercialDocs.map(d => (
+            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+              <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Educational -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+        <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 16px;display:flex;align-items:center;gap:10px;">
+          <span style="color:#38B2AC;font-size:1.3rem;">🎓</span> Educational Certificate
+        </h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+          {educationalDocs.map(d => (
+            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+              <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Notary -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+        <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 16px;display:flex;align-items:center;gap:10px;">
+          <span style="color:#38B2AC;font-size:1.3rem;">⚖️</span> Notary & Supporting
+        </h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+          {notaryServices.map(d => (
+            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+              <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:52px;align-items:center;" class="split-grid">
+    <!-- Image -->
+    <div>
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Why Choose Indexauh" style="width:100%;height:360px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.1);" />
+    </div>
+
+    <!-- Text -->
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>OUR STRENGTHS
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">WHY CHOOSE INDEXAUH?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">
+        A successful company in the UAE with 25 years of experience in certificate attestation in UAE and Company formation. offering clients efficient solutions. Due to affiliate offices and business networks, the company has a strong presence in Qatar, Abu Dhabi, Dubai, India, and many other countries.
+      </p>
+      
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px;">
+        {[
+          "Advice on starting a business is provided by a multinational corporation with ISO certification.",
+          "We are dedicated to using the confidence and satisfaction of our clients as our primary drive.",
+          "Comprehensive business formation, incorporation, and registration services.",
+          "Help opening bank accounts and obtaining visas, as well as PRO, legal translation, and diplomatic services."
+        ].map(item => (
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;font-size:0.83rem;color:#1A202C;font-weight:500;">
+            <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ STATS BANNER ════ -->
+<section style="background:#1A202C;padding:48px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.2) 1.5px,transparent 1.5px);background-size:24px 24px;pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;">
+    <div>
+      <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25,000+</p>
+      <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Happy Customers</p>
+    </div>
+    <div>
+      <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+      <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f,i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i+1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH WITH FORM ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left: text -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR ATTESTATION SERVICES.</h2>
+      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">Our extensive global network of service providers and offices allows us to seamlessly integrate our services and tailor them to meet your specific requirements.</p>
+      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
+        <div style="display:flex;gap:10px;">
+          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
+            <select>
+              {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
+            </select>
+          </div>
+          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
+          <select>
+            <option value="">Select a Service</option>
+            <option>Company Formation</option>
+            <option>PRO Services</option>
+            <option selected>Attestation / Legalization / Apostille</option>
+            <option>PCC (Good Standing Certificate)</option>
+            <option>Legal Translation Services</option>
+            <option>Other Services</option>
+          </select>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="Enter your message*" rows="3"></textarea></div>
+        <button class="idx-submit">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ SCRIPTS ════ -->
+<script>
+(function(){
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

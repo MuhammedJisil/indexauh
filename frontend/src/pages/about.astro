@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="About Us — Index Office Services | Trusted UAE Attestation Since 1988">
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+
+  /* ── Feature cards ── */
+  .feat-card { border: 1px solid #eef0f6; border-radius: 16px; padding: 28px; background: #fff; transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s; }
+  .feat-card:hover { box-shadow: 0 16px 48px rgba(45,55,72,0.13); transform: translateY(-5px); border-color: #B2F5EA; }
+  .feat-icon { width: 48px; height: 48px; background: #F0FFFE; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+  /* ── Why cards (dark bg) ── */
+  .why-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 22px; display: flex; align-items: flex-start; gap: 14px; transition: background 0.2s; }
+  .why-card:hover { background: rgba(255,255,255,0.14); }
+
+  /* ── CTA form ── */
+  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
+  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize: none; }
+  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
+  .idx-submit:hover { background: #1A202C; }
+
+  /* ── Marquee ── */
+  @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { overflow: hidden; width: 100%; }
+  .marquee-inner { display: flex; align-items: center; width: max-content; animation: marquee-scroll 28s linear infinite; gap: 0; }
+  .marquee-track:hover .marquee-inner { animation-play-state: paused; }
+  .marquee-logo-img { display: inline-flex; align-items: center; justify-content: center; padding: 0 52px; border-right: 1px solid #f0f4f8; flex-shrink: 0; height: 64px; }
+  .marquee-logo-img img { height: 36px; width: auto; max-width: 140px; object-fit: contain; filter: grayscale(100%) opacity(0.55); transition: filter 0.3s; }
+  .marquee-logo-img:hover img { filter: grayscale(0%) opacity(1); }
+
+  /* ── feat grid responsive ── */
+  .feat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+  @media(max-width:640px){ .feat-grid { grid-template-columns: 1fr; } }
+
+  @media(max-width:768px){
+    .about-hero-title { font-size: 2rem !important; }
+    .about-hero-desc { font-size: 0.88rem !important; }
+  }
+</style>
+
+<!-- ════════════ HERO — image bg, centered text ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <!-- Background image -->
+  <img
+    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+    alt="About Index Office Services"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <!-- Dark overlay -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.88) 0%,rgba(45,55,72,0.82) 100%);"></div>
+  <!-- Dot pattern -->
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;font-size:0.75rem;margin:0 0 16px;">About Us</p>
+    <h1 class="about-hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      We operate as the most globally<br/>integrated firms, across all our<br/><span style="color:#38B2AC;">geographical areas.</span>
+    </h1>
+    <p class="about-hero-desc" style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:640px;">
+      Index is a recognized global company founded in 1988, providing extensive international assistance to both business and individual customers across the Middle East, India, USA, Canada and the UK.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="/contact/" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="/certificate-attestation/" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ STATS ════ -->
+<section style="background:#1A202C;padding:38px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.2) 1.5px,transparent 1.5px);background-size:24px 24px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;">
+    {[
+      { num: "400K+", label: "Happy Clients" },
+      { num: "100+",  label: "Countries Served" },
+      { num: "25+",   label: "Years of Experience" },
+    ].map(s => (
+      <div>
+        <p style="font-size:2.4rem;font-weight:900;color:#38B2AC;margin:0;">{s.num}</p>
+        <p style="color:#81E6D9;font-size:0.82rem;margin:4px 0 0;font-weight:500;letter-spacing:0.05em;">{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ════ WHO WE ARE ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:-60px;right:-60px;width:400px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:center;">
+
+    <!-- Image -->
+    <div style="flex-shrink:0;width:420px;position:relative;">
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&q=80" alt="UAE skyline global presence" style="width:100%;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+      <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.78rem;font-weight:700;line-height:1.6;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+        Middle East · India<br/>USA · Canada · UK
+      </div>
+      <div style="position:absolute;top:20px;right:-16px;background:#38B2AC;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.78rem;font-weight:700;line-height:1.6;box-shadow:0 6px 20px rgba(56,178,172,0.3);">
+        Founded<br/>1988
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>About Us
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Most Globally Integrated<br/>Professional Services Firm</h2>
+      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Index is a recognized global company that was founded in 1988 and provides extensive international assistance to both business and individual customers. We have grown our business activities internationally over the years, creating a strong presence in the Middle East, India, the USA, Canada, and the UK.</p>
+      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">At Index, we recognize the accomplishments of our outstanding team of professionals who regularly provide first-rate services to customers all around the world. We guarantee timely and effective service delivery while meeting even the strictest deadlines by utilizing our vast global network of service suppliers.</p>
+      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">Our operations are focused on ensuring customer satisfaction, and we work hard to quickly and effectively meet our clients' needs. You should only expect the best from Index since we consistently put our clients' needs first and go above and beyond client expectations.</p>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px 20px;">
+        <p style="color:#1A202C;font-size:0.85rem;font-weight:600;margin:0 0 4px;">Range of Services</p>
+        <p style="color:#4B5563;font-size:0.82rem;line-height:1.7;margin:0;">Business Incorporation · Business Advisory · Certificate Attestation · Legal Translation · Visiting Visa Services · Tourist Services · IT Solutions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:52px;align-items:center;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 16px;">WHY CHOOSE INDEX OFFICE SERVICES?</h2>
+        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:32px;">With more than 25 years of experience, Index Office Services has built strong expertise in UAE documentation and business support services.</p>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {[
+            { num:"01", title:"Global Presence", desc:"Index has established a strong global presence, covering the Middle East, Europe, the U.S., and Canada. This broad coverage enables us to efficiently coordinate services and meet the timely requirements of our clients worldwide." },
+            { num:"02", title:"Valuable Expertise", desc:"With over 25 years of experience and knowledge, Index offers invaluable insights, suggestions, and recommendations to clients. Leveraging our expertise, we provide support across various service needs." },
+            { num:"03", title:"Commitment to Quality", desc:"Index has implemented a robust system for certificate attestation, prioritizing superior quality and customer satisfaction. Our processes emphasize reliability, accuracy, and overall service excellence." },
+            { num:"04", title:"Trusted Business Partners", desc:"Index has cultivated an extensive network of trusted partners and specialized service providers, particularly in the field of certificate attestation — unmatched in terms of speed and reliability." },
+          ].map(s => (
+            <div class="why-card">
+              <span style="font-size:0.7rem;font-weight:800;color:#38B2AC;letter-spacing:0.1em;flex-shrink:0;padding-top:2px;min-width:24px;">{s.num}</span>
+              <div>
+                <p style="color:#fff;font-size:0.88rem;font-weight:700;margin:0 0 4px;">{s.title}</p>
+                <p style="color:#94A3B8;font-size:0.82rem;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <div style="position:relative;">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services professionals" style="width:100%;height:420px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+          <div style="position:absolute;bottom:20px;left:-16px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
+            <p style="font-size:1.8rem;font-weight:900;margin:0;line-height:1;">400K+</p>
+            <p style="font-size:0.78rem;margin:4px 0 0;opacity:0.9;">Happy Clients Served</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ MISSION · VISION · APPROACH · CLIENTS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:-80px;left:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Our Foundation</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">MISSION, VISION, APPROACH &amp; CLIENTS</h2>
+    </div>
+
+    <div class="feat-grid">
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 10px;">Our Mission</h3>
+        <p style="font-size:0.85rem;color:#4B5563;line-height:1.75;margin:0;">Our focus is to add value to your business or to you as a private client. We have built our reputation on our continued success as advisers to privately owned business and we focus our services and skills to suit your needs. We know and understand the sorts of issues you'll face and we'll be there to support you from day one. In Index we are ambitious to be better tomorrow than we are today!</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 10px;">Our Vision</h3>
+        <p style="font-size:0.85rem;color:#4B5563;line-height:1.75;margin:0;">At Index we are passionate about providing exceptionally high levels of service and care to our customers, who share our philosophy of working together with trust and mutual respect. We believe in the personal touch, strong client relationships and personally tailored solutions. We realize no two businesses are the same — whether a start-up or a multi-national, we focus to help you achieve your goals.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 10px;">Our Approach</h3>
+        <p style="font-size:0.85rem;color:#4B5563;line-height:1.75;margin:0;">At Index we are more than just Business Consultants, but an extension of your team. As one of the largest independent firms for Business Services in Qatar and UAE, we offer a variety of professional services and personal advice. Great communication is the key to our approach. We invest time to get to know our customers individually and understand their personal and business needs and goals.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 10px;">Our Clients</h3>
+        <p style="font-size:0.85rem;color:#4B5563;line-height:1.75;margin:0;">Our clients are our greatest asset and so we treat them with the care and attention they deserve. At Index, we enjoy working with clients who value and respect us and with whom we seek to have long term relationships. We really want to know what our clients think — we speak to them regularly to gain their frank feedback and act swiftly to address any areas we could do better.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET IN TOUCH ════ -->
+<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left: text -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY TO TAKE YOUR GOALS FURTHER.</h2>
+      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">Our extensive global network of service providers and offices allows us to seamlessly integrate our services and tailor them to meet your specific requirements.</p>
+      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
+        <div style="display:flex;gap:10px;">
+          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
+            <select>
+              <option value="+91">IN +91</option>
+              <option value="+971">AE +971</option>
+              <option value="+44">GB +44</option>
+              <option value="+1">US +1</option>
+            </select>
+          </div>
+          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
+          <select>
+            <option value="">Select a Service</option>
+            <option>Company Formation</option>
+            <option>PRO Services</option>
+            <option>Attestation / Legalization / Apostille</option>
+            <option>PCC (Good Standing Certificate)</option>
+            <option>Legal Translation Services</option>
+            <option>Other Services</option>
+          </select>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="Enter your message*" rows="3"></textarea></div>
+        <button class="idx-submit">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</BaseLayout>

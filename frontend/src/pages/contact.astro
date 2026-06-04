@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="Contact – Convex Academy">
+  <section class="contact">
+    <div class="container contact-inner">
+      <div class="contact-info">
+        <div class="section-badge">Get In Touch</div>
+        <h1 class="section-title">Start your learning journey today</h1>
+        <p class="section-description">
+          Have questions about our courses? Want to know which program is right for you?
+          Reach out — we'd love to help.
+        </p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <strong>Location</strong>
+              <span>Nilambur, Kerala, India</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <strong>Phone</strong>
+              <span>+91 98765 43210</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <span>hello@convexacademy.in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Send us a message</h2>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+91 98765 43210" />
+        </div>
+        <div class="form-group">
+          <label>Course of Interest</label>
+          <select>
+            <option value="">Select a course...</option>
+            <option>Digital Marketing</option>
+            <option>AI Tools Mastery</option>
+            <option>Web Development</option>
+            <option>Graphic Design</option>
+            <option>Social Media Management</option>
+            <option>Freelancing & Fiverr</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your goals or questions..." rows="4"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message →</button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding: 100px 0;
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-description {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .info-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .info-item strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .info-item span {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* Form */
+  .contact-form {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .contact-form h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--text-main);
+    font-family: inherit;
+    transition: border-color 0.2s;
+    background: white;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  @media (max-width: 992px) {
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  @media (max-width: 768px) {
+    .contact { padding: 60px 0; }
+    .section-title { font-size: 28px; }
+    .contact-form { padding: 24px; }
+  }
+</style>

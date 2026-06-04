@@ -1,0 +1,587 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const personalDocs = [
+  "Marriage Certificate Attestation","Birth Certificate Attestation","Divorce Certificate Attestation",
+  "Death Certificate Attestation","Police Clearance Certificate Attestation","Medical Certificate Attestation",
+  "Affidavit",
+]
+const educationalDocs = [
+  "Degree Certificate Attestation","Diploma Certificate Attestation","School Certificate",
+  "Mark Sheets Attestation","Transfer Certificate Attestation","Engineering Certificate","Transcript Attestation",
+]
+const commercialDocs = [
+  "Commercial License","Commercial Invoices","Memorandum of Association","Power of Attorney",
+  "Board Resolutions","Company Agreements","Certificate of Incorporation",
+]
+
+const steps = [
+  { num:"01", title:"Notary Attestation", desc:"A notary or issuing authority verifies the document. This confirms basic authenticity." },
+  { num:"02", title:"Home Country Attestation", desc:"Government departments check the document at a national level. This step validates its origin." },
+  { num:"03", title:"Embassy Attestation", desc:"The embassy of the destination country approves the document for use abroad." },
+  { num:"04", title:"Final Attestation by Authorities", desc:"The final approval is completed by the relevant foreign affairs authority in the destination country." },
+]
+
+const majorCountries = [
+  "India","UK","USA","Canada","France","Portugal","Spain","Australia","Malaysia","Germany","Philippines","Italy",
+]
+const gccCountries = [
+  "Kuwait","Oman","Qatar","Bahrain","Saudi Arabia","UAE",
+]
+
+const faqs = [
+  { q:"How can Index Office Services help me complete document attestation for the UAE?", a:"Indexauh manages every stage of attestation, coordinating with the required authorities so your documents are processed accurately and delivered on time." },
+  { q:"What makes Index Office Services a preferred choice for handling certificate attestation procedures?", a:"Index Office Services streamlines the entire process, ensuring each step is handled correctly while keeping clients informed from start to finish." },
+  { q:"How long does document attestation take when processed through Index Office Services?", a:"Processing time depends on the issuing country and document type. Index Office Services provides clear timelines at the start and updates you if any authority requires additional verification." },
+  { q:"Can Index Office Services assist with MOFA attestation after completing the initial attestation steps?", a:"Yes. We handle MOFA attestation as part of the complete service, ensuring your document is ready for official use in the UAE." },
+  { q:"Does Index Office Services provide updates throughout the attestation process?", a:"Clients receive regular updates so they always know the status of their attestation and the upcoming steps." },
+  { q:"Is document pickup and delivery available through Index Office Services?", a:"We offer convenient pickup and delivery options so clients can complete the attestation process without visiting multiple offices." },
+  { q:"Does Indexauh manage attestation for certificates issued outside the UAE?", a:"Indexauh supports attestation for documents issued in various countries by coordinating with foreign ministries, embassies, and UAE authorities as required." },
+  { q:"What fees should I expect when getting certificate attestation through Index Office Services?", a:"Costs vary depending on the document type, issuing country, and number of authorities involved. We provide a clear estimate before starting the process." },
+]
+
+const countryCodes = [
+  { code:"+91", label:"IN +91" },{ code:"+971", label:"AE +971" },{ code:"+44", label:"GB +44" },{ code:"+1", label:"US +1" },{ code:"+973", label:"BH +973" },
+]
+---
+
+<BaseLayout title="Certificate Attestation Services For 100+ Countries — Index Office Services">
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+
+  /* pills */
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  /* form */
+  .idx-form input,.idx-form select,.idx-form textarea { width:100%; border:1px solid #e5e7eb; border-radius:10px; padding:11px 14px; font-size:0.85rem; color:#374151; outline:none; font-family:inherit; background:#fff; box-sizing:border-box; }
+  .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus { border-color:#38B2AC; box-shadow:0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize:none; }
+  .idx-submit { width:100%; background:#2D3748; color:#fff; font-weight:700; padding:13px; border-radius:10px; border:none; cursor:pointer; font-size:0.95rem; letter-spacing:0.04em; transition:background 0.2s; }
+  .idx-submit:hover { background:#1A202C; }
+
+  /* doc category tabs */
+  .doc-tab { padding:9px 20px; border-radius:9999px; font-size:0.82rem; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; }
+  .doc-tab.active { background:#2D3748; color:#fff; }
+  .doc-tab:not(.active) { background:#F0FFFE; color:#2D3748; border:1px solid #B2F5EA; }
+
+  /* steps */
+  .step-card { display:flex; align-items:flex-start; gap:18px; padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .step-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  /* chip */
+  .country-chip { background:#F0FFFE; border:1px solid #B2F5EA; border-radius:8px; padding:8px 14px; font-size:0.82rem; color:#1A202C; font-weight:500; text-align:center; }
+  .gcc-chip { background:#2D3748; border:1px solid rgba(56,178,172,0.3); border-radius:8px; padding:8px 14px; font-size:0.82rem; color:#81E6D9; font-weight:500; text-align:center; }
+
+  /* FAQ */
+  .faq-item { border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; }
+  .faq-q { width:100%; background:#fff; border:none; text-align:left; padding:18px 20px; font-size:0.9rem; font-weight:600; color:#1A202C; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .faq-a { padding:0 20px; max-height:0; overflow:hidden; transition:max-height 0.35s ease,padding 0.2s; }
+  .faq-a.open { max-height:200px; padding:0 20px 16px; }
+  .faq-icon { font-size:1.1rem; transition:transform 0.3s; flex-shrink:0; }
+  .faq-item.open .faq-icon { transform:rotate(45deg); }
+
+  /* who needs grid */
+  .who-card { background:#fff; border:1px solid #eef0f6; border-radius:14px; padding:20px 22px; display:flex; align-items:flex-start; gap:12px; transition:all 0.25s; }
+  .who-card:hover { border-color:#B2F5EA; box-shadow:0 8px 24px rgba(56,178,172,0.1); }
+
+  /* how-to steps */
+  .how-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:14px; padding:24px; text-align:center; transition:background 0.2s; }
+  .how-card:hover { background:rgba(255,255,255,0.14); }
+
+  @media(max-width:768px){
+    .about-hero-title { font-size: 2rem !important; }
+    .about-hero-desc { font-size: 0.88rem !important; }
+  }
+  @media(max-width:640px) {
+    .steps-grid { grid-template-columns:1fr !important; }
+    .who-grid { grid-template-columns:1fr !important; }
+    .how-grid { grid-template-columns:repeat(2,1fr) !important; }
+  }
+</style>
+
+<!-- ════════════ HERO — image bg, centered text ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <!-- Background image -->
+  <img
+    src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+    alt="Certificate Attestation Services"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <!-- Dark overlay -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.88) 0%,rgba(45,55,72,0.82) 100%);"></div>
+  <!-- Dot pattern -->
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;font-size:0.75rem;margin:0 0 16px;">Attestation Services</p>
+    <h1 class="about-hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      Certificate Attestation<br/>Services For <span style="color:#38B2AC;">100+ Countries</span>
+    </h1>
+    <p class="about-hero-desc" style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:640px;">
+      Index Office Services brings over 25 years of experience handling document attestation and MOFA approvals worldwide. We ensure your certificates are verified and accepted by authorities with speed and reliability.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="/contact/" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#docTabs" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY REQUIRED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:center;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Mandatory Requirement</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Why Certificate Attestation Is Required?</h2>
+      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:20px;">Attestation is a mandatory step when you plan to use documents outside the country where they were issued. Authorities need proof that every document is valid and verified.</p>
+      <p style="font-weight:700;color:#1A202C;font-size:0.88rem;margin-bottom:12px;">You will need attested documents for:</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        {["Employment visa approvals","Family visa applications","Higher education admissions","Business setup and corporate work","Legal procedures and official approvals"].map(item => (
+          <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fff;border:1px solid #e0e7ef;border-radius:10px;font-size:0.85rem;color:#1A202C;font-weight:500;">
+            <span style="width:24px;height:24px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            {item}
+          </div>
+        ))}
+      </div>
+      <p style="color:#6B7280;font-size:0.82rem;line-height:1.7;margin-top:16px;padding:12px 16px;background:#FFF9F0;border:1px solid #FCD34D;border-radius:10px;">
+        ⚠ Without attestation, documents are not accepted. Therefore, applications may face rejection or delay.
+      </p>
+    </div>
+
+    <div style="flex-shrink:0;width:420px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
+        <img src="https://images.unsplash.com/photo-1568219557405-376e23e4f7cf?w=700&q=80" alt="Certificate attestation documents" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,32,44,0.7));"></div>
+        <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+          <p style="color:#81E6D9;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Trusted by 400K+ clients</p>
+          <p style="color:#fff;font-size:0.95rem;font-weight:700;margin:0;">End-to-end attestation for 100+ countries with 25 years of experience</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ WHO NEEDS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Different Needs, One Solution</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">WHO NEEDS DOCUMENT ATTESTATION?</h2>
+    </div>
+    <div class="who-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      {[
+        { icon:"💼", title:"Professionals", desc:"Applying for jobs abroad requiring verified credentials and experience certificates." },
+        { icon:"👨‍👩‍👧", title:"Families", desc:"Sponsoring spouse or children and needing attested personal documents." },
+        { icon:"🎓", title:"Students", desc:"Planning higher education in another country and needing degree or transcript attestation." },
+        { icon:"🏢", title:"Business Owners", desc:"Expanding operations internationally and requiring commercial document attestation." },
+        { icon:"⚖️", title:"Legal Matters", desc:"Individuals handling power of attorney and other legal procedures abroad." },
+        { icon:"🌍", title:"Anyone Using Documents Abroad", desc:"Each case follows a different path. The document type decides the process." },
+      ].map(w => (
+        <div class="who-card">
+          <span style="font-size:1.6rem;flex-shrink:0;">{w.icon}</span>
+          <div>
+            <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{w.title}</p>
+            <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">{w.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ OUR DOCUMENT ATTESTATION SERVICES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Complete Coverage</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">OUR DOCUMENT ATTESTATION SERVICES</h2>
+    </div>
+
+    <!-- Tab buttons -->
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;" id="docTabs">
+      <button class="doc-tab active" data-tab="personal">Personal Documents</button>
+      <button class="doc-tab" data-tab="educational">Educational Documents</button>
+      <button class="doc-tab" data-tab="commercial">Commercial Documents</button>
+    </div>
+
+    <!-- Personal -->
+    <div id="tab-personal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+      {personalDocs.map(d => (
+        <a href="#" style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:0.85rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;">
+          <span style="width:28px;height:28px;border-radius:50%;background:#2D3748;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </span>
+          {d}
+          <span style="margin-left:auto;color:#38B2AC;font-size:0.75rem;">→</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Educational -->
+    <div id="tab-educational" style="display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+      {educationalDocs.map(d => (
+        <a href="#" style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:0.85rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;">
+          <span style="width:28px;height:28px;border-radius:50%;background:#2D3748;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+          </span>
+          {d}
+          <span style="margin-left:auto;color:#38B2AC;font-size:0.75rem;">→</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Commercial -->
+    <div id="tab-commercial" style="display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+      {commercialDocs.map(d => (
+        <a href="#" style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:0.85rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;">
+          <span style="width:28px;height:28px;border-radius:50%;background:#2D3748;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </span>
+          {d}
+          <span style="margin-left:auto;color:#38B2AC;font-size:0.75rem;">→</span>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ STEP BY STEP ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Clear Process</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">STEP BY STEP PROCESS FOR DOCUMENT ATTESTATION</h2>
+      <p style="color:#6B7280;font-size:0.88rem;max-width:560px;margin:0 auto;">The process follows a fixed order. Each stage confirms the document before moving ahead.</p>
+    </div>
+    <div class="steps-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      {steps.map(s => (
+        <div class="step-card">
+          <div style="width:48px;height:48px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+          <div>
+            <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 6px;">{s.title}</p>
+            <p style="font-size:0.83rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div style="margin-top:24px;padding:16px 20px;background:#FFF9F0;border:1px solid #FCD34D;border-radius:12px;font-size:0.83rem;color:#92400E;">
+      ⚠ Each step matters. Therefore, missing one stage leads to rejection or delay.
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHAT HAPPENS WITHOUT + FACTORS + DOCUMENTS REQUIRED + COMMON MISTAKES ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Important Information</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#fff;margin:0;">WHAT YOU NEED TO KNOW</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+
+      <!-- What happens without -->
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(239,68,68,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3 style="color:#fff;font-size:0.95rem;font-weight:700;margin:0 0 14px;">What Happens Without Attestation?</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {["Employment processes may not move forward","Family visa applications can be rejected","Business activities may stop","Documents may be treated as invalid"].map(i => (
+            <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#94A3B8;line-height:1.6;">
+              <span style="color:#F87171;flex-shrink:0;margin-top:2px;">✗</span>{i}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Factors affecting time -->
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(56,178,172,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 style="color:#fff;font-size:0.95rem;font-weight:700;margin:0 0 14px;">Factors That Affect Attestation Time</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {["Country of origin","Destination country requirements","Type of certificate","Accuracy of submitted details","Workload at embassies","Need for corrections or reprocessing"].map(i => (
+            <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#94A3B8;line-height:1.6;">
+              <span style="color:#38B2AC;flex-shrink:0;margin-top:2px;">→</span>{i}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Documents required -->
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(56,178,172,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 style="color:#fff;font-size:0.95rem;font-weight:700;margin:0 0 14px;">Documents Required for Attestation</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {["Original certificate","Passport copy","Visa copy","Authorization letter"].map(i => (
+            <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#94A3B8;line-height:1.6;">
+              <span style="color:#38B2AC;flex-shrink:0;margin-top:2px;">✓</span>{i}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.78rem;color:#64748B;margin:12px 0 0;line-height:1.6;">Additional documents may be needed based on the case. Our team explains the exact requirement clearly.</p>
+      </div>
+
+      <!-- Common mistakes -->
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(245,158,11,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3 style="color:#fff;font-size:0.95rem;font-weight:700;margin:0 0 14px;">Common Mistakes That Cause Delays</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {["Incomplete or damaged documents","Name mismatch between passport and certificate","Wrong attestation order","Ignoring country-specific rules","Skipping final approval stage","Choosing inexperienced agents"].map(i => (
+            <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#94A3B8;line-height:1.6;">
+              <span style="color:#F59E0B;flex-shrink:0;margin-top:2px;">!</span>{i}
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ COUNTRIES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Global Reach</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">ATTESTATION SERVICES FOR 100+ COUNTRIES</h2>
+        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Index Office Services handles document attestation for documents issued worldwide. Each country follows its own procedure. Therefore, every case needs the right approach from the start.</p>
+        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">Our team manages requirements across more than 100 countries. This includes coordination with government departments, embassies, and foreign affairs authorities. As a result, documents move through each stage without confusion.</p>
+
+        <p style="font-weight:700;color:#1A202C;font-size:0.85rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">Major Countries</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:24px;">
+          {majorCountries.map(c => <div class="country-chip">{c} Attestation</div>)}
+        </div>
+
+        <p style="font-weight:700;color:#1A202C;font-size:0.85rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">GCC Countries</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:24px;">
+          {gccCountries.map(c => <div class="gcc-chip">{c} Attestation</div>)}
+        </div>
+
+        <p style="color:#6B7280;font-size:0.82rem;line-height:1.7;padding:12px 16px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;">Our services are not limited to these countries. We support attestation requirements globally. Our team reviews each case and follows the exact procedure based on the issuing country and destination.</p>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <div style="position:relative;border-radius:20px;overflow:hidden;height:440px;">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=700&q=80" alt="Global attestation services" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,32,44,0.75));"></div>
+          <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+            <p style="color:#81E6D9;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 8px;">Global Coverage</p>
+            <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">100+ Countries</p>
+            <p style="color:#B2F5EA;font-size:0.82rem;margin:0;">Coordinating with ministries, embassies and MOFA across the world</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW TO START ════ -->
+<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#fff;margin:0 0 10px;">HOW TO START ATTESTATION?</h2>
+      <p style="color:#94A3B8;font-size:0.88rem;max-width:480px;margin:0 auto;">The process becomes simple with proper guidance.</p>
+    </div>
+    <div class="how-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      {[
+        { icon:"📞", num:"01", title:"Contact Us", desc:"Speak with our team and share your requirements." },
+        { icon:"📂", num:"02", title:"Document Collection", desc:"We arrange document pickup based on your location." },
+        { icon:"⚙️", num:"03", title:"Processing", desc:"Our team manages all stages across authorities and embassies." },
+        { icon:"🚚", num:"04", title:"Delivery", desc:"You receive your attested documents safely." },
+      ].map(s => (
+        <div class="how-card">
+          <div style="font-size:2rem;margin-bottom:12px;">{s.icon}</div>
+          <p style="color:#38B2AC;font-size:0.72rem;font-weight:800;letter-spacing:0.1em;margin:0 0 6px;">{s.num}</p>
+          <p style="color:#fff;font-size:0.9rem;font-weight:700;margin:0 0 8px;">{s.title}</p>
+          <p style="color:#94A3B8;font-size:0.8rem;line-height:1.65;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:-60px;left:-60px;width:380px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:center;">
+
+    <div style="flex-shrink:0;width:380px;">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80" alt="Why choose Index Office Services" style="width:100%;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+    </div>
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Our Strengths</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">WHY CHOOSE INDEX OFFICE SERVICES?</h2>
+      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">Experience plays a key role in attestation. Our team handles documents daily across multiple authorities. Therefore, errors are identified early and corrected quickly.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        {[
+          "Over 25 years of experience in UAE certificate attestation",
+          "Coverage across 100+ countries",
+          "400,000+ clients served",
+          "Complete process handling",
+          "Lower chances of rejection",
+          "Clear updates at each stage",
+        ].map(f => (
+          <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fff;border:1px solid #e0e7ef;border-radius:10px;font-size:0.85rem;color:#1A202C;font-weight:500;">
+            <span style="width:24px;height:24px;border-radius:50%;background:#2D3748;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            {f}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;" id="faqList">
+      {faqs.map((f,i) => (
+        <div class="faq-item" data-faq={i}>
+          <button class="faq-q">
+            <span>{i+1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH WITH FORM ════════════ -->
+<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left: text -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR ATTESTATION SERVICES.</h2>
+      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">Our extensive global network of service providers and offices allows us to seamlessly integrate our services and tailor them to meet your specific requirements.</p>
+      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
+        <div style="display:flex;gap:10px;">
+          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
+            <select>
+              {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
+            </select>
+          </div>
+          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
+          <select>
+            <option value="">Select a Service</option>
+            <option>Company Formation</option>
+            <option>PRO Services</option>
+            <option selected>Attestation / Legalization / Apostille</option>
+            <option>PCC (Good Standing Certificate)</option>
+            <option>Legal Translation Services</option>
+            <option>Other Services</option>
+          </select>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="Enter your message*" rows="3"></textarea></div>
+        <button class="idx-submit">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ SCRIPTS ════ -->
+<script>
+(function(){
+  // ── Document tabs ──
+  const tabs = document.querySelectorAll('.doc-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = (tab as HTMLElement).dataset.tab;
+      ['personal','educational','commercial'].forEach(t => {
+        const el = document.getElementById('tab-' + t) as HTMLElement;
+        el.style.display = t === target ? 'grid' : 'none';
+      });
+    });
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>
