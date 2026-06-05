@@ -1,54 +1,337 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1",  label: "US +1" },
+  { code: "+973", label: "BH +973" },
+]
+
+const businessTypes = [
+  "Limited Liability Company (LLC)",
+  "Free Zone Company",
+  "Branch Office",
+  "Professional License",
+  "Sole Establishment",
+  "Partnership",
+  "Offshore Company",
+  "Joint Venture",
+]
+
+const whyUs = [
+  "A trusted name in company formation in Dubai, certificate attestation, apostille services, and cross-border citizen services.",
+  "Over 25 years of experience in delivering strategic solutions and customer satisfaction.",
+  "Strong global presence in Qatar, Abu Dhabi, Dubai, India, and multiple countries through associate offices and professional networks.",
+  "ISO-certified international agency extending expertise in starting businesses.",
+  "Committed to client trust and satisfaction as our driving force.",
+  "End-to-end services for company formation, incorporation, registration, visa assistance, bank account opening, PRO services, legal translation, and embassy services.",
+]
+
+const formationSteps = [
+  { icon: "🤝", title: "Finding A Partner", desc: "Every business must have a partner who is a citizen of U.A.E to set up a business in U.A.E. Index can find a suitable partner for your business in U.A.E." },
+  { icon: "🏢", title: "Business Set-Up", desc: "Regulations and requirements of law change as per the industry and business requirements. Index can help you understand these changes and make the best decision." },
+  { icon: "📋", title: "License Registration", desc: "Licensing is a key part of getting a business set-up and running in U.A.E. Index can help you choose the right licences from the numerous options available in U.A.E." },
+]
 ---
 
-<BaseLayout title="Business Setup in Dubai — Index Office Services" description="Premium professional attestation and business support services in the UAE.">
-  <section style="background: #2D3748; padding: 80px 24px; text-align: center; color: white;">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 20px; line-height: 1.2;">
-        Business Setup in Dubai
-      </h1>
-      <p style="color: #B2F5EA; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-        Index Office Services provides premium, prompt, and secure document legalization, business setup, and attestation services across the UAE and GCC.
+<BaseLayout
+  title="Business Setup in Dubai — Index Office Services"
+  description="Complete business setup services in Dubai. Mainland, free zone, and offshore company formation. 25+ years of experience across the UAE and GCC."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
+  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize: none; }
+  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
+  .idx-submit:hover { background: #1A202C; }
+  .purpose-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
+  .purpose-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); transform: translateY(-3px); }
+  .benefit-card { border-radius: 14px; padding: 22px; }
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80"
+    alt="Business Setup in Dubai"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Convenient</span>
+      <span class="idx-pill">Budget-Friendly</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 12px;">
+      BUSINESS SETUP IN DUBAI
+    </h1>
+    <p style="color:#38B2AC;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 20px;">Mainland · Free Zone · Offshore | Company Formation | 25 Years of Trust</p>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:680px;">
+      Dubai offers a dynamic and varied economy, a prime location, a helpful administration, and a beneficial tax structure. Index Office Services can help you in setting up your business in Dubai efficiently and within budget.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
       </p>
-      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: #38B2AC; color: white; padding: 12px 28px; border-radius: 6px; font-weight: 700; text-decoration: none;">
-        Get Started Today &rarr;
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">How Does Business Setup in Dubai Work?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Business setup in Dubai is the process of establishing a legal entity that can conduct commercial activities in Dubai. There are two main ways of setting up a business in Dubai: on the mainland or within one of the many free zones. The mainland falls under the jurisdiction of the Dubai Department of Economic Development (DED), while the free zones are special economic zones with their own rules and regulations.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        To set up a business in Dubai, an investor needs to follow certain steps — registering the trade name, obtaining initial approval, drafting the MOA and LSA, finding a business location and obtaining a tenancy contract, obtaining additional approvals, submitting documents and paying fees, and obtaining the trade license.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">
+        The time it takes to start a business in Dubai can vary from one week to one month, depending on the type and location of the business, documentation and approvals required, and the effectiveness of your service provider.
+      </p>
+
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Transparency in Pricing and Services</h3>
+        <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
+          Index Office Services follows a standardised pricing policy and a transparency policy, which makes sure our customers understand our pricing and what processes are involved at each stage. This helps in maintaining a mutual understanding between us and our clients.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&q=80" alt="Business setup Dubai" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Mainland · Free Zone · Offshore</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete company formation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          2500+ Companies Formed
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ BUSINESS TYPES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80" alt="Types of business Dubai" style="width:100%;height:400px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">8 Business Types Available</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Expats can launch any of these in Dubai</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Business Structures</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Types of Businesses You Can Start in Dubai as an Expat</h2>
+        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">
+          Depending on your abilities, expertise, and objectives, you can launch a variety of businesses in Dubai as an expat. Each type of business setup has its own specific requirements, restrictions, and benefits. Consulting with business experts like Index Office Services can help you navigate the process and choose the most suitable option.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="two-col">
+          {businessTypes.map(type => (
+            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eef0f6;border-radius:10px;padding:14px 16px;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;font-size:1rem;">✓</span>
+              <span style="font-size:0.84rem;font-weight:600;color:#1A202C;">{type}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS & FORMATION STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=1400&q=80" alt="Dubai business setup procedures" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Procedures to Start a Business in Dubai</h2>
+      </div>
+    </div>
+
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {[
+          { step: "01", title: "Identify the Business Activity", desc: "Decide on the business activity and the legal form — whether mainland or free zone — based on your target market, ownership requirements, and activity type." },
+          { step: "02", title: "Register Trade Name & Get Initial Approval", desc: "Choose a unique trade name and register it with the relevant authority. Obtain initial approval for the business activity and legal structure." },
+          { step: "03", title: "Draft Necessary Agreements", desc: "Draft the Memorandum of Association (MOA) and Local Service Agent Agreement (LSA) as required, defining the rights and obligations of all parties involved." },
+          { step: "04", title: "Select a Location & Obtain Approvals", desc: "Find a suitable business location and obtain a tenancy contract. Obtain any additional approvals required from other government entities or agencies." },
+          { step: "05", title: "Submit Documents & Pay Fees", desc: "Submit all required documents and pay the applicable fees to obtain the trade license and complete the business registration process." },
+        ].map(s => (
+          <div style="display:flex;align-items:flex-start;gap:16px;background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:18px;transition:all 0.25s;">
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.78rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=700&q=80" alt="Company formation steps Dubai" style="width:100%;height:220px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.78) 100%);"></div>
+          <div style="position:absolute;bottom:18px;left:18px;right:18px;">
+            <p style="color:#fff;font-size:0.88rem;font-weight:800;margin:0 0 3px;">Company Formation Steps in U.A.E</p>
+            <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Partner · Setup · License Registration</p>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {formationSteps.map(s => (
+            <div class="purpose-card" style="display:flex;align-items:flex-start;gap:14px;">
+              <div style="font-size:1.5rem;flex-shrink:0;">{s.icon}</div>
+              <div>
+                <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.78rem;color:#4B5563;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services Dubai business setup" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · GCC Network · 9+ Countries</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">WHY CHOOSE US?</h2>
+        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">
+          We have a dedicated and experienced team that has been at the forefront in ensuring effective Business Setup and facilitated easy setup of new businesses for aspiring businessmen. The services are provided within a fixed budget and have proved to be very effective.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {whyUs.map(point => (
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.84rem;color:#B2F5EA;line-height:1.65;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">✓</span>{point}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px;margin-bottom:52px;">
+      <h3 style="font-size:1rem;font-weight:800;color:#fff;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:12px;">Assurance on Reliability and Quality</h3>
+      <p style="color:#CBD5E0;font-size:0.85rem;line-height:1.75;margin:0;">
+        Index's primary motto is to ensure quality and reliability while ensuring the highest customer satisfaction possible so that our customers become our evangelists. You, as a client, can be assured that your company formation processes are in good hands, and your business will be up and running in no time, adhering to the legal and regulatory requirements of the country.
+      </p>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">2500+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Companies Formed</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">100+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Countries Served</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET IN TOUCH ════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR BUSINESS SETUP IN DUBAI.</h2>
+      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+        Index provides complete assistance for business setup in Dubai. Our team ensures your company formation is handled correctly through every step — from trade name registration to license issuance.
+      </p>
+      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
+        Feel free to call us for a consultation — we will be happy to assist you. Reach out through WhatsApp, a quick call, or our online form. We provide 24/7 customer support anytime, anywhere.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
       </a>
     </div>
-  </section>
 
-  <section style="background: white; padding: 60px 24px; color: #1A202C;">
-    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 48px;">
-      <div>
-        <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 16px;">Service Overview</h2>
-        <p style="color: #4B5563; font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
-          This service provides end-to-end processing for your requirements. Our dedicated team of legalization and registration experts works directly with official channels, home country ministries, and the UAE Ministry of Foreign Affairs (MOFA) to verify and legalise your paperwork.
-        </p>
-        <p style="color: #4B5563; font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
-          Avoid delays, complications, and document rejections. Our 25+ years of experience in the GCC region guarantees a smooth, secure, and structured flow for all your requirements.
-        </p>
-        
-        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; margin-top: 32px;">Why Choose Index Office Services?</h3>
-        <ul style="padding-left: 20px; color: #4B5563; font-size: 0.95rem; line-height: 2; margin-bottom: 20px;">
-          <li>✓ <strong>Quick Processing:</strong> Timely, fast-tracked, and structured updates.</li>
-          <li>✓ <strong>Expert Legal Compliance:</strong> Deep knowledge of UAE and GCC legal frameworks.</li>
-          <li>✓ <strong>Secure Handling:</strong> Strict confidentiality and secure physical transfer protocols.</li>
-          <li>✓ <strong>Courier Coordination:</strong> Doorstep pickup and delivery options available across the UAE.</li>
-        </ul>
-      </div>
-
-      <div style="background: #F8FAFF; border: 1px solid #E2E8F0; padding: 24px; border-radius: 12px;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; color: #2D3748;">Enquiry Form</h3>
-        <form style="display: flex; flex-direction: column; gap: 12px;" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been received.');">
-          <input type="text" placeholder="Your Name" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <input type="email" placeholder="Email Address" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <input type="tel" placeholder="Phone Number" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <textarea placeholder="Tell us about your requirements..." rows="4" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem; resize: none;" required></textarea>
-          <button type="submit" style="background: #2D3748; color: white; border: none; padding: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: background 0.2s; width: 100%;">
-            Submit Enquiry
-          </button>
-        </form>
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
+        <div style="display:flex;gap:10px;">
+          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
+            <select>{countryCodes.map(c => <option value={c.code}>{c.label}</option>)}</select>
+          </div>
+          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
+          <select>
+            <option value="">Select a Service</option>
+            <option selected>Business Setup in Dubai</option>
+            <option>Mainland Company Formation Dubai</option>
+            <option>Free Zone Company Formation Dubai</option>
+            <option>Offshore Company Formation Dubai</option>
+            <option>Trade License Registration Dubai</option>
+            <option>Other Services</option>
+          </select>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="What you like to discuss?*" rows="3"></textarea></div>
+        <button class="idx-submit">Submit</button>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
 </BaseLayout>
