@@ -10,90 +10,46 @@ const countryCodes = [
 ]
 
 const benefits = [
-  { icon: "🌐", title: "Cross-Cultural Communication", desc: "With a multicultural population and thriving international business scene, the UAE frequently requires legal documents translated from Arabic to English or vice versa. Index ensures all parties understand the legal content accurately, eliminating misunderstandings." },
-  { icon: "⚖️", title: "Legal Interpretation Services", desc: "In legal proceedings, precise interpretation of spoken language is just as crucial as written translations. Index provides legal interpretation services in courtrooms, during negotiations, and other legal interactions, ensuring every word is correctly conveyed." },
-  { icon: "📋", title: "Compliance and Legal Documentation", desc: "The UAE has stringent legal requirements. Any document submitted to government authorities or courts must comply with local laws. Index ensures all documents, contracts, and agreements adhere to UAE legal standards." },
-  { icon: "🔏", title: "Confidentiality and Accuracy", desc: "Legal documents often contain sensitive information. Index guarantees confidentiality and accuracy, safeguarding client interests and ensuring the privacy of legal matters throughout the translation process." },
+  { icon: "🛂", title: "Visa and Immigration Purposes", desc: "A PCC from UAE is often required for individuals applying for immigration or long-term visas abroad. It serves as proof of good conduct and helps foreign authorities assess your eligibility for entry." },
+  { icon: "💼", title: "Employment Opportunities", desc: "Many employers worldwide require job applicants who have lived in UAE to provide a PCC as part of their background check. The certificate confirms a clean criminal record, building trust in your integrity." },
+  { icon: "🎓", title: "Higher Education Abroad", desc: "Universities and academic institutions may require a UAE PCC as part of their admission process for international students who have previously resided in the UAE." },
+  { icon: "🌍", title: "Travel and Residency Applications", desc: "Individuals applying for residency permits or citizenship in other countries may need to submit a UAE PCC. It ensures the applicant poses no security risk and is of good character." },
 ]
 
 const documents = [
-  { title: "Contracts & Agreements", body: "Certified translation of all types of commercial and legal contracts and agreements, meeting UAE Ministry of Justice formatting requirements for official use." },
-  { title: "Powers of Attorney", body: "Accurate translation of special and general powers of attorney for use with UAE notaries, courts, and government departments." },
-  { title: "Certificates & Academic Records", body: "Birth certificates, marriage certificates, educational certificates, and academic transcripts translated for visa, residency, and employment submissions." },
-  { title: "Court Documents", body: "Precise translation of court orders, judgments, case files, and legal correspondence for submission to UAE courts and legal authorities." },
-  { title: "Commercial & Business Documents", body: "Memorandums of association, articles of association, company documents, and commercial paperwork translated and certified for UAE government use." },
-  { title: "Police Clearances & Immigration Papers", body: "Police clearance certificates, immigration documents, and residency-related paperwork translated for visa processing and residency submissions in the UAE." },
+  { title: "Valid Emirates ID Card", body: "A valid Emirates ID card is required as proof of identity and UAE residency for all PCC applicants." },
+  { title: "Passport Copy", body: "A copy of your valid passport, including the bio-data page and any relevant visa or residency pages." },
+  { title: "Passport-Size Photograph", body: "A recent passport-sized photograph with a white background, meeting the specifications required by UAE authorities." },
+  { title: "Letter of No Criminal Conviction", body: "A letter stating that you do not have any pending criminal convictions or charges within the UAE." },
+  { title: "Valid Email Address", body: "A valid email address is required for correspondence and digital delivery of application updates and notifications." },
+  { title: "Fingerprint Card (if no longer a resident)", body: "If you are no longer a UAE resident, you must obtain a fingerprint card from your current country of residence and have it attested by the UAE Embassy there." },
 ]
 
-const services = [
-  { title: "MOJ-Approved Legal Translation", desc: "Index works with licensed translators who follow UAE Ministry of Justice guidelines, ensuring translated documents are accepted by courts, ministries, immigration departments, and other official authorities." },
-  { title: "Arabic ↔ English Translation", desc: "Certified translation services for both Arabic-to-English and English-to-Arabic, ensuring accuracy in legal terminology across both official UAE languages." },
-  { title: "Translation + Attestation Package", desc: "Index manages the complete process — translation, notarization, MOJ approval, and MOFA attestation — so your documents are ready for official use in the UAE without multiple service providers." },
-  { title: "Immigration & Visa Document Translation", desc: "Indexauh supports immigration-related requirements by translating birth certificates, marriage certificates, police clearances, and educational certificates for visa and residency submissions." },
-  { title: "Translation Review & Compliance Check", desc: "If you already have a translation, Index can check it for compliance and advise whether additional certification or retranslation is required for acceptance by UAE authorities." },
-  { title: "Urgent & Same-Day Translation", desc: "Index provides fast-track translation services for urgent cases, helping clients meet tight deadlines for court submissions, visa applications, business filings, and other time-sensitive requirements." },
+const pccAssistance = [
+  { title: "Expert Guidance", desc: "PCC assistance services have extensive knowledge of UAE police clearance procedures. They guide applicants through every requirement, ensuring accuracy and completeness." },
+  { title: "Time and Effort Savings", desc: "Obtaining a UAE PCC involves complex procedures and paperwork. Professional services handle the entire process on your behalf, saving significant time and effort." },
+  { title: "Documentation Support", desc: "Professional services assist with document preparation, ensuring all necessary documents are included and meet the specified UAE authority requirements." },
+  { title: "Application Follow-up", desc: "PCC assistance services track the progress of your application, liaise with UAE authorities, and provide timely updates to ensure a smooth process." },
+  { title: "Error Prevention", desc: "Professional assistance minimises the risk of errors or omissions in the application, significantly increasing the chances of a successful and timely outcome." },
 ]
 
 const whyIndex = [
-  "Index works with licensed translators who follow UAE Ministry of Justice guidelines for all official document submissions.",
-  "Every document is translated by qualified experts and reviewed for accuracy, legal terminology consistency, and UAE formatting compliance before delivery.",
-  "Index provides certified translations prepared by approved professionals meeting UAE court, notary, and government institution standards.",
-  "Index offers end-to-end support including translation, notarization, MOJ approval, and MOFA attestation in a single streamlined process.",
-  "Translations cover both Arabic-to-English and English-to-Arabic with strict legal terminology accuracy across both languages.",
-  "Index supports immigration document translation for birth certificates, marriage certificates, police clearances, and educational certificates.",
-  "Fast-track and same-day services are available for urgent court submissions, visa applications, and business filings.",
-  "Index can review existing translations for compliance and advise on whether retranslation or additional certification is needed.",
-  "Cultural sensitivity is maintained in every translation — documents reflect legal content accurately while respecting cultural nuances.",
-  "With 25+ years of expertise, Index has deep knowledge of UAE legal frameworks and official document requirements.",
-]
-
-const faqs = [
-  {
-    q: "How can Index help me get MOJ-approved legal translation for UAE government submissions?",
-    a: "Index works with licensed translators who follow UAE Ministry of Justice guidelines, ensuring your translated documents are accepted by courts, ministries, immigration departments, and other official authorities."
-  },
-  {
-    q: "Does Index provide certified legal translation accepted by UAE courts and ministries?",
-    a: "Yes. Index provides certified translations prepared by approved professionals so that your documents meet the standards required by UAE courts, notaries, and government institutions."
-  },
-  {
-    q: "Can Index assist with legal translation for immigration and visa processing in the UAE?",
-    a: "Index supports immigration-related requirements by translating documents such as birth certificates, marriage certificates, police clearances, and educational certificates for visa and residency submissions."
-  },
-  {
-    q: "How does Index ensure accuracy and compliance in legal document translations?",
-    a: "Every document handled by Index is translated by qualified experts and then reviewed for accuracy, legal terminology consistency, and compliance with UAE official formatting rules before delivery."
-  },
-  {
-    q: "Does Index handle both translation and attestation of documents required in the UAE?",
-    a: "Yes. Index can manage the complete process including translation, notarization, MOJ approval, and MOFA attestation — so your documents are ready for official use in the UAE."
-  },
-  {
-    q: "Can Index translate legal documents from Arabic to English and vice versa?",
-    a: "Index provides certified translation services for both Arabic-to-English and English-to-Arabic, ensuring accuracy in legal terminology across both languages."
-  },
-  {
-    q: "What types of documents can Index translate for legal use in the UAE?",
-    a: "Index can translate contracts, certificates, agreements, court documents, powers of attorney, academic records, commercial documents, and other legally sensitive paperwork."
-  },
-  {
-    q: "Can Index review my translated documents to confirm they meet UAE legal requirements?",
-    a: "Yes. If you already have a translation, Index can check it for compliance and advise whether additional certification or retranslation is required for acceptance by the UAE authorities."
-  },
-  {
-    q: "Does Index offer urgent or same-day legal translation services in the UAE?",
-    a: "Index provides fast-track translation services for urgent cases, helping clients meet tight deadlines for court submissions, visa applications, business filings, and other time-sensitive requirements."
-  },
-  {
-    q: "Why should I choose Index for legal translation compared to other UAE translation agencies?",
-    a: "Index offers end-to-end support, licensed translators, strict quality standards, and integrated services such as attestation and PRO assistance, giving clients a streamlined and professional solution."
-  },
+  "Our team of experienced professionals specialises in handling the intricacies of the UAE PCC application process.",
+  "We offer comprehensive support and guidance throughout the entire PCC application journey.",
+  "Index takes care of document preparation, ensuring that all necessary paperwork is accurately completed.",
+  "We assist in the submission of the PCC application to the relevant UAE police authorities on behalf of our clients.",
+  "Index provides timely follow-up and keeps clients informed about the progress of their PCC application.",
+  "Our services are designed to simplify the UAE PCC process, saving individuals time and effort.",
+  "Index aims to deliver efficient and reliable results, ensuring a hassle-free experience for our clients.",
+  "We have more than 25 years of experience and can handle all the formalities required by UAE authorities.",
+  "Our professionals are native experts who can converse easily with the regulatory authorities and get the job done.",
+  "We stay updated on the changing rules and regulations to make your PCC and other procedures simple and hassle-free.",
 ]
 ---
 
 <BaseLayout
-  title="Legal Translation Services in UAE — Index Office Services"
-  description="Convenient, budget-friendly legal translation services in the UAE. MOJ-approved certified translations. Arabic-English. 25+ years experience by Index Office Services."
+  title="Police Clearance Certificate from UAE — Index Office Services"
+  description="Convenient, budget-friendly Police Clearance Certificate services for UAE. 25+ years of experience. Professional PCC assistance by Index Office Services."
 >
 
 <style>
@@ -110,13 +66,7 @@ const faqs = [
   .doc-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
   .assist-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
   .assist-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
-  .faq-item { border: 1px solid #eef0f6; border-radius: 14px; overflow: hidden; }
-  .faq-item summary { list-style: none; cursor: pointer; padding: 18px 22px; font-size: 0.88rem; font-weight: 700; color: #1A202C; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after { content: "+"; font-size: 1.2rem; font-weight: 900; color: #38B2AC; flex-shrink: 0; }
-  .faq-item[open] summary::after { content: "−"; }
-  .faq-item[open] { border-color: #B2F5EA; }
-  .faq-body { padding: 0 22px 18px; font-size: 0.82rem; color: #4B5563; line-height: 1.75; }
+  .benefit-card-dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
@@ -129,8 +79,8 @@ const faqs = [
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80"
-    alt="Legal Translation Services UAE"
+    src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?w=1600&q=80"
+    alt="Police Clearance Certificate from UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
   <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
@@ -144,10 +94,10 @@ const faqs = [
       <span class="idx-pill">Genuine</span>
     </div>
     <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
-      LEGAL TRANSLATION<br/>SERVICES IN THE UAE
+      POLICE CLEARANCE<br/>CERTIFICATE FROM UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:680px;">
-      In the dynamic landscape of the UAE, clear and precise communication is vital when dealing with legal matters. Index Office Service offers impeccable legal translation assistance — bridging linguistic gaps and facilitating seamless communication across language barriers within the UAE's legal domain.
+      A Police Clearance Certificate (PCC) from the UAE is an official document issued by police departments across the UAE, confirming that an individual has no criminal record and is not under investigation within the jurisdiction of the United Arab Emirates.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
@@ -165,27 +115,27 @@ const faqs = [
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview
       </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Legal Translation in the UAE: Purpose and Significance</h2>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Is It Necessary to Get a PCC from UAE?</h2>
       <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
-        Legal translation plays a pivotal role in the UAE's legal framework due to the nation's diverse cultural landscape and the coexistence of both Arabic and English as official languages. The primary purpose of legal translation services in the UAE is to bridge linguistic gaps and facilitate seamless communication across language barriers within the legal domain.
+        It depends on your purpose and situation. If you are a UAE citizen or resident who wants to work, study, migrate, or carry out any activity abroad that requires a PCC, you will need a Police Clearance Certificate from the UAE to comply with the requirements of the relevant authorities.
       </p>
       <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
-        Index Office Service specializes in legal translations, boasting a team of experienced translators well-versed in legal terminology and nuances — ensuring accurate, contextually sound, and culturally sensitive translations for individuals and businesses alike.
+        If you are a foreigner who has lived or worked in the UAE for at least six months, you may also need a UAE PCC when applying for a new job, visa, or residency status in the UAE or elsewhere.
       </p>
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
-        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">MOJ-Approved &amp; Officially Accepted</h3>
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Issued by UAE Police Departments</h3>
         <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
-          All translations are prepared by licensed professionals following UAE Ministry of Justice guidelines, ensuring acceptance by courts, ministries, immigration departments, and all official UAE authorities.
+          The PCC from the UAE is issued by police departments across the country. It confirms you are not under investigation and have no criminal record. It is required for immigration, employment, higher education abroad, travel, and visa processing.
         </p>
       </div>
     </div>
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" alt="Legal Translation UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" alt="Police Clearance Certificate UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Legal Translation Assistance</p>
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional UAE PCC Assistance</p>
           <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">End-to-end support by Index Office Services</p>
         </div>
         <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
@@ -203,16 +153,16 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&q=80" alt="Why legal translation matters in UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
+        <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&q=80" alt="Benefits of UAE PCC" style="width:100%;height:440px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Why Legal Translation Matters</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Communication · Compliance · Accuracy · Confidentiality</p>
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Benefits of PCC from UAE</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visa · Employment · Education · Travel</p>
         </div>
       </div>
       <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Benefits</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 18px;">Why Legal Translation Is Essential in the UAE</h2>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why You Need It</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 18px;">What Are the Benefits of PCC in the UAE?</h2>
         <div style="display:flex;flex-direction:column;gap:14px;" class="four-col">
           {benefits.map(b => (
             <div class="benefit-card-light" style="display:flex;gap:16px;align-items:flex-start;">
@@ -229,17 +179,17 @@ const faqs = [
   </div>
 </section>
 
-<!-- ════ DOCUMENTS ════ -->
+<!-- ════ DOCUMENTS REQUIRED ════ -->
 <section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80" alt="Documents we translate for UAE legal use" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80" alt="Documents required for UAE PCC" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
-        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Document Types</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Documents We Translate for Legal Use in the UAE</h2>
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Requirements</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Documents Required for PCC from UAE</h2>
       </div>
     </div>
 
@@ -254,30 +204,30 @@ const faqs = [
   </div>
 </section>
 
-<!-- ════ OUR SERVICES ════ -->
+<!-- ════ WHY CHOOSE PCC ASSISTANCE ════ -->
 <section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:48px;">
       <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Full Service Range</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Index: The Ideal Choice for Legal Translation in UAE</h2>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Professional Assistance</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Why Choose PCC Assistance in UAE?</h2>
         <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;">
-          Index's commitment to excellence, cultural sensitivity, and legal expertise makes it the go-to choice for individuals and businesses seeking reliable legal translation services in the UAE. When accuracy and precision matter most, Index navigates the intricate world of legal translation — from MOJ-approved certified translations to full attestation packages and urgent same-day delivery.
+          Applying for a PCC in the UAE can be a complex and time-consuming process involving various steps and procedures. You may face difficulties obtaining required documents, filling out application forms, paying fees, and submitting the application. Professional PCC assistance in UAE can help you simplify and expedite the entire process with maximum convenience.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80" alt="Index legal translation services UAE" style="width:100%;height:260px;object-fit:cover;display:block;" />
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80" alt="PCC assistance UAE" style="width:100%;height:260px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.82rem;font-weight:800;margin:0;">Certified · Compliant · Fast</p>
+          <p style="color:#fff;font-size:0.82rem;font-weight:800;margin:0;">Full PCC Process Handled for You</p>
         </div>
       </div>
     </div>
 
     <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      {services.map(a => (
+      {pccAssistance.map(a => (
         <div class="assist-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:10px;">{a.title}</h3>
           <p style="font-size:0.82rem;color:#4B5563;line-height:1.7;margin:0;">{a.desc}</p>
@@ -298,21 +248,22 @@ const faqs = [
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ Years · UAE Legal Translation Experts</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ Years · Global PCC Experts</p>
         </div>
       </div>
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">How Can Index Assist You?</h2>
         <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
-          Index is a specialist service provider with over 25 years of experience in UAE legal translation and document services. We offer comprehensive assistance — from initial consultation and document review to certified translation, MOJ approval, MOFA attestation, and final delivery.
+          Index is one of the leading PCC assistance service providers in the UAE with over 25 years of experience and expertise. We have a team of qualified and experienced professionals who can help you with all aspects of your UAE PCC application process.
         </p>
         <p style="color:#94A3B8;font-size:0.85rem;line-height:1.8;">
-          Our team's expertise in legal jargon, cultural sensitivity, and quick turnaround makes Index the trusted choice when accuracy and precision matter most. Call us today for a free consultation.
+          We offer fast, easy, and affordable PCC services for individuals and corporate clients. We also have a strong network of professionals who are native speakers and can assist with document attestation, verification, translation, delivery, and follow-up. Want to know more? Call us today for a free consultation.
         </p>
       </div>
     </div>
 
+    <!-- Why Index list -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:52px;" class="two-col">
       {whyIndex.map(point => (
         <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;">
@@ -324,40 +275,22 @@ const faqs = [
 
     <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:52px;">
       <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin:0 0 12px;">
-        Index is a specialist service provider focusing on legal translation and other international individual and business legal services. With 25+ years of expertise, we have gained considerable knowledge and insight on delivering professional and timely results.
+        Index is a specialist service provider, focusing on police clearance certificates and other international individual and business services. With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely police clearance certificates.
       </p>
       <p style="color:#94A3B8;font-size:0.85rem;line-height:1.8;margin:0;">
-        Our translations are prepared by licensed professionals and meet the standards required by the UAE Ministry of Justice, MOFA, courts, and all official government authorities. Call us today to book a free consultation.
+        Our certificates are authorised by police departments and concerned authorities in various countries, as per your requirements. Call us today to book a free consultation.
       </p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
       <div>
-        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">2500</p>
-        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Companies Served</p>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25000</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Happy Clients</p>
       </div>
       <div>
         <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25</p>
         <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ FAQ ════ -->
-<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
-    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;text-align:center;margin-bottom:10px;">Have Questions?</p>
-    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;text-align:center;margin:0 0 40px;">Frequently Asked Questions About Legal Translation Services</h2>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      {faqs.map((f, i) => (
-        <details class="faq-item">
-          <summary>{i + 1}. {f.q}</summary>
-          <div class="faq-body">{f.a}</div>
-        </details>
-      ))}
     </div>
   </div>
 </section>
@@ -371,12 +304,12 @@ const faqs = [
 
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Free Consultation</p>
-      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">CONSULT AND GET YOUR DOCUMENTS TRANSLATED ON TIME</h2>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">CONSULT AND GET YOUR PCC ON TIME</h2>
       <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
-        Index is a specialist service provider, focusing on legal translation and other international individual and business legal services.
+        Index is a specialist service provider, focusing on police clearance certificates and other international individual and business services.
       </p>
       <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
-        With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely results authorised by the UAE Ministry of Justice and concerned authorities. Call us today to book a free consultation.
+        With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely police clearance certificates authorised by police departments and concerned authorities in various countries, as per your requirements. Call us today to book a free consultation.
       </p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
@@ -401,14 +334,8 @@ const faqs = [
         <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
           <select>
             <option value="">Select a Service</option>
-            <option selected>Legal Translation Services</option>
-            <option>Arabic to English Translation</option>
-            <option>English to Arabic Translation</option>
-            <option>MOJ-Approved Translation</option>
-            <option>Translation + MOFA Attestation</option>
-            <option>Immigration Document Translation</option>
-            <option>Urgent / Same-Day Translation</option>
-            <option>Translation Review &amp; Compliance Check</option>
+            <option selected>UAE Police Clearance Certificate</option>
+            <option>Document Attestation</option>
             <option>Other Services</option>
           </select>
         </div>
