@@ -1,54 +1,397 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+973", label: "BH +973" },
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1", label: "US +1" },
+]
+
+const indexHelps = [
+  "Index will help you choose the best company structure in Qatar",
+  "Index will help you set-up the business as you require in Qatar",
+  "Index will support you in documentation and filing of required paperwork in Qatar",
+  "Index will help you in setting up tax and licenses required for your business in Qatar",
+]
+
+const legalStructures = [
+  "Limited Liability Company (LLC)",
+  "Foreign Company Branches",
+  "Commercial Agencies",
+  "Representative Trade Offices",
+  "General Partnership Company",
+  "Limited Share Partnership Company",
+  "Holding Company",
+  "Public Shareholding Company",
+  "Joint Venture",
+]
+
+const companyTypes = [
+  {
+    title: "Limited Liability Company Formation in Qatar (WLL)",
+    body: "A Limited Liability Company in Qatar (LLC Qatar) is one of the most popular form of business entity in Qatar. It is possible to set up an LLC in Qatar with one or more Qatari partners or 100% Qatari owned business. In case of Qatari partners, Qatari partners should have no less than 51% of the shares in the partnership. LLC are allowed to operate in most sectors in Qatar, except for commercial agencies and real estate businesses. Index can guide you through necessary activities of setting up an LLC in Qatar.",
+  },
+  {
+    title: "General Partnership Company Formation In Qatar",
+    body: "In a general partnership company, there are two or more partners involved in setting up a company in Qatar. All partners in a general partnership have unlimited liability towards the business and roles and responsibilities of partners are based on the partnership agreement of the business. Index can guide you through necessary activities of setting up a general partnership company in Qatar.",
+  },
+  {
+    title: "Limited Share Partnership Company Formation In Qatar",
+    body: "In a limited share partnership, there must be one general partner and one limited partner. While the limited partner is only responsible for making investments and have limited liability to the extent of his investments in the business, general partners have more responsibility and control over the business, but also share unlimited liability towards the extend of his personal wealth. Minimum share capital required to set up a limited share partnership is QR.1,000,000. Index can guide you through necessary activities of setting up a limited share partnership in Qatar.",
+  },
+  {
+    title: "Holding Company Formation In Qatar",
+    body: "A holding company in Qatar is set up to make investments in other companies in Qatar. It is possible for holding companies in Qatar to have more than 50% of shares in other companies in the country, including LLCs, LLPs, or other type of business, and even start its own business. There is a minimum capital requirement for QR 10 million for setting up a holding company in Qatar. Index can guide you through necessary activities of setting up a holding company in Qatar.",
+  },
+  {
+    title: "Public Shareholding Company Formation In Qatar",
+    body: "Qatari Law recognises different types of public shareholding companies in the country. A joint stock company or a Qatari shareholding company is possible to set up in Qatar. A Qatar shareholding company can be a public shareholding company (open) or a private or closed public shareholding company, which have different regulations and requirements concerning issuance and subscription of shares to the public. For more information on setting up a Public shareholding company in Qatar, contact Helpline Group today.",
+  },
+  {
+    title: "Joint Venture Formation In Qatar",
+    body: "In Qatar, a joint venture is not an incorporated entity and does not have a legal personality. However, the law recognises the formation of a contract and partnership between two companies for carrying out common activities and goals. Hence, a joint venture is often the solution followed by companies in Qatar to participate in joint activities and roles. Index can guide you through necessary activities of setting up a Joint Venture in Qatar.",
+  },
+  {
+    title: "Representative Trade Offices In Qatar",
+    body: "As of now, foreign companies are allowed to open representative trade offices in Qatar without needing a local partner. Even though such commercial offices can have a commercial registration and hire staffs, such are only shop windows for the parent company and cannot engage in profit generating activities. However, these representative trade offices may promote a foreign company and introduce its products and services companies and customers in Qatar. Index can guide you through necessary activities of setting up a Representative Trade Office in Qatar.",
+  },
+  {
+    title: "Commercial Agencies In Qatar",
+    body: "Foreign companies may now establish commercial agencies in Qatar with the primary intention of carrying out services and selling products to companies in Qatar. Companies are required to appoint an exclusive provider of services and goods in Qatar to establish such a company. Index can guide you through necessary activities of setting up a Commercial Agency in Qatar.",
+  },
+  {
+    title: "Branches In Qatar",
+    body: "Foreign companies can now register their branch offices in Qatar, as per the exemption from the Ministry of Business & Trade. However, it is mandatory that such entities must have a contract with the Qatar government for facilitating the performance of a public service or utility. It means, such companies shall not engage in any commercial activities in Qatar, beyond the activities specified in the contract, and the validity of branch office registrations are only valid up to the validity of the contract. Index can guide you through necessary activities of setting up a branch office in Qatar.",
+  },
+]
+
+const otherFactors = [
+  {
+    title: "Real Estate",
+    body: "There are different rules of real estate businesses and brokerage companies in Qatar, which can be extended towards ownership and management of such businesses and most importantly, the licensing requirements. Even though you are making huge investments towards real estate businesses in Qatar, one must make sure adequate attention is paid towards registration and licensing requirements in the country to make sure their business is legally protected and recognised. Since foreigners have certain restrictions and limitations in matters pertaining to real estate and properties, such as buying or selling, it is important to consult with Index Office Services to gain deep insight regarding the efficient handling of real estate business in Qatar.",
+  },
+  {
+    title: "Taxation of companies registered in Qatar",
+    body: "Tax systems in Qatar are very complex. Qatar levies corporate and individual tax between 10% to 30% depending on the type of company and the profit made. Taxation may change according to the type of company and its legal recognition. Qatari owned companies and companies owned by GCC citizen are not required to pay taxes, but foreign investors are required to pay taxes on their income or profit. Index can help you understand these differences, right from the time of business set up and help you set up taxation requirements as per the company needs and conditions. In addition to this, the Index will help you manage your tax requirements with the most efficiency in Qatar.",
+  },
+]
+
+const faqs = [
+  { q: "How can Indexauh assist foreign investors in choosing the right company structure in Qatar?", a: "Indexauh evaluates your business activity, ownership preferences, and compliance needs to recommend the most suitable setup option such as an LLC, branch office, representative office, free zone company, or QFC entity. This helps investors avoid unnecessary costs or partner requirements." },
+  { q: "Does Indexauh help with securing a Qatari partner if my business activity requires one?", a: "Yes. If your business category requires a local Qatari partner, Indexauh can assist in arranging trusted sponsorship options and ensure the partnership agreement is structured correctly to protect your business interests." },
+  { q: "Can Indexauh guide me on whether my business activity is eligible for 100 percent foreign ownership in Qatar?", a: "Indexauh reviews your planned commercial activity and confirms whether it qualifies for 100 percent foreign ownership under Qatar's Foreign Investment Law, helping you avoid outdated or incorrect information." },
+  { q: "How does Indexauh support the documentation and approvals required by the Ministry of Commerce and Industry in Qatar?", a: "Indexauh manages the entire MoCI approval workflow including name reservation, drafting documents, preparing translations, application submissions, and coordinating with relevant departments until approvals are secured." },
+  { q: "Can Indexauh help with company formation in Qatar Free Zones and the Qatar Financial Centre?", a: "Yes. Indexauh assists with business setup in Qatar Free Zones and the Qatar Financial Centre, guiding you through their regulatory requirements, incentives, licensing process, and documentation." },
+  { q: "Does Indexauh provide assistance with drafting and notarizing the Articles of Association in Qatar?", a: "Indexauh prepares the Articles of Association according to local legal standards, arranges for notarization, and ensures the document is compliant with Qatari regulations for company formation." },
+  { q: "How does Indexauh manage end to end company registration including commercial registration, trade license, and establishment card?", a: "Indexauh oversees every stage of the formation process, including obtaining the commercial registration, securing the trade license, and completing the establishment card. This ensures your company is fully operational and compliant." },
+  { q: "Can Indexauh help arrange a physical office space or virtual office required for company formation in Qatar?", a: "Yes. Indexauh can assist with securing office space based on your licensing needs, whether you require a physical workspace, shared office, or virtual office arrangement for regulatory compliance." },
+  { q: "Does Indexauh support bank account opening for new companies formed in Qatar?", a: "Indexauh provides guidance on selecting the right bank, preparing necessary documents, and coordinating appointments to help you open a corporate bank account smoothly." },
+  { q: "How can Indexauh simplify the visa processing and PRO services needed after company formation in Qatar?", a: "Indexauh assists with employee and investor visa applications, establishment ID processing, labor approvals, and ongoing PRO services to ensure your new company operates without delays." },
+]
 ---
 
-<BaseLayout title="Company Formation in Qatar — Index Office Services" description="Premium professional attestation and business support services in the UAE.">
-  <section style="background: #2D3748; padding: 80px 24px; text-align: center; color: white;">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 20px; line-height: 1.2;">
-        Company Formation in Qatar
-      </h1>
-      <p style="color: #B2F5EA; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-        Index Office Services provides premium, prompt, and secure document legalization, business setup, and attestation services across the UAE and GCC.
+<BaseLayout
+  title="Company Formation in Qatar — Index Office Services"
+  description="Convenient, budget-friendly company formation services in Qatar. 25+ years of experience. Learn how to register and start a business in Qatar with Index."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
+  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize: none; }
+  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
+  .idx-submit:hover { background: #1A202C; }
+  .company-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 24px; transition: all 0.25s; }
+  .company-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 300px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=1600&q=80"
+    alt="Company Formation in Qatar"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Convenient</span>
+      <span class="idx-pill">Budget-Friendly</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      COMPANY FORMATION<br/>IN QATAR
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      How do you start a business in Qatar? Learn the best ways through which you may register and start a business in Qatar through Index.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW INDEX HELPS ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview
       </p>
-      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: #38B2AC; color: white; padding: 12px 28px; border-radius: 6px; font-weight: 700; text-decoration: none;">
-        Get Started Today &rarr;
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Company Formation in Qatar</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+        Qatar is one of the fastest growing economies in the world with strong business potential and opportunities. As more businesses coming to the sector and new industrial sectors are set-up, there is a wave of investment and business formation happening in Qatar, resulting in creating a business ecosystem unlike any other place in the Gulf Region. There have been major changes in regulations and economic policies in Qatar to allow 100% foreign ownership in certain areas of the economy. These areas range from education, health, industry and tourism and soon. However, you shall opt for professional guidance on choosing the most appropriate form of business set-up in Qatar to set up your business and start operations.
+      </p>
+      <p style="color:#2D3748;font-weight:700;font-size:0.88rem;margin-bottom:14px;">Learn how you can proceed to register a company in Qatar with our professional company formation services. Check out our comprehensive portfolio.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        {indexHelps.map(h => (
+          <div style="display:flex;align-items:flex-start;gap:10px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:12px 16px;">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">✓</span>
+            <p style="font-size:0.85rem;color:#2D3748;line-height:1.5;margin:0;font-weight:500;">{h}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Company formation Qatar" style="width:100%;height:440px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Company Formation Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">End-to-end support by Index Office Services</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          3500+ Companies Formed
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ LEGAL STRUCTURES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1.3fr 1fr;gap:52px;align-items:center;margin-bottom:52px;">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Structures Available</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Legal Structures of Companies in Qatar</h2>
+        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">
+          Qatar has different company structures on offer. One must understand the basic difference between these structure models and types in Qatar, and make the best decision based on the ownership needs, requirements and conditions. Index Office Services can guide you through this process and help you choose the most suitable company structure in Qatar Company Formation. The following structures are allowed for foreign investments in Qatar.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          {legalStructures.map(s => (
+            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eef0f6;border-radius:10px;padding:10px 14px;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>
+              <p style="font-size:0.82rem;color:#2D3748;font-weight:600;margin:0;">{s}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80" alt="Legal structures Qatar company" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Choose the Right Structure</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Index guides you through every option</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company type detail cards -->
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      {companyTypes.map(c => (
+        <div class="company-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">{c.title}</h3>
+          <p style="font-size:0.82rem;color:#4B5563;line-height:1.7;margin:0;">{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ OTHER FACTORS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1400&q=80" alt="Other factors Qatar business formation" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Important Considerations</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Other Factors You Should Consider for Qatar Business Formation</h2>
+      </div>
+    </div>
+
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+      {otherFactors.map(f => (
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-bottom:1px solid #B2F5EA;padding-bottom:10px;">{f.title}</h3>
+          <p style="font-size:0.84rem;color:#4B5563;line-height:1.75;margin:0;">{f.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Middle East · Europe · U.S. · Canada</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">WHY CHOOSE US?</h2>
+        <p style="color:#B2F5EA;font-size:0.9rem;line-height:1.8;">
+          We have a dedicated and experienced team that has been at the forefront in ensuring effective services in Company formation and facilitated easy setup of new businesses of aspiring businessmen. The services are provided within a fixed budget and has proved to be very effective.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">2500</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Companies Formed</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
+      <p style="color:#4B5563;font-size:0.88rem;margin-top:12px;">Frequently Asked Questions About Company Formation in Qatar</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Free Consultation</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">Contact Us</h2>
+      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
+        If you require immediate assistance, you can also reach us using the contact numbers provided.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL NOW: (+971) 529 300 200
       </a>
     </div>
-  </section>
 
-  <section style="background: white; padding: 60px 24px; color: #1A202C;">
-    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 48px;">
-      <div>
-        <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 16px;">Service Overview</h2>
-        <p style="color: #4B5563; font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
-          This service provides end-to-end processing for your requirements. Our dedicated team of legalization and registration experts works directly with official channels, home country ministries, and the UAE Ministry of Foreign Affairs (MOFA) to verify and legalise your paperwork.
-        </p>
-        <p style="color: #4B5563; font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
-          Avoid delays, complications, and document rejections. Our 25+ years of experience in the GCC region guarantees a smooth, secure, and structured flow for all your requirements.
-        </p>
-        
-        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; margin-top: 32px;">Why Choose Index Office Services?</h3>
-        <ul style="padding-left: 20px; color: #4B5563; font-size: 0.95rem; line-height: 2; margin-bottom: 20px;">
-          <li>✓ <strong>Quick Processing:</strong> Timely, fast-tracked, and structured updates.</li>
-          <li>✓ <strong>Expert Legal Compliance:</strong> Deep knowledge of UAE and GCC legal frameworks.</li>
-          <li>✓ <strong>Secure Handling:</strong> Strict confidentiality and secure physical transfer protocols.</li>
-          <li>✓ <strong>Courier Coordination:</strong> Doorstep pickup and delivery options available across the UAE.</li>
-        </ul>
-      </div>
-
-      <div style="background: #F8FAFF; border: 1px solid #E2E8F0; padding: 24px; border-radius: 12px;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; color: #2D3748;">Enquiry Form</h3>
-        <form style="display: flex; flex-direction: column; gap: 12px;" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been received.');">
-          <input type="text" placeholder="Your Name" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <input type="email" placeholder="Email Address" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <input type="tel" placeholder="Phone Number" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <textarea placeholder="Tell us about your requirements..." rows="4" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem; resize: none;" required></textarea>
-          <button type="submit" style="background: #2D3748; color: white; border: none; padding: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: background 0.2s; width: 100%;">
-            Submit Enquiry
-          </button>
-        </form>
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
+        <div style="display:flex;gap:10px;">
+          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
+            <select>
+              {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
+            </select>
+          </div>
+          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Enter your Phone Number*" /></div>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
+          <select>
+            <option value="">Select a Service</option>
+            <option selected>Company Formation</option>
+            <option>PRO Services</option>
+            <option>Attestation / Legalization / Authentication / Apostille</option>
+            <option>PCC (Good Standing Certificate)</option>
+            <option>Legal Translation Services</option>
+            <option>PAN Card Services</option>
+            <option>Credential Evaluation Services</option>
+            <option>Other Services</option>
+          </select>
+        </div>
+        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="What you like to discuss?*" rows="3"></textarea></div>
+        <button class="idx-submit">Submit</button>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
 </BaseLayout>
