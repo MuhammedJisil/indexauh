@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import ContactForm from '../components/ContactForm.astro'
 
 const countryCodes = [
   { code: "+973", label: "BH +973" },
@@ -358,58 +359,8 @@ const offices = [
 
       <!-- RIGHT: Form -->
       <div class="contact-form">
-        <h2>Free Consultation</h2>
-
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" placeholder="Your Name*" />
-        </div>
-
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="Your Email Address*" />
-        </div>
-
-        <div class="form-group">
-          <label>Phone / WhatsApp</label>
-          <div class="phone-row">
-            <div class="code-wrap">
-              <select>
-                {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
-              </select>
-            </div>
-            <div class="num-wrap">
-              <input type="tel" placeholder="Enter your Phone Number*" />
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Location</label>
-          <input type="text" placeholder="Enter your Location*" />
-        </div>
-
-        <div class="form-group">
-          <label>Service of Interest</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option>Company Formation</option>
-            <option>PRO Services</option>
-            <option>Attestation / Legalization / Authentication / Apostille</option>
-            <option>PCC (Good Standing Certificate)</option>
-            <option>Legal Translation Services</option>
-            <option>PAN Card Services</option>
-            <option>Credential Evaluation Services</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Message</label>
-          <textarea placeholder="What would you like to discuss?*" rows="4"></textarea>
-        </div>
-
-        <button class="btn-submit">Send Message →</button>
+        <h2 style="font-size:1.3rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h2>
+        <ContactForm />
       </div>
 
     </div>

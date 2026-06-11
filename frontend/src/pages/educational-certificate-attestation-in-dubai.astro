@@ -1,4 +1,6 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -214,7 +216,7 @@ const faqs = [
 <section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
   <!-- Background image -->
   <img
-    src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80"
+    src="/images/img-50.jpg"
     alt="Educational Certificate Attestation"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
   />
@@ -267,7 +269,7 @@ const faqs = [
 
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-top:24px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">What is Educational Certificate Attestation?</h3>
-        <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
           Educational certificate attestation is the process of verifying the authenticity of academic documents issued by schools, colleges, universities, or educational institutions. The attestation process confirms that the certificate is genuine and accepted for official use in the UAE.
         </p>
       </div>
@@ -276,8 +278,8 @@ const faqs = [
     <!-- Right Image -->
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Educational Attestation documents" style="width:100%;height:400px;object-fit:cover;" />
-        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.78rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+        <img src="/images/img-51.jpg" alt="Educational Attestation documents" style="width:100%;height:400px;object-fit:cover;" />
+        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
           25+ Years Experience
         </div>
       </div>
@@ -293,24 +295,24 @@ const faqs = [
     <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:52px;align-items:center;margin-bottom:52px;" class="split-grid">
       <!-- Left image -->
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=700&q=80" alt="University graduation certificates" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <img src="/images/img-52.jpg" alt="University graduation certificates" style="width:100%;height:380px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.6) 100%);"></div>
         <div style="position:absolute;bottom:18px;left:18px;right:18px;">
-          <p style="color:#fff;font-size:0.82rem;font-weight:700;margin:0;line-height:1.4;">Degrees · Diplomas · Transcripts · Nursing &amp; Medical</p>
+          <p style="color:#fff;font-size:0.98rem;font-weight:700;margin:0;line-height:1.4;">Degrees · Diplomas · Transcripts · Nursing &amp; Medical</p>
         </div>
       </div>
       <!-- Right text -->
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Education Types</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Educational Certificates That Require Attestation</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">Different academic qualifications require attestation for different purposes in the UAE — from employment visas to DHA licensing. Below are the most commonly requested types.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Different academic qualifications require attestation for different purposes in the UAE — from employment visas to DHA licensing. Below are the most commonly requested types.</p>
         <div style="display:flex;flex-direction:column;gap:14px;">
           {requiredAttestationDocs.map(d => (
             <div style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
               <span style="font-size:1.6rem;flex-shrink:0;">{d.icon}</span>
               <div>
-                <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 4px;">{d.title}</h3>
-                <p style="font-size:0.78rem;color:#4B5563;line-height:1.6;margin:0;">{d.desc}</p>
+                <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 4px;">{d.title}</h3>
+                <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{d.desc}</p>
               </div>
             </div>
           ))}
@@ -328,7 +330,7 @@ const faqs = [
     <div style="text-align:center;margin-bottom:52px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Authentication Workflow</p>
       <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Steps For Educational Certificate Attestation</h2>
-      <p style="color:#6B7280;font-size:0.88rem;max-width:560px;margin:0 auto;">A clear process saves time and prevents rejection. Follow these steps to complete attestation smoothly.</p>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:560px;margin:0 auto;">A clear process saves time and prevents rejection. Follow these steps to complete attestation smoothly.</p>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
@@ -336,10 +338,10 @@ const faqs = [
       <div style="display:flex;flex-direction:column;gap:14px;">
         {steps.map(s => (
           <div class="step-card">
-            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.78rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
             </div>
           </div>
         ))}
@@ -347,11 +349,11 @@ const faqs = [
       <!-- Right image -->
       <div style="position:sticky;top:100px;">
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
-          <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&q=80" alt="Document authentication process" style="width:100%;height:520px;object-fit:cover;display:block;" />
+          <img src="/images/img-7.jpg" alt="Document authentication process" style="width:100%;height:520px;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,32,44,0.75) 100%);"></div>
           <div style="position:absolute;bottom:20px;left:20px;right:20px;">
             <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">7-Step Verified Process</p>
-            <p style="color:#B2F5EA;font-size:0.78rem;margin:0;">From notarization to MOFA final approval</p>
+            <p style="color:#B2F5EA;font-size:0.9rem;margin:0;">From notarization to MOFA final approval</p>
           </div>
         </div>
       </div>
@@ -367,7 +369,7 @@ const faqs = [
     <div style="text-align:center;margin-bottom:40px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Global Rules</p>
       <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Country-Specific Educational Certificate Attestation</h2>
-      <p style="color:#4B5563;font-size:0.85rem;max-width:520px;margin:0 auto;line-height:1.6;">The process changes depending on the country where your educational certificate was issued.</p>
+      <p style="color:#4B5563;font-size:1rem;max-width:520px;margin:0 auto;line-height:1.6;">The process changes depending on the country where your educational certificate was issued.</p>
     </div>
 
     <!-- Country Tabs -->
@@ -383,10 +385,10 @@ const faqs = [
     {countriesData.map((c, idx) => (
       <div id={`country-${c.id}`} style={`display: ${idx === 0 ? 'block' : 'none'}; background:#fff; border-radius:18px; padding:32px; box-shadow:0 10px 30px rgba(56,178,172,0.06); border:1px solid #B2F5EA;`}>
         <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{c.name} Process</h3>
-        <p style="font-size:0.85rem;color:#6B7280;margin:0 0 20px;">{c.desc}</p>
+        <p style="font-size:1rem;color:#6B7280;margin:0 0 20px;">{c.desc}</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
           {c.steps.map((s, sIdx) => (
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#F9FAFB;border-radius:8px;font-size:0.85rem;color:#1A202C;font-weight:500;">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#F9FAFB;border-radius:8px;font-size:1rem;color:#1A202C;font-weight:500;">
               <span style="width:24px;height:24px;border-radius:50%;background:#38B2AC;color:#fff;font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{sIdx + 1}</span>
               {s}
             </div>
@@ -418,8 +420,8 @@ const faqs = [
                 <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
               </span>
               <div>
-                <p style="font-size:0.85rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
-                <p style="font-size:0.78rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
+                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
               </div>
             </div>
           ))}
@@ -436,8 +438,8 @@ const faqs = [
                 <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
               </span>
               <div>
-                <p style="font-size:0.85rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
-                <p style="font-size:0.78rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
+                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
               </div>
             </div>
           ))}
@@ -446,10 +448,10 @@ const faqs = [
 
       <!-- Image accent -->
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);height:100%;min-height:280px;">
-        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80" alt="Document checklist preparation" style="width:100%;height:100%;object-fit:cover;display:block;min-height:280px;" />
+        <img src="/images/img-53.jpg" alt="Document checklist preparation" style="width:100%;height:100%;object-fit:cover;display:block;min-height:280px;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.82rem;font-weight:800;margin:0 0 3px;">Have Everything Ready</p>
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0 0 3px;">Have Everything Ready</p>
           <p style="color:#B2F5EA;font-size:0.72rem;margin:0;">Missing documents cause avoidable delays</p>
         </div>
       </div>
@@ -464,7 +466,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <!-- Top image banner -->
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80" alt="UAE professionals in office" style="width:100%;height:260px;object-fit:cover;object-position:center 30%;display:block;" />
+      <img src="/images/img-54.jpg" alt="UAE professionals in office" style="width:100%;height:260px;object-fit:cover;object-position:center 30%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.82) 0%,rgba(26,32,44,0.45) 60%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Employment &amp; Equivalency</p>
@@ -476,16 +478,16 @@ const faqs = [
       <!-- Employment -->
       <div>
         <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">Attestation for Employment Visa in UAE</h3>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
           In the UAE, educational certificate attestation is often connected directly to employment opportunities. Many companies verify academic qualifications before approving visa procedures, salary structures, or professional designations.
         </p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:20px;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">
           Many employers in Dubai and across the UAE require attested educational certificates before processing an employment visa.
         </p>
-        <p style="font-weight:700;color:#1A202C;font-size:0.85rem;margin-bottom:10px;text-transform:uppercase;">Mandatory for professions including:</p>
+        <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:10px;text-transform:uppercase;">Mandatory for professions including:</p>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
           {employmentProfessions.map(p => (
-            <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:8px;">
               <span style="color:#38B2AC;font-weight:bold;">✔</span> {p}
             </div>
           ))}
@@ -495,13 +497,13 @@ const faqs = [
       <!-- Equivalency -->
       <div>
         <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">Attestation for UAE Equivalency</h3>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
           Educational certificate attestation plays an important role in UAE equivalency procedures, especially for regulated professions and higher education recognition. Certain authorities may conduct additional educational verification depending on the institution, country of issuance, academic system, and professional category.
         </p>
-        <p style="font-weight:700;color:#1A202C;font-size:0.85rem;margin-bottom:12px;text-transform:uppercase;">The Equivalency process may involve:</p>
+        <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:12px;text-transform:uppercase;">The Equivalency process may involve:</p>
         <div style="display:flex;flex-direction:column;gap:8px;">
           {equivalencySteps.map(s => (
-            <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:6px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:6px;">
               <span style="color:#38B2AC;font-weight:bold;">→</span> {s}
             </div>
           ))}
@@ -521,7 +523,7 @@ const faqs = [
       <div style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
         <!-- Left image -->
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=700&q=80" alt="Legal document verification purpose" style="width:100%;height:420px;object-fit:cover;display:block;" />
+          <img src="/images/img-55.jpg" alt="Legal document verification purpose" style="width:100%;height:420px;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
           <div style="position:absolute;bottom:20px;left:20px;right:20px;">
             <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Why Attestation Matters</p>
@@ -536,7 +538,7 @@ const faqs = [
             {purposes.map(p => (
               <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:18px 22px;">
                 <h3 style="font-size:0.9rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
-                <p style="font-size:0.78rem;color:#4B5563;line-height:1.6;margin:0;">{p.desc}</p>
+                <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -554,7 +556,7 @@ const faqs = [
           <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
             {benefits.map(b => (
               <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
-                <h3 style="font-size:0.85rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
+                <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
                 <p style="font-size:0.75rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
               </div>
             ))}
@@ -562,7 +564,7 @@ const faqs = [
         </div>
         <!-- Right image -->
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services team" style="width:100%;height:460px;object-fit:cover;display:block;" />
+          <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:460px;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.7) 100%);"></div>
           <div style="position:absolute;bottom:20px;left:20px;right:20px;">
             <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Index Office Services</p>
@@ -582,7 +584,7 @@ const faqs = [
     <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
       <!-- Left image -->
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1607703703674-df96af81dffa?w=700&q=80" alt="Rejected document stamping" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-40.jpg" alt="Rejected document stamping" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(154,44,44,0.65) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Avoid Costly Mistakes</p>
@@ -685,8 +687,8 @@ const faqs = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR ATTESTATION SERVICES.</h2>
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">Our extensive global network of service providers and offices allows us to seamlessly integrate our services and tailor them to meet your specific requirements.</p>
-      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">Our extensive global network of service providers and offices allows us to seamlessly integrate our services and tailor them to meet your specific requirements.</p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         CALL: (+971) 529 300 200
@@ -696,32 +698,7 @@ const faqs = [
     <!-- Right: form -->
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-            <select>
-              {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
-            </select>
-          </div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option>Company Formation</option>
-            <option>PRO Services</option>
-            <option selected>Attestation / Legalization / Apostille</option>
-            <option>PCC (Good Standing Certificate)</option>
-            <option>Legal Translation Services</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="Enter your message*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
 
   </div>

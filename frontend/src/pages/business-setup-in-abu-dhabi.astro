@@ -1,4 +1,6 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -102,7 +104,7 @@ const formationSteps = [
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80"
+    src="/images/img-9.jpg"
     alt="Business Setup in Abu Dhabi"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
@@ -147,8 +149,8 @@ const formationSteps = [
           <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;">
             <div style="width:36px;height:36px;border-radius:9px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{String(i+1).padStart(2,'0')}</div>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{a.name}</p>
-              <p style="font-size:0.78rem;color:#6B7280;line-height:1.6;margin:0;">{a.desc}</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{a.name}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{a.desc}</p>
             </div>
           </div>
         ))}
@@ -157,7 +159,7 @@ const formationSteps = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Abu Dhabi business authorities" style="width:100%;height:460px;object-fit:cover;display:block;" />
+        <img src="/images/img-10.jpg" alt="Abu Dhabi business authorities" style="width:100%;height:460px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">ADDED · ADGM · Free Zones</p>
@@ -180,7 +182,7 @@ const formationSteps = [
     <div style="text-align:center;margin-bottom:52px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Business Structures</p>
       <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Different Types of Businesses in Abu Dhabi</h2>
-      <p style="color:#6B7280;font-size:0.88rem;max-width:600px;margin:0 auto;">Starting a business in Abu Dhabi is the process of establishing a legal entity that can conduct commercial activities in the UAE. Depending on the nature and scope of the business, there are different types of business setups available.</p>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:600px;margin:0 auto;">Starting a business in Abu Dhabi is the process of establishing a legal entity that can conduct commercial activities in the UAE. Depending on the nature and scope of the business, there are different types of business setups available.</p>
     </div>
 
     <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
@@ -204,7 +206,7 @@ const formationSteps = [
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:52px;align-items:center;">
 
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" alt="How Index assists with business setup in Abu Dhabi" style="width:100%;height:460px;object-fit:cover;display:block;" />
+        <img src="/images/img-11.jpg" alt="How Index assists with business setup in Abu Dhabi" style="width:100%;height:460px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">End-to-End Business Setup Support</p>
@@ -217,7 +219,7 @@ const formationSteps = [
           <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Our Role
         </p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">How Can Index Office Services Assist You?</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           When it comes to starting a business in the Middle East, Index is here to assist you. With Index, you can save time, money, and hassle and start your business in Abu Dhabi smoothly and efficiently.
         </p>
         <div style="display:flex;flex-direction:column;gap:10px;">
@@ -240,7 +242,7 @@ const formationSteps = [
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1400&q=80" alt="Company formation steps UAE" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-12.jpg" alt="Company formation steps UAE" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
@@ -268,7 +270,7 @@ const formationSteps = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services Abu Dhabi business setup" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.jpg" alt="Index Office Services Abu Dhabi business setup" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
@@ -278,7 +280,7 @@ const formationSteps = [
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">WHY CHOOSE US?</h2>
-        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
           We have a dedicated and experienced team that has been at the forefront in ensuring effective business setup process and facilitated easy setup of new businesses of aspiring businessmen. The services are provided within a fixed budget and has proved to be very effective.
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
@@ -292,7 +294,7 @@ const formationSteps = [
           ].map(b => (
             <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:10px;">
               <span style="color:#38B2AC;font-weight:700;flex-shrink:0;">✓</span>
-              <span style="font-size:0.82rem;color:#CBD5E0;line-height:1.5;">{b.label}</span>
+              <span style="font-size:0.98rem;color:#CBD5E0;line-height:1.5;">{b.label}</span>
             </div>
           ))}
         </div>
@@ -323,10 +325,10 @@ const formationSteps = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">CONTACT US TODAY AND LET US HELP YOU WITH YOUR BUSINESS SETUP IN ABU DHABI.</h2>
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
         With Index, you can save time, money, and hassle and start your business in Abu Dhabi smoothly and efficiently. Contact us today and let us help you with your business setup in UAE.
       </p>
-      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
         Feel free to call us to book a free consultation. Our team reviews the requirements and provides clear guidance on the best business setup option for your needs and goals.
       </p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
@@ -337,31 +339,7 @@ const formationSteps = [
 
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-            <select>{countryCodes.map(c => <option value={c.code}>{c.label}</option>)}</select>
-          </div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option selected>Business Setup in Abu Dhabi</option>
-            <option>Mainland Business Setup</option>
-            <option>Free Zone Business Setup</option>
-            <option>Offshore Business Setup</option>
-            <option>Trade License Registration</option>
-            <option>PRO Services</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="What you like to discuss?*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
 
   </div>

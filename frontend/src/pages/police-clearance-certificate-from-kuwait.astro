@@ -1,4 +1,6 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -64,7 +66,7 @@ const faqs = [
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?w=1600&q=80"
+    src="/images/img-47.jpg"
     alt="Police Clearance Certificate in Kuwait"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
@@ -109,7 +111,7 @@ const faqs = [
       </p>
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Specialist Service Provider</h3>
-        <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
           Index is a specialist service provider, focusing on police clearance certificates and other international individual and business services. With 25+ years of expertise, we deliver professional and timely police clearance certificates authorised by police departments and concerned authorities in various countries.
         </p>
       </div>
@@ -117,7 +119,7 @@ const faqs = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" alt="Police Clearance Certificate Kuwait" style="width:100%;height:440px;object-fit:cover;display:block;" />
+        <img src="/images/img-56.jpg" alt="Police Clearance Certificate Kuwait" style="width:100%;height:440px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Kuwait PCC Assistance</p>
@@ -138,7 +140,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&q=80" alt="Why get a Kuwait PCC" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-7.jpg" alt="Why get a Kuwait PCC" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Why It's Important</p>
@@ -148,7 +150,7 @@ const faqs = [
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Core Reasons</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 18px;">Why Is It Important to Get a PCC in Kuwait?</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:20px;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">
           Obtaining a Police Clearance Certificate in Kuwait is crucial for several reasons.
         </p>
         <div style="display:flex;flex-direction:column;gap:16px;">
@@ -160,8 +162,8 @@ const faqs = [
             <div style="background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:20px;display:flex;gap:16px;align-items:flex-start;transition:all 0.25s;">
               <div style="font-size:1.5rem;flex-shrink:0;">{item.icon}</div>
               <div>
-                <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 5px;">{item.title}</h3>
-                <p style="font-size:0.78rem;color:#4B5563;line-height:1.6;margin:0;">{item.desc}</p>
+                <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 5px;">{item.title}</h3>
+                <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -177,7 +179,7 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80" alt="Documents required for Kuwait PCC" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-41.jpg" alt="Documents required for Kuwait PCC" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Requirements</p>
@@ -189,7 +191,7 @@ const faqs = [
       {documents.map(d => (
         <div class="doc-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">{d.title}</h3>
-          <p style="font-size:0.82rem;color:#4B5563;line-height:1.7;margin:0;">{d.body}</p>
+          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{d.body}</p>
         </div>
       ))}
     </div>
@@ -203,7 +205,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
@@ -213,10 +215,10 @@ const faqs = [
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">How Can Index Assist You?</h2>
-        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
           The Index is a trusted agency that offers comprehensive assistance with obtaining a Police Clearance Certificate in Kuwait. Our experienced team can guide you through the entire process, ensuring that you have all the necessary documents and meet the requirements set by the Kuwaiti authorities.
         </p>
-        <p style="color:#94A3B8;font-size:0.85rem;line-height:1.8;">
+        <p style="color:#94A3B8;font-size:1rem;line-height:1.8;">
           We will help you complete the application accurately, submit the documents to the relevant authorities, and follow up on the progress of your PCC application. By choosing the Index, you can benefit from our expertise, streamlined processes, and timely updates.
         </p>
       </div>
@@ -231,16 +233,16 @@ const faqs = [
       ].map(b => (
         <div class="benefit-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.78rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
         </div>
       ))}
     </div>
 
     <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:52px;">
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin:0 0 12px;">
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 12px;">
         Index is a specialist service provider, focusing on police clearance certificates and other international individual and business services. With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely police clearance certificates.
       </p>
-      <p style="color:#94A3B8;font-size:0.85rem;line-height:1.8;margin:0;">
+      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin:0;">
         Our certificates are authorised by police departments and concerned authorities in various countries, as per your requirements. Feel free to call us at any of the following numbers for a free consultation.
       </p>
     </div>
@@ -266,7 +268,7 @@ const faqs = [
     <div style="text-align:center;margin-bottom:44px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
       <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
-      <p style="color:#4B5563;font-size:0.88rem;margin-top:12px;">About Kuwait PCC Services</p>
+      <p style="color:#4B5563;font-size:1.05rem;margin-top:12px;">About Kuwait PCC Services</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;">
       {faqs.map((f, i) => (
@@ -294,10 +296,10 @@ const faqs = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Free Consultation</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">CONSULT AND GET YOUR PCC ON TIME</h2>
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
         Index is a specialist service provider, focusing on police clearance certificates and other international individual and business services.
       </p>
-      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
         With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely police clearance certificates authorised by police departments and concerned authorities in various countries, as per your requirements. Call us today to book a free consultation.
       </p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
@@ -308,29 +310,7 @@ const faqs = [
 
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-            <select>
-              {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
-            </select>
-          </div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Enter your Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option selected>Kuwait Police Clearance Certificate</option>
-            <option>Document Attestation</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="What you like to discuss?*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
 
   </div>

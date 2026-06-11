@@ -1,4 +1,6 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -132,7 +134,7 @@ const faqs = [
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?w=1600&q=80"
+    src="/images/img-80.jpg"
     alt="Oman Certificate Attestation in UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
@@ -149,7 +151,7 @@ const faqs = [
     <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 12px;">
       OMAN CERTIFICATE ATTESTATION IN UAE
     </h1>
-    <p style="color:#38B2AC;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 20px;">Attestation Services in Muscat | 25 Years of Trust</p>
+    <p style="color:#38B2AC;font-size:1.05rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 20px;">Attestation Services in Muscat | 25 Years of Trust</p>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
       Oman certificate attestation is required when documents issued outside Oman must be used for official purposes. With over 25 years of experience, Indexauh manages the entire Oman attestation process from the UAE — ensuring each step is handled carefully, documents are processed correctly, and approvals are received without delays.
     </p>
@@ -182,7 +184,7 @@ const faqs = [
 
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — Fixed Legal Order</h3>
-        <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
           Oman attestation follows a fixed legal sequence. Each step — from issuing authority verification to UAE attestation, Oman embassy, and MOFA Oman — must be completed in the correct order. Skipping or reversing any step will result in rejection.
         </p>
       </div>
@@ -190,7 +192,7 @@ const faqs = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" alt="Oman document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-48.jpg" alt="Oman document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">UAE Authorities · Oman Embassy · MOFA</p>
@@ -211,7 +213,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80" alt="Why Oman attestation is required" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <img src="/images/img-22.jpg" alt="Why Oman attestation is required" style="width:100%;height:380px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Why Oman Attestation Matters</p>
@@ -221,14 +223,14 @@ const faqs = [
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Core Reasons</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Why Is Oman Attestation Required?</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Oman authorities require attestation to prevent document misuse and ensure that all certificates used for official purposes are genuine and legally valid. Without attestation, no document is accepted for any formal process in Oman.
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
-              <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
+              <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
               <p style="font-size:0.76rem;color:#4B5563;line-height:1.55;margin:0;">{p.desc}</p>
             </div>
           ))}
@@ -247,15 +249,15 @@ const faqs = [
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Attestation Services</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
           Index AUH provides Oman certificate attestation services for a wide range of document categories — personal, educational, and commercial. Our team confirms the correct attestation path for each document type before processing begins.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=700&q=80" alt="Document types for Oman attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <img src="/images/img-16.jpg" alt="Document types for Oman attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.82rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
         </div>
       </div>
     </div>
@@ -269,7 +271,7 @@ const faqs = [
           </div>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
             {cat.docs.map(d => (
-              <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#4B5563;">
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
               </li>
             ))}
@@ -286,7 +288,7 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=1400&q=80" alt="Oman attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-15.jpg" alt="Oman attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
@@ -298,10 +300,10 @@ const faqs = [
       <div style="display:flex;flex-direction:column;gap:14px;">
         {steps.map(s => (
           <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.78rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
             </div>
           </div>
         ))}
@@ -309,10 +311,10 @@ const faqs = [
 
       <div>
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
-          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80" alt="Oman attestation timing" style="width:100%;height:260px;object-fit:cover;display:block;" />
+          <img src="/images/img-23.jpg" alt="Oman attestation timing" style="width:100%;height:260px;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.78) 100%);"></div>
           <div style="position:absolute;bottom:18px;left:18px;right:18px;">
-            <p style="color:#fff;font-size:0.88rem;font-weight:800;margin:0 0 3px;">Processing Time Varies by Document</p>
+            <p style="color:#fff;font-size:1.05rem;font-weight:800;margin:0 0 3px;">Processing Time Varies by Document</p>
             <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Educational docs take longer than personal certificates</p>
           </div>
         </div>
@@ -321,7 +323,7 @@ const faqs = [
           <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Factors That Affect Processing Time</h3>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {timingFactors.map(f => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.82rem;color:#4B5563;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.98rem;color:#4B5563;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
               </div>
             ))}
@@ -338,7 +340,7 @@ const faqs = [
               "Passport copies of parents (birth certificates)",
               "Authorization letter (if someone else submits)",
             ].map(d => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.82rem;color:#B2F5EA;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.98rem;color:#B2F5EA;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✓</span>{d}
               </div>
             ))}
@@ -363,14 +365,14 @@ const faqs = [
       <!-- Marriage -->
       <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:20px;overflow:hidden;">
         <div style="position:relative;height:200px;">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80" alt="Marriage certificate attestation Oman" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="/images/img-81.jpg" alt="Marriage certificate attestation Oman" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.72) 100%);"></div>
           <div style="position:absolute;bottom:16px;left:20px;">
             <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0;">Marriage Certificate Attestation</p>
           </div>
         </div>
         <div style="padding:24px;">
-          <p style="color:#4B5563;font-size:0.85rem;line-height:1.8;margin-bottom:16px;">
+          <p style="color:#4B5563;font-size:1rem;line-height:1.8;margin-bottom:16px;">
             Marriage certificate attestation in Oman is required for applying for a family residence visa. Oman authorities need this attestation to confirm that the marriage is legally valid. It helps spouses live together legally in Oman without visa issues.
           </p>
           <div style="display:flex;flex-direction:column;gap:8px;">
@@ -387,14 +389,14 @@ const faqs = [
       <!-- Birth -->
       <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:20px;overflow:hidden;">
         <div style="position:relative;height:200px;">
-          <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=700&q=80" alt="Birth certificate attestation Oman" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="/images/img-82.jpg" alt="Birth certificate attestation Oman" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.72) 100%);"></div>
           <div style="position:absolute;bottom:16px;left:20px;">
             <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0;">Birth Certificate Attestation</p>
           </div>
         </div>
         <div style="padding:24px;">
-          <p style="color:#4B5563;font-size:0.85rem;line-height:1.8;margin-bottom:12px;">
+          <p style="color:#4B5563;font-size:1rem;line-height:1.8;margin-bottom:12px;">
             Birth certificate attestation in Oman is required to prove a child's identity and relationship with parents. Needed for child residence visa, school admission, and family sponsorship.
           </p>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
@@ -423,7 +425,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services Oman attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.jpg" alt="Index Office Services Oman attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
@@ -433,7 +435,7 @@ const faqs = [
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index for Oman Certificate Attestation?</h2>
-        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;">
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
           Indexauh has over 25 years of experience in certificate attestation services. We understand every step of the Oman attestation process and handle documents with complete care. Over the years, we have supported thousands of trusted clients across the UAE and beyond, with attestation support extending to 100+ countries.
         </p>
       </div>
@@ -443,7 +445,7 @@ const faqs = [
       {benefits.map(b => (
         <div class="benefit-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.78rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
         </div>
       ))}
     </div>
@@ -500,10 +502,10 @@ const faqs = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR OMAN ATTESTATION SERVICES.</h2>
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
         Oman certificate attestation does not have to be complicated. Contact Index Office Services today to begin your Oman attestation process with confidence. Our experienced team handles everything from document verification to MOFA submission.
       </p>
-      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
         Reach out through WhatsApp, a quick call, or our online form. Your attestation needs will be handled expertly by our staff, ensuring a quick, secure, and stress-free process.
       </p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
@@ -514,31 +516,7 @@ const faqs = [
 
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-            <select>{countryCodes.map(c => <option value={c.code}>{c.label}</option>)}</select>
-          </div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option selected>Oman Certificate Attestation</option>
-            <option>Oman Embassy Attestation</option>
-            <option>MOFA Oman Attestation</option>
-            <option>Oman Degree Attestation</option>
-            <option>Oman Police Clearance Certificate</option>
-            <option>Marriage Certificate Attestation for Oman</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="What you like to discuss?*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
 
   </div>

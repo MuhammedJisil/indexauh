@@ -1,4 +1,6 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -112,7 +114,7 @@ const faqs = [
 <section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
   <!-- Background image -->
   <img
-    src="https://images.unsplash.com/photo-1584438784894-089d6a128f3e?w=1600&q=80"
+    src="/images/img-4.jpg"
     alt="Birth Certificate Attestation"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
   />
@@ -162,7 +164,7 @@ const faqs = [
 
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-top:24px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">What is a birth certificate?</h3>
-        <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
           A birth certificate is an official record of a person’s birth information. It is often provided immediately after a child is born by a government entity, like a vital statistics office or registrar’s office. A person’s identity, age, and parentage may all be legally proven with the use of a birth certificate.
         </p>
       </div>
@@ -171,8 +173,8 @@ const faqs = [
     <!-- Right Image -->
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&q=80" alt="Attestation verification documents" style="width:100%;height:380px;object-fit:cover;" />
-        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.78rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+        <img src="/images/img-5.jpg" alt="Attestation verification documents" style="width:100%;height:380px;object-fit:cover;" />
+        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
           Verified Globally
         </div>
       </div>
@@ -187,7 +189,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <!-- Image banner -->
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="https://images.unsplash.com/photo-1564939558297-fc396f18e5c7?w=1400&q=80" alt="Birth certificate registration process UAE" style="width:100%;height:240px;object-fit:cover;object-position:center 40%;display:block;" />
+      <img src="/images/img-6.jpg" alt="Birth certificate registration process UAE" style="width:100%;height:240px;object-fit:cover;object-position:center 40%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.85) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Legal Process Guide</p>
@@ -201,30 +203,30 @@ const faqs = [
         <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin-bottom:20px;border-left:3px solid #38B2AC;padding-left:12px;">How to Lawfully Issue a Birth Certificate in UAE</h3>
         <div style="display:flex;flex-direction:column;gap:12px;">
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">01</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">01</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Hospital Notification</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Hospital Notification</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Hospital staff notifies the relevant authorities immediately about the birth.</p>
             </div>
           </div>
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">02</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">02</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Register the Birth</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Register the Birth</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Visit Public Health or Preventive Medicine Department within 30 days. Provide original & photocopy of child's hospital birth notification.</p>
             </div>
           </div>
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">03</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">03</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Pay the Fees</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Pay the Fees</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Pay required nominal registration fees at the designated counter.</p>
             </div>
           </div>
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">04</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">04</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Collection</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Collection</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Once verified, the authorities issue the birth certificate. Visit the office with the receipt to collect.</p>
             </div>
           </div>
@@ -236,30 +238,30 @@ const faqs = [
         <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin-bottom:20px;border-left:3px solid #38B2AC;padding-left:12px;">How to Acquire a Legally Recognized Birth Certificate</h3>
         <div style="display:flex;flex-direction:column;gap:12px;">
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">01</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">01</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Medical Alert</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Medical Alert</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Confirm hospital staff alerts appropriate UAE public health authorities regarding the baby's birth.</p>
             </div>
           </div>
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">02</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">02</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Submit Required Documents</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Submit Required Documents</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Provide parents' passports + Emirates ID copies, original hospital notification, and marriage licence (if necessary).</p>
             </div>
           </div>
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">03</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">03</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Verification of Documents</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Verification of Documents</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Government authorities check all supplied documentation for absolute correctness and completeness.</p>
             </div>
           </div>
           <div class="step-list-item">
-            <span style="font-weight:900;color:#38B2AC;font-size:0.85rem;margin-top:2px;">04</span>
+            <span style="font-weight:900;color:#38B2AC;font-size:1rem;margin-top:2px;">04</span>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Biometric Verification</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Biometric Verification</p>
               <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">Provide biometric details such as parent fingerprints and photos for identity validation purposes.</p>
             </div>
           </div>
@@ -277,7 +279,7 @@ const faqs = [
     <div style="display:grid;grid-template-columns:0.8fr 1fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <!-- Left image -->
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&q=80" alt="Attestation document types UAE" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <img src="/images/img-7.jpg" alt="Attestation document types UAE" style="width:100%;height:360px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">All Document Types Covered</p>
@@ -288,7 +290,7 @@ const faqs = [
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Complete Legalization Coverage</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Documents That Require Attestation for Use in the UAE</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;">Index Office Services handles all categories of document attestation — from personal and educational certificates to commercial and notary documents. We manage every step to ensure smooth verification.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">Index Office Services handles all categories of document attestation — from personal and educational certificates to commercial and notary documents. We manage every step to ensure smooth verification.</p>
       </div>
     </div>
 
@@ -300,7 +302,7 @@ const faqs = [
         </h3>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
           {personalDocs.map(d => (
-            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+            <li style="font-size:0.98rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
               <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
             </li>
           ))}
@@ -314,7 +316,7 @@ const faqs = [
         </h3>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
           {commercialDocs.map(d => (
-            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+            <li style="font-size:0.98rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
               <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
             </li>
           ))}
@@ -328,7 +330,7 @@ const faqs = [
         </h3>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
           {educationalDocs.map(d => (
-            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+            <li style="font-size:0.98rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
               <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
             </li>
           ))}
@@ -342,7 +344,7 @@ const faqs = [
         </h3>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
           {notaryServices.map(d => (
-            <li style="font-size:0.82rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
+            <li style="font-size:0.98rem;color:#4B5563;display:flex;align-items:center;gap:8px;">
               <span style="color:#38B2AC;font-weight:bold;">•</span> {d}
             </li>
           ))}
@@ -359,7 +361,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:52px;align-items:center;" class="split-grid">
     <!-- Image -->
     <div>
-      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Why Choose Indexauh" style="width:100%;height:360px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.1);" />
+      <img src="/images/img-8.jpg" alt="Why Choose Indexauh" style="width:100%;height:360px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.1);" />
     </div>
 
     <!-- Text -->
@@ -442,8 +444,8 @@ const faqs = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR ATTESTATION SERVICES.</h2>
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">Our extensive global network of service providers and offices allows us to seamlessly integrate our services and tailor them to meet your specific requirements.</p>
-      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">Our extensive global network of service providers and offices allows us to seamlessly integrate our services and tailor them to meet your specific requirements.</p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         CALL: (+971) 529 300 200
@@ -453,32 +455,7 @@ const faqs = [
     <!-- Right: form -->
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-            <select>
-              {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
-            </select>
-          </div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option>Company Formation</option>
-            <option>PRO Services</option>
-            <option selected>Attestation / Legalization / Apostille</option>
-            <option>PCC (Good Standing Certificate)</option>
-            <option>Legal Translation Services</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="Enter your message*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
 
   </div>

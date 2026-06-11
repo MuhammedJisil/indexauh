@@ -1,4 +1,6 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -38,7 +40,7 @@ const whyUs = [
   .sec-inner { position: relative; z-index: 1; }
   .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
 
-  .idx-form input,.idx-form select,.idx-form textarea { width:100%; border:1px solid #e5e7eb; border-radius:10px; padding:11px 14px; font-size:0.85rem; color:#374151; outline:none; font-family:inherit; background:#fff; box-sizing:border-box; }
+  .idx-form input,.idx-form select,.idx-form textarea { width:100%; border:1px solid #e5e7eb; border-radius:10px; padding:11px 14px; font-size:1rem; color:#374151; outline:none; font-family:inherit; background:#fff; box-sizing:border-box; }
   .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus { border-color:#38B2AC; box-shadow:0 0 0 3px rgba(56,178,172,0.15); }
   .idx-form textarea { resize:none; }
   .idx-submit { width:100%; background:#2D3748; color:#fff; font-weight:700; padding:13px; border-radius:10px; border:none; cursor:pointer; font-size:0.95rem; letter-spacing:0.04em; transition:background 0.2s; }
@@ -68,7 +70,7 @@ const whyUs = [
 <!-- ════════════ HERO — image bg, centered ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="https://images.unsplash.com/photo-1606216794079-73f3de82b41d?w=1600&q=80"
+    src="/images/img-76.jpg"
     alt="Marriage Certificate Attestation UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
   />
@@ -89,7 +91,7 @@ const whyUs = [
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 16px;max-width:640px;">
       Before embarking on your journey to live abroad with your family, make sure to get your marriage certificate attested.
     </p>
-    <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin:0 auto 32px;max-width:600px;">
+    <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin:0 auto 32px;max-width:600px;">
       Index Office Services provides quick and effortless service in marriage registration and certificate attestation with our experts. We have 25 years of experience.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
@@ -125,7 +127,7 @@ const whyUs = [
 
       <div style="flex-shrink:0;width:420px;">
         <div style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
-          <img src="https://images.unsplash.com/photo-1606216794079-73f3de82b41d?w=700&q=80" alt="Marriage certificate attestation UAE" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="/images/img-77.jpg" alt="Marriage certificate attestation UAE" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(26,32,44,0.72));"></div>
           <div style="position:absolute;bottom:24px;left:24px;right:24px;">
             <p style="color:#81E6D9;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Legally Recognised</p>
@@ -137,12 +139,12 @@ const whyUs = [
       <div style="flex:1;min-width:280px;">
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Marriage Certificate Attestation</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Marriage certificate attestation in the UAE is an essential process for couples who intend to live, work, or settle in the country. It involves verifying the authenticity and validity of the marriage certificate issued in the home country.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">It is essential to go through the attestation procedure since it guarantees that the marriage certificate will be approved and legally recognised by UAE authorities. The procedure typically involves notarization of the marriage certificate, followed by authentication from the respective state authorities and the Ministry of External Affairs (MEA) in the home country.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:20px;">Subsequently, the marriage certificate is attested by the UAE embassy or consulate in the home country, and finally, it undergoes verification by the Ministry of Foreign Affairs (MOFA) in the UAE.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Marriage certificate attestation in the UAE is an essential process for couples who intend to live, work, or settle in the country. It involves verifying the authenticity and validity of the marriage certificate issued in the home country.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">It is essential to go through the attestation procedure since it guarantees that the marriage certificate will be approved and legally recognised by UAE authorities. The procedure typically involves notarization of the marriage certificate, followed by authentication from the respective state authorities and the Ministry of External Affairs (MEA) in the home country.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">Subsequently, the marriage certificate is attested by the UAE embassy or consulate in the home country, and finally, it undergoes verification by the Ministry of Foreign Affairs (MOFA) in the UAE.</p>
         <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px 20px;">
-          <p style="color:#1A202C;font-size:0.85rem;font-weight:600;margin:0 0 4px;">Index Office Services</p>
-          <p style="color:#4B5563;font-size:0.82rem;line-height:1.7;margin:0;">We provide quick and effortless service in marriage registration and certificate attestation with our experts. We have 25 years of experience.</p>
+          <p style="color:#1A202C;font-size:1rem;font-weight:600;margin:0 0 4px;">Index Office Services</p>
+          <p style="color:#4B5563;font-size:0.98rem;line-height:1.7;margin:0;">We provide quick and effortless service in marriage registration and certificate attestation with our experts. We have 25 years of experience.</p>
         </div>
       </div>
 
@@ -161,11 +163,11 @@ const whyUs = [
       <div style="flex:1;min-width:280px;">
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Legal Document</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">What is a Marriage Certificate?</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:20px;">A marriage certificate is a legal proof of marriage issued by a government agency or marriage register after a couple has solemnized their marriage. It contains details like spouse names, wedding date and location, and witnesses or officiants.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">The certificate is essential for legal rights, obligations, changing surnames, receiving spousal benefits, and paying joint taxes.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">A marriage certificate is a legal proof of marriage issued by a government agency or marriage register after a couple has solemnized their marriage. It contains details like spouse names, wedding date and location, and witnesses or officiants.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">The certificate is essential for legal rights, obligations, changing surnames, receiving spousal benefits, and paying joint taxes.</p>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
           {["Spouse names","Wedding date & location","Witnesses or officiants","Legal rights & obligations","Changing surnames","Spousal benefits"].map(item => (
-            <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border:1px solid #e0e7ef;border-radius:10px;font-size:0.82rem;color:#1A202C;font-weight:500;">
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border:1px solid #e0e7ef;border-radius:10px;font-size:0.98rem;color:#1A202C;font-weight:500;">
               <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
               </span>
@@ -176,7 +178,7 @@ const whyUs = [
       </div>
 
       <div style="flex-shrink:0;width:380px;">
-        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=700&q=80" alt="Marriage certificate document" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+        <img src="/images/img-78.jpg" alt="Marriage certificate document" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
       </div>
 
     </div>
@@ -202,10 +204,10 @@ const whyUs = [
     <div id="tab-issue" class="steps-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
       {howToIssueSteps.map(s => (
         <div class="step-card">
-          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
           <div>
             <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
-            <p style="font-size:0.82rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+            <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
           </div>
         </div>
       ))}
@@ -215,10 +217,10 @@ const whyUs = [
     <div id="tab-gain" class="steps-grid" style="display:none;grid-template-columns:repeat(2,1fr);gap:16px;">
       {howToGainSteps.map(s => (
         <div class="step-card">
-          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
           <div>
             <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
-            <p style="font-size:0.82rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+            <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
           </div>
         </div>
       ))}
@@ -238,7 +240,7 @@ const whyUs = [
       <div style="flex:1;min-width:280px;">
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
         <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 14px;">WHY US?</h2>
-        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">A reputable company for certificate attestation in the UAE.</p>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">A reputable company for certificate attestation in the UAE.</p>
         <div style="display:flex;flex-direction:column;gap:12px;">
           {whyUs.map(w => (
             <div class="why-card">
@@ -251,10 +253,10 @@ const whyUs = [
 
       <div style="flex-shrink:0;width:380px;">
         <div style="position:relative;">
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services team" style="width:100%;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+          <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
           <div style="position:absolute;bottom:20px;left:-16px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
             <p style="font-size:1.8rem;font-weight:900;margin:0;line-height:1;">25K+</p>
-            <p style="font-size:0.78rem;margin:4px 0 0;opacity:0.9;">Happy Customers</p>
+            <p style="font-size:0.9rem;margin:4px 0 0;opacity:0.9;">Happy Customers</p>
           </div>
           <div style="position:absolute;top:20px;right:-16px;background:#fff;color:#1A202C;padding:12px 16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.15);font-weight:700;font-size:0.75rem;text-align:center;line-height:1.5;">25+ Years<br/>Experience</div>
         </div>
@@ -275,7 +277,7 @@ const whyUs = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Contact Us</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">For Marriage Attestation in the UAE</h2>
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">We will guide you through these effortless procedures. For more information, please contact us.</p>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">We will guide you through these effortless procedures. For more information, please contact us.</p>
       <div style="display:flex;flex-direction:column;gap:12px;">
         <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:700;padding:13px 24px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);width:fit-content;">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
@@ -290,31 +292,7 @@ const whyUs = [
     <!-- Right: form -->
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-            <select>{countryCodes.map(c => <option value={c.code}>{c.label}</option>)}</select>
-          </div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option>Marriage Certificate Attestation</option>
-            <option>Company Formation</option>
-            <option>PRO Services</option>
-            <option>Attestation / Legalization / Apostille</option>
-            <option>PCC (Good Standing Certificate)</option>
-            <option>Legal Translation Services</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="Enter your message*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
 
   </div>

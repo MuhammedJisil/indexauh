@@ -1,54 +1,332 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
+
+// Fetch all published index-blog posts from Strapi
+let posts: any[] = [];
+let categories: string[] = [];
+let fetchError = false;
+
+try {
+  const res = await fetch(
+    `${strapiUrl}/api/index-blogs?populate[0]=featuredImage&populate[1]=categories&sort=publishedDate:desc&pagination[pageSize]=100`
+  );
+  if (res.ok) {
+    const data = await res.json();
+    posts = (data.data || []).map((item: any) => ({
+      id: item.id,
+      title: item.title || "Untitled",
+      slug: item.Slug || item.slug || "",
+      excerpt: item.excerpt || "",
+      authorName: item.authorName || "Index Office Services",
+      publishedDate: item.publishedDate || item.publishedAt || null,
+      featuredImage: item.featuredImage?.url
+        ? `${strapiUrl}${item.featuredImage.url}`
+        : item.featuredImage?.formats?.medium?.url
+        ? `${strapiUrl}${item.featuredImage.formats.medium.url}`
+        : item.featuredImage?.formats?.thumbnail?.url
+        ? `${strapiUrl}${item.featuredImage.formats.thumbnail.url}`
+        : null,
+      categories: (item.categories || []).map((c: any) => c.name || c.displayName || c),
+    }));
+    // Collect unique categories
+    const catSet = new Set<string>();
+    posts.forEach(p => p.categories.forEach((c: string) => catSet.add(c)));
+    categories = Array.from(catSet);
+  } else {
+    fetchError = true;
+  }
+} catch (e) {
+  fetchError = true;
+  console.warn("Could not fetch blog posts from Strapi:", e);
+}
+
+function formatDate(dateStr: string | null) {
+  if (!dateStr) return "";
+  try {
+    return new Date(dateStr).toLocaleDateString("en-AE", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch {
+    return "";
+  }
+}
+
+// Static fallback posts when Strapi is not yet connected
+const fallbackPosts = [
+  {
+    id: 1, title: "Complete Guide to Certificate Attestation in UAE", slug: "certificate-attestation-uae-guide",
+    excerpt: "Everything you need to know about getting your documents attested for use in the UAE — from apostille to MOFA.",
+    authorName: "Index Office Services", publishedDate: "2024-03-15",
+    featuredImage: "/images/img-23.jpg", categories: ["Attestation"],
+  },
+  {
+    id: 2, title: "How to Set Up a Business in Dubai: Step-by-Step", slug: "business-setup-dubai-guide",
+    excerpt: "A practical guide to mainland, free zone and offshore company formation in Dubai for investors and entrepreneurs.",
+    authorName: "Index Office Services", publishedDate: "2024-02-28",
+    featuredImage: "/images/img-64.jpg", categories: ["Business Setup"],
+  },
+  {
+    id: 3, title: "Police Clearance Certificate: What You Need to Know", slug: "police-clearance-certificate-guide",
+    excerpt: "Requirements, process and timelines for obtaining a PCC from UAE, India, Saudi Arabia and other countries.",
+    authorName: "Index Office Services", publishedDate: "2024-02-10",
+    featuredImage: "/images/img-65.jpg", categories: ["PCC"],
+  },
+  {
+    id: 4, title: "MOFA Attestation vs Apostille — What's the Difference?", slug: "mofa-vs-apostille-difference",
+    excerpt: "Understanding which process applies to your documents and country is crucial. This guide explains both clearly.",
+    authorName: "Index Office Services", publishedDate: "2024-01-22",
+    featuredImage: "/images/img-36.jpg", categories: ["Attestation"],
+  },
+  {
+    id: 5, title: "Embassy Attestation in UAE: A Country-by-Country Overview", slug: "embassy-attestation-uae-overview",
+    excerpt: "Different embassies have different requirements. Learn what each one needs so your documents go through first time.",
+    authorName: "Index Office Services", publishedDate: "2024-01-08",
+    featuredImage: "/images/img-60.jpg", categories: ["Attestation"],
+  },
+  {
+    id: 6, title: "Free Zone vs Mainland Company in UAE: Which Is Right for You?", slug: "free-zone-vs-mainland-uae",
+    excerpt: "Comparing the pros and cons of both UAE business structures to help you decide which setup suits your goals.",
+    authorName: "Index Office Services", publishedDate: "2023-12-18",
+    featuredImage: "/images/img-61.jpg", categories: ["Business Setup"],
+  },
+];
+
+const displayPosts = posts.length > 0 ? posts : fallbackPosts;
+const displayCategories = categories.length > 0 ? categories : ["Attestation", "Business Setup", "PCC"];
 ---
 
-<BaseLayout title="Our Blogs & Articles — Index Office Services" description="Premium professional attestation and business support services in the UAE.">
-  <section style="background: #2D3748; padding: 80px 24px; text-align: center; color: white;">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 20px; line-height: 1.2;">
-        Our Blogs & Articles
-      </h1>
-      <p style="color: #B2F5EA; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-        Index Office Services provides premium, prompt, and secure document legalization, business setup, and attestation services across the UAE and GCC.
-      </p>
-      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: #38B2AC; color: white; padding: 12px 28px; border-radius: 6px; font-weight: 700; text-decoration: none;">
-        Get Started Today &rarr;
-      </a>
-    </div>
-  </section>
+<BaseLayout
+  title="Blogs & Articles — Index Office Services UAE"
+  description="Read expert guides and articles on certificate attestation, MOFA, apostille, company formation, police clearance certificates and business setup in the UAE."
+>
 
-  <section style="background: white; padding: 60px 24px; color: #1A202C;">
-    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 48px;">
+<style>
+  /* ── Hero ── */
+  .blog-hero { background: #2D3748; padding: 72px 24px 80px; position: relative; overflow: hidden; }
+  .blog-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(56,178,172,0.18) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; }
+  .blog-hero-inner { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+
+  /* ── Filter pills ── */
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
+  .filter-pill { background: #fff; border: 1.5px solid #e0e7ef; color: #374151; border-radius: 9999px; padding: 8px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .filter-pill:hover, .filter-pill.active { background: #38B2AC; border-color: #38B2AC; color: #fff; }
+
+  /* ── Grid ── */
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  @media (max-width: 1024px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .blog-grid { grid-template-columns: 1fr; } }
+
+  /* ── Card ── */
+  .blog-card { background: #fff; border: 1px solid #e0e7ef; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.25s; }
+  .blog-card:hover { border-color: #38B2AC; transform: translateY(-5px); box-shadow: 0 16px 40px rgba(56,178,172,0.15); }
+  .blog-card-img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s; }
+  .blog-card:hover .blog-card-img { transform: scale(1.04); }
+  .blog-card-img-wrap { overflow: hidden; position: relative; }
+  .blog-card-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(26,32,44,0.35)); }
+  .blog-card-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+  .blog-card-cat { display: inline-block; background: #F0FFFE; color: #38B2AC; border: 1px solid #B2F5EA; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; padding: 3px 12px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
+  .blog-card-title { font-size: 1.05rem; font-weight: 800; color: #1A202C; line-height: 1.4; margin: 0 0 10px; }
+  .blog-card-excerpt { font-size: 0.95rem; color: #6B7280; line-height: 1.7; margin: 0 0 16px; flex: 1; }
+  .blog-card-meta { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: #9CA3AF; margin-top: auto; }
+  .blog-card-read { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; font-weight: 700; color: #38B2AC; margin-top: 14px; }
+
+  /* ── Featured (first card wider) ── */
+  .blog-card.featured { grid-column: span 2; flex-direction: row; }
+  .blog-card.featured .blog-card-img-wrap { width: 50%; flex-shrink: 0; }
+  .blog-card.featured .blog-card-img { height: 100%; }
+  .blog-card.featured .blog-card-body { padding: 28px 30px; }
+  .blog-card.featured .blog-card-title { font-size: 1.3rem; }
+  @media (max-width: 1024px) { .blog-card.featured { grid-column: span 1; flex-direction: column; } .blog-card.featured .blog-card-img-wrap { width: 100%; } .blog-card.featured .blog-card-img { height: 200px; } }
+
+  /* ── No-posts ── */
+  .no-posts { text-align: center; padding: 60px 24px; color: #6B7280; }
+
+  /* ── Sidebar ── */
+  .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; }
+  @media (max-width: 1100px) { .blog-layout { grid-template-columns: 1fr; } .blog-sidebar { display: none; } }
+
+  .sidebar-card { background: #fff; border: 1px solid #e0e7ef; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .sidebar-card h3 { font-size: 1rem; font-weight: 800; color: #1A202C; margin: 0 0 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .sidebar-recent-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #f0f4f8; text-decoration: none; color: inherit; transition: opacity 0.2s; }
+  .sidebar-recent-item:last-child { border-bottom: none; }
+  .sidebar-recent-item:hover { opacity: 0.75; }
+  .sidebar-recent-img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+  .sidebar-recent-title { font-size: 0.85rem; font-weight: 600; color: #1A202C; line-height: 1.4; }
+  .sidebar-recent-date { font-size: 0.72rem; color: #9CA3AF; margin-top: 4px; }
+</style>
+
+<!-- ══ HERO ══ -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <p style="color:#38B2AC;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-size:0.78rem;margin-bottom:14px;">Insights & Guides</p>
+    <h1 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;margin:0 0 18px;line-height:1.15;">
+      Our Blogs &amp; Articles
+    </h1>
+    <p style="color:#B2F5EA;font-size:1.1rem;line-height:1.7;max-width:580px;margin:0 auto 28px;">
+      Expert guides on certificate attestation, MOFA, apostille, company formation, police clearance and business setup in the UAE.
+    </p>
+    <a href="/contact" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;padding:13px 28px;border-radius:9999px;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+      Get Free Consultation &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ══ MAIN CONTENT ══ -->
+<section style="background:#F8FAFF;padding:60px 24px 80px;position:relative;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;">
+
+    <!-- Category filter -->
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-pill active" data-cat="all">All Posts</button>
+      {displayCategories.map(cat => (
+        <button class="filter-pill" data-cat={cat}>{cat}</button>
+      ))}
+    </div>
+
+    <!-- Two-column layout: grid + sidebar -->
+    <div class="blog-layout">
+
+      <!-- LEFT: Blog grid -->
       <div>
-        <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 16px;">Service Overview</h2>
-        <p style="color: #4B5563; font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
-          This service provides end-to-end processing for your requirements. Our dedicated team of legalization and registration experts works directly with official channels, home country ministries, and the UAE Ministry of Foreign Affairs (MOFA) to verify and legalise your paperwork.
-        </p>
-        <p style="color: #4B5563; font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
-          Avoid delays, complications, and document rejections. Our 25+ years of experience in the GCC region guarantees a smooth, secure, and structured flow for all your requirements.
-        </p>
-        
-        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; margin-top: 32px;">Why Choose Index Office Services?</h3>
-        <ul style="padding-left: 20px; color: #4B5563; font-size: 0.95rem; line-height: 2; margin-bottom: 20px;">
-          <li>✓ <strong>Quick Processing:</strong> Timely, fast-tracked, and structured updates.</li>
-          <li>✓ <strong>Expert Legal Compliance:</strong> Deep knowledge of UAE and GCC legal frameworks.</li>
-          <li>✓ <strong>Secure Handling:</strong> Strict confidentiality and secure physical transfer protocols.</li>
-          <li>✓ <strong>Courier Coordination:</strong> Doorstep pickup and delivery options available across the UAE.</li>
-        </ul>
+        {fetchError && posts.length === 0 && (
+          <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:12px;padding:14px 20px;margin-bottom:28px;font-size:0.9rem;color:#92400E;">
+            ⚠️ Could not connect to Strapi. Showing placeholder content. Make sure Strapi is running and the <code>STRAPI_URL</code> env variable is set.
+          </div>
+        )}
+
+        <div class="blog-grid" id="blogGrid">
+          {displayPosts.map((post, i) => (
+            <a
+              href={`/blog/${post.slug}/`}
+              class={`blog-card${i === 0 ? ' featured' : ''}`}
+              data-cats={JSON.stringify(post.categories)}
+            >
+              <div class="blog-card-img-wrap">
+                {post.featuredImage
+                  ? <img src={post.featuredImage} alt={post.title} class="blog-card-img" loading={i < 3 ? 'eager' : 'lazy'} />
+                  : <div style="width:100%;height:200px;background:linear-gradient(135deg,#2D3748 0%,#38B2AC 100%);display:flex;align-items:center;justify-content:center;">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                }
+              </div>
+              <div class="blog-card-body">
+                {post.categories[0] && <span class="blog-card-cat">{post.categories[0]}</span>}
+                <h2 class="blog-card-title">{post.title}</h2>
+                {post.excerpt && <p class="blog-card-excerpt">{post.excerpt}</p>}
+                <div class="blog-card-meta">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  {post.publishedDate ? formatDate(post.publishedDate) : "Index Office Services"}
+                  <span>·</span>
+                  <span>{post.authorName}</span>
+                </div>
+                <span class="blog-card-read">
+                  Read Article
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <!-- Empty state after filter -->
+        <div id="noResults" style="display:none;" class="no-posts">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <p style="font-size:1.1rem;font-weight:600;color:#374151;margin:0 0 6px;">No posts in this category</p>
+          <p style="font-size:0.95rem;margin:0;">Try selecting a different filter above.</p>
+        </div>
       </div>
 
-      <div style="background: #F8FAFF; border: 1px solid #E2E8F0; padding: 24px; border-radius: 12px;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; color: #2D3748;">Enquiry Form</h3>
-        <form style="display: flex; flex-direction: column; gap: 12px;" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been received.');">
-          <input type="text" placeholder="Your Name" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <input type="email" placeholder="Email Address" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <input type="tel" placeholder="Phone Number" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem;" required />
-          <textarea placeholder="Tell us about your requirements..." rows="4" style="width: 100%; padding: 10px; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 0.85rem; resize: none;" required></textarea>
-          <button type="submit" style="background: #2D3748; color: white; border: none; padding: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: background 0.2s; width: 100%;">
-            Submit Enquiry
-          </button>
-        </form>
-      </div>
+      <!-- RIGHT: Sidebar -->
+      <aside class="blog-sidebar">
+
+        <!-- Quick enquiry -->
+        <div class="sidebar-card" style="background:#2D3748;border-color:#2D3748;">
+          <h3 style="color:#38B2AC;">Free Consultation</h3>
+          <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.6;margin-bottom:16px;">Need help with attestation, PCC or business setup? Ask our experts — no cost, no obligation.</p>
+          <ContactForm />
+        </div>
+
+        <!-- Recent posts -->
+        {displayPosts.length > 1 && (
+          <div class="sidebar-card">
+            <h3>Recent Articles</h3>
+            {displayPosts.slice(0, 5).map(post => (
+              <a href={`/blog/${post.slug}/`} class="sidebar-recent-item">
+                {post.featuredImage
+                  ? <img src={post.featuredImage} alt={post.title} class="sidebar-recent-img" loading="lazy" />
+                  : <div style="width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#2D3748,#38B2AC);flex-shrink:0;"></div>
+                }
+                <div>
+                  <p class="sidebar-recent-title">{post.title}</p>
+                  {post.publishedDate && <p class="sidebar-recent-date">{formatDate(post.publishedDate)}</p>}
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+
+        <!-- Categories -->
+        {displayCategories.length > 0 && (
+          <div class="sidebar-card">
+            <h3>Categories</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              {displayCategories.map(cat => (
+                <button
+                  class="filter-pill"
+                  data-cat={cat}
+                  style="text-align:left;border-radius:10px;justify-content:flex-start;"
+                  onclick={`document.querySelector('[data-cat="${cat}"]').click()`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
+
+<script>
+// Category filter logic
+(function () {
+  const filterBar = document.getElementById('filterBar');
+  const grid = document.getElementById('blogGrid');
+  const noResults = document.getElementById('noResults');
+  if (!filterBar || !grid) return;
+
+  filterBar.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('[data-cat]');
+    if (!btn) return;
+
+    const cat = (btn as HTMLElement).dataset.cat || 'all';
+
+    // Update active pill
+    filterBar.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Filter cards
+    const cards = grid.querySelectorAll('.blog-card');
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const cardCats: string[] = JSON.parse((card as HTMLElement).dataset.cats || '[]');
+      const show = cat === 'all' || cardCats.includes(cat);
+      (card as HTMLElement).style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+
+    if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  });
+})();
+</script>
+
 </BaseLayout>

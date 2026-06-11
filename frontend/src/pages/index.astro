@@ -1,5 +1,36 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
+
+// Strapi Testimonials Fetch
+let strapiTestimonials = [];
+try {
+  // If STRAPI_URL is configured, attempt to fetch dynamic testimonials
+  const strapiUrl = import.meta.env.STRAPI_URL || process.env.STRAPI_URL || "http://localhost:1337";
+  if (strapiUrl) {
+    const res = await fetch(`${strapiUrl}/api/testimonials?populate=img`);
+    if (res.ok) {
+      const data = await res.json();
+      let fetched = data.data.map((item: any) => ({
+        text: item.text,
+        by: item.by,
+        role: item.role,
+        img: item.img?.url ? `${strapiUrl}${item.img.url}` : '/images/img-66.jpg'
+      }));
+      
+      // The carousel looks best with at least 5 items. If we have fewer, loop them.
+      if (fetched.length > 0 && fetched.length < 5) {
+        while (fetched.length < 5) {
+          fetched = [...fetched, ...fetched];
+        }
+      }
+      strapiTestimonials = fetched;
+    }
+  }
+} catch (e) {
+  console.warn("Could not fetch testimonials from Strapi. Falling back to static data.");
+}
 
 const slides = [
   {
@@ -7,7 +38,7 @@ const slides = [
     highlight: "Services in UAE",
     desc: "By availing the services of Index Office Services, you can streamline the certificate attestation process, save time and effort, and ensure that your documents meet the necessary legal requirements for UAE.",
     link: "/certificate-attestation/",
-    img: "https://images.unsplash.com/photo-1568219557405-376e23e4f7cf?w=700&q=80",
+    img: "/images/img-36.jpg",
     imgAlt: "Certificate attestation documents",
   },
   {
@@ -15,7 +46,7 @@ const slides = [
     highlight: "Services",
     desc: "Notary Attestation involves the authentication and certification of documents by a notary public — a legally authorized individual who acts as a witness to the signing of important documents.",
     link: "/notary-attestation-services/",
-    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80",
+    img: "/images/img-23.jpg",
     imgAlt: "Notary attestation professional",
   },
   {
@@ -23,7 +54,7 @@ const slides = [
     highlight: "Certificate",
     desc: "Police Clearance Certificate is a mandatory requirement for most jobs in foreign countries. Index Office Services is the No. 1 service provider in PCC services across the globe.",
     link: "/police-clearance-certificate/",
-    img: "https://images.unsplash.com/photo-1575505586569-646b2ca898fc?w=700&q=80",
+    img: "/images/img-57.jpg",
     imgAlt: "Police clearance certificate",
   },
   {
@@ -31,7 +62,7 @@ const slides = [
     highlight: "Assistance in UAE",
     desc: "We handle the complete process of business setup in the UAE for you. From approvals to coordination with government departments, everything is managed by our experienced team.",
     link: "/business-setup-in-uae/",
-    img: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=700&q=80",
+    img: "/images/img-58.jpg",
     imgAlt: "Business setup UAE",
   },
   {
@@ -39,44 +70,44 @@ const slides = [
     highlight: "Formation",
     desc: "Company formation refers to the process of legally establishing a new company or business entity. We handle registration, legal structure, and all government requirements.",
     link: "/company-formation/",
-    img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&q=80",
+    img: "/images/img-49.jpg",
     imgAlt: "Company formation UAE",
   },
 ]
 
 const services = [
   {
-    img: "https://images.unsplash.com/photo-1568219557405-376e23e4f7cf?w=600&q=80",
+    img: "/images/img-59.jpg",
     title: "Certificate Attestation",
     features: ["End-to-end attestation for personal, educational and commercial documents","Verification through home country authorities, embassy and UAE MOFA","Supports UAE visa, employment and business requirements"],
     link: "/certificate-attestation/",
   },
   {
-    img: "https://images.unsplash.com/photo-1575505586569-646b2ca898fc?w=600&q=80",
+    img: "/images/img-60.jpg",
     title: "Embassy & MOFA Attestation",
     features: ["Full legalization through UAE Ministry of Foreign Affairs","Coordination with embassies and consulates for document approval","Complete workflow from home country to embassy and MOFA stages"],
     link: "#",
   },
   {
-    img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80",
+    img: "/images/img-61.jpg",
     title: "Apostille Services",
     features: ["Apostille processing for Hague Convention countries","Pre-check of documents before official stamping","Accepted for legal, academic and official purposes abroad"],
     link: "#",
   },
   {
-    img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80",
+    img: "/images/img-62.jpg",
     title: "Company Formation in UAE",
     features: ["Mainland, free zone and offshore company setup support","Guidance on jurisdiction and activity selection","End-to-end support from application to final license"],
     link: "/company-formation/",
   },
   {
-    img: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=600&q=80",
+    img: "/images/img-63.jpg",
     title: "PRO & Immigration Services",
     features: ["UAE visa processing for employment, family and investor categories","Labor contract handling and government approvals","Full compliance support for UAE immigration needs"],
     link: "#",
   },
   {
-    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80",
+    img: "/images/img-53.jpg",
     title: "Notary Attestation",
     features: ["Authentication and certification by a legally authorized notary","Adding credibility and validity to important documents","Handles urgent and standard processing needs"],
     link: "/notary-attestation-services/",
@@ -114,7 +145,7 @@ const countries = [
 ]
 
 const whyUs = [
-  { icon: "🏆", label: "Established in 1997" },
+  { icon: "🏆", label: "Established in 2000" },
   { icon: "🌍", label: "International service coverage" },
   { icon: "📂", label: "End-to-end document handling" },
   { icon: "👩‍⚖️", label: "Dedicated compliance experts" },
@@ -149,8 +180,8 @@ const countryCodes = [
 
 <BaseLayout title="Certificate Attestation Services in UAE — 25 Years of Trust">
 <style>
-  .idx-pill{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:0.78rem;padding:5px 14px;border-radius:9999px;font-weight:500;white-space:nowrap;}
-  .idx-form input,.idx-form select,.idx-form textarea{width:100%;border:1px solid #e5e7eb;border-radius:10px;padding:11px 14px;font-size:0.85rem;color:#374151;outline:none;font-family:inherit;background:#fff;box-sizing:border-box;}
+  .idx-pill{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:0.9rem;padding:5px 14px;border-radius:9999px;font-weight:500;white-space:nowrap;}
+  .idx-form input,.idx-form select,.idx-form textarea{width:100%;border:1px solid #e5e7eb;border-radius:10px;padding:11px 14px;font-size:1rem;color:#374151;outline:none;font-family:inherit;background:#fff;box-sizing:border-box;}
   .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus{border-color:#38B2AC;box-shadow:0 0 0 3px rgba(56,178,172,0.15);}
   .idx-form textarea{resize:none;}
   .idx-submit{width:100%;background:#2D3748;color:#fff;font-weight:700;padding:13px;border-radius:10px;border:none;cursor:pointer;font-size:0.95rem;letter-spacing:0.04em;transition:background 0.2s;}
@@ -196,7 +227,7 @@ const countryCodes = [
   @media(max-width:400px){.att-card-grid{grid-template-columns:repeat(2,1fr);}}
 
   /* ── Country grid ── */
-  .country-chip{background:#F0FFFE;border:1px solid #B2F5EA;border-radius:8px;padding:8px 14px;font-size:0.82rem;color:#1A202C;font-weight:500;text-align:center;}
+  .country-chip{background:#F0FFFE;border:1px solid #B2F5EA;border-radius:8px;padding:8px 14px;font-size:0.98rem;color:#1A202C;font-weight:500;text-align:center;}
 
   /* ── FAQ ── */
   .faq-item{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;}
@@ -252,8 +283,8 @@ const countryCodes = [
                   <span class="idx-pill">Genuine</span>
                 </div>
                 <p style="color:#fff;font-size:1.4rem;font-weight:800;margin:0 0 8px;line-height:1.3;">{s.title} <span style="color:#38B2AC;">{s.highlight}</span></p>
-                <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin:0 0 16px;max-width:480px;">{s.desc}</p>
-                <a href={s.link} style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:9px 20px;border-radius:9999px;font-weight:600;font-size:0.82rem;text-decoration:none;">
+                <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 16px;max-width:480px;">{s.desc}</p>
+                <a href={s.link} style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:9px 20px;border-radius:9999px;font-weight:600;font-size:0.98rem;text-decoration:none;">
                   Learn More &rarr;
                 </a>
               </div>
@@ -311,7 +342,7 @@ const countryCodes = [
 
       <!-- RIGHT: fixed image -->
       <div class="hero-fixed-img">
-        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80" alt="Document attestation UAE" />
+        <img src="/images/img-23.jpg" alt="Document attestation UAE" />
         <div style="position:absolute;bottom:-12px;left:-12px;background:#38B2AC;color:#fff;font-weight:800;font-size:0.8rem;padding:11px 15px;border-radius:12px;box-shadow:0 6px 20px rgba(56,178,172,0.4);line-height:1.4;">25+ Years<br/>of Trust</div>
         <div style="position:absolute;top:-12px;right:-12px;background:#fff;color:#1A202C;font-weight:700;font-size:0.75rem;padding:9px 13px;border-radius:11px;box-shadow:0 6px 18px rgba(0,0,0,0.15);display:flex;align-items:center;gap:5px;">&#10003; UAE Certified</div>
       </div>
@@ -330,7 +361,7 @@ const countryCodes = [
     {stats.map(s => (
       <div>
         <p style="font-size:2.4rem;font-weight:900;color:#38B2AC;margin:0;">{s.num}</p>
-        <p style="color:#81E6D9;font-size:0.82rem;margin:4px 0 0;font-weight:500;letter-spacing:0.05em;">{s.label}</p>
+        <p style="color:#81E6D9;font-size:0.98rem;margin:4px 0 0;font-weight:500;letter-spacing:0.05em;">{s.label}</p>
       </div>
     ))}
   </div>
@@ -339,7 +370,7 @@ const countryCodes = [
 <!-- ════ CLIENTS ════ -->
 <section style="background:#fff;padding:48px 0;position:relative;overflow:hidden;border-bottom:1px solid #f0f0f0;">
   <div style="text-align:center;margin-bottom:32px;padding:0 24px;">
-    <p style="color:#9CA3AF;font-size:0.78rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin:0;">Trusted by leading organisations across the UAE &amp; GCC</p>
+    <p style="color:#9CA3AF;font-size:0.9rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin:0;">Trusted by leading organisations across the UAE &amp; GCC</p>
   </div>
 
   <div style="position:relative;">
@@ -352,13 +383,13 @@ const countryCodes = [
           { src: "/ADNOC-.svg",                                    alt: "ADNOC" },
           { src: "/Al-Ain-University.svg",                         alt: "Al Ain University" },
           { src: "/Heriot-Watt_University_logo.svg",               alt: "Heriot-Watt University" },
-          { src: "/Hult_International_Business_School_logo.svg",   alt: "Hult International Business School" },
+          { src: "/Hult_International_Business_School_logo.png",   alt: "Hult International Business School" },
           { src: "/University_of_Cambridge-Logo.svg",              alt: "University of Cambridge" },
           { src: "/washington-state-university-seeklogo.png",      alt: "Washington State University" },
           { src: "/ADNOC-.svg",                                    alt: "ADNOC" },
           { src: "/Al-Ain-University.svg",                         alt: "Al Ain University" },
           { src: "/Heriot-Watt_University_logo.svg",               alt: "Heriot-Watt University" },
-          { src: "/Hult_International_Business_School_logo.svg",   alt: "Hult International Business School" },
+          { src: "/Hult_International_Business_School_logo.png",   alt: "Hult International Business School" },
           { src: "/University_of_Cambridge-Logo.svg",              alt: "University of Cambridge" },
           { src: "/washington-state-university-seeklogo.png",      alt: "Washington State University" },
         ].map(logo => (
@@ -378,7 +409,7 @@ const countryCodes = [
   .marquee-inner {
     display: flex;
     align-items: center;
-    width: max-content;
+    width: max-content; 
     animation: marquee-scroll 28s linear infinite;
     gap: 0;
   }
@@ -417,8 +448,8 @@ const countryCodes = [
     <div style="text-align:center;margin-bottom:16px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What We Offer</p>
       <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">OUR SERVICES</h2>
-      <p style="color:#6B7280;font-size:0.88rem;max-width:600px;margin:0 auto 8px;">Complete Legal and Business Support Under One Roof</p>
-      <p style="color:#9CA3AF;font-size:0.82rem;max-width:700px;margin:0 auto 44px;">We support individuals, professionals, and corporate clients with documentation, attestation, and business setup services across the UAE and international locations.</p>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:600px;margin:0 auto 8px;">Complete Legal and Business Support Under One Roof</p>
+      <p style="color:#9CA3AF;font-size:0.98rem;max-width:700px;margin:0 auto 44px;">We support individuals, professionals, and corporate clients with documentation, attestation, and business setup services across the UAE and international locations.</p>
     </div>
     <div class="svc-grid">
       {services.map(s => (
@@ -430,12 +461,12 @@ const countryCodes = [
             <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 12px;">{s.title}</h3>
             <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
               {s.features.map(f => (
-                <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#4B5563;line-height:1.6;">
+                <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.98rem;color:#4B5563;line-height:1.6;">
                   <span style="color:#38B2AC;font-weight:700;flex-shrink:0;margin-top:2px;">&#10003;</span>{f}
                 </li>
               ))}
             </ul>
-            <a href={s.link} style="display:inline-flex;align-items:center;gap:4px;color:#2D3748;font-size:0.82rem;font-weight:600;text-decoration:none;margin-top:16px;">Explore &rarr;</a>
+            <a href={s.link} style="display:inline-flex;align-items:center;gap:4px;color:#2D3748;font-size:0.98rem;font-weight:600;text-decoration:none;margin-top:16px;">Explore &rarr;</a>
           </div>
         </div>
       ))}
@@ -454,13 +485,13 @@ const countryCodes = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.25;margin:0 0 18px;">TRUST YOUR PAPERWORK WITH PEOPLE WHO UNDERSTAND THE PROCESS</h2>
-      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Documents play a major role in UAE approvals. A small error can slow down visas, jobs or business setup. Most delays start when the process is not handled in the correct order.</p>
-      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Index Office Services brings over 25 years of experience in UAE attestation, visa processing and business setup support. The team works directly with official channels and understands how each stage connects.</p>
-      <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">The entire process stays structured from start to finish. Clients do not need to follow up repeatedly. Each step moves in a clear sequence with proper coordination.</p>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Documents play a major role in UAE approvals. A small error can slow down visas, jobs or business setup. Most delays start when the process is not handled in the correct order.</p>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Index Office Services brings over 25 years of experience in UAE attestation, visa processing and business setup support. The team works directly with official channels and understands how each stage connects.</p>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">The entire process stays structured from start to finish. Clients do not need to follow up repeatedly. Each step moves in a clear sequence with proper coordination.</p>
       <a href="/about-us/" style="display:inline-flex;align-items:center;gap:8px;background:#2D3748;color:#fff;padding:13px 26px;border-radius:9999px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(45,55,72,0.3);">Know More About Us &rarr;</a>
     </div>
     <div style="flex-shrink:0;width:420px;">
-      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80" alt="Professional team" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+      <img src="/images/img-22.jpg" alt="Professional team" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
     </div>
   </div>
 </section>
@@ -504,13 +535,13 @@ const countryCodes = [
       <div style="flex:1;min-width:280px;">
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Global Reach</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">CERTIFICATE ATTESTATION FOR 100+ COUNTRIES</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:12px;">We manage attestation for documents issued across more than 100 countries, including India, UK, USA, Canada, Pakistan, Philippines and others. Each country follows a different verification system, so accuracy becomes important at every step.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:12px;">The process includes home country verification, embassy legalization and MOFA attestation in the UAE. Each stage is handled in the correct order to avoid delays.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">Many clients reach us after facing confusion or rejection. Therefore, we focus on proper handling from the beginning to keep the process clear and controlled.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:12px;">We manage attestation for documents issued across more than 100 countries, including India, UK, USA, Canada, Pakistan, Philippines and others. Each country follows a different verification system, so accuracy becomes important at every step.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:12px;">The process includes home country verification, embassy legalization and MOFA attestation in the UAE. Each stage is handled in the correct order to avoid delays.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Many clients reach us after facing confusion or rejection. Therefore, we focus on proper handling from the beginning to keep the process clear and controlled.</p>
         <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:#2D3748;color:#fff;padding:12px 24px;border-radius:9999px;font-weight:700;text-decoration:none;">Explore All Countries &rarr;</a>
       </div>
       <div style="flex:1;min-width:280px;">
-        <p style="font-weight:700;color:#1A202C;font-size:0.88rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Countries We Cover</p>
+        <p style="font-weight:700;color:#1A202C;font-size:1.05rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Countries We Cover</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;">
           {countries.map(c => <div class="country-chip">{c}</div>)}
         </div>
@@ -535,7 +566,7 @@ const countryCodes = [
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 20px;">Company Formation Services Across the GCC</h2>
         <!-- Image between title and description -->
         <div style="position:relative;border-radius:16px;overflow:hidden;height:220px;margin-bottom:24px;">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80" alt="UAE GCC business skyline" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="/images/img-64.jpg" alt="UAE GCC business skyline" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,32,44,0.6) 100%);"></div>
           <div style="position:absolute;bottom:16px;left:20px;display:flex;gap:10px;">
             <span style="background:#38B2AC;color:#fff;font-size:0.72rem;font-weight:700;padding:5px 12px;border-radius:9999px;">UAE</span>
@@ -543,15 +574,15 @@ const countryCodes = [
             <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:0.72rem;font-weight:600;padding:5px 12px;border-radius:9999px;backdrop-filter:blur(4px);">Qatar</span>
           </div>
         </div>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Setting up a business is not simply a matter of securing a license. The right structure, jurisdiction and approvals can significantly impact how smoothly your business operates. Understanding these requirements from the beginning helps minimise delays, control costs and support future expansion.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Index Office Services supports entrepreneurs, investors and companies planning to establish operations across the UAE and GCC countries. With over 25 years of experience, our team guides clients through jurisdiction selection, licensing requirements, government approvals and registration procedures.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">Each business setup project receives structured support based on the activity, ownership model and expansion goals.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Setting up a business is not simply a matter of securing a license. The right structure, jurisdiction and approvals can significantly impact how smoothly your business operates. Understanding these requirements from the beginning helps minimise delays, control costs and support future expansion.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Index Office Services supports entrepreneurs, investors and companies planning to establish operations across the UAE and GCC countries. With over 25 years of experience, our team guides clients through jurisdiction selection, licensing requirements, government approvals and registration procedures.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Each business setup project receives structured support based on the activity, ownership model and expansion goals.</p>
         <a href="/company-formation/" style="display:inline-flex;align-items:center;gap:8px;background:#2D3748;color:#fff;padding:13px 26px;border-radius:9999px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(45,55,72,0.3);">Explore Company Formation &rarr;</a>
       </div>
 
       <!-- RIGHT: links vertically centered -->
       <div style="flex:1;min-width:280px;display:flex;flex-direction:column;justify-content:center;">
-        <p style="font-weight:700;color:#1A202C;font-size:0.88rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Our Company Formation Services</p>
+        <p style="font-weight:700;color:#1A202C;font-size:1.05rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Our Company Formation Services</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
           {[
             { label: "Company Formation in UAE", href: "/company-formation/" },
@@ -563,7 +594,7 @@ const countryCodes = [
             { label: "Company Formation in Oman", href: "#" },
             { label: "Company Formation in Kuwait", href: "#" },
           ].map(item => (
-            <a href={item.href} style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:0.85rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;">
+            <a href={item.href} style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:1rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;">
               <span style="width:28px;height:28px;border-radius:50%;background:#2D3748;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
               </span>
@@ -594,22 +625,22 @@ const countryCodes = [
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 20px;">Police Clearance Certificate Services for UAE and International Requirements</h2>
         <!-- Image between title and description -->
         <div style="position:relative;border-radius:16px;overflow:hidden;height:220px;margin-bottom:24px;">
-          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=900&q=80" alt="Police clearance certificate" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="/images/img-65.jpg" alt="Police clearance certificate" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.65) 0%,transparent 70%);"></div>
           <div style="position:absolute;top:50%;left:24px;transform:translateY(-50%);">
             <p style="color:#81E6D9;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Fast &amp; Reliable</p>
             <p style="color:#fff;font-size:1rem;font-weight:800;margin:0;line-height:1.3;">PCC from 10+<br/>Countries</p>
           </div>
         </div>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">A Police Clearance Certificate is often required when applying for employment, immigration, residency, professional licensing or long-term visa programs. Authorities use this document to confirm an individual's criminal record status during a specific period of residence.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:14px;">Requirements can vary from one country to another. Therefore, understanding the correct application process helps avoid delays and document rejection. Some countries require biometric verification, while others request supporting records such as passport copies, visa pages or previous residency details.</p>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">Index Office Services assists individuals in obtaining Police Clearance Certificates from multiple countries. Our team guides applicants through document preparation, application requirements and submission procedures to keep the process clear and organized.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">A Police Clearance Certificate is often required when applying for employment, immigration, residency, professional licensing or long-term visa programs. Authorities use this document to confirm an individual's criminal record status during a specific period of residence.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Requirements can vary from one country to another. Therefore, understanding the correct application process helps avoid delays and document rejection. Some countries require biometric verification, while others request supporting records such as passport copies, visa pages or previous residency details.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Index Office Services assists individuals in obtaining Police Clearance Certificates from multiple countries. Our team guides applicants through document preparation, application requirements and submission procedures to keep the process clear and organized.</p>
         <a href="/police-clearance-certificate/" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;padding:13px 26px;border-radius:9999px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(56,178,172,0.35);">Explore PCC Services &rarr;</a>
       </div>
 
       <!-- RIGHT: links vertically centered -->
       <div style="flex:1;min-width:280px;order:2;display:flex;flex-direction:column;justify-content:center;">
-        <p style="font-weight:700;color:#1A202C;font-size:0.88rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Our PCC Services</p>
+        <p style="font-weight:700;color:#1A202C;font-size:1.05rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Our PCC Services</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
           {[
             { label: "Police Clearance Certificate from UAE", href: "/police-clearance-certificate/" },
@@ -620,7 +651,7 @@ const countryCodes = [
             { label: "Police Clearance Certificate from Oman", href: "#" },
             { label: "Police Clearance Certificate from USA", href: "#" },
           ].map(item => (
-            <a href={item.href} style="display:flex;align-items:center;gap:12px;background:#F8FAFF;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:0.85rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;">
+            <a href={item.href} style="display:flex;align-items:center;gap:12px;background:#F8FAFF;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:1rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;">
               <span style="width:28px;height:28px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               </span>
@@ -649,7 +680,7 @@ const countryCodes = [
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
       {embassyServices.map(s => (
-        <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:9999px;padding:9px 18px;font-size:0.82rem;color:#fff;font-weight:500;text-decoration:none;transition:all 0.2s;">
+        <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:9999px;padding:9px 18px;font-size:0.98rem;color:#fff;font-weight:500;text-decoration:none;transition:all 0.2s;">
           <span style="color:#38B2AC;">&#10003;</span>{s}
         </a>
       ))}
@@ -672,18 +703,18 @@ const countryCodes = [
       <div style="flex:1;min-width:280px;">
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
         <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 16px;">WHY THOUSANDS TRUST INDEX OFFICE SERVICES?</h2>
-        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">With more than 25 years of experience, Index Office Services has built strong expertise in UAE documentation and business support services. We focus on correct processing so documents move without avoidable issues.</p>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">With more than 25 years of experience, Index Office Services has built strong expertise in UAE documentation and business support services. We focus on correct processing so documents move without avoidable issues.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
           {whyUs.map(w => (
             <div class="why-card">
               <span style="font-size:1.6rem;flex-shrink:0;">{w.icon}</span>
-              <span style="color:#fff;font-size:0.85rem;font-weight:500;">{w.label}</span>
+              <span style="color:#fff;font-size:1rem;font-weight:500;">{w.label}</span>
             </div>
           ))}
         </div>
       </div>
       <div style="flex-shrink:0;width:380px;">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Trusted professionals" style="width:100%;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+        <img src="/images/img-3.jpg" alt="Trusted professionals" style="width:100%;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
       </div>
     </div>
   </div>
@@ -702,7 +733,7 @@ const countryCodes = [
       <div style="position:absolute;top:22px;left:22px;right:22px;bottom:22px;background:#2D3748;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;box-shadow:0 12px 40px rgba(45,55,72,0.3);">
         <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
         <p style="font-size:0.95rem;font-weight:600;color:#fff;margin:8px 0 4px;">Years of Global Experience</p>
-        <p style="font-size:0.78rem;color:#B2F5EA;margin:0;">Serving clients across 100+ countries</p>
+        <p style="font-size:0.9rem;color:#B2F5EA;margin:0;">Serving clients across 100+ countries</p>
       </div>
     </div>
     <div style="flex:1;min-width:260px;">
@@ -710,8 +741,8 @@ const countryCodes = [
         <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>About Us
       </p>
       <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Most Globally Integrated<br/>Professional Services Firm</h2>
-      <p style="color:#4B5563;line-height:1.8;font-size:0.88rem;margin-bottom:12px;">Today, Index Office Services is a global leader in business incorporation, business advisory services, certificate attestation, legal translation, visiting visa services, tourist services and IT solutions.</p>
-      <p style="color:#4B5563;line-height:1.8;font-size:0.88rem;margin-bottom:24px;">We always give the highest significance to our customers' needs and emergencies, acting accordingly in a fast and efficient way.</p>
+      <p style="color:#4B5563;line-height:1.8;font-size:1.05rem;margin-bottom:12px;">Today, Index Office Services is a global leader in business incorporation, business advisory services, certificate attestation, legal translation, visiting visa services, tourist services and IT solutions.</p>
+      <p style="color:#4B5563;line-height:1.8;font-size:1.05rem;margin-bottom:24px;">We always give the highest significance to our customers' needs and emergencies, acting accordingly in a fast and efficient way.</p>
       <a href="/about-us/" style="display:inline-flex;align-items:center;gap:8px;background:#2D3748;color:#fff;padding:13px 26px;border-radius:9999px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(45,55,72,0.3);">Know More About Us &rarr;</a>
     </div>
   </div>
@@ -726,7 +757,7 @@ const countryCodes = [
     <div style="text-align:center;margin-bottom:52px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Client Stories</p>
       <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">WHAT OUR CLIENTS SAY</h2>
-      <p style="color:#6B7280;font-size:0.88rem;max-width:500px;margin:0 auto;">Trusted by thousands across the UAE and beyond for attestation, business setup and legal services.</p>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:500px;margin:0 auto;">Trusted by thousands across the UAE and beyond for attestation, business setup and legal services.</p>
     </div>
 
     <!-- Stagger card stage -->
@@ -746,17 +777,17 @@ const countryCodes = [
   </div>
 </section>
 
-<script>
+<script define:vars={{ strapiTestimonials }}>
 (function(){
-  const testimonials = [
-    { text: "Index Office Services made our attestation process seamless. Got everything done in record time without any hassle.", by: "Arjun Menon", role: "Business Owner, Dubai", img: "https://i.pravatar.cc/150?img=11" },
-    { text: "Professional team, excellent communication. They handled our embassy attestation perfectly from start to finish.", by: "Sarah Al-Rashid", role: "HR Manager, Abu Dhabi", img: "https://i.pravatar.cc/150?img=5" },
-    { text: "I needed a Police Clearance Certificate urgently. Index Office Services delivered faster than I expected. Highly recommend!", by: "Rajesh Kumar", role: "IT Professional, Sharjah", img: "https://i.pravatar.cc/150?img=14" },
-    { text: "We used their company formation service for our Dubai mainland setup. The team guided us through every step with clarity.", by: "Mohammed Al-Farsi", role: "Entrepreneur, Dubai", img: "https://i.pravatar.cc/150?img=8" },
-    { text: "MOFA attestation done without me having to step out of my office even once. Truly doorstep service!", by: "Priya Nair", role: "Finance Executive, Dubai", img: "https://i.pravatar.cc/150?img=3" },
-    { text: "Reliable, honest and efficient. 25 years of experience really shows in how they handle even complex cases.", by: "Thomas George", role: "Legal Consultant, UAE", img: "https://i.pravatar.cc/150?img=17" },
-    { text: "The apostille service was handled perfectly. Very professional team with great attention to detail.", by: "Amina Khalid", role: "Educator, Abu Dhabi", img: "https://i.pravatar.cc/150?img=20" },
-    { text: "I've referred 5 colleagues already. Best attestation service in UAE, no question.", by: "Vikram Sharma", role: "Project Manager, Ajman", img: "https://i.pravatar.cc/150?img=12" },
+  const testimonials = strapiTestimonials && strapiTestimonials.length > 0 ? strapiTestimonials : [
+    { text: "Index Office Services made our attestation process seamless. Got everything done in record time without any hassle.", by: "Arjun Menon", role: "Business Owner, Dubai", img: "/images/img-66.jpg" },
+    { text: "Professional team, excellent communication. They handled our embassy attestation perfectly from start to finish.", by: "Sarah Al-Rashid", role: "HR Manager, Abu Dhabi", img: "/images/img-67.jpg" },
+    { text: "I needed a Police Clearance Certificate urgently. Index Office Services delivered faster than I expected. Highly recommend!", by: "Rajesh Kumar", role: "IT Professional, Sharjah", img: "/images/img-68.jpg" },
+    { text: "We used their company formation service for our Dubai mainland setup. The team guided us through every step with clarity.", by: "Mohammed Al-Farsi", role: "Entrepreneur, Dubai", img: "/images/img-69.jpg" },
+    { text: "MOFA attestation done without me having to step out of my office even once. Truly doorstep service!", by: "Priya Nair", role: "Finance Executive, Dubai", img: "/images/img-70.jpg" },
+    { text: "Reliable, honest and efficient. 25 years of experience really shows in how they handle even complex cases.", by: "Thomas George", role: "Legal Consultant, UAE", img: "/images/img-71.jpg" },
+    { text: "The apostille service was handled perfectly. Very professional team with great attention to detail.", by: "Amina Khalid", role: "Educator, Abu Dhabi", img: "/images/img-72.jpg" },
+    { text: "I've referred 5 colleagues already. Best attestation service in UAE, no question.", by: "Vikram Sharma", role: "Project Manager, Ajman", img: "/images/img-73.jpg" },
   ];
 
   const stage = document.getElementById('testimonialStage');
@@ -799,7 +830,7 @@ const countryCodes = [
         transform: translate(-50%,-50%) translateX(${xOffset}px) translateY(${yOffset}px) rotate(${rotate}deg) scale(${scale});
         z-index:${zIndex};
         opacity:${opacity};
-        transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+        transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
         cursor:${isCenter ? 'default' : 'pointer'};
         background:${isCenter ? '#2D3748' : '#fff'};
         border:2px solid ${isCenter ? '#38B2AC' : '#e0e7ef'};
@@ -813,12 +844,12 @@ const countryCodes = [
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
           <img src="${t.img}" alt="${t.by}" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid ${isCenter ? '#38B2AC' : '#e0e7ef'};" />
           <div>
-            <p style="font-weight:700;font-size:0.88rem;color:${isCenter ? '#fff' : '#1A202C'};margin:0;">${t.by}</p>
+            <p style="font-weight:700;font-size:1.05rem;color:${isCenter ? '#fff' : '#1A202C'};margin:0;">${t.by}</p>
             <p style="font-size:0.75rem;color:${isCenter ? '#81E6D9' : '#6B7280'};margin:0;">${t.role}</p>
           </div>
         </div>
         <div style="color:#38B2AC;font-size:1.8rem;line-height:1;margin-bottom:8px;">"</div>
-        <p style="font-size:0.88rem;line-height:1.75;color:${isCenter ? '#B2F5EA' : '#4B5563'};margin:0 0 16px;">${t.text}</p>
+        <p style="font-size:1.05rem;line-height:1.75;color:${isCenter ? '#B2F5EA' : '#4B5563'};margin:0 0 16px;">${t.text}</p>
         <div style="display:flex;gap:3px;">
           ${[1,2,3,4,5].map(() => `<svg width="14" height="14" viewBox="0 0 24 24" fill="${isCenter ? '#38B2AC' : '#F59E0B'}" style="flex-shrink:0;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`).join('')}
         </div>
@@ -853,14 +884,14 @@ const countryCodes = [
   let autoplay = setInterval(() => {
     current = (current + 1) % testimonials.length;
     renderCards();
-  }, 4000);
+  }, 2500);
 
   stage.addEventListener('mouseenter', () => clearInterval(autoplay));
   stage.addEventListener('mouseleave', () => {
     autoplay = setInterval(() => {
       current = (current + 1) % testimonials.length;
       renderCards();
-    }, 4000);
+    }, 2500);
   });
 
   renderCards();
@@ -907,30 +938,7 @@ const countryCodes = [
     </div>
     <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.3rem;font-weight:700;color:#1A202C;margin:0 0 22px;text-align:center;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-          <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        </div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label><select>{countryCodes.map(c => <option value={c.code}>{c.label}</option>)}</select></div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option>Company Formation</option><option>PRO Services</option>
-            <option>Attestation / Legalization / Apostille</option>
-            <option>PCC (Good Standing Certificate)</option>
-            <option>Legal Translation Services</option>
-            <option>PAN Card Services</option>
-            <option>Credential Evaluation Services</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="Enter your message*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
   </div>
 </section>

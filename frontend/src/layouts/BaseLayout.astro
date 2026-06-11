@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import Navbar from '../components/Navbar.astro'
 import Footer from '../components/Footer.astro'
+import CallbackPopup from '../components/CallbackPopup.astro'
 
 interface Props {
   title?: string
@@ -32,5 +33,6 @@ const {
     <slot />
   </main>
   <Footer />
+  <CallbackPopup />
 </body>
 </html>

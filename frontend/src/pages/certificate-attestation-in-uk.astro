@@ -1,4 +1,6 @@
 ---
+import ContactForm from '../components/ContactForm.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -92,7 +94,7 @@ const faqs = [
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80"
+    src="/images/img-32.jpg"
     alt="Certificate Attestation in the UK — London"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
@@ -142,7 +144,7 @@ const faqs = [
 
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — FCDO Apostille</h3>
-        <p style="color:#4B5563;font-size:0.85rem;line-height:1.75;margin:0;">
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
           UK attestation typically begins with an apostille from the Foreign, Commonwealth &amp; Development Office (FCDO) — an official certificate confirming your document is authentic and issued by a recognized UK authority.
         </p>
       </div>
@@ -151,7 +153,7 @@ const faqs = [
     <!-- Right image -->
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="https://images.unsplash.com/photo-1543269664-647163ec0bd3?w=800&q=80" alt="UK document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-33.jpg" alt="UK document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">FCDO · Embassy · MOFA</p>
@@ -173,7 +175,7 @@ const faqs = [
     <!-- Split: image + text -->
     <div style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=700&q=80" alt="London UK certificate purposes" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <img src="/images/img-34.jpg" alt="London UK certificate purposes" style="width:100%;height:380px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Why UK Attestation Matters</p>
@@ -183,14 +185,14 @@ const faqs = [
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Core Reasons</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Why Get a Certificate Attestation in the UK?</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;margin-bottom:24px;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Certificate attestation in the UK is necessary for a wide range of official purposes. Whether you are relocating, doing business, studying, or dealing with legal matters, your foreign documents must be verified before they are accepted.
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
-              <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
+              <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
               <p style="font-size:0.76rem;color:#4B5563;line-height:1.55;margin:0;">{p.desc}</p>
             </div>
           ))}
@@ -209,15 +211,15 @@ const faqs = [
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Types of Documents That Can Get Certificate Attestation</h2>
-        <p style="color:#4B5563;font-size:0.88rem;line-height:1.8;">
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
           We handle attestation for a wide range of document categories. The list below covers the most commonly requested types. You should always check with the requesting authority to confirm exactly what form of attestation they require.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80" alt="Document types for UK attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <img src="/images/img-23.jpg" alt="Document types for UK attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.82rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
         </div>
       </div>
     </div>
@@ -231,7 +233,7 @@ const faqs = [
           </div>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
             {cat.docs.map(d => (
-              <li style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#4B5563;">
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
               </li>
             ))}
@@ -249,7 +251,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
     <!-- Image banner -->
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=1400&q=80" alt="UK attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-15.jpg" alt="UK attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
@@ -262,10 +264,10 @@ const faqs = [
       <div style="display:flex;flex-direction:column;gap:14px;">
         {steps.map(s => (
           <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
             <div>
-              <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.78rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
             </div>
           </div>
         ))}
@@ -274,10 +276,10 @@ const faqs = [
       <!-- Timing info + image -->
       <div>
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
-          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=700&q=80" alt="Timing factors UK attestation" style="width:100%;height:280px;object-fit:cover;display:block;" />
+          <img src="/images/img-16.jpg" alt="Timing factors UK attestation" style="width:100%;height:280px;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.78) 100%);"></div>
           <div style="position:absolute;bottom:18px;left:18px;right:18px;">
-            <p style="color:#fff;font-size:0.88rem;font-weight:800;margin:0 0 3px;">Processing Time Varies</p>
+            <p style="color:#fff;font-size:1.05rem;font-weight:800;margin:0 0 3px;">Processing Time Varies</p>
             <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">FCDO apostille: 1–5 days · Embassy: 1–15 days</p>
           </div>
         </div>
@@ -286,7 +288,7 @@ const faqs = [
           <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Factors That Affect Processing Time</h3>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {timingFactors.map(f => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.82rem;color:#4B5563;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.98rem;color:#4B5563;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
               </div>
             ))}
@@ -305,7 +307,7 @@ const faqs = [
     <!-- Image + heading row -->
     <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Index Office Services UK attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.jpg" alt="Index Office Services UK attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
@@ -315,7 +317,7 @@ const faqs = [
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index for Certificate Attestation in the UK?</h2>
-        <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;">
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
           Index is a leading service provider for certificate attestation in the UK. With over 25 years of experience, we offer fast, reliable, and affordable services for all document types — managed by a team of qualified professionals with global reach.
         </p>
       </div>
@@ -326,7 +328,7 @@ const faqs = [
       {benefits.map(b => (
         <div class="benefit-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.78rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
         </div>
       ))}
     </div>
@@ -380,10 +382,10 @@ const faqs = [
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR ATTESTATION SERVICES.</h2>
-      <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.8;margin-bottom:16px;">
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
         If you are looking for certificate attestation in the UK, look no further than Index. Our global network allows us to handle your requirements from anywhere in the world.
       </p>
-      <p style="color:#94A3B8;font-size:0.88rem;line-height:1.8;margin-bottom:28px;">
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
         If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.
       </p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
@@ -394,32 +396,7 @@ const faqs = [
 
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
-      <div class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label><input type="text" placeholder="Your Name*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label><input type="email" placeholder="Your Email Address*" /></div>
-        <div style="display:flex;gap:10px;">
-          <div style="width:120px;flex-shrink:0;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-            <select>
-              {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
-            </select>
-          </div>
-          <div style="flex:1;"><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label><input type="tel" placeholder="Phone Number*" /></div>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Location</label><input type="text" placeholder="Enter your Location*" /></div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option selected>Certificate Attestation in UK</option>
-            <option>FCDO Apostille</option>
-            <option>Embassy Legalization</option>
-            <option>Company Formation</option>
-            <option>PRO Services</option>
-            <option>Other Services</option>
-          </select>
-        </div>
-        <div><label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label><textarea placeholder="What you like to discuss?*" rows="3"></textarea></div>
-        <button class="idx-submit">Submit</button>
-      </div>
+      <ContactForm />
     </div>
 
   </div>
