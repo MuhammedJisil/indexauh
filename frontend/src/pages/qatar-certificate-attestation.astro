@@ -108,8 +108,8 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="Qatar Certificate Attestation in UAE — Index Office Services"
-  description="Complete Qatar certificate attestation services in UAE. Qatar embassy attestation, MOFA Qatar, degree and personal document attestation. 25+ years of experience."
+  title="Qatar Certificate Attestation Services | Indexauh"
+  description="Qatar Certificate Attestation with IndexAUH. 25+ years of trusted expertise, secure embassy & MOFA handling. Ready to start? Talk to us today."
 >
 
 <style>
@@ -124,16 +124,43 @@ const faqs = [
   .purpose-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); transform: translateY(-3px); }
   .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
   .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .step-num { width: 42px; height: 42px; border-radius: 10px; background: #2D3748; color: #38B2AC; font-weight: 900; font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
   .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
   .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
   .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  /* ---- Process steps section ---- */
+  .steps-info-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+  .steps-col { display: flex; flex-direction: column; gap: 14px; }
+  .step-cards { display: flex; flex-direction: column; gap: 14px; }
+  .info-col { display: flex; flex-direction: column; }
+  .info-card { background: #fff; border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+  .info-card--teal { border: 1px solid #B2F5EA; }
+  .info-card--red { border: 1px solid #FCA5A5; }
+  .info-card--neutral { border: 1px solid #eef0f6; }
+  .info-card-title { font-size: 0.95rem; font-weight: 800; color: #1A202C; margin: 0 0 14px; padding-left: 12px; }
+  .info-card-title--teal { border-left: 3px solid #38B2AC; }
+  .info-card-title--red { border-left: 3px solid #EF4444; }
+
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
+  }
+
+  /* Process steps responsive rules */
+  @media (max-width: 900px) {
+    .steps-info-grid { grid-template-columns: 1fr; gap: 32px; }
+    .step-cards { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+    .step-cards .step-card { flex: 1 1 calc(50% - 8px); min-width: 260px; }
+  }
+  @media (max-width: 640px) {
+    .step-cards { flex-direction: column; }
+    .step-cards .step-card { flex: 1 1 auto; min-width: 0; padding: 16px; gap: 12px; }
+    .info-card { padding: 18px; }
   }
 </style>
 
@@ -198,7 +225,7 @@ const faqs = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-88.jpg" alt="Qatar document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-109.jpg" alt="Qatar document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">MEA · Qatar Embassy · MOFA</p>
@@ -296,26 +323,46 @@ const faqs = [
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
       <img src="/images/img-89.jpg" alt="Qatar attestation process" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
-      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);max-width:calc(100% - 80px);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
         <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Qatar Certificate Attestation Procedure</h2>
       </div>
     </div>
 
-    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;">
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        {steps.map(s => (
-          <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+    <div class="steps-info-grid">
+      <div class="steps-col">
+        <div class="step-cards">
+          {steps.map(s => (
+            <div class="step-card">
+              <div class="step-num">{s.step}</div>
+              <div>
+                <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
             </div>
+          ))}
+        </div>
+
+        <div class="info-card info-card--neutral">
+          <h3 class="info-card-title info-card-title--teal">Cost of Qatar Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The cost depends on multiple factors. We provide transparent pricing with no hidden charges:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {[
+              "Type of document (educational, personal, commercial)",
+              "Number of documents to be attested",
+              "Attestation steps required (state, MEA, embassy, MOFA)",
+              "Service chosen (standard or urgent processing)",
+              "Additional requirements such as certified translations",
+            ].map(f => (
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">→</span>{f}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
-      <div>
+      <div class="info-col">
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
           <img src="/images/img-23.jpg" alt="Qatar attestation timing" style="width:100%;height:260px;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.78) 100%);"></div>
@@ -325,8 +372,8 @@ const faqs = [
           </div>
         </div>
 
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;margin-bottom:16px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Factors That Affect Processing Time</h3>
+        <div class="info-card info-card--teal">
+          <h3 class="info-card-title info-card-title--teal">Factors That Affect Processing Time</h3>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {timingFactors.map(f => (
               <div style="display:flex;align-items:center;gap:10px;font-size:0.98rem;color:#4B5563;">
@@ -336,12 +383,30 @@ const faqs = [
           </div>
         </div>
 
-        <div style="background:#fff;border:1px solid #FCA5A5;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #EF4444;padding-left:12px;">Common Mistakes to Avoid</h3>
+        <div class="info-card info-card--red">
+          <h3 class="info-card-title info-card-title--red">Common Mistakes to Avoid</h3>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {mistakes.map(m => (
               <div style="display:flex;align-items:center;gap:10px;font-size:0.98rem;color:#4B5563;">
                 <span style="color:#EF4444;font-weight:bold;flex-shrink:0;">✗</span>{m}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="info-card info-card--teal">
+          <h3 class="info-card-title info-card-title--teal">Documents Required for Qatar Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">To start the Qatar attestation process, you will need:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {[
+              "Original certificate",
+              "Photocopies of all certificates",
+              "Passport copy of the certificate holder",
+              "Authorization letter or Power of Attorney (if someone else submits)",
+              "Certified legal translations for documents not in English or Arabic",
+            ].map(d => (
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">→</span>{d}
               </div>
             ))}
           </div>

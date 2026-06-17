@@ -205,18 +205,21 @@ const faqs = [
   .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
 
-  @media(max-width:768px){
-    .about-hero-title { font-size: 2rem !important; }
-    .about-hero-desc { font-size: 0.88rem !important; }
-    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-  }
+ @media(max-width:768px){
+  .about-hero-title { font-size: 2rem !important; }
+  .about-hero-desc { font-size: 0.88rem !important; }
+  .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .benefits-grid { grid-template-columns: 1fr !important; }
+  .offices-flex { flex-direction: column !important; }
+  .step-sticky { position: static !important; }
+}
 </style>
 
 <!-- ════════════ HERO — image bg, centered text ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
   <!-- Background image -->
   <img
-    src="/images/img-50.jpg"
+    src="/images/img-35.jpg"
     alt="Educational Certificate Attestation"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
   />
@@ -249,41 +252,65 @@ const faqs = [
 <section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
   
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;" class="split-grid">
-    <!-- Left Text -->
-    <div>
-      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
-      </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why is Educational Certificate Attestation Important?</h2>
-      
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
-        The process confirms that your educational certificate is genuine and accepted for official use in the UAE. It supports employment visas, higher education, family sponsorship, DHA licensing, and UAE equivalency applications.
-      </p>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
-        At Index Office Services, we handle attestation with over 25 years of experience in document authentication and embassy procedures. Our team manages each step with careful handling, clear guidance, and consistent updates across different countries and authorities.
-      </p>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
-        Many applicants only realize the importance of educational certificate attestation when their employment visa, professional licensing, or university application gets delayed due to incomplete document verification. UAE authorities carefully verify academic qualifications before approving official applications.
-      </p>
+<div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:start;">
+  <!-- Left Text -->
+  <div>
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+      <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+    </p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why is Educational Certificate Attestation Important?</h2>
+    
+    <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+      The process confirms that your educational certificate is genuine and accepted for official use in the UAE. It supports employment visas, higher education, family sponsorship, DHA licensing, and UAE equivalency applications.
+    </p>
+    <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+      At Index Office Services, we handle attestation with over 25 years of experience in document authentication and embassy procedures. Our team manages each step with careful handling, clear guidance, and consistent updates across different countries and authorities.
+    </p>
 
-      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-top:24px;">
-        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">What is Educational Certificate Attestation?</h3>
-        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
-          Educational certificate attestation is the process of verifying the authenticity of academic documents issued by schools, colleges, universities, or educational institutions. The attestation process confirms that the certificate is genuine and accepted for official use in the UAE.
-        </p>
+    <div style="background:#FFF5F5;border:1px solid #FEB2B2;border-radius:12px;padding:18px;margin-bottom:16px;">
+      <h3 style="color:#9B2C2C;font-size:0.95rem;font-weight:700;margin:0 0 10px;">⚠ Without proper attestation, your documents may not be accepted for:</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;">
+        {["Employment visa approvals","Professional licensing","Salary classification","Higher education admission","Immigration applications","Equivalency certification","Government sector jobs"].map(item => (
+          <div style="font-size:0.82rem;color:#9B2C2C;display:flex;align-items:center;gap:6px;">
+            <span style="font-weight:bold;">•</span> {item}
+          </div>
+        ))}
       </div>
     </div>
 
-    <!-- Right Image -->
-    <div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-51.jpg" alt="Educational Attestation documents" style="width:100%;height:400px;object-fit:cover;" />
-        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
-          25+ Years Experience
-        </div>
+    <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
+      Many applicants only realize the importance of educational certificate attestation when their employment visa, professional licensing, or university application gets delayed due to incomplete document verification. UAE authorities carefully verify academic qualifications before approving official applications.
+    </p>
+
+    <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-bottom:24px;">
+      <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">What is Educational Certificate Attestation?</h3>
+      <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
+        Educational certificate attestation is the process of verifying the authenticity of academic documents issued by schools, colleges, universities, or educational institutions. The attestation process confirms that the certificate is genuine and accepted for official use in the UAE.
+      </p>
+    </div>
+  </div>
+
+  <!-- Right side: image + Commonly Required For -->
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+      <img src="/images/img-51.jpg" alt="Educational Attestation documents" style="width:100%;height:340px;object-fit:cover;" />
+      <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+        25+ Years Experience
       </div>
     </div>
+
+    <div>
+      <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 12px;">Commonly Required For:</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+        {["Employment visa processing","UAE work permit applications","Higher education admissions","Professional licensing","DHA, HAAD, MOH licensing","UAE equivalency certificate","Family visa applications","Immigration purposes","Government-related procedures"].map(item => (
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#4B5563;background:#F0FFFE;border:1px solid #B2F5EA;padding:8px 12px;border-radius:8px;">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span> {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 </section>
 
@@ -546,25 +573,25 @@ const faqs = [
       </div>
     </div>
 
-    <!-- Benefits: grid + image -->
-    <div>
-      <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;" class="split-grid">
-        <!-- Left: benefits grid -->
-        <div>
-          <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why Choose Us</p>
-          <h2 style="font-size:1.9rem;font-weight:900;color:#1A202C;margin:0 0 28px;">Benefits of Choosing Index Office Services</h2>
-          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
-            {benefits.map(b => (
-              <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
-                <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
-                <p style="font-size:0.75rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
-              </div>
-            ))}
-          </div>
+<!-- Benefits: heading + cards left, image right -->
+    <div class="split-grid" style="display:grid;grid-template-columns:1.3fr 0.9fr;gap:48px;align-items:start;">
+      <!-- Left: heading + cards -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why Choose Us</p>
+        <h2 style="font-size:1.9rem;font-weight:900;color:#1A202C;margin:0 0 28px;">Benefits of Choosing Index Office Services</h2>
+        <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+          {benefits.map(b => (
+            <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
+              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
+              <p style="font-size:0.75rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
+            </div>
+          ))}
         </div>
-        <!-- Right image -->
+      </div>
+      <!-- Right: image -->
+      <div style="position:sticky;top:100px;">
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-          <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:460px;object-fit:cover;display:block;" />
+          <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:480px;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.7) 100%);"></div>
           <div style="position:absolute;bottom:20px;left:20px;right:20px;">
             <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Index Office Services</p>
@@ -573,6 +600,7 @@ const faqs = [
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -622,7 +650,7 @@ const faqs = [
     </div>
 
     <!-- Offices side-by-side -->
-    <div style="display:flex;gap:32px;margin-bottom:52px;" class="split-grid">
+    <div class="offices-flex" style="display:flex;gap:32px;margin-bottom:52px;">
       <!-- Abu Dhabi -->
       <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
         <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Abu Dhabi Office</h3>

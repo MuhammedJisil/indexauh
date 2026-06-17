@@ -1,0 +1,574 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const whenNeeded = [
+  "Professionals applying for UAE employment visa",
+  "Parents sponsoring spouse or children",
+  "Students applying for certificate equivalency",
+  "Entrepreneurs opening a company in UAE",
+  "Individuals handling legal procedures",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Marriage certificate attestation",
+      "Birth certificate attestation",
+      "Divorce Certificate Attestation",
+      "Death Certificate Attestation",
+      "Single Status Certificate",
+      "Police Clearance Certificate",
+      "Medical Certificate",
+      "Affidavits",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "Degree attestation Italy",
+      "Diploma Certificate Attestation",
+      "Master's Certificate",
+      "PhD Certificate",
+      "School Leaving Certificate",
+      "HSC Certificate",
+      "Mark Sheets",
+      "Transcript",
+      "Transfer Certificate",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "⚖️",
+    docs: [
+      "Power of Attorney",
+      "Company incorporation documents",
+      "Memorandum of Association",
+      "Articles of Association",
+      "Commercial agreements",
+      "Board resolutions",
+      "Trade and business documents",
+    ],
+  },
+]
+
+const processSteps = [
+  { step: "01", title: "Notary Attestation in Italy", desc: "A registered notary verifies the original certificate." },
+  { step: "02", title: "Authentication by Italian Authorities", desc: "The relevant government department in Italy validates the document." },
+  { step: "03", title: "UAE Embassy Attestation in Italy", desc: "The UAE Embassy confirms the document for UAE use." },
+  { step: "04", title: "UAE MOFA Attestation", desc: "The Ministry of Foreign Affairs in UAE provides the final approval stamp." },
+]
+
+const docsRequired = [
+  "Original certificate",
+  "Passport copy",
+  "Visa copy when required",
+  "Authorization letter for processing",
+]
+
+const timingFactors = [
+  "Type of document",
+  "Authority approval timeline",
+  "Embassy processing speed",
+  "MOFA availability",
+]
+
+const feeFactors = [
+  "Document category",
+  "Number of certificates",
+  "Authority fees",
+  "Urgency level",
+]
+
+const challenges = [
+  "Submitting laminated certificates — most authorities reject them",
+  "Missing authorization letter for third-party processing",
+  "Skipping required Italian authority authentication step",
+  "Not confirming whether Arabic translation is required",
+  "Submitting commercial documents without company registration papers",
+]
+
+const emirates = [
+  "Dubai",
+  "Abu Dhabi",
+  "Sharjah",
+  "Ajman",
+  "Al Ain",
+  "Ras Al Khaimah",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Contact IndexAUH", desc: "Call or message our team for a quick response." },
+  { step: "02", title: "Free Document Review", desc: "Our experts check your certificate and explain the required stages." },
+  { step: "03", title: "Secure Collection", desc: "Pickup service is arranged across the UAE." },
+  { step: "04", title: "Complete Processing", desc: "We manage the full Italian Certificate Attestation procedure through Italian authorities, UAE Embassy, and MOFA." },
+  { step: "05", title: "Safe Delivery", desc: "Attested documents are delivered to your location." },
+]
+
+const whyChoose = [
+  { title: "Complete End-to-End Handling", desc: "We manage every stage of Italy Certificate Attestation from start to final delivery without leaving anything to chance." },
+  { title: "Regular Status Updates", desc: "Clear communication keeps you informed at every stage so you are never left wondering." },
+  { title: "Secure Document Management", desc: "Strict protocols ensure your original documents are handled and tracked securely throughout." },
+  { title: "UAE-Wide Service Coverage", desc: "Support across all major emirates with pickup and delivery from your home or office." },
+  { title: "Transparent Pricing", desc: "Pricing is shared in advance. No hidden charges are added during Italy Certificate Attestation processing." },
+  { title: "Embassy & MOFA Expertise", desc: "Strong knowledge of embassy and MOFA procedures ensures smooth attestation without unnecessary delay." },
+]
+
+const faqs = [
+  { q: "Is Italy's apostille sufficient for the UAE?", a: "No. Embassy and MOFA attestation are required for legal acceptance in the UAE." },
+  { q: "Is Arabic translation required?", a: "Some authorities may ask for certified translation based on document type." },
+  { q: "Are laminated certificates accepted?", a: "Most authorities reject laminated documents." },
+  { q: "Is MOFA mandatory?", a: "Yes. Final MOFA approval makes the document valid inside UAE." },
+  { q: "Can someone else submit documents?", a: "Yes. An authorization letter allows processing on your behalf for Italy Certificate Attestation." },
+]
+---
+
+<BaseLayout
+  title="Italy Certificate Attestation in UAE | Indexauh"
+  description="Get Italy Certificate Attestation in UAE through IndexAUH. Trusted experts with 25+ years experience in Italian document legalization across UAE."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .get-started-grid { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-99.jpeg"
+    alt="Italy Certificate Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Italy Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      ITALY CERTIFICATE ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Italy Certificate Attestation is required to use an Italian document legally in the UAE. IndexAUH has over 25 years of experience in document legalization — we complete the full process smoothly from Italian authorities to final MOFA approval.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What is Italy Certificate Attestation?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Italy Certificate Attestation is required to use an Italian document legally in the UAE. Government departments in the UAE must confirm that your certificate is genuine before they approve it for visa, job, education, or business purposes.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        The process verifies your document through authorities in Italy and then through UAE authorities. IndexAUH has over 25 years of experience in document legalization services. Our team understands every stage of Italian Certificate Attestation and completes the process smoothly.
+      </p>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — Apostille Is Not Enough for UAE</h3>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
+          Italy's apostille is not sufficient for the UAE. Embassy attestation and final MOFA approval are both required for your Italian document to be legally accepted in the UAE.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-100.jpg" alt="Italy document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Notary · Italian Auth · UAE Embassy · MOFA</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Italy attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHEN DO YOU NEED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-37.jpg" alt="Who needs Italy certificate attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Who Needs Attestation</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visa · Business · Education · Family</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Who Needs Italy Certificate Attestation in UAE?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          Different situations require attested Italian documents. UAE authorities do not accept foreign certificates without legal authentication. You may need it if you are:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whenNeeded.map(item => (
+            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Italy Certificate Attestation Services in UAE</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          We handle attestation for a wide range of document categories. Commercial documents may require company registration papers and supporting documents. Our experts review everything before submission.
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-23.jpg" alt="Document types for Italy attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      {docTypes.map(cat => (
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:1.5rem;">{cat.icon}</span>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+            {cat.docs.map(d => (
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-15.jpg" alt="Italy attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Procedure for Italy Certificate Attestation</h2>
+      </div>
+    </div>
+
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {processSteps.map(s => (
+          <div class="step-card">
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;margin-top:4px;">
+          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">After these steps, Italy Certificate Attestation becomes complete and your document is legally accepted in the UAE.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <!-- Documents Required -->
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required for Italy Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Our experts review everything before submission to prevent mistakes. Prepare the following:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {docsRequired.map(d => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Timing -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Italy Certificate Attestation Take?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Educational, personal, and commercial certificates may require different timelines. Clear estimation is provided before starting. Processing time depends on:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {timingFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Fees -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Cost of Italian Certificate Attestation in UAE</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Transparent pricing is shared in advance. No hidden charges are added. Charges vary based on:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {feeFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes That Cause Delays</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Proper guidance helps prevent rejection. Our team checks documents carefully before submission so your Italy Certificate Attestation moves without delays.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {challenges.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-16.jpg" alt="Common mistakes in Italy attestation" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Delays</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ UAE COVERAGE ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center;">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Coverage Area</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Italy Certificate Attestation Services Across UAE</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          Our Certificate Attestation services are available across all major emirates. Pickup and delivery services are arranged from your home or office. Clear communication keeps you informed at every stage. No matter which emirate you are located in, expert support is always available.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          {emirates.map(e => (
+            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eef0f6;border-radius:10px;padding:12px 16px;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>
+              <p style="font-size:0.9rem;color:#374151;margin:0;font-weight:600;">{e}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-34.jpg" alt="Italy attestation services across UAE" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">UAE-Wide Coverage</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Pickup & delivery from your home or office</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Italy Certificate Attestation?</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      Getting started is simple and clear. Follow these steps to begin your Italy Certificate Attestation with IndexAUH.
+    </p>
+
+    <div class="get-started-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.jpg" alt="IndexAUH Italy attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          Experience matters in attestation services. We bring over 25 years of expertise in UAE attestation services. Strong knowledge of embassy and MOFA procedures ensures smooth Italy Certificate Attestation without unnecessary delay.
+        </p>
+      </div>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Italian Document Attestation</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">NEED HELP WITH ITALY CERTIFICATE ATTESTATION IN THE UAE?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Speak with our experts and begin your process without confusion. Proper guidance and professional handling make the journey easier.
+      </p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

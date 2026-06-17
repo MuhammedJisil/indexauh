@@ -1,15 +1,6 @@
 ---
 import ContactForm from '../components/ContactForm.astro';
-
 import BaseLayout from '../layouts/BaseLayout.astro'
-
-const countryCodes = [
-  { code: "+91", label: "IN +91" },
-  { code: "+971", label: "AE +971" },
-  { code: "+44", label: "GB +44" },
-  { code: "+1",  label: "US +1" },
-  { code: "+973", label: "BH +973" },
-]
 
 const purposes = [
   { icon: "💼", title: "Employment Visas", desc: "Saudi employment visas and work permits require attested educational and personal documents for processing." },
@@ -71,15 +62,6 @@ const steps = [
   { step: "05", title: "UAE MOFA Attestation (if needed)", desc: "If your document will be used in the UAE after Saudi attestation, UAE MOFA attestation is completed as a final step." },
 ]
 
-const benefits = [
-  { title: "25+ Years of Experience", desc: "Over two decades of handling Saudi certificate attestation in UAE, Dubai, Abu Dhabi and across the GCC with deep knowledge of all procedures." },
-  { title: "End-to-End Handling", desc: "We manage everything from document verification and Arabic translation to ministry and Saudi embassy attestation — all under one roof." },
-  { title: "Safe & Confidential", desc: "Your documents are handled with strict confidentiality, secure physical transfer protocols, and tracked at every stage of the process." },
-  { title: "Competitive Pricing", desc: "Transparent, affordable pricing with no hidden fees. Costs depend on document type, translation needs, urgency and embassy charges." },
-  { title: "Doorstep Collection & Delivery", desc: "We offer doorstep pickup and delivery options available across the UAE so you never have to leave your office or home." },
-  { title: "Expert Compliance Team", desc: "Dedicated compliance experts with real-time process updates ensure your Saudi attestation is smooth and hassle-free from start to finish." },
-]
-
 const timingFactors = [
   "Document type — degrees and educational certificates take longer than personal documents",
   "Issuing authority verification — some authorities take more time to confirm authenticity",
@@ -87,6 +69,43 @@ const timingFactors = [
   "Ministry and embassy workload — Saudi MOFA or embassy may take longer during busy periods",
   "Correct submission — incomplete documents or missing copies can cause delays",
   "Urgency requests — express services can shorten timelines but may involve additional charges",
+]
+
+const docsRequired = [
+  "Original certificate",
+  "Passport copy",
+  "Supporting documents (like visa or employment offer)",
+  "Authorization letter (if applicable)",
+]
+
+const feeFactors = [
+  "Document type",
+  "Translation needs",
+  "Urgency",
+  "Embassy and ministry charges",
+]
+
+const mistakes = [
+  "Wrong attestation order",
+  "Missing legal Arabic translation",
+  "Name mismatches between passport and certificate",
+  "Submitting incomplete documents",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Contact IndexAUH", desc: "Send us the details of your documents. Our team will review them and advise the correct attestation path." },
+  { step: "02", title: "Document Verification & Guidance", desc: "We check the documents, confirm translation needs, and verify which ministries and authorities are involved." },
+  { step: "03", title: "Submission and Processing", desc: "Submit your original or copy as instructed. We manage all interactions with ministries and the embassy." },
+  { step: "04", title: "Attestation Completion & Delivery", desc: "Once attested, your documents are safely returned to you, ready for use in Saudi Arabia." },
+]
+
+const benefits = [
+  { title: "25+ Years of Experience", desc: "Over two decades of handling Saudi certificate attestation in UAE, Dubai, Abu Dhabi and across the GCC with deep knowledge of all procedures." },
+  { title: "End-to-End Handling", desc: "We manage everything from document verification and Arabic translation to ministry and Saudi embassy attestation — all under one roof." },
+  { title: "Safe & Confidential", desc: "Your documents are handled with strict confidentiality, secure physical transfer protocols, and tracked at every stage of the process." },
+  { title: "Competitive Pricing", desc: "Transparent, affordable pricing with no hidden fees. Costs depend on document type, translation needs, urgency and embassy charges." },
+  { title: "Doorstep Collection & Delivery", desc: "We offer doorstep pickup and delivery options available across the UAE so you never have to leave your office or home." },
+  { title: "Expert Compliance Team", desc: "Dedicated compliance experts with real-time process updates ensure your Saudi attestation is smooth and hassle-free from start to finish." },
 ]
 
 const faqs = [
@@ -99,33 +118,34 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="Saudi Certificate Attestation in UAE — Index Office Services"
-  description="Complete Saudi certificate attestation services in UAE. MOFA attestation, Saudi embassy attestation, degree and personal document attestation. 25+ years of experience."
+  title="Saudi Certificate Attestation in UAE | Indexauh"
+  description="Saudi Certificate Attestation in UAE by IndexAUH. 25+ years of trusted experience, end-to-end handling, fast service. Contact us today."
 >
 
 <style>
   .sec-inner { position: relative; z-index: 1; }
   .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
-  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
-  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
-  .idx-form textarea { resize: none; }
-  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
-  .idx-submit:hover { background: #1A202C; }
-  .purpose-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
-  .purpose-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); transform: translateY(-3px); }
   .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
   .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
-  .benefit-card { border-radius: 14px; padding: 22px; }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
   .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
   .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
   .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
   .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .get-started-grid { display: grid !important; }
+
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
 
@@ -179,7 +199,6 @@ const faqs = [
       <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">
         With over 25 years of experience, Index Office Services ensures your documents are processed quickly and securely — handling everything from start to finish on your behalf.
       </p>
-
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — Saudi MOFA Attestation</h3>
         <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
@@ -190,7 +209,7 @@ const faqs = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-84.jpg" alt="Saudi Arabia document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-108.jpg" alt="Saudi Arabia document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">MEA · Saudi Embassy · MOFA</p>
@@ -209,9 +228,9 @@ const faqs = [
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
+    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-7.jpg" alt="Why Saudi attestation is required" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <img src="/images/img-7.jpg" alt="Why Saudi attestation is required" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Why Saudi Attestation Matters</p>
@@ -226,9 +245,9 @@ const faqs = [
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
           {purposes.map(p => (
-            <div class="purpose-card">
+            <div style="background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:18px;">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
-              <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
+              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
               <p style="font-size:0.76rem;color:#4B5563;line-height:1.55;margin:0;">{p.desc}</p>
             </div>
           ))}
@@ -248,7 +267,7 @@ const faqs = [
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Attestation Services Offered by Index AUH</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
-          Index AUH provides Saudi certificate attestation services for a wide range of document categories — personal, educational, and commercial. The list below covers the most commonly requested types. Always check with the requesting authority to confirm exactly what form of attestation is required.
+          Index AUH provides Saudi certificate attestation services for a wide range of document categories — personal, educational, and commercial. Always check with the requesting authority to confirm exactly what form of attestation is required.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
@@ -285,7 +304,6 @@ const faqs = [
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
-    <!-- Image banner -->
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
       <img src="/images/img-89.jpg" alt="Saudi attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
@@ -296,7 +314,6 @@ const faqs = [
     </div>
 
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;">
-      <!-- Steps list -->
       <div style="display:flex;flex-direction:column;gap:14px;">
         {steps.map(s => (
           <div class="step-card">
@@ -309,22 +326,39 @@ const faqs = [
         ))}
       </div>
 
-      <!-- Timing info + image -->
-      <div>
-        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
-          <img src="/images/img-23.jpg" alt="Saudi attestation timing" style="width:100%;height:280px;object-fit:cover;display:block;" />
-          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.78) 100%);"></div>
-          <div style="position:absolute;bottom:18px;left:18px;right:18px;">
-            <p style="color:#fff;font-size:1.05rem;font-weight:800;margin:0 0 3px;">Processing Time Varies</p>
-            <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Personal docs: faster · Degree certificates: longer</p>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <!-- Documents Required -->
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required for Saudi Certificate Attestation</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {docsRequired.map(d => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+              </div>
+            ))}
           </div>
         </div>
 
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Factors That Affect Processing Time</h3>
+        <!-- Timing -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Factors That Affect Processing Time</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Educational and degree certificates usually take longer than personal documents like birth or marriage certificates. Processing time depends on:</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {timingFactors.map(f => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.98rem;color:#4B5563;">
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Cost -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Cost of Saudi Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">We provide transparent pricing with no hidden charges. The cost depends on:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {feeFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
               </div>
             ))}
@@ -363,6 +397,7 @@ const faqs = [
             { step: "02", title: "Arabic Translation", desc: "The degree is translated into Arabic if required." },
             { step: "03", title: "Ministry Attestation", desc: "The degree is attested by the relevant ministry for international use." },
             { step: "04", title: "Saudi Embassy / MOFA Attestation", desc: "The Saudi Embassy attests the degree to make it legally valid in Saudi Arabia." },
+            { step: "05", title: "UAE MOFA Attestation (if needed)", desc: "Completed if the attested degree will be submitted in UAE." },
           ].map(s => (
             <div style="display:flex;align-items:flex-start;gap:12px;">
               <div style="width:34px;height:34px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
@@ -382,6 +417,142 @@ const faqs = [
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ EDUCATIONAL & BIRTH CERTIFICATE ATTESTATION ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Specialised Attestation</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0;">Educational & Personal Certificate Attestation for Saudi Arabia</h2>
+    </div>
+
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+
+      <!-- Educational Certificate -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:20px;padding:32px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span style="font-size:2rem;">🎓</span>
+          <div>
+            <h3 style="font-size:1.05rem;font-weight:900;color:#1A202C;margin:0 0 3px;">Educational Certificate Attestation</h3>
+            <p style="font-size:0.78rem;color:#38B2AC;font-weight:600;margin:0;">Diplomas, School Certificates & Technical Qualifications</p>
+          </div>
+        </div>
+        <p style="color:#4B5563;font-size:0.88rem;line-height:1.75;margin-bottom:20px;">Educational certificates include diplomas, school leaving certificates, and technical qualifications. Saudi authorities strictly review these certificates to ensure authenticity, confirm qualification standards, and prevent delays in professional or educational approvals.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+          {[
+            { step: "01", title: "Issuing Authority Verification", desc: "The certificate is checked with the school or institute that issued it." },
+            { step: "02", title: "Certified Arabic Translation", desc: "Translation is completed if the certificate is not in Arabic." },
+            { step: "03", title: "Ministry Attestation", desc: "The relevant ministry attests the certificate." },
+            { step: "04", title: "Saudi Embassy / MOFA Attestation", desc: "The document receives final attestation for Saudi use." },
+          ].map(s => (
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:30px;height:30px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.7rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 1px;">{s.title}</p>
+                <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Birth Certificate -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:20px;padding:32px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span style="font-size:2rem;">👶</span>
+          <div>
+            <h3 style="font-size:1.05rem;font-weight:900;color:#1A202C;margin:0 0 3px;">Birth Certificate Attestation for Saudi Arabia</h3>
+            <p style="font-size:0.78rem;color:#38B2AC;font-weight:600;margin:0;">Family Visa · Dependent Visa · Legal Registration</p>
+          </div>
+        </div>
+        <p style="color:#4B5563;font-size:0.88rem;line-height:1.75;margin-bottom:20px;">Birth certificate attestation in Saudi Arabia is required for family or dependent visa applications. The process confirms authenticity and makes the birth certificate legally valid for Saudi authorities.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+          {[
+            { step: "01", title: "Verification by Issuing Authority", desc: "The birth certificate is verified with the government department that issued it." },
+            { step: "02", title: "Arabic Translation", desc: "Certified translation is done if the certificate is not in Arabic." },
+            { step: "03", title: "Ministry of External Affairs Attestation", desc: "The document is attested to confirm its validity internationally." },
+            { step: "04", title: "Saudi Embassy / Saudi MOFA Attestation", desc: "Final attestation validates the document for Saudi authorities." },
+            { step: "05", title: "UAE MOFA Attestation (if required)", desc: "Completed if the certificate is to be used in the UAE." },
+          ].map(s => (
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:30px;height:30px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.7rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 1px;">{s.title}</p>
+                <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:14px;">
+          <p style="font-size:0.82rem;font-weight:700;color:#1A202C;margin:0 0 6px;">Typical Use Cases</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            {["Dependent visa applications", "Family residency", "Legal registration"].map(u => (
+              <span style="background:#2D3748;color:#B2F5EA;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:9999px;">{u}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMMON MISTAKES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes to Avoid in Saudi Attestation</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Many applications face delays or rejection due to small but avoidable errors. Our team guides you to avoid all these issues from the very start of the process.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {mistakes.map(m => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:14px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{m}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-16.jpg" alt="Common mistakes in Saudi attestation" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Delays & Rejection</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Saudi Attestation at IndexAUH?</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:580px;">
+      Follow these simple steps to start your Saudi attestation process with IndexAUH.
+    </p>
+
+    <div class="get-started-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -411,7 +582,7 @@ const faqs = [
 
     <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
       {benefits.map(b => (
-        <div class="benefit-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+        <div class="benefit-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
           <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
         </div>

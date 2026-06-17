@@ -1,0 +1,547 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const whenNeeded = [
+  "Applying for a job in the UAE",
+  "Processing a UAE residence or work visa",
+  "Family sponsorship for spouse or children",
+  "Higher education or equivalency approval",
+  "Company setup or business-related approvals",
+  "Immigration and visa-related purposes",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Marriage certificate attestation",
+      "Birth certificate attestation",
+      "Police Clearance Certificate",
+      "Divorce Certificate Attestation",
+      "Salary Certificate Attestation",
+      "Transfer Certificate Attestation",
+      "Death Certificate Attestation",
+      "Medical Certificate Attestation",
+      "Affidavit",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "Australia degree attestation",
+      "Diploma certificates",
+      "School leaving certificates",
+      "Mark sheets and transcripts",
+      "Professional qualification certificates",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "⚖️",
+    docs: [
+      "Power of Attorney",
+      "Company incorporation documents",
+      "Memorandum of Association",
+      "Articles of Association",
+      "Commercial agreements",
+      "Board resolutions",
+      "Trade and business documents",
+    ],
+  },
+]
+
+const standardSteps = [
+  { step: "01", title: "Verification in Australia", desc: "The document is verified by a Notary Public or issuing authority." },
+  { step: "02", title: "DFAT Authentication", desc: "The Department of Foreign Affairs and Trade confirms the authenticity of the document." },
+  { step: "03", title: "UAE Embassy Attestation in Australia", desc: "UAE embassy attestation validates the document for UAE use." },
+  { step: "04", title: "MOFA Attestation in the UAE", desc: "The document receives final confirmation from the UAE Ministry of Foreign Affairs." },
+]
+
+const specialisedFlows = [
+  {
+    title: "Degree Certificate Attestation for UAE Employment",
+    subtitle: "Private sector, government, and semi-government roles",
+    steps: ["Notary Public / JP (if required)", "DFAT authentication (Australia)", "UAE Embassy attestation (Australia)", "MOFA attestation (UAE)", "Final document ready for UAE employment use"],
+  },
+  {
+    title: "Nurses, Engineers & Professionals",
+    subtitle: "DHA, MOH, DOH licensing and professional registration",
+    steps: ["Notary / institutional verification (if required)", "DFAT authentication (Australia)", "UAE Embassy attestation (Australia)", "MOFA attestation (UAE)", "Submission to licensing authority (DHA / MOH / DOH)"],
+  },
+  {
+    title: "Birth Certificate — UAE Family Visa",
+    subtitle: "Child sponsorship and dependent visa applications",
+    steps: ["Notary Public / JP (if required)", "DFAT authentication (Australia)", "UAE Embassy attestation (Australia)", "MOFA attestation (UAE)", "Visa application submission in UAE"],
+  },
+  {
+    title: "Marriage Certificate — UAE Residence Visa",
+    subtitle: "Spouse visa and family residence visa processing",
+    steps: ["Notary Public / JP (if required)", "DFAT authentication (Australia)", "UAE Embassy attestation (Australia)", "MOFA attestation (UAE)", "Submission for UAE residence visa"],
+  },
+  {
+    title: "Police Clearance Certificate (PCC)",
+    subtitle: "Employment, immigration, and visa screening",
+    steps: ["DFAT authentication (Australia)", "UAE Embassy attestation (Australia)", "MOFA attestation (UAE)", "Final submission to employer or immigration authority"],
+  },
+  {
+    title: "Commercial Documents — UAE Business Setup",
+    subtitle: "Company formation, trade licenses, and corporate approvals",
+    steps: ["Notary / company authority certification (if required)", "DFAT authentication (Australia)", "UAE Embassy attestation (Australia)", "MOFA attestation (UAE)", "Submission for UAE business licensing"],
+  },
+]
+
+const feeFactors = [
+  "Type of document",
+  "Purpose of attestation",
+  "Number of certificates",
+  "Processing urgency",
+]
+
+const challenges = [
+  "Missing one or more required attestation stages in the approval process",
+  "Degree certificates submitted without supporting transcripts",
+  "Name mismatch between the certificate and passport",
+  "Unofficial translations or incorrect document details",
+  "Damaged, altered, or non-genuine documents",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Contact IndexAUH", desc: "Connect with our team by phone, WhatsApp, or enquiry form." },
+  { step: "02", title: "Share Document Details", desc: "Send a clear copy of your document for initial review." },
+  { step: "03", title: "Free Verification Guidance", desc: "We check requirements and explain the full process clearly." },
+  { step: "04", title: "Processing and Coordination", desc: "We manage all stages, including embassy and MOFA approvals." },
+  { step: "05", title: "Receive Attested Documents", desc: "Your documents are delivered ready for official use in the UAE." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Proven Experience", desc: "Extensive experience in Australian and UAE attestation procedures with thousands of happy clients across the UAE." },
+  { title: "Complete End-to-End Handling", desc: "We manage everything from Australian verification through to final UAE MOFA approval." },
+  { title: "Free Document Review", desc: "We check requirements and explain the full process clearly before starting — no upfront commitment." },
+  { title: "Secure Pickup & Delivery", desc: "Safe collection and return of your documents across all emirates in the UAE." },
+  { title: "Careful Document Handling", desc: "Every document is reviewed before processing to avoid errors, rejection, and delays." },
+  { title: "Dedicated Support Team", desc: "A support team is available to answer your questions at every stage of the process." },
+]
+
+const faqs = [
+  { q: "Is Australia Certificate Attestation mandatory for UAE jobs?", a: "Yes, most employers require attested Australian certificates." },
+  { q: "Is the apostille enough for the UAE?", a: "No, Australia follows embassy legalization for UAE use. DFAT authentication, UAE Embassy attestation, and MOFA approval are all required." },
+  { q: "Can I complete the process without travelling to Australia?", a: "Yes, we manage the complete process on your behalf." },
+  { q: "Is degree attestation Australia required for work visas?", a: "Yes, attested educational certificates are mandatory for UAE work visa processing." },
+]
+---
+
+<BaseLayout
+  title="Australia Certificate Attestation in the UAE | 25+ Years Expertise"
+  description="Need Australia Certificate Attestation for UAE? Index Office Services offers trusted document attestation with 25+ years of experience."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .get-started-grid { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-105.webp"
+    alt="Australia Certificate Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Australia Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      AUSTRALIA CERTIFICATE ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Australia Certificate Attestation is required when documents issued in Australia need to be officially accepted in the UAE. With 25+ years of experience, IndexAUH processes your documents correctly from start to final MOFA approval.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What is Australia Certificate Attestation?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Australia Certificate Attestation is required when documents issued in Australia need to be officially accepted in the UAE. This process confirms that your certificate is genuine and approved by the right authorities. It is commonly needed for employment, residence visa, family sponsorship, education, and business purposes.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Many people face delays because they are unsure about the process or submit documents in the wrong order. Each step matters, and missing one can cause rejection. At IndexAUH, we have over 25+ years of experience handling Australian Certificate Attestation — your documents are processed correctly from the start.
+      </p>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — Apostille Is Not Enough for UAE</h3>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
+          Australia follows embassy legalization for UAE use — not apostille. DFAT authentication, UAE Embassy attestation, and MOFA approval are all required stages. Missing any one stage results in rejection.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-106.jpg" alt="Australia document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Notary · DFAT · UAE Embassy · MOFA</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Australia attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHEN DO YOU NEED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-37.jpg" alt="Who needs Australia certificate attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Who Needs Attestation</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visa · Jobs · Education · Business</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Who Needs Australia Certificate Attestation in the UAE?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          UAE authorities will not accept Australian documents without proper attestation. For immigration and visa-related purposes, certificate attestation for Australia is a mandatory step. You may need it in the following situations:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whenNeeded.map(item => (
+            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Australian Certificate Attestation Services We Provide</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          We handle attestation for a wide range of document categories. Our team reviews everything carefully before submission to keep your documents compliant with UAE legalization requirements.
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-23.jpg" alt="Document types for Australia attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      {docTypes.map(cat => (
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:1.5rem;">{cat.icon}</span>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+            {cat.docs.map(d => (
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-15.jpg" alt="Australia attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Australia Certificate Attestation Process</h2>
+      </div>
+    </div>
+
+    <!-- Standard 4-step process -->
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;margin-bottom:52px;">
+      <div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 18px;padding-left:14px;border-left:3px solid #38B2AC;">Standard Attestation Flow</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {standardSteps.map(s => (
+            <div class="step-card">
+              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Australian Attestation Fees</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">We follow transparent pricing and explain all charges clearly before proceeding. Australia degree attestation fees may differ from personal or commercial documents. Fees depend on:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {feeFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does It Take?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.75;margin:0;">Processing time depends on the document type and approval stages. Educational certificates may take longer than personal documents. Embassy workload and verification checks can also affect timelines. Our team provides clear time estimates before starting the process.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specialised flows -->
+    <h3 style="font-size:1.2rem;font-weight:900;color:#1A202C;margin:0 0 24px;text-align:center;">Specialised Attestation Flows by Document Type</h3>
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      {specialisedFlows.map(flow => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h4 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 4px;">{flow.title}</h4>
+          <p style="font-size:0.78rem;color:#38B2AC;font-weight:600;margin:0 0 14px;">{flow.subtitle}</p>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            {flow.steps.map((step, i) => (
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                  <div style="width:22px;height:22px;border-radius:50%;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.65rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{i + 1}</div>
+                  {i < flow.steps.length - 1 && <div style="width:1px;height:16px;background:#eef0f6;margin:2px 0;"></div>}
+                </div>
+                <p style="font-size:0.82rem;color:#4B5563;line-height:1.5;margin:0 0 6px;">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Reasons Australian Certificates Get Rejected in UAE</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          We carefully review your documents before processing to help identify these issues early and reduce the risk of delays or rejection. With over 25 years of experience, our team ensures your documents follow the correct attestation requirements.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {challenges.map(c => (
+            <div style="display:flex;align-items:flex-start;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:1px;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-16.jpg" alt="Common mistakes in Australia attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Delays</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Australia Certificate Attestation?</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      Getting started is simple and stress free with IndexAUH. Follow these steps to begin.
+    </p>
+
+    <div class="get-started-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.jpg" alt="IndexAUH Australia attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index Office Services?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          Ready to get your Australian certificates attested without delays or confusion? Our team brings over 25+ years of proven experience in Australian and UAE attestation procedures with thousands of happy clients across the UAE who trust our service.
+        </p>
+      </div>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">NEED HELP WITH AUSTRALIA CERTIFICATE ATTESTATION IN THE UAE?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Contact Index offices today for a free document review and let our experts handle the entire process smoothly from start to finish.
+      </p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

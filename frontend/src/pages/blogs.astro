@@ -98,50 +98,44 @@ const fallbackPosts = [
 
 const displayPosts = posts.length > 0 ? posts : fallbackPosts;
 const displayCategories = categories.length > 0 ? categories : ["Attestation", "Business Setup", "PCC"];
+
+// Fallback image used whenever a post has no featuredImage
+const FALLBACK_IMG = "/fallback.webp";
 ---
 
 <BaseLayout
-  title="Blogs & Articles — Index Office Services UAE"
+  title="Blogs - Index Attestation and Business Setup"
   description="Read expert guides and articles on certificate attestation, MOFA, apostille, company formation, police clearance certificates and business setup in the UAE."
 >
 
 <style>
-  /* ── Hero ── */
-  .blog-hero { background: #2D3748; padding: 72px 24px 80px; position: relative; overflow: hidden; }
-  .blog-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(56,178,172,0.18) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; }
-  .blog-hero-inner { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  /* ── Page intro (replaces hero) ── */
+  .blog-intro { padding: 48px 24px 32px; }
+  .blog-intro-inner { max-width: 1280px; margin: 0 auto; }
+  .blog-intro-eyebrow { color: #38B2AC; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.78rem; margin: 0 0 10px; }
+  .blog-intro-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: #1A202C; margin: 0; line-height: 1.15; }
 
   /* ── Filter pills ── */
-  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
-  .filter-pill { background: #fff; border: 1.5px solid #e0e7ef; color: #374151; border-radius: 9999px; padding: 8px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
+  .filter-pill { background: #fff; border: 1.5px solid #e0e7ef; color: #374151; border-radius: 9999px; padding: 8px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; white-space: nowrap; }
   .filter-pill:hover, .filter-pill.active { background: #38B2AC; border-color: #38B2AC; color: #fff; }
 
   /* ── Grid ── */
   .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
   @media (max-width: 1024px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px) { .blog-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .blog-grid { grid-template-columns: 1fr; gap: 20px; } }
 
-  /* ── Card ── */
+  /* ── Card (image + title only) ── */
   .blog-card { background: #fff; border: 1px solid #e0e7ef; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.25s; }
   .blog-card:hover { border-color: #38B2AC; transform: translateY(-5px); box-shadow: 0 16px 40px rgba(56,178,172,0.15); }
   .blog-card-img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s; }
   .blog-card:hover .blog-card-img { transform: scale(1.04); }
-  .blog-card-img-wrap { overflow: hidden; position: relative; }
+  .blog-card-img-wrap { overflow: hidden; position: relative; aspect-ratio: 16/10; }
   .blog-card-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(26,32,44,0.35)); }
-  .blog-card-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
-  .blog-card-cat { display: inline-block; background: #F0FFFE; color: #38B2AC; border: 1px solid #B2F5EA; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; padding: 3px 12px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
-  .blog-card-title { font-size: 1.05rem; font-weight: 800; color: #1A202C; line-height: 1.4; margin: 0 0 10px; }
-  .blog-card-excerpt { font-size: 0.95rem; color: #6B7280; line-height: 1.7; margin: 0 0 16px; flex: 1; }
-  .blog-card-meta { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: #9CA3AF; margin-top: auto; }
-  .blog-card-read { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; font-weight: 700; color: #38B2AC; margin-top: 14px; }
-
-  /* ── Featured (first card wider) ── */
-  .blog-card.featured { grid-column: span 2; flex-direction: row; }
-  .blog-card.featured .blog-card-img-wrap { width: 50%; flex-shrink: 0; }
-  .blog-card.featured .blog-card-img { height: 100%; }
-  .blog-card.featured .blog-card-body { padding: 28px 30px; }
-  .blog-card.featured .blog-card-title { font-size: 1.3rem; }
-  @media (max-width: 1024px) { .blog-card.featured { grid-column: span 1; flex-direction: column; } .blog-card.featured .blog-card-img-wrap { width: 100%; } .blog-card.featured .blog-card-img { height: 200px; } }
+  .blog-card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .blog-card-cat { display: inline-block; background: #F0FFFE; color: #38B2AC; border: 1px solid #B2F5EA; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; padding: 3px 12px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; width: fit-content; }
+  .blog-card-title { font-size: 1.05rem; font-weight: 800; color: #1A202C; line-height: 1.4; margin: 0; }
+  .blog-card-read { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; font-weight: 700; color: #38B2AC; margin-top: 16px; }
 
   /* ── No-posts ── */
   .no-posts { text-align: center; padding: 60px 24px; color: #6B7280; }
@@ -158,26 +152,23 @@ const displayCategories = categories.length > 0 ? categories : ["Attestation", "
   .sidebar-recent-img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
   .sidebar-recent-title { font-size: 0.85rem; font-weight: 600; color: #1A202C; line-height: 1.4; }
   .sidebar-recent-date { font-size: 0.72rem; color: #9CA3AF; margin-top: 4px; }
+
+  @media (max-width: 640px) {
+    .blog-intro { padding: 32px 20px 24px; }
+    .sidebar-card { padding: 18px; }
+  }
 </style>
 
-<!-- ══ HERO ══ -->
-<section class="blog-hero">
-  <div class="blog-hero-inner">
-    <p style="color:#38B2AC;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-size:0.78rem;margin-bottom:14px;">Insights & Guides</p>
-    <h1 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;margin:0 0 18px;line-height:1.15;">
-      Our Blogs &amp; Articles
-    </h1>
-    <p style="color:#B2F5EA;font-size:1.1rem;line-height:1.7;max-width:580px;margin:0 auto 28px;">
-      Expert guides on certificate attestation, MOFA, apostille, company formation, police clearance and business setup in the UAE.
-    </p>
-    <a href="/contact" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;padding:13px 28px;border-radius:9999px;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
-      Get Free Consultation &rarr;
-    </a>
+<!-- ══ PAGE INTRO ══ -->
+<section class="blog-intro">
+  <div class="blog-intro-inner">
+    <p class="blog-intro-eyebrow">Insights & Guides</p>
+    <h1 class="blog-intro-title">Our Blogs &amp; Articles</h1>
   </div>
 </section>
 
 <!-- ══ MAIN CONTENT ══ -->
-<section style="background:#F8FAFF;padding:60px 24px 80px;position:relative;">
+<section style="background:#F8FAFF;padding:8px 24px 80px;position:relative;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
   <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;">
@@ -205,27 +196,20 @@ const displayCategories = categories.length > 0 ? categories : ["Attestation", "
           {displayPosts.map((post, i) => (
             <a
               href={`/blog/${post.slug}/`}
-              class={`blog-card${i === 0 ? ' featured' : ''}`}
+              class="blog-card"
               data-cats={JSON.stringify(post.categories)}
             >
               <div class="blog-card-img-wrap">
-                {post.featuredImage
-                  ? <img src={post.featuredImage} alt={post.title} class="blog-card-img" loading={i < 3 ? 'eager' : 'lazy'} />
-                  : <div style="width:100%;height:200px;background:linear-gradient(135deg,#2D3748 0%,#38B2AC 100%);display:flex;align-items:center;justify-content:center;">
-                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    </div>
-                }
+                <img
+                  src={post.featuredImage || FALLBACK_IMG}
+                  alt={post.title}
+                  class="blog-card-img"
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                />
               </div>
               <div class="blog-card-body">
                 {post.categories[0] && <span class="blog-card-cat">{post.categories[0]}</span>}
                 <h2 class="blog-card-title">{post.title}</h2>
-                {post.excerpt && <p class="blog-card-excerpt">{post.excerpt}</p>}
-                <div class="blog-card-meta">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  {post.publishedDate ? formatDate(post.publishedDate) : "Index Office Services"}
-                  <span>·</span>
-                  <span>{post.authorName}</span>
-                </div>
                 <span class="blog-card-read">
                   Read Article
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -259,35 +243,13 @@ const displayCategories = categories.length > 0 ? categories : ["Attestation", "
             <h3>Recent Articles</h3>
             {displayPosts.slice(0, 5).map(post => (
               <a href={`/blog/${post.slug}/`} class="sidebar-recent-item">
-                {post.featuredImage
-                  ? <img src={post.featuredImage} alt={post.title} class="sidebar-recent-img" loading="lazy" />
-                  : <div style="width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#2D3748,#38B2AC);flex-shrink:0;"></div>
-                }
+                <img src={post.featuredImage || FALLBACK_IMG} alt={post.title} class="sidebar-recent-img" loading="lazy" />
                 <div>
                   <p class="sidebar-recent-title">{post.title}</p>
                   {post.publishedDate && <p class="sidebar-recent-date">{formatDate(post.publishedDate)}</p>}
                 </div>
               </a>
             ))}
-          </div>
-        )}
-
-        <!-- Categories -->
-        {displayCategories.length > 0 && (
-          <div class="sidebar-card">
-            <h3>Categories</h3>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              {displayCategories.map(cat => (
-                <button
-                  class="filter-pill"
-                  data-cat={cat}
-                  style="text-align:left;border-radius:10px;justify-content:flex-start;"
-                  onclick={`document.querySelector('[data-cat="${cat}"]').click()`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
           </div>
         )}
 

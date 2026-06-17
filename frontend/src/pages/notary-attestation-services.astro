@@ -1,6 +1,5 @@
 ---
 import ContactForm from '../components/ContactForm.astro';
-
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -11,91 +10,33 @@ const countryCodes = [
   { code: "+1",   label: "US +1" },
 ]
 
-const benefits = [
-  { icon: "📜", title: "Power of Attorney", desc: "We simplify drafting of both special and general power of attorney documents through online notary public applications, ensuring your authorization documents are legally valid in the UAE." },
-  { icon: "🏢", title: "Company Formation Documents", desc: "Writing, translating, and notarizing memorandums of association, articles of association, and local service agency contracts are all covered by our specialist notary team." },
-  { icon: "✅", title: "Ministry of Justice Notarization", desc: "Index specializes in providing all notary public services through the portal of the Judicial Department and other governmental entities in the UAE, ensuring legal compliance." },
-  { icon: "🌐", title: "Immigration Document Attestation", desc: "We handle attestation for immigration to Canada, the United Kingdom, Australia, Dominica, and more — certified, fast, and meeting the requirements of each destination country." },
+const ourServices = [
+  "Immigration Document Attestation (Canada – United Kingdom – Australia – Dominica, etc)",
+  "Certified True Copy Attestation services (Passport, utility bills, tenancy contracts etc)",
+  "Property Sale & Purchase Document Drafting & Legalization",
+  "Wills Drafting & Wills attestation",
+  "Legal consultation",
+  "Arbitration",
+  "Company incorporation",
+  "Construction claims consultancy",
+  "Dispute resolution",
+  "Litigation and Counseling",
+  "Business formation",
+  "Contracts, Agreement, Memorandum of Understanding, Memorandum of association, and Legal drafting",
 ]
 
-const documents = [
-  { title: "Memorandum of Association", body: "Required for company formation in the UAE. Index prepares, translates, and notarizes your memorandum of association through official UAE judicial channels." },
-  { title: "Power of Attorney", body: "Special or general power of attorney documents, drafted and notarized by our experts through the online portal of the Judicial Department." },
-  { title: "Contracts & Agreements", body: "Legal drafting and notarization of all types of contracts, agreements, and memorandums of understanding for business and personal use." },
-  { title: "Declarations & Acknowledgements", body: "Official declarations and acknowledgements notarized for use in the UAE and internationally, with certified true copy attestation where required." },
-  { title: "Local Service Agent Contracts", body: "Legally binding local service agent contracts required for certain business structures in the UAE, prepared and notarized by Index specialists." },
-  { title: "Wills & Probate", body: "Wills registration services by DIFC WPR licensed professionals. Covers Guardianship, Property, Business Owners, Financial Assets, and Full Wills." },
-]
-
-const services = [
-  { title: "Certified True Copy Attestation", desc: "Fast and reliable certified true copy attestation for passports, utility bills, tenancy contracts, educational certificates, and more. Same-day service available." },
-  { title: "Credit Card & Debt Settlement", desc: "Dedicated debt counseling and bank negotiation services. Index helps resolve credit card and bank debts amicably, avoiding legal action, travel bans, and credit score damage." },
-  { title: "Debt Collection", desc: "Cost-effective professional debt collection using reminder calls, AI-powered automation, and legal letters — turning bad debts into credits without costly litigation." },
-  { title: "Cheque Bounce Resolution", desc: "Expert guidance and support for cheque bounce complaints, litigation, criminal court, and civil cases — including assistance for defaulters returning to the UAE." },
-  { title: "Property Document Legalization", desc: "End-to-end drafting and legalization of property sale and purchase documents, ensuring legal compliance for UAE real estate transactions." },
-  { title: "Legal Translation Services", desc: "Professional translation of legal documents for notarization and attestation, with full compliance to UAE judicial and ministry requirements." },
-]
-
-const whyIndex = [
-  "Our team reviews your documents and advises on the exact notarization path required before starting any process.",
-  "Index processes all notary services directly through the UAE Judicial Department portal and official government channels.",
-  "We handle both simple and complex documents, including translated, multi-party, and foreign-origin contracts.",
-  "Index assists clients whose documents were previously rejected or returned by authorities with incomplete attestation.",
-  "We coordinate certified true copy attestation, legalization, and authentication for international use in over 20 countries.",
-  "Our debt negotiation specialists liaise with banks on your behalf to waive penal interest, delay charges, and legal fees.",
-  "Index manages cheque bounce situations with police, criminal court, and civil courts — including for returning UAE residents.",
-  "We prepare and register wills under DIFC WPR license, covering all five will types for UAE residents and expats.",
-  "With 25+ years of experience, Index has in-depth knowledge of UAE notary, legal, and attestation procedures.",
-  "Free initial consultation available — we assess your situation before recommending any service or commitment.",
-]
-
-const faqs = [
-  {
-    q: "What types of documents can Index notarize in the UAE?",
-    a: "Index handles notarization of memorandums of association, power of attorney (special and general), contracts, agreements, declarations, acknowledgements, local service agent contracts, and wills — all processed through the UAE Judicial Department portal."
-  },
-  {
-    q: "How does Index help with Power of Attorney drafting and notarization?",
-    a: "Index drafts both special and general power of attorney documents and processes them through the online portal of the Judicial Department, ensuring legal validity for use in the UAE and internationally."
-  },
-  {
-    q: "Can Index assist with certified true copy attestation for passports and other documents?",
-    a: "Yes. Index provides fast and reliable certified true copy attestation for passports, utility bills, tenancy contracts, educational certificates, and other documents. Same-day service is available in many cases."
-  },
-  {
-    q: "What is the process for attesting documents for immigration to countries like Canada or Australia?",
-    a: "Index manages the full attestation chain for immigration documents destined for Canada, the United Kingdom, Australia, Dominica, and other countries — including home country ministry attestation and UAE MOFA legalization where required."
-  },
-  {
-    q: "Can Index help me settle my credit card debt or negotiate with my bank?",
-    a: "Yes. Index has a dedicated department for bank and credit card debt negotiation. Their specialists assess your financial situation and liaise with banks to arrange repayment, waive penalty charges, and help you avoid legal action or travel bans."
-  },
-  {
-    q: "What services does Index provide for cheque bounce cases?",
-    a: "Index provides guidance and support for cheque bounce complaints, criminal court cases, and civil disputes. They also assist defaulters returning to the UAE in resolving outstanding cheque bounce issues with police and courts."
-  },
-  {
-    q: "Does Index offer will registration services in the UAE?",
-    a: "Yes. Index holds a DIFC WPR license and registers all five types of wills in the UAE — Guardianship, Property, Business Owners, Financial Assets, and Full Wills — for both UAE residents and expatriates."
-  },
-  {
-    q: "How does Index handle debt collection for businesses?",
-    a: "Index's debt collection team makes structured reminder calls, sends legal letters, and uses AI-assisted automation to recover debts efficiently. The process prioritizes amicable resolution before escalating to legal action."
-  },
-  {
-    q: "Can Index assist with company formation documents and local service agent contracts?",
-    a: "Yes. Index prepares, translates, and notarizes memorandums of association, articles of association, and local service agent contracts required for business setup in the UAE."
-  },
-  {
-    q: "Does Index offer a free consultation before starting notary or attestation services?",
-    a: "Yes. Index provides a free initial consultation to assess your documents and requirements before recommending any service or beginning any process. Contact Index today to book your consultation."
-  },
+const willTypes = [
+  "Guardianship Will — for children under 21",
+  "Property Will — for up to five UAE properties",
+  "Business Owners Will — for up to five free zone and offshore firm shares",
+  "Financial Assets Will — up to 10 bank or brokerage accounts",
+  "Full Will — covers all types of assets",
 ]
 ---
 
 <BaseLayout
-  title="Notary Assistance UAE — Index Office Services"
-  description="Convenient, budget-friendly notary public services in the UAE. 25+ years of experience. Power of attorney, attestation, company documents, wills, and debt services by Index Office Services."
+  title="Notary Attestation Services UAE | Certified True Copy Attestation UAE"
+  description="Index provides best assistance for Notary Attestation Services or Certified True Copy Attestation UAE. Fast and Secure, Call Now"
 >
 
 <style>
@@ -106,25 +47,15 @@ const faqs = [
   .idx-form textarea { resize: none; }
   .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
   .idx-submit:hover { background: #1A202C; }
-  .benefit-card-light { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
-  .benefit-card-light:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); transform: translateY(-3px); }
-  .doc-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 24px; transition: all 0.25s; }
-  .doc-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
-  .assist-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
-  .assist-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
-  .faq-item { border: 1px solid #eef0f6; border-radius: 14px; overflow: hidden; }
-  .faq-item summary { list-style: none; cursor: pointer; padding: 18px 22px; font-size: 0.88rem; font-weight: 700; color: #1A202C; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after { content: "+"; font-size: 1.2rem; font-weight: 900; color: #38B2AC; flex-shrink: 0; }
-  .faq-item[open] summary::after { content: "−"; }
-  .faq-item[open] { border-color: #B2F5EA; }
-  .faq-body { padding: 0 22px 18px; font-size: 0.82rem; color: #4B5563; line-height: 1.75; }
+  .svc-arrow-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px; transition: all 0.25s; }
+  .svc-arrow-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .box-card { background: #fff; border: 1px solid #eef0f6; border-radius: 20px; padding: 32px; transition: all 0.25s; }
+  .box-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
-    .four-col { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
 
@@ -149,89 +80,44 @@ const faqs = [
       NOTARY ASSISTANCE<br/>IN THE UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:680px;">
-      Notary public applications include memorandum of association, power of attorney, contracts and agreements, declarations, acknowledgements, and local service agent contracts. Index makes it simple to prepare and notarize all documents through the UAE Judicial Department portal in a very short amount of time.
+      Notary public applications include memorandum of association, power of attorney, contracts &amp; agreements, declarations, acknowledgements, and local service agent contracts. Index makes it simple to prepare and notarize all documents through the UAE Judicial Department portal in a very short amount of time.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
-      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
     </div>
   </div>
 </section>
 
-<!-- ════ OVERVIEW ════ -->
-<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
-    <div>
-      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview
-      </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is Notary Assistance in the UAE?</h2>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
-        Notary assistance in the UAE covers the official preparation, authentication, and legalization of legal documents through the UAE Judicial Department and other government entities. It is a mandatory requirement for company formation, property transactions, power of attorney, wills, and a wide range of personal and business legal matters.
-      </p>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
-        Index has developed its specialization in providing all notary public services through the portal of the Judicial Department and other governmental entities in the UAE, making it simple for all clients to prepare and notarize documents in a very short amount of time.
-      </p>
-      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
-        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Processed via UAE Judicial Department</h3>
-        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
-          All notarizations are processed through official UAE government portals, ensuring your documents carry full legal validity for use in the UAE and internationally.
-        </p>
-      </div>
-    </div>
-
-    <div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-79.jpg" alt="Notary Assistance UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Notary Public Assistance</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">End-to-end support by Index Office Services</p>
-        </div>
-        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
-          25+ Years Experience
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ BENEFITS ════ -->
+<!-- ════ NOTARY ASSISTANCE ════ -->
 <section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-55.jpg" alt="Benefits of Notary Assistance UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Key Notary Services</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">POA · Company Docs · Attestation · Wills</p>
-        </div>
-      </div>
-      <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What We Cover</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 18px;">Core Notary Public Applications</h2>
-        <div style="display:flex;flex-direction:column;gap:14px;" class="four-col">
-          {benefits.map(b => (
-            <div class="benefit-card-light" style="display:flex;gap:16px;align-items:flex-start;">
-              <div style="font-size:1.5rem;flex-shrink:0;">{b.icon}</div>
-              <div>
-                <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 5px;">{b.title}</h3>
-                <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.9fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>What We Do
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Notary Assistance</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 16px;">
+        In order to achieve this, our special services, which include all online notary public applications, make it simpler for you to draft a special power of attorney and a general power of attorney. Writing, translating, and notarizing a memorandum of association, articles of association, or local service agency contract are additional requirements for forming a company. Our team of experts is ready to help you.
+      </p>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        In order to make it simple for all clients to prepare and notarize all of their documents in a very short amount of time, Index has developed its specialization in providing all notary public services through the portal of the Judicial Department and other governmental entities in the UAE.
+      </p>
+    </div>
+
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-55.jpg" alt="Notary Assistance UAE" style="width:100%;height:400px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Notary Public Assistance</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">POA · Company Docs · Attestation · Wills</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════ DOCUMENTS / SERVICES ════ -->
+<!-- ════ OUR SERVICES ════ -->
 <section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
@@ -240,98 +126,161 @@ const faqs = [
       <img src="/images/img-41.jpg" alt="Notary document services UAE" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
-        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Document Services</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Documents We Notarize &amp; Attest</h2>
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">What We Cover</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">OUR SERVICES</h2>
       </div>
     </div>
 
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      {documents.map(d => (
-        <div class="doc-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">{d.title}</h3>
-          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{d.body}</p>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 28px;">We provide legal services at the highest professional level, capable of rendering effective solutions mainly in the following areas:</p>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      {ourServices.map(item => (
+        <div class="svc-arrow-card">
+          <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+          <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">{item}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- ════ OUR SERVICES ════ -->
+<!-- ════ CERTIFIED TRUE COPY ATTESTATION ════ -->
 <section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:48px;">
-      <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Full Service Range</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Services</h2>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
-          Index provides legal and consulting services at the highest professional level. From certified true copy attestation and immigration document legalization to debt settlement, debt collection, cheque bounce resolution, and wills — our team delivers effective solutions across a wide range of personal and business legal needs.
-        </p>
-      </div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-22.jpg" alt="Index Office Services UAE" style="width:100%;height:260px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
-        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">Comprehensive Legal &amp; Notary Services</p>
-        </div>
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.4fr;gap:52px;align-items:center;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-22.jpg" alt="Certified True Copy Attestation UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Certified True Copy Attestation</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Passports · Certificates · Business Docs</p>
       </div>
     </div>
-
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      {services.map(a => (
-        <div class="assist-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:10px;">{a.title}</h3>
-          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{a.desc}</p>
-        </div>
-      ))}
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Attestation</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">CERTIFIED TRUE COPY ATTESTATION</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 16px;">
+        Document legalization and verification are becoming more and more necessary for a variety of foreign documents when used internationally. Any company or any individual may need document authentication, legalization, and certification services in connection with a business agreement, the registration of a certificate or degree, establishing residency, or any other transactions in a foreign country.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 16px;">
+        We offer consultation on expediting Certified true copy attestation and Notary services in UAE for business and personal documents. Certificate, diploma, transcripts attestation. We ensure our service that each document attested meets the internationally specified requirements. Certification and legalization of documents for international use could be a painful and time-consuming process, and a lot of wastage of money if it is not done in the correct manner.
+      </p>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">CERTIFIED TRUE COPY OF PASSPORTS</h3>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">
+          Copies of passports are very significant personal documents that require certification and legality. The certified true copy attestation is approved to confirm the originality of a document. We offer one of the fast and reliable Passport true copy attestations in UAE — same day and same time service available.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════ HOW INDEX HELPS ════ -->
+<!-- ════ CREDIT CARD SETTLEMENT ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.4fr 0.9fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Debt Services
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">CREDIT CARD SETTLEMENT</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 16px;">
+        Index is aware that individuals who are mired in credit card debt or other types of bank debt require debt counseling and expert assistance in order to settle their debts amicably with banks and prevent legal action, a travel ban, and adverse effects on their credit score. As a result, Index has established a dedicated department to assist all bank and credit card creditors in paying off their obligations and leading debt-free lives.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 16px;">
+        Each client's financial situation and needs are assessed by the debt reduction specialists at Index. Debtors can acquire debt-free counsel by getting the penal interest, delay charges, legal fees, and other charges waived off under the direction of Index's bank debt negotiation experts.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0;">
+        We provide debt consolidation, repayment modification, and settlement negotiation services. We also assist debtors returning to the UAE who are facing legal action or police cases in successfully resolving cheque bounce situations with the police, criminal court, or civil cases.
+      </p>
+    </div>
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-79.jpg" alt="Credit Card Settlement UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Credit Card &amp; Debt Settlement</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Expert negotiation with banks on your behalf</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DEBT COLLECTION ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.4fr;gap:52px;align-items:center;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-56.jpg" alt="Debt Collection UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Debt Collection Services</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Cost-effective · AI-powered · Legal expertise</p>
+      </div>
+    </div>
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Recovery Services</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">DEBT COLLECTION</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 16px;">
+        Debt collection is a cost-effective way to settle a debt before taking legal action. The legal debt recovery process through courts takes time, costs a lot of money, and permanently damages the connection between the business and the defaulter. Therefore, debt collection, rather than starting with legal action, is the preferable course of action.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 16px;">
+        After assessing the debtors' reputations in the market, the debt amount involved, the age of the debts, and commercial documents, our skilled team ensures to streamline the current collection procedure. Index leverages cutting-edge automation technologies, artificial intelligence, and other innovations to improve the efficiency of debt collection services while strictly adhering to the law.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0;">
+        Before sending legal letters created by our own legal experts, our debt collection service first makes pleasant reminder calls to the defaulters. Index's debt solution specialists assist clients in turning all bad debts into credits without resorting to expensive legal action, enabling them to proceed with better cash flow.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WILLS & PROBATES + CHEQUE BOUNCING ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner two-col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+
+    <div class="box-card">
+      <h2 style="font-size:1.3rem;font-weight:900;color:#1A202C;border-left:4px solid #38B2AC;padding-left:14px;margin:0 0 18px;">WILLS &amp; PROBATES</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 14px;">
+        One of the most popular services we offer in the UAE is wills and probate. Numerous expats have already received will registration services from our specialists, who hold a DIFC WPR license. It is crucial to get a properly designed will registered, especially when you are abroad. Our team of professionals will help you create and register your will, or start the probate process, whether it is a Mainland Will or a DIFC Will.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 14px;">There are five different will types to choose from depending on your needs:</p>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+        {willTypes.map(item => (
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:#4B5563;line-height:1.65;">
+            <span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span>{item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="box-card">
+      <h2 style="font-size:1.3rem;font-weight:900;color:#1A202C;border-left:4px solid #38B2AC;padding-left:14px;margin:0 0 18px;">CHEQUE BOUNCING</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 14px;">
+        Cheque bounce problems, complaints, and litigation are seen as long-term problems by people in the UAE. It is regarded as a crime and carries potentially serious and intimidating legal repercussions and penalties. Cheque bounce issues can arise in a number of circumstances, including private and personal transactions, business transactions, purchases, real estate rentals, bank loans, and so on.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0;">
+        As well as offering helpful guidance on all issues and outcomes, we can assist you in situations where a cheque bounces. We offer guidance and support to businesses, organizations, banks, financial institutions, and private citizens. We create the ideal strategies and consistently make the necessary advancements to resolve your cheque bounce issues efficiently.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
 <section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ Years · UAE Notary Experts</p>
-        </div>
-      </div>
-      <div>
-        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">How Can Index Assist You?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
-          Index is a specialist service provider with over 25 years of experience in UAE notary and document services. We offer comprehensive assistance — from initial consultation and document review to notarization, attestation, and final delivery — for individuals and businesses across the UAE.
-        </p>
-        <p style="color:#94A3B8;font-size:1rem;line-height:1.8;">
-          Our personalised approach ensures that your specific documents and legal needs are handled accurately and efficiently. Whether you need a simple certified true copy or complex company formation documents, call us today for a free consultation.
-        </p>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:52px;" class="two-col">
-      {whyIndex.map(point => (
-        <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;">
-          <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;margin-top:1px;">→</span>
-          <p style="font-size:0.98rem;color:#CBD5E0;line-height:1.65;margin:0;">{point}</p>
-        </div>
-      ))}
-    </div>
-
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:52px;">
-      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 12px;">
-        Index is a specialist service provider focusing on notary public services and other international individual and business legal services. With 25+ years of expertise, we have gained considerable knowledge and insight on delivering professional and timely results.
-      </p>
-      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin:0;">
-        Our services are processed through the relevant UAE government departments and authorised portals as per your requirements. Call us today to book a free consultation.
-      </p>
-    </div>
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">WHY CHOOSE US?</h2>
+    <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+      By availing the services of Index, you can streamline the notary attestation process, save time and effort, and ensure that your documents meet the necessary legal requirements for UAE. However, it's always recommended to check the specific requirements and regulations of UAE's authorities and consult with the relevant institutions for accurate information.
+    </p>
+    <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin-bottom:48px;">Call us today to book a free consultation…!!!</p>
 
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
       <div>
@@ -342,24 +291,6 @@ const faqs = [
         <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25</p>
         <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ FAQ ════ -->
-<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
-    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;text-align:center;margin-bottom:10px;">Have Questions?</p>
-    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;text-align:center;margin:0 0 40px;">Frequently Asked Questions on Notary Assistance</h2>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      {faqs.map((f, i) => (
-        <details class="faq-item">
-          <summary>{i + 1}. {f.q}</summary>
-          <div class="faq-body">{f.a}</div>
-        </details>
-      ))}
     </div>
   </div>
 </section>

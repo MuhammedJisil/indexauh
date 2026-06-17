@@ -1,0 +1,722 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1", label: "US +1" },
+  { code: "+973", label: "BH +973" },
+]
+
+const mandatoryFor = [
+  "Employment under MOHRE",
+  "University admissions",
+  "Professional licensing applications",
+  "Skill verification and equivalency",
+  "Qualification recognition procedures",
+  "Government and ministry approvals",
+  "Certain immigration and family visa applications",
+]
+
+const degreeTypes = [
+  { title: "B Tech Degree Attestation", icon: "🎓" },
+  { title: "BE / B.E. Degree Attestation", icon: "📘" },
+  { title: "BSc / Bachelor's Degree Attestation", icon: "🔬" },
+  { title: "BA / Bachelor of Arts Degree Attestation", icon: "📖" },
+  { title: "M Tech / ME Degree Attestation", icon: "⚙️" },
+  { title: "MSc / Master's Degree Attestation", icon: "🧪" },
+  { title: "MA / Master of Arts Degree Attestation", icon: "📝" },
+  { title: "PhD / Doctorate Degree Attestation", icon: "🎓" },
+  { title: "MBA Attestation", icon: "💼" },
+  { title: "Diploma / Advanced Diploma Attestation", icon: "📜" },
+  { title: "Other University Certificates Attestation", icon: "📄" },
+]
+
+const steps = [
+  { step: "01", title: "Educational Institution or University Verification", desc: "The issuing university or institution verifies the certificate as the first step in the attestation process." },
+  { step: "02", title: "Local or Regional Authority Authentication", desc: "The relevant local or regional authority authenticates the document following university verification." },
+  { step: "03", title: "Government or Foreign Affairs Legalization", desc: "The government or foreign affairs department of the issuing country legalizes the certificate." },
+  { step: "04", title: "UAE Embassy Attestation", desc: "The UAE Embassy in the issuing country attests the certificate, preparing it for use inside the UAE." },
+  { step: "05", title: "MOFA Degree Attestation Inside the UAE", desc: "The Ministry of Foreign Affairs gives the final approval, completing the ministry of foreign affairs degree attestation process." },
+]
+
+const countriesData = [
+  {
+    id: "india",
+    name: "India",
+    steps: [
+      "University verification",
+      "State HRD attestation",
+      "MEA attestation",
+      "UAE Embassy attestation",
+      "MOFA attestation in the UAE"
+    ],
+    desc: "Some Indian universities may take additional time to complete verification procedures, especially for older academic records."
+  },
+  {
+    id: "uk",
+    name: "United Kingdom",
+    steps: [
+      "Solicitor or notary verification",
+      "FCDO legalization",
+      "UAE Embassy attestation",
+      "MOFA attestation in the UAE"
+    ],
+    desc: "UK Degree Attestation generally follows solicitor or notary verification before FCDO legalization."
+  },
+  {
+    id: "usa",
+    name: "United States",
+    steps: [
+      "Notary public authentication",
+      "State authentication",
+      "US Department of State attestation",
+      "UAE Embassy attestation",
+      "MOFA attestation in the UAE"
+    ],
+    desc: "USA Degree Attestation follows both state and federal authentication procedures."
+  },
+  {
+    id: "australia",
+    name: "Australia",
+    steps: [
+      "Notary public authentication",
+      "DFAT authentication",
+      "UAE Embassy attestation",
+      "MOFA attestation in the UAE"
+    ],
+    desc: "Australia Degree Attestation commonly requires notary authentication followed by DFAT authentication."
+  },
+  {
+    id: "canada",
+    name: "Canada",
+    steps: [
+      "Notary or provincial authentication",
+      "Global Affairs Canada attestation",
+      "UAE Embassy attestation",
+      "MOFA attestation in the UAE"
+    ],
+    desc: "Canada Degree Attestation involves provincial and federal legalization procedures."
+  },
+]
+
+const requiredDocs = [
+  { title: "Original Degree Certificate", desc: "The original certificate is required for verification before attestation can proceed." },
+  { title: "Passport Copy", desc: "A copy of the applicant's passport is required as part of the standard documentation." },
+  { title: "Authorization Letter", desc: "Required when Index Office Services submits documents on the applicant's behalf." },
+  { title: "Academic Transcripts (when required)", desc: "Some authorities request transcripts alongside the degree certificate for additional verification." },
+  { title: "Visa Copy (in selected cases)", desc: "Required mainly for applicants already residing in the UAE or where local processing is involved." },
+]
+
+const delayReasons = [
+  "Incorrect attestation route selection",
+  "Incomplete document submission",
+  "Laminated or damaged certificates",
+  "Name mismatch issues",
+  "University verification delays",
+  "Missing supporting documents",
+  "Incorrect embassy procedures",
+]
+
+const startSteps = [
+  { step: "01", title: "Contact Our Team", desc: "Contact our team by phone or online consultation. We review your documents and explain the required attestation process." },
+  { step: "02", title: "Confirm the Route", desc: "We identify the issuing country and confirm the correct verification and legalization route." },
+  { step: "03", title: "Process Management", desc: "Our specialists manage university certificate attestation, embassy legalization, apostille procedures, and degree attestation from MOFA." },
+  { step: "04", title: "Secure Delivery", desc: "Once the ministry of foreign affairs degree attestation is completed, we arrange secure document delivery." },
+]
+
+const whyChooseUs = [
+  { title: "End-to-End Document Handling", desc: "We manage every stage of the process, from initial verification to final delivery, so you don't have to coordinate with multiple authorities." },
+  { title: "Country-Specific Expertise", desc: "We provide degree attestation services for certificates issued in more than 100+ countries, each with its own verification route." },
+  { title: "Clear Process Guidance", desc: "We confirm the correct attestation route before starting, helping avoid rejection, repeated submissions, and unnecessary delays." },
+  { title: "Secure Document Handling", desc: "Your original certificates are handled with full responsibility and care throughout the entire attestation process." },
+  { title: "Experienced Attestation Specialists", desc: "With over 25+ years of experience, our specialists understand embassy regulations and MOFA approval processes thoroughly." },
+  { title: "Support for Urgent Processing Cases", desc: "We offer assistance for urgent processing cases depending on country and authority availability." },
+  { title: "Free Pickup and Delivery Services", desc: "We offer free pickup and delivery services to make the process convenient for clients across the UAE." },
+  { title: "Assistance with Complex Verification Cases", desc: "We assist with equivalency, primary source verification, and other complex qualification recognition procedures." },
+]
+
+const faqs = [
+  { q: "Is Degree Certificate Attestation mandatory for UAE jobs?", a: "Yes, UAE authorities and employers require attested degrees to confirm authenticity." },
+  { q: "Can I get a B Tech degree attestation done myself?", a: "You can, but multiple authorities are involved. Using IndexAUH saves time and avoids mistakes." },
+  { q: "What is MOFA attestation for degree certificate?", a: "MOFA attestation is the final verification by the UAE Ministry of Foreign Affairs that confirms your degree is legally recognized." },
+  { q: "Does the process vary for different countries?", a: "Yes. Countries like India, USA, UK, Canada, and Australia have specific steps before UAE MOFA attestation." },
+  { q: "What documents are required for attestation of degree certificate?", a: "Original degree certificate, passport copy, authorization letter, and supporting transcripts if required." },
+  { q: "Can someone attest a degree on my behalf?", a: "Yes, with an authorization letter. IndexAUH manages the process from start to finish." },
+]
+---
+
+<BaseLayout title="Degree Certificate Attestation in UAE — Index Office Services" description="Professional degree certificate attestation services across the UAE. 25+ years of experience covering 100+ countries, from university verification to MOFA approval.">
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+
+  /* pills */
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  /* document type card */
+  .doc-type-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; transition: all 0.25s; }
+  .doc-type-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.06); transform: translateY(-3px); }
+
+  /* steps cards */
+  .step-card { display: flex; align-items: flex-start; gap: 18px; padding: 20px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+
+  /* tabs countries */
+  .country-tab-btn { padding: 10px 22px; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+  .country-tab-btn.active { background: #2D3748; color: #fff; }
+  .country-tab-btn:not(.active) { background: #F0FFFE; color: #2D3748; border: 1px solid #B2F5EA; }
+
+  /* list items */
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: #fff; border: 1px solid #e0e7ef; border-radius: 10px; font-size: 0.85rem; color: #1A202C; font-weight: 500; }
+
+  /* warning item */
+  .warning-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 10px; font-size: 0.82rem; color: #9B2C2C; font-weight: 500; }
+
+  /* FAQ */
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 200px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  @media(max-width:768px){
+    .about-hero-title { font-size: 2rem !important; }
+    .about-hero-desc { font-size: 0.88rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .benefits-grid { grid-template-columns: 1fr !important; }
+    .degree-types-grid { grid-template-columns: repeat(2,1fr) !important; }
+    .offices-flex { flex-direction: column !important; }
+    .step-sticky { position: static !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <img
+    src="/images/img-35.jpg"
+    alt="Degree Certificate Attestation UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.88) 0%,rgba(45,55,72,0.82) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">100+ Countries</span>
+      <span class="idx-pill">Budget-Friendly</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="about-hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      DEGREE CERTIFICATE ATTESTATION<br/>IN UAE
+    </h1>
+    <p class="about-hero-desc" style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:640px;">
+      Degree Certificate Attestation is required in the UAE to confirm that your educational certificate is genuine and issued by a recognized institution. UAE authorities do not accept foreign educational documents without proper verification and legalization.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:start;">
+    <!-- Left Text -->
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Degree Attestation Services — 25 Years of Trust</h2>
+
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Whether you are applying for employment, higher education, professional licensing, or residency-related procedures, educational certificate attestation is an essential requirement in the UAE.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Index Office Services provides professional degree certificate attestation services across the UAE. With over 25+ years of industry experience, our team understands country-specific procedures, embassy regulations, university verification requirements, and MOFA approval processes. We support degree attestation services for employment, university admissions, licensing, equivalency procedures, and government approvals.
+      </p>
+
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-bottom:16px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Why Degree Certificate Attestation Is Required in the UAE</h3>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.6;margin:0;">UAE government departments require attestation of degree certificates to verify the authenticity of foreign educational qualifications. This process protects employers, ministries, universities, and licensing authorities from false or unverified documents.</p>
+      </div>
+
+      <div style="background:#FFF5F5;border:1px solid #FEB2B2;border-radius:12px;padding:18px;margin-bottom:16px;">
+        <h3 style="color:#9B2C2C;font-size:0.95rem;font-weight:700;margin:0 0 10px;">Degree Attestation is Mandatory For:</h3>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          {mandatoryFor.map(item => (
+            <div style="font-size:0.82rem;color:#9B2C2C;display:flex;align-items:center;gap:6px;">
+              <span style="font-weight:bold;">•</span> {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;">
+        Without the Ministry of Foreign Affairs degree attestation, foreign degree certificates generally do not hold legal recognition in the UAE.
+      </p>
+    </div>
+
+    <!-- Right side: image + stat -->
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-51.jpg" alt="Degree attestation documents" style="width:100%;height:340px;object-fit:cover;" />
+        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-52.jpg" alt="University degree certificates" style="width:100%;height:280px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.65) 100%);"></div>
+        <div style="position:absolute;bottom:18px;left:18px;right:18px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:700;margin:0;line-height:1.4;">Service support in 100+ countries</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TYPES OF DEGREES COVERED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Coverage</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Types of Degrees Covered</h2>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:620px;margin:0 auto;">We handle attestation for all types of university and college degrees.</p>
+    </div>
+
+    <div class="degree-types-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      {degreeTypes.map(d => (
+        <div class="doc-type-card" style="display:flex;align-items:center;gap:12px;padding:18px;">
+          <span style="font-size:1.6rem;flex-shrink:0;">{d.icon}</span>
+          <p style="font-size:0.92rem;font-weight:700;color:#1A202C;margin:0;line-height:1.4;">{d.title}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ STEP BY STEP PROCESS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Authentication Workflow</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Degree Certificate Attestation Process in UAE</h2>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:640px;margin:0 auto;">The Degree Attestation process in the UAE follows a structured verification procedure based on the country where the certificate was issued and the requirements of the concerned authorities.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
+      <!-- Steps list -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {steps.map(s => (
+          <div class="step-card">
+            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <!-- Right image -->
+      <div style="position:sticky;top:100px;" class="step-sticky">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+          <img src="/images/img-7.jpg" alt="Degree attestation process" style="width:100%;height:460px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">5-Step Verified Process</p>
+            <p style="color:#B2F5EA;font-size:0.9rem;margin:0;">From university verification to MOFA final approval</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COUNTRY-SPECIFIC ATTESTATION (TABS) ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1000px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Global Rules</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Country Specific Degree Certificate Attestation</h2>
+      <p style="color:#4B5563;font-size:1rem;max-width:620px;margin:0 auto;line-height:1.6;">We provide degree attestation services for certificates issued in more than 100+ countries. No matter where your degree was issued, Index Office Services manages the complete process from verification to MOFA attestation.</p>
+    </div>
+
+    <!-- Country Tabs -->
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
+      {countriesData.map((c, idx) => (
+        <button class={`country-tab-btn ${idx === 0 ? 'active' : ''}`} data-tab={c.id}>
+          {c.name}
+        </button>
+      ))}
+    </div>
+
+    <!-- Country steps panels -->
+    {countriesData.map((c, idx) => (
+      <div id={`country-${c.id}`} style={`display: ${idx === 0 ? 'block' : 'none'}; background:#fff; border-radius:18px; padding:32px; box-shadow:0 10px 30px rgba(56,178,172,0.06); border:1px solid #B2F5EA;`}>
+        <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin:0 0 8px;">Degree Attestation in {c.name}</h3>
+        <p style="font-size:1rem;color:#6B7280;margin:0 0 20px;">{c.desc}</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {c.steps.map((s, sIdx) => (
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#F9FAFB;border-radius:8px;font-size:1rem;color:#1A202C;font-weight:500;">
+              <span style="width:24px;height:24px;border-radius:50%;background:#38B2AC;color:#fff;font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{sIdx + 1}</span>
+              {s}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- Apostille note -->
+    <div style="margin-top:32px;background:#fff;border:1px solid #B2F5EA;border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(56,178,172,0.06);">
+      <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 10px;">Apostille and Embassy Attestation</h3>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.7;margin:0 0 10px;">Some countries follow the apostille system under the Hague Convention, while others require embassy legalization procedures.</p>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.7;margin:0 0 10px;">Even when apostille authentication is completed, UAE authorities usually require MOFA attestation for degree certificate acceptance inside the UAE.</p>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.7;margin:0;">Index Office Services confirms the correct attestation route before starting the process to help avoid rejection, repeated submissions, and unnecessary delays.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:52px;align-items:center;" class="split-grid">
+      <!-- Left: docs list -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Submissions Checklist</p>
+        <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Documents Required for Attestation of Degree Certificate</h2>
+        <p style="color:#6B7280;font-size:1rem;margin-bottom:24px;">Requirements can vary depending on the issuing country, university policies, and embassy regulations.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {requiredDocs.map(d => (
+            <div class="check-item">
+              <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <div>
+                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: image -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);min-height:480px;">
+        <img src="/images/img-53.jpg" alt="Degree certificate documents checklist" style="width:100%;height:100%;object-fit:cover;display:block;min-height:480px;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">Have Everything Ready</p>
+          <p style="color:#B2F5EA;font-size:0.8rem;margin:0;">Missing documents cause avoidable delays</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TIMELINE & LICENSING ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <!-- Top image banner -->
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-54.jpg" alt="UAE processing timeline" style="width:100%;height:260px;object-fit:cover;object-position:center 30%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.82) 0%,rgba(26,32,44,0.45) 60%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Timeline &amp; Licensing</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:520px;line-height:1.25;">How Long Does It Take &amp; What About Licensing?</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;" class="split-grid">
+      <!-- Timeline -->
+      <div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">How Long Does Degree Certificate Attestation Take?</h3>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          The processing time for degree certificate attestation depends on several factors, including issuing country procedures, university verification timelines, embassy processing time, government authority response, and MOFA appointment availability.
+        </p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          University verification is often the stage that takes the longest time, especially if records require manual verification or archive retrieval.
+        </p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          With over 25+ years of experience, Index Office Services helps clients avoid unnecessary delays through proper document review and correct attestation routing.
+        </p>
+      </div>
+
+      <!-- Licensing -->
+      <div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">Degree Attestation for Licensing and Verification</h3>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          Many healthcare, engineering, education, and professional sectors in the UAE require additional educational verification before licensing approval. Depending on the profession and authority, applicants may need:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          {["Equivalency procedures","Primary source verification","Qualification recognition","Professional licensing verification"].map(s => (
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:6px;">
+              <span style="color:#38B2AC;font-weight:bold;">→</span> {s}
+            </div>
+          ))}
+        </div>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px;">
+          <p style="color:#4B5563;font-size:0.9rem;line-height:1.6;margin:0;">Some sectors may also require third-party verification platforms such as DataFlow. Educational certificate attestation is usually completed before licensing and verification procedures move forward.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DELAY REASONS ════ -->
+<section style="background:#FFF5F5;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(229,62,62,0.01) 1px,transparent 1px),linear-gradient(90deg,rgba(229,62,62,0.01) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+      <!-- Left image -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.jpg" alt="Delayed degree attestation stamping" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(154,44,44,0.65) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Avoid Costly Mistakes</p>
+          <p style="color:#FEB2B2;font-size:0.75rem;margin:0;">Small errors cause major delays &amp; repeated submissions</p>
+        </div>
+      </div>
+      <!-- Right: warnings -->
+      <div>
+        <p style="color:#C53030;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Verification Warning</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#9B2C2C;margin:0 0 16px;">Common Reasons for Degree Attestation Delays</h2>
+        <p style="color:#9B2C2C;font-size:0.9rem;line-height:1.7;margin-bottom:24px;">Professional handling helps reduce these risks and prevents repeated submissions.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {delayReasons.map(r => (
+            <div class="warning-item">
+              <span style="color:#E53E3E;font-weight:bold;margin-top:2px;">⚠</span>
+              <p style="margin:0;line-height:1.4;">{r}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW TO START ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Getting Started</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">How to Start Your Degree Attestation with Index Office Services?</h2>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:620px;margin:0 auto;">Starting Degree Certificate Attestation with Index Office Services is simple and transparent.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {startSteps.map(s => (
+          <div class="step-card">
+            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style="position:sticky;top:100px;" class="step-sticky">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+          <img src="/images/img-55.jpg" alt="Index Office Services process" style="width:100%;height:460px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">Simple. Transparent. Secure.</p>
+            <p style="color:#B2F5EA;font-size:0.9rem;margin:0;">From consultation to secure document delivery</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.3fr 0.9fr;gap:48px;align-items:start;" class="split-grid">
+      <!-- Left: why choose us cards -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why Choose Us</p>
+        <h2 style="font-size:1.9rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Why Choose Index Office Services?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+          Index Office Services provides professional support for certificate attestation across the UAE. With over 25+ years of experience and service support in 100+ countries, we help individuals, professionals, students, and businesses complete attestation procedures smoothly.
+        </p>
+        <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+          {whyChooseUs.map(b => (
+            <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
+              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
+              <p style="font-size:0.75rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: image -->
+      <div style="position:sticky;top:100px;" class="step-sticky">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+          <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:560px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.7) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Index Office Services</p>
+            <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ years · Abu Dhabi &amp; Dubai</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OFFICES & STATS BANNER ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Get Started Today</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#fff;margin:0 0 14px;">WHY CHOOSE US?</h2>
+      <p style="color:#B2F5EA;font-size:0.9rem;max-width:620px;margin:0 auto;line-height:1.65;">
+        Degree Certificate Attestation does not need to be confusing or stressful. From university verification to final MOFA degree attestation, Index Office Services supports you throughout the complete process. Contact our team today for a free consultation and get professional assistance with degree certificate attestation services in the UAE.
+      </p>
+    </div>
+
+    <!-- Offices side-by-side -->
+    <div class="offices-flex" style="display:flex;gap:32px;margin-bottom:52px;">
+      <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
+        <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Abu Dhabi Office</h3>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Mob : (+971) 529300200</p>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Tel : (+971) 26311560</p>
+      </div>
+      <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
+        <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Dubai Office</h3>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Mob : (+971) 529300200</p>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Tel : (+971) 42279916</p>
+      </div>
+    </div>
+
+    <!-- Stats Banner -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:40px;">
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">100+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Countries Covered</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH WITH FORM ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left: text -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET STARTED WITH YOUR DEGREE CERTIFICATE ATTESTATION TODAY.</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">Contact our team today for a free consultation and get professional assistance with degree certificate attestation services in the UAE.</p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ SCRIPTS ════ -->
+<script>
+(function(){
+  // ── Country tabs ──
+  const tabBtns = document.querySelectorAll('.country-tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = (btn as HTMLElement).dataset.tab;
+      ['india','uk','usa','australia','canada'].forEach(id => {
+        const el = document.getElementById('country-' + id) as HTMLElement;
+        if(el) {
+          el.style.display = id === target ? 'block' : 'none';
+        }
+      });
+    });
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

@@ -1,6 +1,5 @@
 ---
 import ContactForm from '../components/ContactForm.astro';
-
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const countryCodes = [
@@ -10,48 +9,14 @@ const countryCodes = [
   { code: "+44",  label: "GB +44" },
   { code: "+1",   label: "US +1" },
 ]
-
-const benefits = [
-  { icon: "✅", title: "Verified Authenticity", desc: "A Genuineness Certificate verifies the accuracy and legitimacy of a candidate's information, credentials, and papers, providing strong proof of authenticity approved by a controlling authority." },
-  { icon: "🏛️", title: "Government and Institutional Recognition", desc: "The certificate can be used to demonstrate reliability and legitimacy to governmental bodies, professional associations, and academic institutions across the UAE and abroad." },
-  { icon: "📄", title: "Covers a Wide Range of Documents", desc: "It attests to facts relating to a person's birth, marital status, death, health, academic qualifications, credentials, and capacity to engage in a particular line of work." },
-  { icon: "⚖️", title: "Legal Compliance in UAE", desc: "Having a Genuineness Certificate ensures your documents meet the necessary legal requirements for the UAE, protecting you from complications in employment, licensing, or official applications." },
-]
-
-const documents = [
-  { title: "Original Document for Verification", body: "The original document whose genuineness is to be certified — this may include birth certificates, marriage certificates, academic degrees, professional credentials, or health documents." },
-  { title: "Passport Copy", body: "A clear copy of your valid passport, including the bio-data page and any relevant UAE visa or residency pages, for identity verification." },
-  { title: "Supporting Evidence", body: "Any supporting documents that validate the facts stated in the primary document, such as transcripts, registration records, or official correspondence." },
-  { title: "Application Form", body: "The completed application form as required by the relevant controlling authority, filled out accurately and signed by the applicant." },
-  { title: "Prior Attestations (if any)", body: "Any existing attestations or legalizations already completed on your documents. Index will review these to identify any further steps required." },
-  { title: "Additional Documents", body: "Depending on the type of certificate and the issuing authority, additional supporting documents may be requested. Index will advise you on your specific requirements." },
-]
-
-const assistance = [
-  { title: "Expert Guidance", desc: "Index has in-depth knowledge of the requirements and procedures for obtaining a Genuineness Certificate in the UAE, ensuring a smooth and efficient application process." },
-  { title: "Time and Effort Savings", desc: "Index handles the entire process on your behalf — from document review and preparation to submission and follow-up — saving you valuable time and effort." },
-  { title: "Document Verification Support", desc: "Index ensures all documents are accurately prepared, properly attested, and meet the required standards of the controlling authority before submission." },
-  { title: "Legal Requirements Compliance", desc: "Index ensures your documents fully meet the necessary legal requirements for the UAE, reducing the risk of rejection or delays from authority bodies." },
-  { title: "Personalised Consultation", desc: "Every case is reviewed individually. Index advises you on exactly what is needed for your specific document type, issuing country, and intended purpose in the UAE." },
-]
-
-const whyIndex = [
-  "Our team reviews your documents and advises on the exact requirements before starting the process.",
-  "Index manages every step — from document verification and attestation to final submission with the controlling authority.",
-  "We ensure your documents meet the formatting, attestation, and authenticity standards required by UAE authorities.",
-  "Index handles complex cases and documents from multiple countries with personalised, accurate support.",
-  "We provide timely follow-up and keep you informed at every stage of the process.",
-  "Index saves you time and effort by managing all government and authority interactions on your behalf.",
-  "Our professionals have native expertise and can communicate directly with UAE regulatory authorities.",
-  "We have more than 25 years of experience handling UAE document services and legal requirements.",
-  "Index stays updated on changing UAE rules and regulations to keep your process simple and hassle-free.",
-  "We offer a free consultation to assess your eligibility and requirements before you commit to the full process.",
-]
 ---
 
 <BaseLayout
-  title="Genuineness Certificate UAE — Index Office Services"
-  description="Convenient, budget-friendly Genuineness Certificate services in UAE. 25+ years of experience. Professional assistance by Index Office Services."
+  title="Genuineness Certificate Service in UAE | Genuineness Certificate in Dubai"
+  description="Index provides fast and accurate Genuineness Certificate Service in UAE. Contact us for Genuineness Certificate in Dubai and Abu Dhabi
+URL
+
+"
 >
 
 <style>
@@ -62,18 +27,9 @@ const whyIndex = [
   .idx-form textarea { resize: none; }
   .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
   .idx-submit:hover { background: #1A202C; }
-  .benefit-card-light { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
-  .benefit-card-light:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); transform: translateY(-3px); }
-  .doc-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 24px; transition: all 0.25s; }
-  .doc-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
-  .assist-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
-  .assist-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-    .three-col { grid-template-columns: 1fr !important; }
-    .two-col { grid-template-columns: 1fr !important; }
-    .four-col { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
 
@@ -98,51 +54,10 @@ const whyIndex = [
       GENUINENESS CERTIFICATE<br/>IN THE UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:680px;">
-      A Genuineness Certificate is a legal document that attests to the authenticity of certain facts — such as birth, marital status, death, health, academic qualifications, credentials, and capacity to engage in a particular line of work. It is issued by a controlling authority who validates the information and certifies the legitimacy of the documents.
+      A Genuineness Certificate is a legal document that attests to the authenticity of certain facts, such as those relating to a person's birth, marital status, death, health, successful completion of an academic course, credentials, and capacity to engage in a certain line of work, etc. It is given out by a controlling authority who validates the information and qualifications and certifies the legitimacy of the documents.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
-      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
-    </div>
-  </div>
-</section>
-
-<!-- ════ OVERVIEW ════ -->
-<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
-    <div>
-      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview
-      </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is a Genuineness Certificate?</h2>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
-        A Genuineness Certificate is a legal document issued by a controlling authority that validates the information and qualifications within a document and certifies its legitimacy. It serves as strong proof of authenticity for a wide range of personal, academic, and professional records.
-      </p>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
-        In the UAE, this certificate is often required by government bodies, professional associations, and academic institutions as part of employment, licensing, or official application processes.
-      </p>
-      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
-        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Issued by a Controlling Authority</h3>
-        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
-          The certificate is issued after thorough verification of the submitted documents by the relevant controlling authority. It covers facts relating to birth, marital status, death, health, academic credentials, and professional capacity.
-        </p>
-      </div>
-    </div>
-
-    <div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-56.jpg" alt="Genuineness Certificate UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Genuineness Certificate Assistance</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">End-to-end support by Index Office Services</p>
-        </div>
-        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
-          25+ Years Experience
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -151,136 +66,39 @@ const whyIndex = [
 <section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-7.jpg" alt="Benefits of Genuineness Certificate UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Benefits of Genuineness Certificate</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Authentication · Compliance · Recognition · Trust</p>
-        </div>
-      </div>
-      <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why You Need It</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 18px;">What Are the Benefits of a Genuineness Certificate?</h2>
-        <div style="display:flex;flex-direction:column;gap:14px;" class="four-col">
-          {benefits.map(b => (
-            <div class="benefit-card-light" style="display:flex;gap:16px;align-items:flex-start;">
-              <div style="font-size:1.5rem;flex-shrink:0;">{b.icon}</div>
-              <div>
-                <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 5px;">{b.title}</h3>
-                <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.9fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Why You Need It
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What are the benefits of Genuineness Certificate?</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        A Genuineness Certificate verifies the accuracy and legitimacy of the candidate's information, credentials, and papers. It serves as strong proof of legitimacy because it has been approved by an authority figure and issued after the documents have been verified. The Genuineness Certificate can be used to demonstrate one's reliability to governmental bodies, professional associations, and academic institutions.
+      </p>
+    </div>
+
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-7.jpg" alt="Benefits of Genuineness Certificate UAE" style="width:100%;height:400px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Benefits of Genuineness Certificate</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Authentication · Compliance · Recognition · Trust</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════ DOCUMENTS REQUIRED ════ -->
-<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="/images/img-41.jpg" alt="Documents required for Genuineness Certificate" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
-      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
-        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Requirements</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Documents Required for Genuineness Certificate</h2>
-      </div>
-    </div>
-
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      {documents.map(d => (
-        <div class="doc-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">{d.title}</h3>
-          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{d.body}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ════ WHY CHOOSE ASSISTANCE ════ -->
-<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:48px;">
-      <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Professional Assistance</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Why Choose Index for Genuineness Certificate?</h2>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
-          By availing the services of Index, you can obtain your Genuineness Certificate, save time and effort, and ensure that your documents meet the necessary legal requirements for the UAE. Index manages every stage — from document review and attestation to final submission — giving you confidence throughout the entire process.
-        </p>
-      </div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-22.jpg" alt="Genuineness Certificate assistance UAE" style="width:100%;height:260px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
-        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">Full Process Handled for You</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      {assistance.map(a => (
-        <div class="assist-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:10px;">{a.title}</h3>
-          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{a.desc}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ════ HOW INDEX HELPS ════ -->
+<!-- ════ WHY CHOOSE US ════ -->
 <section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ Years · UAE Document Experts</p>
-        </div>
-      </div>
-      <div>
-        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">How Can Index Assist You?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
-          Index is a specialist service provider with over 25 years of experience in UAE document services. We offer comprehensive assistance for obtaining your Genuineness Certificate — from initial consultation and document review to attestation, authority submission, and final delivery.
-        </p>
-        <p style="color:#94A3B8;font-size:1rem;line-height:1.8;">
-          It is always recommended to check the specific requirements and regulations of UAE's authorities and consult with relevant institutions for accurate information. Index can guide you through all of this. Call us today for a free consultation.
-        </p>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:52px;" class="two-col">
-      {whyIndex.map(point => (
-        <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;">
-          <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;margin-top:1px;">→</span>
-          <p style="font-size:0.98rem;color:#CBD5E0;line-height:1.65;margin:0;">{point}</p>
-        </div>
-      ))}
-    </div>
-
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:52px;">
-      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 12px;">
-        Index is a specialist service provider, focusing on genuineness certificates and other international individual and business services. With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely results.
-      </p>
-      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin:0;">
-        Our services are coordinated with the relevant controlling authorities and concerned departments as per your requirements. Call us today to book a free consultation.
-      </p>
-    </div>
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">WHY CHOOSE US?</h2>
+    <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+      By availing the services of Index, you can get the Genuineness Certificate, save time and effort, and ensure that your documents meet the necessary legal requirements for UAE. However, it's always recommended to check the specific requirements and regulations of UAE's authorities and consult with the relevant institutions for accurate information.
+    </p>
+    <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin-bottom:48px;">Call us today to book a free consultation…!!!</p>
 
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
       <div>
@@ -326,4 +144,3 @@ const whyIndex = [
 </section>
 
 </BaseLayout>
-

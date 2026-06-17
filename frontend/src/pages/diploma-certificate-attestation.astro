@@ -1,0 +1,745 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1", label: "US +1" },
+  { code: "+973", label: "BH +973" },
+]
+
+const useCases = [
+  "Employment visa processing",
+  "Labor card approval",
+  "Skilled worker visa category",
+  "Higher education in UAE",
+  "Professional license application",
+]
+
+const steps = [
+  { step: "01", title: "Verification from Issuing Country", desc: "Your diploma is verified by the concerned education authority in the issuing country. This is the essential first step before any further processing." },
+  { step: "02", title: "HRD Attestation", desc: "For many countries, HRD attestation for diploma certificate is required. This confirms the document is genuine at state level before moving forward." },
+  { step: "03", title: "Ministry of External Affairs", desc: "The national ministry stamps the certificate after state verification. This step gives your diploma national-level authentication." },
+  { step: "04", title: "UAE Embassy Attestation", desc: "The UAE Embassy verifies the certificate and authorizes it for official use in the UAE. Accuracy in earlier stages is critical here." },
+  { step: "05", title: "MOFA Attestation in UAE", desc: "Final approval happens at the Ministry of Foreign Affairs. This stage is called MOFA diploma attestation. After this step, your certificate's attested status becomes valid inside UAE." },
+]
+
+const countriesData = [
+  {
+    id: "india",
+    name: "India",
+    steps: [
+      "University verification",
+      "HRD attestation for diploma certificate",
+      "Ministry of External Affairs attestation",
+      "UAE Embassy attestation in India",
+      "MOFA attestation in UAE"
+    ],
+    desc: "India requires both state-level HRD clearance and MEA attestation before UAE Embassy approval."
+  },
+  {
+    id: "uk",
+    name: "United Kingdom",
+    steps: [
+      "FCDO (Foreign, Commonwealth & Development Office) legalization",
+      "UAE Embassy attestation in the UK",
+      "MOFA attestation in UAE"
+    ],
+    desc: "Handled through FCDO legalization, followed by UAE Embassy stamping and the MOFA stage."
+  },
+  {
+    id: "usa",
+    name: "United States",
+    steps: [
+      "State-level authentication (Secretary of State)",
+      "US Department of State approval (if required)",
+      "UAE Embassy attestation in the USA",
+      "MOFA attestation in UAE"
+    ],
+    desc: "Requires state-level authentication before US Department approval and UAE Embassy legalization."
+  },
+  {
+    id: "canada",
+    name: "Canada",
+    steps: [
+      "Provincial authentication",
+      "Federal legalization",
+      "UAE Embassy attestation in Canada",
+      "MOFA attestation in UAE"
+    ],
+    desc: "Includes provincial authentication and federal legalization before UAE Embassy approval."
+  },
+  {
+    id: "australia",
+    name: "Australia",
+    steps: [
+      "DFAT (Department of Foreign Affairs and Trade) authentication",
+      "UAE Embassy attestation in Australia",
+      "MOFA attestation in UAE"
+    ],
+    desc: "Documents go through DFAT authentication before embassy stamping and final MOFA stage."
+  },
+  {
+    id: "phil",
+    name: "Philippines",
+    steps: [
+      "DFA (Department of Foreign Affairs) authentication",
+      "UAE Embassy attestation in the Philippines",
+      "MOFA attestation in UAE"
+    ],
+    desc: "Requires DFA authentication, then UAE Embassy legalization, and final MOFA stage inside UAE."
+  },
+  {
+    id: "china",
+    name: "China",
+    steps: [
+      "Local notary certification",
+      "Foreign affairs office authentication",
+      "UAE Embassy attestation in China",
+      "MOFA attestation in UAE"
+    ],
+    desc: "Involves local notary certification and foreign affairs office authentication before UAE Embassy approval."
+  },
+  {
+    id: "gcc",
+    name: "GCC Countries",
+    steps: [
+      "Local foreign affairs authentication",
+      "MOFA diploma attestation in UAE"
+    ],
+    desc: "For diplomas issued in Saudi Arabia, Qatar, Oman, Kuwait, or Bahrain. The process is usually shorter with fewer stages."
+  },
+]
+
+const commonDocs = [
+  { title: "Original Diploma Certificate", desc: "Must be original, intact, and unlaminated. Copies cannot be attested at the primary level." },
+  { title: "Valid Passport Copy", desc: "Clear copy of the passport's photo page and personal details page." },
+  { title: "Authorization Letter", desc: "Required when applying through an agency or third-party representative." },
+]
+
+const specificDocs = [
+  { title: "Visa Copy", desc: "May be required in some cases, particularly for applicants already residing in the UAE." },
+  { title: "Mark Sheets / Transcripts", desc: "Some authorities may request mark sheets alongside the diploma certificate for complete verification." },
+  { title: "Certified Translation", desc: "Required when the diploma is not in English or Arabic. Certified translators in the UAE handle this step." },
+]
+
+const rejectionReasons = [
+  "Name mismatch between passport and diploma",
+  "University not recognized by UAE authorities",
+  "Damaged or laminated document reducing clarity",
+  "Missing HRD attestation stage where required",
+  "Incorrect sequence of stamps from issuing country",
+  "Missing UAE Embassy attestation from home country",
+  "Missing MOFA UAE approval at the final stage",
+  "Attempting to use photocopies instead of originals",
+]
+
+const serviceProcess = [
+  { step: "01", title: "Share Your Diploma Copy", desc: "Send us a copy of your diploma and relevant details. Our team reviews it before anything else." },
+  { step: "02", title: "Free Document Review", desc: "We check your document for common issues — name matching, institution recognition, and document condition." },
+  { step: "03", title: "Receive Clear Quotation", desc: "You get a complete price breakdown covering all stages — no hidden fees, no surprises later." },
+  { step: "04", title: "Submit Original Document", desc: "Send your original diploma securely. We handle it with full care and responsibility throughout the process." },
+  { step: "05", title: "Track Progress via Updates", desc: "We keep you informed at every stage. No silence, no guessing about where your document stands." },
+  { step: "06", title: "Receive Completed Certificate", desc: "Your UAE attested diploma is returned to you safely, ready for official use with full certificate attested status." },
+]
+
+const faqs = [
+  { q: "Is diploma attestation mandatory for UAE employment?", a: "Yes. Most skilled job categories require attested certificates. Many companies will not process your visa without an attested education certificate." },
+  { q: "Can I use a photocopy for attestation?", a: "No. Authorities require original documents. Copies cannot be attested at the primary level because authorities must verify stamp validity and paper authenticity." },
+  { q: "Does diploma attestation expire?", a: "Attestation does not expire. However, some employers may request recent attestation depending on their internal policies." },
+  { q: "Does the process vary for different countries?", a: "Yes. Countries like India, USA, UK, Canada, and Australia have specific steps before UAE MOFA attestation. Each country follows a different approval structure." },
+  { q: "Is HRD required for all diplomas?", a: "In many countries, HRD attestation for diploma certificate is compulsory before the embassy stage. Requirements depend on your country and institution." },
+  { q: "Can I attest certificates urgently?", a: "Express options are available based on country and authority approval. Contact our team to discuss urgent processing timelines." },
+  { q: "Can someone attest a diploma on my behalf?", a: "Yes, with an authorization letter. IndexAUH manages the full process from start to finish without requiring you to travel." },
+]
+
+const uaeAreas = [
+  "Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"
+]
+---
+
+<BaseLayout title="Diploma Certificate Attestation in UAE — Index Office Services" description="Professional diploma certificate attestation services in UAE. 25+ years of experience. We manage every step from HRD to MOFA.">
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+
+  /* pills */
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  /* document type card */
+  .doc-type-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; transition: all 0.25s; }
+  .doc-type-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.06); transform: translateY(-3px); }
+
+  /* steps cards */
+  .step-card { display: flex; align-items: flex-start; gap: 18px; padding: 20px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+
+  /* tabs countries */
+  .country-tab-btn { padding: 10px 22px; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+  .country-tab-btn.active { background: #2D3748; color: #fff; }
+  .country-tab-btn:not(.active) { background: #F0FFFE; color: #2D3748; border: 1px solid #B2F5EA; }
+
+  /* list items */
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: #fff; border: 1px solid #e0e7ef; border-radius: 10px; font-size: 0.85rem; color: #1A202C; font-weight: 500; }
+
+  /* warning item */
+  .warning-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 10px; font-size: 0.82rem; color: #9B2C2C; font-weight: 500; }
+
+  /* FAQ */
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 200px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  @media(max-width:768px){
+    .about-hero-title { font-size: 2rem !important; }
+    .about-hero-desc { font-size: 0.88rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .benefits-grid { grid-template-columns: 1fr !important; }
+    .offices-flex { flex-direction: column !important; }
+    .step-sticky { position: static !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <img
+    src="/images/img-35.jpg"
+    alt="Diploma Certificate Attestation UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.88) 0%,rgba(45,55,72,0.82) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Fast Processing</span>
+      <span class="idx-pill">Budget-Friendly</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="about-hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      DIPLOMA CERTIFICATE ATTESTATION<br/>IN UAE
+    </h1>
+    <p class="about-hero-desc" style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:640px;">
+      Starting a job or higher studies in the UAE requires your educational documents to be legally approved. Diploma Certificate Attestation confirms your diploma is genuine and accepted by UAE authorities.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:start;">
+    <!-- Left Text -->
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Diploma Attestation Services — 25 Years of Trust</h2>
+
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Starting a job or higher studies in the UAE requires your educational documents to be legally approved. Diploma Certificate Attestation is the process that confirms your diploma is genuine and accepted by UAE authorities. Without this approval, your certificate will not be accepted for employment visa, labor card, or professional registration.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        We have been handling Diploma Certificate Attestation in UAE for more than 25 years. Our team understands embassy rules, ministry procedures, and country-specific requirements. Over the years, we have helped thousands of clients get their diploma attestation completed without confusion or delay.
+      </p>
+
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-bottom:16px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Our Goal is Simple</h3>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.6;margin:0;">Make the process clear. Keep it fast. Keep it safe.</p>
+      </div>
+
+      <div style="background:#FFF5F5;border:1px solid #FEB2B2;border-radius:12px;padding:18px;margin-bottom:16px;">
+        <h3 style="color:#9B2C2C;font-size:0.95rem;font-weight:700;margin:0 0 10px;">⚠ Without attestation, your diploma may not be accepted for:</h3>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          {useCases.map(item => (
+            <div style="font-size:0.82rem;color:#9B2C2C;display:flex;align-items:center;gap:6px;">
+              <span style="font-weight:bold;">•</span> {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;">
+        Many companies will not process your visa without an attested education certificate. Immigration authorities also ask for a UAE attested certificate before approving certain job roles.
+      </p>
+    </div>
+
+    <!-- Right side: image + stats -->
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-51.jpg" alt="Diploma attestation documents" style="width:100%;height:340px;object-fit:cover;" />
+        <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 12px;">You Need Diploma Attestation For:</h3>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+          {["Employment visa processing","Labor card approval","Skilled worker visa","Higher education in UAE","Professional licensing","Immigration purposes","Government sector jobs","Company visa procedures"].map(item => (
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#4B5563;background:#F0FFFE;border:1px solid #B2F5EA;padding:8px 12px;border-radius:8px;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span> {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ STEP BY STEP PROCESS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Authentication Workflow</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Diploma Certificate Attestation Process for UAE</h2>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:560px;margin:0 auto;">Understanding the steps helps you avoid mistakes. Follow these stages to complete attestation smoothly.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
+      <!-- Steps list -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {steps.map(s => (
+          <div class="step-card">
+            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <!-- Right image -->
+      <div style="position:sticky;top:100px;" class="step-sticky">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+          <img src="/images/img-7.jpg" alt="Diploma attestation process" style="width:100%;height:460px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">5-Step Verified Process</p>
+            <p style="color:#B2F5EA;font-size:0.9rem;margin:0;">From issuing country verification to MOFA final approval</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COUNTRY-SPECIFIC ATTESTATION (TABS) ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1000px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Global Rules</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Country-Specific Diploma Attestation Process</h2>
+      <p style="color:#4B5563;font-size:1rem;max-width:520px;margin:0 auto;line-height:1.6;">Each country follows a different approval structure. That is why Diploma Certificate Attestation cost and processing flow change from country to country.</p>
+    </div>
+
+    <!-- Country Tabs -->
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
+      {countriesData.map((c, idx) => (
+        <button class={`country-tab-btn ${idx === 0 ? 'active' : ''}`} data-tab={c.id}>
+          {c.name}
+        </button>
+      ))}
+    </div>
+
+    <!-- Country steps panels -->
+    {countriesData.map((c, idx) => (
+      <div id={`country-${c.id}`} style={`display: ${idx === 0 ? 'block' : 'none'}; background:#fff; border-radius:18px; padding:32px; box-shadow:0 10px 30px rgba(56,178,172,0.06); border:1px solid #B2F5EA;`}>
+        <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{c.name} Process</h3>
+        <p style="font-size:1rem;color:#6B7280;margin:0 0 20px;">{c.desc}</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {c.steps.map((s, sIdx) => (
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#F9FAFB;border-radius:8px;font-size:1rem;color:#1A202C;font-weight:500;">
+              <span style="width:24px;height:24px;border-radius:50%;background:#38B2AC;color:#fff;font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{sIdx + 1}</span>
+              {s}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Submissions Checklist</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Documents Required for Diploma Certificate Attestation</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 0.85fr;gap:32px;align-items:start;" class="split-grid">
+      <!-- Basic -->
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin-bottom:20px;border-left:3px solid #38B2AC;padding-left:12px;">Basic Documents (Commonly Required)</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {commonDocs.map(d => (
+            <div class="check-item">
+              <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <div>
+                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Specific -->
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin-bottom:20px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required in Specific Cases</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {specificDocs.map(d => (
+            <div class="check-item">
+              <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <div>
+                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Image accent -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);height:100%;min-height:280px;">
+        <img src="/images/img-53.jpg" alt="Document checklist preparation" style="width:100%;height:100%;object-fit:cover;display:block;min-height:280px;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0 0 3px;">Have Everything Ready</p>
+          <p style="color:#B2F5EA;font-size:0.72rem;margin:0;">Missing documents cause avoidable delays</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TIMELINE & COST ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <!-- Top image banner -->
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-54.jpg" alt="UAE processing timeline" style="width:100%;height:260px;object-fit:cover;object-position:center 30%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.82) 0%,rgba(26,32,44,0.45) 60%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Timeline &amp; Pricing</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:480px;line-height:1.25;">How Long Does It Take &amp; What Does It Cost?</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;" class="split-grid">
+      <!-- Timeline -->
+      <div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">How Long Does Diploma Certificate Attestation Take?</h3>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          The time required depends on a few key factors. First, the issuing country matters — some countries have more approval stages. A country requiring university verification and HRD clearance will take longer than one with fewer steps.
+        </p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          HRD attestation for diploma certificates may be compulsory in certain regions. When this stage is required, it adds extra processing before embassy approval. Embassy workload during peak recruitment periods can also slow processing at the embassy level.
+        </p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          The final stage, MOFA diploma attestation, depends on document volume and public holidays in UAE. We check your document and explain the process clearly before starting so you know what to expect.
+        </p>
+      </div>
+
+      <!-- Cost -->
+      <div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">Cost of Diploma Certificate Attestation in UAE</h3>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">
+          Cost depends on the issuing country, embassy fees, MOFA charges, courier services, and translation requirements. Some agencies offer very low prices but exclude important stages — that leads to incomplete certificate attested status.
+        </p>
+        <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:12px;text-transform:uppercase;">Cost is determined by:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {["Issuing country and approval stages","Embassy attestation fees","MOFA attestation charges","Courier and delivery services","Translation requirements (if applicable)","Express processing (if selected)"].map(s => (
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:6px;">
+              <span style="color:#38B2AC;font-weight:bold;">→</span> {s}
+            </div>
+          ))}
+        </div>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px;margin-top:20px;">
+          <p style="color:#1A202C;font-size:0.9rem;font-weight:700;margin:0 0 4px;">We provide clear pricing before starting.</p>
+          <p style="color:#4B5563;font-size:0.85rem;margin:0;">No confusion later. Full transparency from the first consultation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ REJECTION REASONS ════ -->
+<section style="background:#FFF5F5;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(229,62,62,0.01) 1px,transparent 1px),linear-gradient(90deg,rgba(229,62,62,0.01) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+      <!-- Left image -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.jpg" alt="Rejected diploma stamping" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(154,44,44,0.65) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Avoid Costly Mistakes</p>
+          <p style="color:#FEB2B2;font-size:0.75rem;margin:0;">Small errors cause major delays &amp; rejections</p>
+        </div>
+      </div>
+      <!-- Right: warnings -->
+      <div>
+        <p style="color:#C53030;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Verification Warning</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#9B2C2C;margin:0 0 16px;">Common Reasons Diplomas Get Rejected</h2>
+        <p style="color:#9B2C2C;font-size:0.9rem;line-height:1.7;margin-bottom:24px;">Many applicants try to attest certificates alone and face rejection due to small errors. Professional guidance prevents this.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {rejectionReasons.map(r => (
+            <div class="warning-item">
+              <span style="color:#E53E3E;font-weight:bold;margin-top:2px;">⚠</span>
+              <p style="margin:0;line-height:1.4;">{r}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OUR SERVICE PROCESS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">How We Work</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Our Simple Service Process</h2>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:560px;margin:0 auto;">A straightforward six-step approach that keeps you informed and in control from start to finish.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {serviceProcess.map(s => (
+          <div class="step-card">
+            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style="position:sticky;top:100px;" class="step-sticky">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+          <img src="/images/img-55.jpg" alt="Index Office Services process" style="width:100%;height:560px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">Secure. Transparent. Fast.</p>
+            <p style="color:#B2F5EA;font-size:0.9rem;margin:0;">Pickup and delivery support across UAE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US + AREAS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.3fr 0.9fr;gap:48px;align-items:start;" class="split-grid">
+      <!-- Left: why choose us -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why Choose Us</p>
+        <h2 style="font-size:1.9rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Experience Matters in Document Legalization</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          We have over 25 years of experience in Certificate Attestation services across UAE. Our team understands embassy rules, ministry updates, and country-specific documentation. We have successfully processed thousands of attested education certificate cases. Our long experience helps us solve complex situations smoothly.
+        </p>
+        <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:16px;text-transform:uppercase;">What makes us different:</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px;" class="benefits-grid">
+          {[
+            { title: "Dedicated Support Team", desc: "Our professionals are always available to answer your questions and guide you through each stage of the process." },
+            { title: "Secure Document Handling", desc: "Your originals are treated with full care and responsibility. We track every document from submission to return." },
+            { title: "Regular Status Updates", desc: "No silence during your attestation. We keep you informed at every stage so you always know where your document stands." },
+            { title: "Strong Coordination", desc: "Over 25 years of relationships with embassies, ministries, and authorities. We know the right channels and procedures." },
+          ].map(b => (
+            <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
+              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
+              <p style="font-size:0.75rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Areas we serve -->
+        <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin-bottom:14px;">Areas We Serve in UAE</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          {uaeAreas.map(area => (
+            <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-size:0.82rem;font-weight:600;padding:6px 16px;border-radius:9999px;">{area}</span>
+          ))}
+        </div>
+        <p style="color:#6B7280;font-size:0.82rem;margin-top:10px;">Pickup and delivery support available across UAE.</p>
+      </div>
+
+      <!-- Right: image -->
+      <div style="position:sticky;top:100px;" class="step-sticky">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+          <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:500px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.7) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Index Office Services</p>
+            <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ years · Abu Dhabi &amp; Dubai</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OFFICES & STATS BANNER ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Our Locations</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#fff;margin:0 0 14px;">WHY CHOOSE US?</h2>
+      <p style="color:#B2F5EA;font-size:0.9rem;max-width:580px;margin:0 auto;line-height:1.65;">
+        Choosing Index Office Services for this critical process ensures efficiency, accuracy, and adherence to regulations, facilitating a successful transition.
+      </p>
+    </div>
+
+    <!-- Offices side-by-side -->
+    <div class="offices-flex" style="display:flex;gap:32px;margin-bottom:52px;">
+      <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
+        <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Abu Dhabi Office</h3>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Mob : (+971) 529300200</p>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Tel : (+971) 26311560</p>
+        <p style="color:#94A3B8;font-size:0.78rem;margin:8px 0 0;">info@indexauh.com</p>
+      </div>
+      <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
+        <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Dubai Office</h3>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Mob : (+971) 529300200</p>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Tel : (+971) 42279916</p>
+      </div>
+    </div>
+
+    <!-- Stats Banner -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:40px;">
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25,000+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Business Clients</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH WITH FORM ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left: text -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">START YOUR DIPLOMA CERTIFICATE ATTESTATION TODAY.</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">Share your document copy and our team will guide you with clear next steps. Our extensive global network allows us to seamlessly manage the process from start to finish.</p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.</p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ SCRIPTS ════ -->
+<script>
+(function(){
+  // ── Country tabs ──
+  const tabBtns = document.querySelectorAll('.country-tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = (btn as HTMLElement).dataset.tab;
+      ['india','uk','usa','canada','australia','phil','china','gcc'].forEach(id => {
+        const el = document.getElementById('country-' + id) as HTMLElement;
+        if(el) {
+          el.style.display = id === target ? 'block' : 'none';
+        }
+      });
+    });
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>
