@@ -26,6 +26,49 @@ const {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Scroll Reveal ── */
+    .g-reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+      will-change: opacity, transform;
+    }
+    .g-reveal.g-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* stagger helpers */
+    .g-reveal.d1 { transition-delay: 0.08s; }
+    .g-reveal.d2 { transition-delay: 0.16s; }
+    .g-reveal.d3 { transition-delay: 0.24s; }
+    .g-reveal.d4 { transition-delay: 0.32s; }
+    .g-reveal.d5 { transition-delay: 0.40s; }
+
+    /* slide from left */
+    .g-reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .g-reveal-left.g-visible { opacity: 1; transform: translateX(0); }
+
+    /* slide from right */
+    .g-reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .g-reveal-right.g-visible { opacity: 1; transform: translateX(0); }
+
+    /* scale pop */
+    .g-reveal-pop {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .g-reveal-pop.g-visible { opacity: 1; transform: scale(1); }
+  </style>
 </head>
 <body>
   <Navbar />
@@ -34,5 +77,183 @@ const {
   </main>
   <Footer />
   <CallbackPopup />
+
+  <script>
+  /* ════════════════════════════════════════════════════════
+     GLOBAL ANIMATIONS — runs on every page
+     1. Scroll-reveal for sections & key content blocks
+     2. Counting animation for stat numbers
+  ════════════════════════════════════════════════════════ */
+  (function () {
+    /* ── 1. Auto-tag sections + important children ── */
+    function tagRevealTargets() {
+      // All top-level sections get a base reveal
+      document.querySelectorAll('section').forEach((sec, si) => {
+        // Tag the section heading block (first div with a heading)
+        const headingWrap = sec.querySelector('h1, h2');
+        if (headingWrap) {
+          const parent = headingWrap.closest('div') || headingWrap;
+          if (!parent.classList.contains('g-reveal') &&
+              !parent.classList.contains('g-reveal-left')) {
+            parent.classList.add('g-reveal');
+          }
+        }
+
+        // Tag image panels
+        sec.querySelectorAll('.panel-img, .hero-fixed-img, .panel-img-sm').forEach(el => {
+          if (!el.classList.contains('g-reveal-right')) {
+            el.classList.add('g-reveal-right');
+          }
+        });
+
+        // Tag card grids — stagger children
+        sec.querySelectorAll('.svc-grid, .att-card-grid, .why-card, .link-card').forEach(grid => {
+          if (!grid.classList.contains('g-reveal-pop')) {
+            grid.classList.add('g-reveal-pop');
+          }
+        });
+
+        // Stagger svc-cards
+        sec.querySelectorAll('.svc-card').forEach((card, i) => {
+          card.classList.add('g-reveal-pop', `d${Math.min(i + 1, 5)}`);
+        });
+
+        // Stagger att-cards
+        sec.querySelectorAll('.att-card').forEach((card, i) => {
+          card.classList.add('g-reveal-pop', `d${Math.min((i % 5) + 1, 5)}`);
+        });
+
+        // FAQ items
+        sec.querySelectorAll('.faq-item').forEach((item, i) => {
+          item.classList.add('g-reveal', `d${Math.min(i + 1, 5)}`);
+        });
+
+        // Why-us cards
+        sec.querySelectorAll('.why-card').forEach((card, i) => {
+          card.classList.add('g-reveal', `d${Math.min(i + 1, 5)}`);
+        });
+
+        // link-cards in PCC / formation sections
+        sec.querySelectorAll('.link-card').forEach((card, i) => {
+          card.classList.add('g-reveal', `d${Math.min(i + 1, 5)}`);
+        });
+
+        // Country chips
+        sec.querySelectorAll('.country-chip').forEach((chip, i) => {
+          chip.classList.add('g-reveal-pop', `d${Math.min((i % 5) + 1, 5)}`);
+        });
+
+        // Generic text blocks (p, ul inside sections that aren't already tagged)
+        sec.querySelectorAll(':scope > div > div > p, :scope > div > div > ul').forEach((el, i) => {
+          if (!el.classList.contains('g-reveal')) {
+            el.classList.add('g-reveal', `d${Math.min(i + 1, 3)}`);
+          }
+        });
+      });
+    }
+
+    /* ── 2. IntersectionObserver for reveal ── */
+    function setupRevealObserver() {
+      const CLASSES = ['g-reveal', 'g-reveal-left', 'g-reveal-right', 'g-reveal-pop'];
+      const allTargets = [];
+      CLASSES.forEach(cls => {
+        document.querySelectorAll('.' + cls).forEach(el => allTargets.push(el));
+      });
+
+      if (!allTargets.length) return;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('g-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      allTargets.forEach(el => io.observe(el));
+    }
+
+    /* ── 3. Counting animation ── */
+    function animateCount(el: HTMLElement) {
+      const raw = el.getAttribute('data-count') || el.textContent || '0';
+      const txt = raw.trim();
+      // Skip ratio/special values like "24/7", "N/A"
+      if (/\//.test(txt)) return;
+      // Only animate clean number+suffix patterns: 400K+, 25+, 100%, 2,500
+      const match = txt.match(/^([\d,]+\.?\d*)\s*([A-Za-z+%]*)$/);
+      if (!match) return;
+
+      const numStr = match[1].replace(/,/g, '');
+      const suffix = match[2] || '';
+      const target = parseFloat(numStr);
+      if (isNaN(target) || target === 0) return;
+
+      const duration = 1800;
+      const start = performance.now();
+
+      function easeOut(t: number) { return 1 - Math.pow(1 - t, 3); }
+
+      function step(now: number) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = Math.round(easeOut(progress) * target);
+        // preserve comma formatting for large numbers
+        const formatted = current >= 1000
+          ? current.toLocaleString('en-US')
+          : current.toString();
+        el.textContent = formatted + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    function setupCounters() {
+      // Explicit data-count attributes override
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const io = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            animateCount(el as HTMLElement);
+            io.disconnect();
+          }
+        }, { threshold: 0.5 });
+        io.observe(el);
+      });
+
+      // Auto-detect: all teal bold stat <p> elements across every page
+      document.querySelectorAll('p[style*="font-weight:900"][style*="color:#38B2AC"]').forEach(el => {
+        const txt = (el.textContent || '').trim();
+        // Only animate clean number+suffix values (skip 24/7, N/A, plain text, etc.)
+        if (/^\//.test(txt)) return;
+        if (/^[\d,]+\.?\d*\s*[A-Za-z+%]*$/.test(txt) && /\d/.test(txt)) {
+          el.setAttribute('data-count', txt);
+          el.textContent = '0';
+
+          const io = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+              animateCount(el as HTMLElement);
+              io.disconnect();
+            }
+          }, { threshold: 0.5 });
+          io.observe(el);
+        }
+      });
+    }
+
+    /* ── Init ── */
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    function init() {
+      tagRevealTargets();
+      setupRevealObserver();
+      setupCounters();
+    }
+  })();
+  </script>
 </body>
 </html>

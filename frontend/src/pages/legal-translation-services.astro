@@ -1,52 +1,19 @@
 ---
 import ContactForm from '../components/ContactForm.astro';
-
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const countryCodes = [
-  { code: "+973", label: "BH +973" },
-  { code: "+91",  label: "IN +91" },
-  { code: "+971", label: "AE +971" },
-  { code: "+44",  label: "GB +44" },
-  { code: "+1",   label: "US +1" },
-]
-
 const benefits = [
-  { icon: "🌐", title: "Cross-Cultural Communication", desc: "With a multicultural population and thriving international business scene, the UAE frequently requires legal documents translated from Arabic to English or vice versa. Index ensures all parties understand the legal content accurately, eliminating misunderstandings." },
-  { icon: "⚖️", title: "Legal Interpretation Services", desc: "In legal proceedings, precise interpretation of spoken language is just as crucial as written translations. Index provides legal interpretation services in courtrooms, during negotiations, and other legal interactions, ensuring every word is correctly conveyed." },
-  { icon: "📋", title: "Compliance and Legal Documentation", desc: "The UAE has stringent legal requirements. Any document submitted to government authorities or courts must comply with local laws. Index ensures all documents, contracts, and agreements adhere to UAE legal standards." },
-  { icon: "🔏", title: "Confidentiality and Accuracy", desc: "Legal documents often contain sensitive information. Index guarantees confidentiality and accuracy, safeguarding client interests and ensuring the privacy of legal matters throughout the translation process." },
-]
-
-const documents = [
-  { title: "Contracts & Agreements", body: "Certified translation of all types of commercial and legal contracts and agreements, meeting UAE Ministry of Justice formatting requirements for official use." },
-  { title: "Powers of Attorney", body: "Accurate translation of special and general powers of attorney for use with UAE notaries, courts, and government departments." },
-  { title: "Certificates & Academic Records", body: "Birth certificates, marriage certificates, educational certificates, and academic transcripts translated for visa, residency, and employment submissions." },
-  { title: "Court Documents", body: "Precise translation of court orders, judgments, case files, and legal correspondence for submission to UAE courts and legal authorities." },
-  { title: "Commercial & Business Documents", body: "Memorandums of association, articles of association, company documents, and commercial paperwork translated and certified for UAE government use." },
-  { title: "Police Clearances & Immigration Papers", body: "Police clearance certificates, immigration documents, and residency-related paperwork translated for visa processing and residency submissions in the UAE." },
-]
-
-const services = [
-  { title: "MOJ-Approved Legal Translation", desc: "Index works with licensed translators who follow UAE Ministry of Justice guidelines, ensuring translated documents are accepted by courts, ministries, immigration departments, and other official authorities." },
-  { title: "Arabic ↔ English Translation", desc: "Certified translation services for both Arabic-to-English and English-to-Arabic, ensuring accuracy in legal terminology across both official UAE languages." },
-  { title: "Translation + Attestation Package", desc: "Index manages the complete process — translation, notarization, MOJ approval, and MOFA attestation — so your documents are ready for official use in the UAE without multiple service providers." },
-  { title: "Immigration & Visa Document Translation", desc: "Indexauh supports immigration-related requirements by translating birth certificates, marriage certificates, police clearances, and educational certificates for visa and residency submissions." },
-  { title: "Translation Review & Compliance Check", desc: "If you already have a translation, Index can check it for compliance and advise whether additional certification or retranslation is required for acceptance by UAE authorities." },
-  { title: "Urgent & Same-Day Translation", desc: "Index provides fast-track translation services for urgent cases, helping clients meet tight deadlines for court submissions, visa applications, business filings, and other time-sensitive requirements." },
+  { icon: "🌐", title: "Cross-Cultural Communication", desc: "With a multicultural population and a thriving international business scene, the UAE frequently requires legal documents to be translated from Arabic to English or vice versa. Index Office Service ensures that all parties involved understand the legal content accurately, eliminating misunderstandings." },
+  { icon: "⚖️", title: "Legal Interpretation Services", desc: "In legal proceedings, precise interpretation of spoken language is just as crucial as written translations. Index Office Service provides legal interpretation services in courtrooms, during negotiations, and other legal interactions, ensuring that every word is correctly conveyed." },
+  { icon: "📋", title: "Compliance and Legal Documentation", desc: "The UAE has stringent legal requirements, and any document submitted to government authorities or courts must be in compliance with local laws. Index legal translation services ensure that all documents, contracts, and agreements adhere to the UAE's legal standards." },
+  { icon: "🔏", title: "Confidentiality and Accuracy", desc: "Legal documents often contain sensitive information. Index legal translation guarantees confidentiality and accuracy, safeguarding the interests of its clients and ensuring the privacy of legal matters." },
 ]
 
 const whyIndex = [
-  "Index works with licensed translators who follow UAE Ministry of Justice guidelines for all official document submissions.",
-  "Every document is translated by qualified experts and reviewed for accuracy, legal terminology consistency, and UAE formatting compliance before delivery.",
-  "Index provides certified translations prepared by approved professionals meeting UAE court, notary, and government institution standards.",
-  "Index offers end-to-end support including translation, notarization, MOJ approval, and MOFA attestation in a single streamlined process.",
-  "Translations cover both Arabic-to-English and English-to-Arabic with strict legal terminology accuracy across both languages.",
-  "Index supports immigration document translation for birth certificates, marriage certificates, police clearances, and educational certificates.",
-  "Fast-track and same-day services are available for urgent court submissions, visa applications, and business filings.",
-  "Index can review existing translations for compliance and advise on whether retranslation or additional certification is needed.",
-  "Cultural sensitivity is maintained in every translation — documents reflect legal content accurately while respecting cultural nuances.",
-  "With 25+ years of expertise, Index has deep knowledge of UAE legal frameworks and official document requirements.",
+  { title: "Expertise in Legal Jargon", desc: "Index legal translation services specialize in legal translations, boasting a team of experienced translators who are well-versed in legal terminology and nuances. This expertise ensures accurate and contextually sound translations." },
+  { title: "Cultural Sensitivity", desc: "Understanding the cultural aspects of legal documents is vital. Index's team ensures that translations not only reflect the legal content accurately but also respect cultural nuances, maintaining the document's integrity." },
+  { title: "Quick Turnaround", desc: "In the fast-paced business environment of the UAE, time is of the essence. Index Office Service is known for its efficient and timely delivery of translated documents, helping clients meet deadlines without compromising on quality." },
+  { title: "Confidentiality and Accuracy", desc: "Legal documents often contain sensitive information. Index legal translation guarantees confidentiality and accuracy, safeguarding the interests of its clients and ensuring the privacy of legal matters." },
 ]
 
 const faqs = [
@@ -94,24 +61,17 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="Legal Translation Services in UAE — Index Office Services"
-  description="Convenient, budget-friendly legal translation services in the UAE. MOJ-approved certified translations. Arabic-English. 25+ years experience by Index Office Services."
+  title="Legal Translation Services in the UAE | Indexauh"
+  description="Ensure accurate and reliable legal translation services in the UAE with Indexauh. Our team of professionals specializes in legal document translation"
 >
 
 <style>
   .sec-inner { position: relative; z-index: 1; }
   .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
-  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
-  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
-  .idx-form textarea { resize: none; }
-  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
-  .idx-submit:hover { background: #1A202C; }
-  .benefit-card-light { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
-  .benefit-card-light:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); transform: translateY(-3px); }
-  .doc-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 24px; transition: all 0.25s; }
-  .doc-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
-  .assist-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
-  .assist-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .svc-arrow-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px; transition: all 0.25s; }
+  .svc-arrow-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .box-card { background: #fff; border: 1px solid #eef0f6; border-radius: 20px; padding: 32px; transition: all 0.25s; }
+  .box-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
   .faq-item { border: 1px solid #eef0f6; border-radius: 14px; overflow: hidden; }
   .faq-item summary { list-style: none; cursor: pointer; padding: 18px 22px; font-size: 0.88rem; font-weight: 700; color: #1A202C; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .faq-item summary::-webkit-details-marker { display: none; }
@@ -119,19 +79,21 @@ const faqs = [
   .faq-item[open] summary::after { content: "−"; }
   .faq-item[open] { border-color: #B2F5EA; }
   .faq-body { padding: 0 22px 18px; font-size: 0.82rem; color: #4B5563; line-height: 1.75; }
+  details summary { list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] { border-color: #B2F5EA !important; }
+  details[open] summary span:last-child { content: "−"; }
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-    .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
-    .four-col { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
 
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="/images/img-75.jpg"
+    src="/images/img-75.webp"
     alt="Legal Translation Services UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
@@ -146,197 +108,124 @@ const faqs = [
       <span class="idx-pill">Genuine</span>
     </div>
     <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
-      LEGAL TRANSLATION<br/>SERVICES IN THE UAE
+      LEGAL TRANSLATION<br/>IN THE UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:680px;">
-      In the dynamic landscape of the UAE, clear and precise communication is vital when dealing with legal matters. Index Office Service offers impeccable legal translation assistance — bridging linguistic gaps and facilitating seamless communication across language barriers within the UAE's legal domain.
+      In the dynamic landscape of the United Arab Emirates, navigating the legal intricacies can be a challenging endeavour. For individuals and businesses alike, clear and precise communication is vital when dealing with legal matters. Index Office Service steps in to offer impeccable legal translation assistance — bridging linguistic gaps and facilitating seamless communication across language barriers within the UAE's legal domain.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
-      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
     </div>
   </div>
 </section>
 
 <!-- ════ OVERVIEW ════ -->
-<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.9fr;gap:52px;align-items:center;">
     <div>
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview
       </p>
       <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Legal Translation in the UAE: Purpose and Significance</h2>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 16px;">
         Legal translation plays a pivotal role in the UAE's legal framework due to the nation's diverse cultural landscape and the coexistence of both Arabic and English as official languages. The primary purpose of legal translation services in the UAE is to bridge linguistic gaps and facilitate seamless communication across language barriers within the legal domain.
       </p>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:16px;">
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
         Index Office Service specializes in legal translations, boasting a team of experienced translators well-versed in legal terminology and nuances — ensuring accurate, contextually sound, and culturally sensitive translations for individuals and businesses alike.
       </p>
-      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
-        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">MOJ-Approved &amp; Officially Accepted</h3>
-        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
-          All translations are prepared by licensed professionals following UAE Ministry of Justice guidelines, ensuring acceptance by courts, ministries, immigration departments, and all official UAE authorities.
-        </p>
-      </div>
     </div>
 
-    <div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-56.jpg" alt="Legal Translation UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Legal Translation Assistance</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">End-to-end support by Index Office Services</p>
-        </div>
-        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
-          25+ Years Experience
-        </div>
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-55.webp" alt="Legal Translation UAE" style="width:100%;height:400px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Legal Translation Assistance</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Arabic · English · Courts · Ministries · Immigration</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════ BENEFITS ════ -->
-<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-7.jpg" alt="Why legal translation matters in UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Why Legal Translation Matters</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Communication · Compliance · Accuracy · Confidentiality</p>
-        </div>
-      </div>
-      <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Benefits</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 18px;">Why Legal Translation Is Essential in the UAE</h2>
-        <div style="display:flex;flex-direction:column;gap:14px;" class="four-col">
-          {benefits.map(b => (
-            <div class="benefit-card-light" style="display:flex;gap:16px;align-items:flex-start;">
-              <div style="font-size:1.5rem;flex-shrink:0;">{b.icon}</div>
-              <div>
-                <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 5px;">{b.title}</h3>
-                <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ DOCUMENTS ════ -->
+<!-- ════ PURPOSE & BENEFITS ════ -->
 <section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="/images/img-41.jpg" alt="Documents we translate for UAE legal use" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-41.webp" alt="Legal translation UAE purpose" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
-        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Document Types</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Documents We Translate for Legal Use in the UAE</h2>
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Purpose &amp; Significance</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">WHY LEGAL TRANSLATION MATTERS IN THE UAE</h2>
       </div>
     </div>
 
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      {documents.map(d => (
-        <div class="doc-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">{d.title}</h3>
-          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{d.body}</p>
+    <div class="two-col" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      {benefits.map(item => (
+        <div class="svc-arrow-card" style="gap:16px;align-items:flex-start;">
+          <div style="font-size:1.5rem;flex-shrink:0;">{item.icon}</div>
+          <div>
+            <p style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{item.title}</p>
+            <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">{item.desc}</p>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- ════ OUR SERVICES ════ -->
+<!-- ════ WHY CHOOSE INDEX ════ -->
 <section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:48px;">
-      <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Full Service Range</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Index: The Ideal Choice for Legal Translation in UAE</h2>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
-          Index's commitment to excellence, cultural sensitivity, and legal expertise makes it the go-to choice for individuals and businesses seeking reliable legal translation services in the UAE. When accuracy and precision matter most, Index navigates the intricate world of legal translation — from MOJ-approved certified translations to full attestation packages and urgent same-day delivery.
-        </p>
-      </div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-22.jpg" alt="Index legal translation services UAE" style="width:100%;height:260px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
-        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">Certified · Compliant · Fast</p>
-        </div>
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.4fr;gap:52px;align-items:center;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-8.webp" alt="Index Office Services legal translation" style="width:100%;height:440px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Index Office Service</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Trusted Legal Translation Partner in UAE</p>
       </div>
     </div>
-
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      {services.map(a => (
-        <div class="assist-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:10px;">{a.title}</h3>
-          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{a.desc}</p>
-        </div>
-      ))}
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">The Ideal Choice</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">INDEX OFFICE SERVICE: THE IDEAL CHOICE FOR LEGAL TRANSLATION IN THE UAE</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin:0 0 24px;">
+        When it comes to choosing a reliable partner for legal translation services in the UAE, Index Office Service stands out as a trusted name. Here are some of the key benefits of entrusting your legal translation needs to Index:
+      </p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {whyIndex.map(item => (
+          <div class="svc-arrow-card">
+            <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+            <div>
+              <p style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 4px;">{item.title}</p>
+              <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════ HOW INDEX HELPS ════ -->
+<!-- ════ WHY CHOOSE US ════ -->
 <section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-3.jpg" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ Years · UAE Legal Translation Experts</p>
-        </div>
-      </div>
-      <div>
-        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">How Can Index Assist You?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
-          Index is a specialist service provider with over 25 years of experience in UAE legal translation and document services. We offer comprehensive assistance — from initial consultation and document review to certified translation, MOJ approval, MOFA attestation, and final delivery.
-        </p>
-        <p style="color:#94A3B8;font-size:1rem;line-height:1.8;">
-          Our team's expertise in legal jargon, cultural sensitivity, and quick turnaround makes Index the trusted choice when accuracy and precision matter most. Call us today for a free consultation.
-        </p>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:52px;" class="two-col">
-      {whyIndex.map(point => (
-        <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;">
-          <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;margin-top:1px;">→</span>
-          <p style="font-size:0.98rem;color:#CBD5E0;line-height:1.65;margin:0;">{point}</p>
-        </div>
-      ))}
-    </div>
-
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:52px;">
-      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 12px;">
-        Index is a specialist service provider focusing on legal translation and other international individual and business legal services. With 25+ years of expertise, we have gained considerable knowledge and insight on delivering professional and timely results.
-      </p>
-      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin:0;">
-        Our translations are prepared by licensed professionals and meet the standards required by the UAE Ministry of Justice, MOFA, courts, and all official government authorities. Call us today to book a free consultation.
-      </p>
-    </div>
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">WHY CHOOSE US?</h2>
+    <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+      In the UAE, where legal matters frequently involve bilingual complexities, legal translation services are indispensable. Index legal translation services' commitment to excellence, cultural sensitivity, and legal expertise make it the go-to choice for individuals and businesses seeking reliable legal translation services in the UAE. When accuracy and precision matter most, choose Index Office Service to navigate the intricate world of legal translation in the UAE.
+    </p>
+    <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin-bottom:48px;">Call us today to book a free consultation…!!!</p>
 
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
       <div>
         <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">2500</p>
-        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Companies Served</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Companies Formed</p>
       </div>
       <div>
         <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25</p>
@@ -355,9 +244,12 @@ const faqs = [
     <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;text-align:center;margin:0 0 40px;">Frequently Asked Questions About Legal Translation Services</h2>
     <div style="display:flex;flex-direction:column;gap:12px;">
       {faqs.map((f, i) => (
-        <details class="faq-item">
-          <summary>{i + 1}. {f.q}</summary>
-          <div class="faq-body">{f.a}</div>
+        <details style="border:1px solid #eef0f6;border-radius:14px;overflow:hidden;background:#fff;">
+          <summary style="list-style:none;cursor:pointer;padding:18px 22px;font-size:0.88rem;font-weight:700;color:#1A202C;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;">
+            <span>{i + 1}. {f.q}</span>
+            <span style="color:#38B2AC;font-size:1.3rem;font-weight:900;flex-shrink:0;line-height:1;">+</span>
+          </summary>
+          <div style="padding:0 22px 18px;font-size:0.88rem;color:#4B5563;line-height:1.75;">{f.a}</div>
         </details>
       ))}
     </div>
@@ -378,7 +270,7 @@ const faqs = [
         Index is a specialist service provider, focusing on legal translation and other international individual and business legal services.
       </p>
       <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
-        With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely results authorised by the UAE Ministry of Justice and concerned authorities. Call us today to book a free consultation.
+        With 25+ years of expertise in this industry, we have gained considerable knowledge and insight on delivering professional and timely results. Call us today to book a free consultation.
       </p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
@@ -393,5 +285,15 @@ const faqs = [
 
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('details').forEach(details => {
+    const icon = details.querySelector('summary span:last-child');
+    if (!icon) return;
+    details.addEventListener('toggle', () => {
+      icon.textContent = details.open ? '−' : '+';
+    });
+  });
+</script>
 
 </BaseLayout>

@@ -2,14 +2,6 @@
 import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const countryCodes = [
-  { code: "+973", label: "BH +973" },
-  { code: "+91",  label: "IN +91" },
-  { code: "+971", label: "AE +971" },
-  { code: "+44",  label: "GB +44" },
-  { code: "+1",   label: "US +1" },
-]
-
 const faqs = [
   {
     q: "How does Index help me get my UAE Equivalency Certificate approved faster?",
@@ -67,6 +59,9 @@ const faqs = [
   .idx-form textarea { resize: none; }
   .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
   .idx-submit:hover { background: #1A202C; }
+  details summary { list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] { border-color: #B2F5EA !important; }
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
@@ -76,7 +71,7 @@ const faqs = [
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="/images/img-35.jpg"
+    src="/images/img-16.webp"
     alt="Equivalency Certificate UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
@@ -118,7 +113,7 @@ const faqs = [
     </div>
 
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-      <img src="/images/img-7.jpg" alt="Benefits of Equivalency Certificate UAE" style="width:100%;height:400px;object-fit:cover;display:block;" />
+      <img src="/images/img-7.webp" alt="Benefits of Equivalency Certificate UAE" style="width:100%;height:400px;object-fit:cover;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
       <div style="position:absolute;bottom:20px;left:20px;right:20px;">
         <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Benefits of Equivalency Certificate</p>
@@ -162,9 +157,12 @@ const faqs = [
     <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;text-align:center;margin:0 0 40px;">Frequently Asked Questions on Equivalency Certificate</h2>
     <div style="display:flex;flex-direction:column;gap:12px;">
       {faqs.map((f, i) => (
-        <details class="faq-item">
-          <summary>{i + 1}. {f.q}</summary>
-          <div class="faq-body">{f.a}</div>
+        <details style="border:1px solid #eef0f6;border-radius:14px;overflow:hidden;background:#fff;">
+          <summary style="list-style:none;cursor:pointer;padding:18px 22px;font-size:0.88rem;font-weight:700;color:#1A202C;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;">
+            <span>{i + 1}. {f.q}</span>
+            <span style="color:#38B2AC;font-size:1.3rem;font-weight:900;flex-shrink:0;line-height:1;">+</span>
+          </summary>
+          <div style="padding:0 22px 18px;font-size:0.88rem;color:#4B5563;line-height:1.75;">{f.a}</div>
         </details>
       ))}
     </div>
@@ -200,5 +198,15 @@ const faqs = [
 
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('details').forEach(details => {
+    const icon = details.querySelector('summary span:last-child');
+    if (!icon) return;
+    details.addEventListener('toggle', () => {
+      icon.textContent = details.open ? '−' : '+';
+    });
+  });
+</script>
 
 </BaseLayout>

@@ -1,10 +1,12 @@
 ---
 import ContactForm from '../components/ContactForm.astro';
-
 import BaseLayout from '../layouts/BaseLayout.astro'
 ---
 
-<BaseLayout title="About Us — Index Office Services | Trusted UAE Attestation Since 1988">
+<BaseLayout
+  title="Company Formation & Certificate Attestation Services in UAE"
+  description="Indexauh, 20 plus years of experienced embassy approved company provides company formation, Certificate Attestation services in Dubai and Abu dhabi"
+>
 
 <style>
   .sec-inner { position: relative; z-index: 1; }
@@ -25,36 +27,58 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
   .idx-submit:hover { background: #1A202C; }
 
-  /* ── Marquee ── */
-  @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .marquee-track { overflow: hidden; width: 100%; }
-  .marquee-inner { display: flex; align-items: center; width: max-content; animation: marquee-scroll 28s linear infinite; gap: 0; }
-  .marquee-track:hover .marquee-inner { animation-play-state: paused; }
-  .marquee-logo-img { display: inline-flex; align-items: center; justify-content: center; padding: 0 52px; border-right: 1px solid #f0f4f8; flex-shrink: 0; height: 64px; }
-  .marquee-logo-img img { height: 36px; width: auto; max-width: 140px; object-fit: contain; filter: grayscale(100%) opacity(0.55); transition: filter 0.3s; }
-  .marquee-logo-img:hover img { filter: grayscale(0%) opacity(1); }
-
   /* ── feat grid responsive ── */
   .feat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
-  @media(max-width:640px){ .feat-grid { grid-template-columns: 1fr; } }
+
+  /* ── Who we are layout ── */
+  .who-wrap { display: flex; flex-wrap: wrap; gap: 52px; align-items: center; }
+  .who-img-col { flex-shrink: 0; width: 420px; position: relative; padding: 0 20px 0 20px; }
+  .who-img-col > div { overflow: visible; }
+
+  /* ── Why choose layout ── */
+  .why-wrap { display: flex; flex-wrap: wrap; gap: 52px; align-items: center; }
+  .why-img-col { flex-shrink: 0; width: 380px; }
+
+  /* ── Stats ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; text-align: center; }
+  .stat-num { font-size: 2.4rem; font-weight: 900; color: #38B2AC; margin: 0; }
+  .stat-label { color: #81E6D9; font-size: 0.98rem; margin: 4px 0 0; font-weight: 500; letter-spacing: 0.05em; }
 
   @media(max-width:768px){
     .about-hero-title { font-size: 2rem !important; }
     .about-hero-desc { font-size: 0.88rem !important; }
+    .feat-grid { grid-template-columns: 1fr; }
+
+    /* Stats — smaller on mobile */
+    .stat-num { font-size: 1.5rem !important; }
+    .stat-label { font-size: 0.78rem !important; }
+    .stats-grid { gap: 10px; }
+
+    /* Who we are — stack and constrain image */
+    .who-wrap { flex-direction: column; gap: 32px; }
+    .who-img-col { width: 100% !important; padding: 0 !important; }
+    .who-img-col img { height: 240px !important; }
+    /* Push badges inside so they don't overflow */
+    .who-badge-bottom { left: 8px !important; bottom: 10px !important; font-size: 0.78rem !important; padding: 8px 12px !important; }
+    .who-badge-top { right: 8px !important; top: 10px !important; font-size: 0.78rem !important; padding: 8px 12px !important; }
+
+    /* Why choose — stack and constrain image */
+    .why-wrap { flex-direction: column; gap: 32px; }
+    .why-img-col { width: 100% !important; }
+    .why-img-col img { height: 280px !important; }
+    .why-badge { left: 8px !important; bottom: 10px !important; padding: 10px 14px !important; }
+    .why-badge p:first-child { font-size: 1.4rem !important; }
   }
 </style>
 
-<!-- ════════════ HERO — image bg, centered text ════════════ -->
+<!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
-  <!-- Background image -->
   <img
-    src="/images/img-1.jpg"
+    src="/images/img-1.webp"
     alt="About Index Office Services"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
   />
-  <!-- Dark overlay -->
   <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.88) 0%,rgba(45,55,72,0.82) 100%);"></div>
-  <!-- Dot pattern -->
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
@@ -76,17 +100,19 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 <section style="background:#1A202C;padding:38px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.2) 1.5px,transparent 1.5px);background-size:24px 24px;pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
-  <div class="sec-inner" style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;">
-    {[
-      { num: "400K+", label: "Happy Clients" },
-      { num: "100+",  label: "Countries Served" },
-      { num: "25+",   label: "Years of Experience" },
-    ].map(s => (
-      <div>
-        <p style="font-size:2.4rem;font-weight:900;color:#38B2AC;margin:0;">{s.num}</p>
-        <p style="color:#81E6D9;font-size:0.98rem;margin:4px 0 0;font-weight:500;letter-spacing:0.05em;">{s.label}</p>
-      </div>
-    ))}
+  <div class="sec-inner stats-grid" style="max-width:860px;margin:0 auto;">
+    <div>
+      <p class="stat-num">400K+</p>
+      <p class="stat-label">Happy Clients</p>
+    </div>
+    <div>
+      <p class="stat-num">100+</p>
+      <p class="stat-label">Countries Served</p>
+    </div>
+    <div>
+      <p class="stat-num">25+</p>
+      <p class="stat-label">Years of Experience</p>
+    </div>
   </div>
 </section>
 
@@ -95,16 +121,18 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;top:-60px;right:-60px;width:400px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:center;">
+  <div class="sec-inner who-wrap" style="max-width:1280px;margin:0 auto;">
 
     <!-- Image -->
-    <div style="flex-shrink:0;width:420px;position:relative;">
-      <img src="/images/img-2.jpg" alt="UAE skyline global presence" style="width:100%;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
-      <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;line-height:1.6;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
-        Middle East · India<br/>USA · Canada · UK
-      </div>
-      <div style="position:absolute;top:20px;right:-16px;background:#38B2AC;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;line-height:1.6;box-shadow:0 6px 20px rgba(56,178,172,0.3);">
-        Founded<br/>1988
+    <div class="who-img-col">
+      <div style="position:relative;">
+        <img src="/images/img-2.webp" alt="UAE skyline global presence" style="width:100%;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+        <div class="who-badge-bottom" style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;line-height:1.6;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          Middle East · India<br/>USA · Canada · UK
+        </div>
+        <div class="who-badge-top" style="position:absolute;top:20px;right:-16px;background:#38B2AC;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;line-height:1.6;box-shadow:0 6px 20px rgba(56,178,172,0.3);">
+          Founded<br/>1988
+        </div>
       </div>
     </div>
 
@@ -131,7 +159,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <div style="position:absolute;bottom:-60px;right:-60px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div style="display:flex;flex-wrap:wrap;gap:52px;align-items:center;">
+    <div class="why-wrap">
 
       <div style="flex:1;min-width:280px;">
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
@@ -156,10 +184,10 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         </div>
       </div>
 
-      <div style="flex-shrink:0;width:380px;">
+      <div class="why-img-col">
         <div style="position:relative;">
-          <img src="/images/img-3.jpg" alt="Index Office Services professionals" style="width:100%;height:420px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
-          <div style="position:absolute;bottom:20px;left:-16px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
+          <img src="/images/img-3.webp" alt="Index Office Services professionals" style="width:100%;height:420px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+          <div class="why-badge" style="position:absolute;bottom:20px;left:0px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
             <p style="font-size:1.8rem;font-weight:900;margin:0;line-height:1;">400K+</p>
             <p style="font-size:0.9rem;margin:4px 0 0;opacity:0.9;">Happy Clients Served</p>
           </div>
@@ -181,7 +209,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     </div>
 
     <div class="feat-grid">
-
       <div class="feat-card">
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
@@ -213,7 +240,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 10px;">Our Clients</h3>
         <p style="font-size:1rem;color:#4B5563;line-height:1.75;margin:0;">Our clients are our greatest asset and so we treat them with the care and attention they deserve. At Index, we enjoy working with clients who value and respect us and with whom we seek to have long term relationships. We really want to know what our clients think — we speak to them regularly to gain their frank feedback and act swiftly to address any areas we could do better.</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -224,8 +250,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
-
-    <!-- Left: text -->
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY TO TAKE YOUR GOALS FURTHER.</h2>
@@ -237,12 +261,10 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       </a>
     </div>
 
-    <!-- Right: form -->
     <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
       <ContactForm />
     </div>
-
   </div>
 </section>
 
