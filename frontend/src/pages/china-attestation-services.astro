@@ -1,0 +1,519 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const purposes = [
+  { icon: "💼", title: "Employment Visa", desc: "Companies ask for attested certificates before giving a job. This helps them verify your education." },
+  { icon: "🎓", title: "Higher Education", desc: "Universities check your previous certificates before admission. Attestation makes them valid." },
+  { icon: "👨‍👩‍👧", title: "Family Visa", desc: "Marriage and birth certificates need attestation for family sponsorship." },
+  { icon: "⚖️", title: "Business Setup", desc: "Commercial documents help in company registration and approvals." },
+]
+
+const personalDocs = [
+  "Marriage certificate attestation",
+  "Birth certificate attestation",
+  "Divorce Certificate Attestation",
+  "Death Certificate Attestation",
+  "Police Clearance Certificate Attestation",
+  "Medical Certificate Attestation",
+  "Single Status Certificate Attestation",
+  "Affidavit",
+]
+
+const educationalDocs = [
+  "Degree Certificate Attestation",
+  "Diploma Certificate Attestation",
+  "School Certificate Attestation",
+  "Mark Sheets Attestation",
+  "Technical Certificate Attestation",
+  "Nursing Certificate Attestation",
+  "Engineering Certificate Attestation",
+  "Transcript Attestation",
+]
+
+const commercialDocs = [
+  "Power of Attorney Attestation",
+  "Company Incorporation Documents Attestation",
+  "Memorandum of Association Attestation",
+  "Articles of Association Attestation",
+  "Board Resolution Attestation",
+  "Commercial Invoice Attestation",
+  "Commercial License",
+]
+
+const docTypes = [
+  { category: "Personal Documents", icon: "👤", docs: personalDocs },
+  { category: "Educational Certificates", icon: "🎓", docs: educationalDocs },
+  { category: "Commercial Documents", icon: "⚖️", docs: commercialDocs },
+]
+
+const processSteps = [
+  { step: "01", title: "Notarization in China", desc: "Local authorities verify your document first. This confirms the document is original." },
+  { step: "02", title: "Authentication by Chinese Authorities", desc: "Government departments in China check and approve the document. This step confirms it is genuine." },
+  { step: "03", title: "UAE Embassy Attestation in China", desc: "The UAE Embassy reviews the document and adds an official stamp. This makes it valid for use in UAE." },
+  { step: "04", title: "MOFA Attestation in UAE", desc: "The Ministry of Foreign Affairs in UAE gives the final approval. After this, the document becomes legally accepted." },
+  { step: "05", title: "Translation", desc: "Arabic legal translation may be required for official use in UAE." },
+]
+
+const requiredDocs = [
+  "Original certificate",
+  "Passport copy",
+  "Authorization letter",
+]
+
+const timeFactors = [
+  "Type of document",
+  "Number of approvals",
+  "Processing speed in China",
+  "UAE authority timelines",
+]
+
+const costFactors = [
+  "Document type",
+  "Urgency",
+  "Number of documents",
+  "Translation needs",
+]
+
+const challenges = [
+  "Language differences",
+  "Multiple approval levels",
+  "Missing documents",
+  "Delays from authorities",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Share Your Documents", desc: "Send a copy and basic details. Our team reviews your documents and identifies the exact requirements." },
+  { step: "02", title: "Get Clear Guidance", desc: "Experts explain the steps and timeline clearly. This removes confusion from the very beginning." },
+  { step: "03", title: "Process Starts", desc: "The team handles all work in both China and UAE, coordinating with the correct authorities in order." },
+  { step: "04", title: "Track Progress", desc: "You get regular updates during the process so you stay informed at every stage." },
+  { step: "05", title: "Receive Documents", desc: "Attested documents are delivered safely. No multiple visits or repeated follow-ups needed." },
+]
+
+const expertBenefits = [
+  "Saves time",
+  "Reduces errors",
+  "Handles full process",
+  "Gives clear updates",
+]
+
+const whyChoose = [
+  { title: "25+ Years of Experience", desc: "IndexAUH has over 25 years of experience handling certificate attestation services across the UAE with proven expertise." },
+  { title: "Experienced Team", desc: "Our team understands every step of the China attestation process and handles your documents with care." },
+  { title: "Simple Process Guidance", desc: "We explain each stage clearly so you know exactly what is happening at every point in the process." },
+  { title: "Fast Document Handling", desc: "Efficient coordination between China and UAE authorities keeps your process moving without unnecessary delays." },
+  { title: "Support Across UAE", desc: "We support clients from Abu Dhabi, Dubai, and across the UAE with pickup and delivery available." },
+  { title: "All Document Categories", desc: "Personal, educational, and commercial documents all handled with full care from start to finish." },
+]
+
+const faqs: { q: string; a: string }[] = []
+---
+
+<BaseLayout
+  title="China Attestation Services in UAE | Indexauh"
+  description="Get trusted china attestation services in UAE with IndexAUH. Fast, simple process for chinese attestation with expert support. Connect now!"
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .four-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .four-col { grid-template-columns: 1fr 1fr !important; }
+    .img-first { order: -1 !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+    .get-started-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="China Certificate Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">China Certificate Attestation</span>
+      <span class="idx-pill">MOFA Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      CHINA CERTIFICATE ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Getting your Chinese documents approved in the UAE can feel confusing at first. China certificate attestation helps prove your documents are valid for jobs, studies, or business. With over 25 years of experience, IndexAUH supports people across the UAE with a clear and simple process.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PURPOSE ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;" class="split-grid">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Why It Matters
+        </p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Purpose of Chinese Document Attestation in UAE</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          People need attestation for many daily reasons. Each one has a clear purpose. In simple words, Chinese attestation helps your documents get accepted by UAE authorities.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {purposes.map(p => (
+            <div style="display:flex;align-items:flex-start;gap:14px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:16px 18px;">
+              <span style="font-size:1.4rem;flex-shrink:0;">{p.icon}</span>
+              <div>
+                <p style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 4px;">{p.title}</p>
+                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+          <img src="/images/img-128.webp" alt="China certificate attestation UAE" style="width:100%;height:480px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Notarization · MOFA · UAE Embassy</p>
+            <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete China attestation handled end-to-end</p>
+          </div>
+          <div style="position:absolute;bottom:88px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+            25+ Years Experience
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Types of Chinese Documents We Attest</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          We handle attestation for a wide range of document categories. Always confirm with the requesting authority what exact form of attestation they require.
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-1.webp" alt="China attestation document types" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
+      {docTypes.map(cat => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:1.5rem;">{cat.icon}</span>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+            {cat.docs.map(d => (
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="China certificate attestation process" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Chinese Certificate Attestation Process in UAE</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;" class="split-grid">
+      <!-- Steps -->
+      <div>
+        <div style="background:#2D3748;border-radius:12px;padding:14px 20px;margin-bottom:20px;">
+          <p style="color:#38B2AC;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 2px;">Attestation Flow</p>
+          <p style="color:#fff;font-size:0.95rem;font-weight:800;margin:0;">China to UAE — The Complete Process</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {processSteps.map(s => (
+            <div class="step-card">
+              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px;margin-top:16px;">
+          <p style="color:#4B5563;font-size:0.85rem;line-height:1.7;margin:0;">Because this process has many stages, many people choose China attestation services to complete it without delays.</p>
+        </div>
+      </div>
+
+      <!-- Side panels -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+
+        <!-- Required Documents -->
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required for China Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">You need a few basic documents. Some cases may need extra documents — checking in advance helps avoid delays.</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {requiredDocs.map(d => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Time -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does the Process Take?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Time depends on many factors. Starting early helps reduce last-minute pressure.</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {timeFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Cost -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Cost of China Certificate Attestation in UAE</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The cost is not fixed. It is better to get a quote before starting. Cost changes based on:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {costFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Challenges in China Certificate Attestation</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Many people face issues during the process. Because of these challenges, proper guidance becomes important.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {challenges.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Challenges in China attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Common Delays</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Expert guidance makes the process simple</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Attest Documents from China in UAE</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 16px;max-width:560px;">
+      The process can feel long. However, with proper support, it becomes simple. Expert help makes things easier.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:44px;">
+      {expertBenefits.map(b => (
+        <span style="display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #B2F5EA;color:#2D3748;font-size:0.82rem;font-weight:600;padding:6px 14px;border-radius:9999px;">
+          <span style="color:#38B2AC;">✓</span>{b}
+        </span>
+      ))}
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;" class="get-started-grid two-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="IndexAUH China attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office and Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · UAE-Wide Support</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH for China Attestation Services?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          IndexAUH has over 25 years of experience in handling certificate attestation services in UAE. Because of this experience, many people trust their services for China attestation. Connect with IndexAUH today and get clear guidance based on your document.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">PLANNING TO START YOUR CHINA ATTESTATION?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        IndexAUH assists with educational, personal, and commercial document legalization across the UAE, helping make the China attestation process simpler and easier to manage.
+      </p>
+      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin-bottom:28px;">
+        It is always better to know the exact steps, time, and cost. Connect with IndexAUH today and get clear guidance based on your document.
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <!-- Abu Dhabi -->
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px;">
+          <p style="color:#38B2AC;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 10px;">Abu Dhabi Office</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:0.88rem;font-weight:600;text-decoration:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#38B2AC" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              Mob: (+971) 529300200
+            </a>
+            <a href="tel:+97126311560" style="display:inline-flex;align-items:center;gap:8px;color:#CBD5E0;font-size:0.88rem;text-decoration:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#38B2AC" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              Tel: (+971) 26311560
+            </a>
+          </div>
+        </div>
+
+        <!-- Dubai -->
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px;">
+          <p style="color:#38B2AC;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 10px;">Dubai Office</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:0.88rem;font-weight:600;text-decoration:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#38B2AC" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              Mob: (+971) 529300200
+            </a>
+            <a href="tel:+97142279916" style="display:inline-flex;align-items:center;gap:8px;color:#CBD5E0;font-size:0.88rem;text-decoration:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#38B2AC" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              Tel: (+971) 42279916
+            </a>
+          </div>
+        </div>
+
+        <a href="mailto:info@indexauh.com" style="display:inline-flex;align-items:center;gap:8px;color:#B2F5EA;font-size:0.9rem;text-decoration:none;padding-left:4px;">
+          ✉ info@indexauh.com
+        </a>
+      </div>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  // FAQ toggle kept in case FAQs are added later
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement)?.classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement)?.classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

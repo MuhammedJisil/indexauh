@@ -1,0 +1,548 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const whenNeeded = [
+  "You receive a job offer in Turkey and your degree needs approval",
+  "A family visa application requires a verified marriage certificate",
+  "Admission to a university depends on attested academic records",
+  "Business expansion needs legally accepted company documents",
+  "Turkish documents must be used for official purposes in the UAE",
+]
+
+const personalDocs = [
+  "Marriage certificate attestation",
+  "Birth certificate attestation",
+  "Divorce Certificate Attestation",
+  "Death Certificate Attestation",
+  "Police Clearance Certificate Attestation",
+  "Medical Certificate Attestation",
+  "Single Status Certificate Attestation",
+  "Affidavit",
+]
+
+const educationalDocs = [
+  "Degree Certificate Attestation",
+  "Diploma Certificate Attestation",
+  "School Certificate Attestation",
+  "Mark Sheets Attestation",
+  "Technical Certificate Attestation",
+  "Nursing Certificate Attestation",
+  "Engineering Certificate Attestation",
+  "Transcript Attestation",
+]
+
+const commercialDocs = [
+  "Power of Attorney Attestation",
+  "Company Incorporation Documents Attestation",
+  "Memorandum of Association Attestation",
+  "Articles of Association Attestation",
+  "Board Resolution Attestation",
+  "Commercial Invoice Attestation",
+  "Commercial License",
+]
+
+const docTypes = [
+  { category: "Personal Documents", icon: "👤", docs: personalDocs },
+  { category: "Educational Certificates", icon: "🎓", docs: educationalDocs },
+  { category: "Commercial Documents", icon: "⚖️", docs: commercialDocs },
+]
+
+const processStepsTurkeyToUAE = [
+  { step: "01", title: "Notarization in Turkey", desc: "The document is first verified by a notary. This confirms authenticity at the local level." },
+  { step: "02", title: "Turkish Ministry of Foreign Affairs Verification", desc: "The document is then reviewed by Turkish authorities. This step validates the notary approval for international use." },
+  { step: "03", title: "UAE Embassy Attestation in Turkey", desc: "The UAE Embassy checks and approves the document. This step links it to UAE authorities for further processing." },
+  { step: "04", title: "Final Approval from Ministry of Foreign Affairs UAE", desc: "Once the document reaches the UAE, MOFA completes the final attestation. After this stage, the document becomes valid for official use." },
+]
+
+const processStepsUAEToTurkey = [
+  { step: "01", title: "Notarization or Initial Verification in the UAE", desc: "The document is verified by the relevant authority to confirm its validity within the UAE." },
+  { step: "02", title: "Attestation from Ministry of Foreign Affairs UAE", desc: "MOFA Attestation confirms the document before submission to Turkish authorities." },
+  { step: "03", title: "Submission at the Embassy of Turkey in UAE", desc: "Documents are submitted based on location and requirement. In some cases, people refer to this stage as Turkish consulate attestation, especially when handled through the consulate in Dubai." },
+  { step: "04", title: "Final Legalization in Turkey", desc: "The document is sent to Turkey for final approval. This ensures full legal acceptance by Turkish institutions." },
+]
+
+const costTable = [
+  { factor: "Processing Time (Turkey Side)", details: "A few working days depending on document type and authority workload" },
+  { factor: "Processing Time (UAE Side)", details: "Additional few days for final approval from Ministry of Foreign Affairs UAE" },
+  { factor: "Urgent Processing", details: "Faster timelines may be possible based on document type and authority approval" },
+  { factor: "Total Time Estimate", details: "Combined processing may take several working days depending on both countries" },
+  { factor: "Cost Factors", details: "Document type, urgency, origin country, and overall handling requirements" },
+  { factor: "Government Fees", details: "Charges set by authorities for each stage of attestation" },
+  { factor: "Delay Factors", details: "Errors, missing documents, public holidays, authority workload" },
+]
+
+const commonMistakes = [
+  "Many assume one stamp is enough and skip earlier steps",
+  "Some submit incomplete or unclear documents",
+  "Wrong sequence leads to rejection at later stages",
+  "Late submission creates unnecessary pressure",
+  "Requirements differ based on document type, yet many overlook this",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Share Your Documents", desc: "Send a clear copy of your document for review. This helps identify the exact requirement and the correct process from the beginning." },
+  { step: "02", title: "Get Clear Guidance", desc: "Based on your case, you receive a simple explanation of the steps, timeline, and requirements. This removes confusion early." },
+  { step: "03", title: "Document Verification", desc: "Every document goes through a detailed check before submission. Errors are reduced and chances of rejection stay low." },
+  { step: "04", title: "Complete Process Handling", desc: "The full attestation process is managed for you. This includes coordination with all required authorities in the correct order." },
+  { step: "05", title: "Updates Until Completion", desc: "You receive regular updates at each stage. You stay informed until your attested document is ready." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Experience", desc: "More than 25 years handling certificate attestation and embassy procedures across the UAE with proven expertise." },
+  { title: "UAE and Turkey Procedures", desc: "Strong understanding of both UAE and Turkey procedures ensures the correct sequence is followed every time." },
+  { title: "Careful Document Verification", desc: "Every document goes through a detailed check before submission to prevent errors and reduce rejection risk." },
+  { title: "Clear Updates at Every Stage", desc: "You stay informed throughout the process with regular progress updates at each attestation stage." },
+  { title: "Both Directions Covered", desc: "We handle Turkish documents for UAE use and UAE documents for Turkey, covering every case completely." },
+  { title: "All Document Categories", desc: "Personal, educational, and commercial document attestation handled with complete care from start to finish." },
+]
+
+const faqs = [
+  { q: "Is Turkish embassy attestation required?", a: "Yes. Authorities require it for legal acceptance of documents across borders." },
+  { q: "Can MOFA attestation be skipped?", a: "No. Ministry of Foreign Affairs UAE approval is required as part of the standard process." },
+  { q: "How long does the process take?", a: "It depends on the document type and stages involved. Contact us for an estimate based on your specific case." },
+  { q: "Is Turkish consulate attestation different from embassy attestation?", a: "Both serve similar purposes, though procedures may vary slightly depending on location and document type." },
+  { q: "What happens if my birth certificate is damaged or has errors?", a: "If a birth certificate is damaged, unclear, laminated, or contains errors such as incorrect names or dates, it may not be accepted for attestation. In such cases, correction or reissuance is usually required. Index AUH helps identify such issues early and guides you on the next step." },
+]
+---
+
+<BaseLayout
+  title="Turkish Embassy Attestation in UAE | Turkish Consulate Attestation"
+  description="Turkish embassy attestation in UAE for jobs, visas, and business needs. Trust Index Office Services with 25+ years of experience. Call us !"
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .img-first { order: -1 !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+    .get-started-grid { grid-template-columns: 1fr !important; }
+    .cost-table { font-size: 0.8rem !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Turkish Embassy Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Turkish Embassy Attestation</span>
+      <span class="idx-pill">MOFA Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      TURKISH EMBASSY ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Turkish embassy attestation makes your document legally valid for use in another country. A job offer, visa application, or business step may depend on it. Index Office and Services handles both directions — attesting Turkish documents for UAE and preparing UAE documents for Turkey — backed by over 25 years of experience.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is Turkish Embassy Attestation?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Turkish embassy attestation is the process that makes your document legally valid for use in another country. It confirms that your document is genuine and accepted by authorities outside its country of origin.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        This requirement often comes at important moments. Missing one stage can delay everything. At Index Office Services, over 25 years of experience helps simplify this process for individuals and businesses across the UAE.
+      </p>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — Two Attestation Directions</h3>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
+          The attestation process differs depending on whether you are attesting Turkish documents for UAE use, or preparing UAE documents for official use in Turkey. Our team guides you through the correct sequence for your specific case.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-127.webp" alt="Turkish Embassy document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Turkish MOFA · UAE Embassy · Document Delivery</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Turkish Embassy attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHEN IS IT REQUIRED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">When Do You Need Turkish Embassy Document Attestation?</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:620px;margin:0 auto;">
+        This requirement shows up in real situations where timing matters. Each case depends on document acceptance. Without proper attestation, progress may stop.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:14px;max-width:820px;margin:0 auto;">
+      {whenNeeded.map((item, i) => (
+        <div style="display:flex;align-items:flex-start;gap:16px;background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:18px 22px;">
+          <div style="width:36px;height:36px;border-radius:9px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">0{i+1}</div>
+          <p style="font-size:0.92rem;color:#4B5563;line-height:1.6;margin:0;padding-top:6px;">{item}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Types of Turkish Documents We Attest</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          We handle attestation for a wide range of document categories. Always check with the requesting authority to confirm exactly what form of attestation they require.
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-1.webp" alt="Turkish Embassy attestation document types" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
+      {docTypes.map(cat => (
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:1.5rem;">{cat.icon}</span>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+            {cat.docs.map(d => (
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="Turkish Embassy attestation process" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Turkish Embassy Attestation Process</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;" class="split-grid">
+      <!-- Turkey to UAE -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div>
+          <div style="background:#2D3748;border-radius:12px;padding:14px 20px;margin-bottom:20px;">
+            <p style="color:#38B2AC;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 2px;">Scenario A</p>
+            <p style="color:#fff;font-size:0.95rem;font-weight:800;margin:0;">Attesting Turkish Documents for UAE</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            {processStepsTurkeyToUAE.map(s => (
+              <div class="step-card">
+                <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+                <div>
+                  <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                  <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- UAE to Turkey + side panels -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div>
+          <div style="background:#2D3748;border-radius:12px;padding:14px 20px;margin-bottom:20px;">
+            <p style="color:#38B2AC;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 2px;">Scenario B</p>
+            <p style="color:#fff;font-size:0.95rem;font-weight:800;margin:0;">UAE Documents for Turkey Use</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            {processStepsUAEToTurkey.map(s => (
+              <div class="step-card">
+                <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+                <div>
+                  <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                  <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TIME AND COST ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Plan Ahead</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Time and Cost of Turkish Embassy Attestation</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Understanding both time and cost helps you plan better and avoid last-minute pressure. Timelines can vary based on document type and approval stages.
+        </p>
+        <div style="border:1px solid #eef0f6;border-radius:16px;overflow:hidden;" class="cost-table">
+          {costTable.map((row, i) => (
+            <div style={`display:grid;grid-template-columns:1fr 1.4fr;gap:0;background:${i % 2 === 0 ? '#F8FAFF' : '#fff'};`}>
+              <div style="padding:13px 16px;border-right:1px solid #eef0f6;border-bottom:1px solid #eef0f6;">
+                <p style="font-size:0.82rem;font-weight:700;color:#1A202C;margin:0;">{row.factor}</p>
+              </div>
+              <div style="padding:13px 16px;border-bottom:1px solid #eef0f6;">
+                <p style="font-size:0.82rem;color:#6B7280;margin:0;line-height:1.5;">{row.details}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-11.webp" alt="Turkish attestation time and cost" style="width:100%;height:460px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Plan With Confidence</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Expert guidance from day one</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMMON MISTAKES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Common Turkish attestation mistakes" style="width:100%;height:400px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Common Errors</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Get expert guidance before you start</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">What Most People Get Wrong</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Small mistakes often create big delays. A better approach is to get expert guidance and avoid repeated effort.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {commonMistakes.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Turkish Embassy Attestation</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      At IndexAUH, we handle everything. This ensures you avoid multiple visits and complex procedures.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;" class="get-started-grid two-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office and Services Turkish Embassy attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office and Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index Office Services?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          The right support makes the process smoother. Delays often begin with small errors — a missed step or incorrect submission can slow everything down. Index Office Services has more than 25 years of experience handling certificate attestation and embassy procedures across the UAE.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Turkish Embassy Attestation</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">PLANNING TO USE YOUR DOCUMENTS IN TURKEY?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Index Office and Services assists with educational, personal, and commercial document legalization across the UAE, helping make the Turkish attestation process simpler and easier to manage.
+      </p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        Contact us now to start your attestation process. We are available on WhatsApp via all of our contact numbers.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);width:fit-content;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          MOB: (+971) 529 300 200
+        </a>
+        <a href="tel:+97126311560" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:700;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;width:fit-content;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          TEL: (+971) 26311560
+        </a>
+        <a href="mailto:info@indexauh.com" style="display:inline-flex;align-items:center;gap:10px;color:#B2F5EA;font-size:0.9rem;text-decoration:none;padding-left:4px;">
+          info@indexauh.com
+        </a>
+      </div>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

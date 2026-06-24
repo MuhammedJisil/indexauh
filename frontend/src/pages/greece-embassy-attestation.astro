@@ -3,11 +3,10 @@ import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const whenNeeded = [
-  "Are you planning to work in the UAE?",
-  "Do you want to sponsor your spouse or children?",
-  "Are you applying for university admission?",
-  "Thinking about setting up business in UAE?",
-  "Handling a legal matter that requires official documents?",
+  "Job seekers attesting Greek degree or birth certificate",
+  "Family applying for spouse visa with marriage certificate",
+  "Students attesting academic documents for higher studies",
+  "Using a UAE issued certificate officially in Greece",
 ]
 
 const docTypes = [
@@ -19,7 +18,7 @@ const docTypes = [
       "Birth certificate attestation",
       "Divorce Certificate Attestation",
       "Death Certificate Attestation",
-      "Police Clearance Certificate Attestation",
+      "PCC Attestation",
       "Medical Certificate Attestation",
       "Single Status Certificate Attestation",
       "Affidavit",
@@ -54,76 +53,74 @@ const docTypes = [
   },
 ]
 
-const processSteps = [
-  { step: "01", title: "Verification and Authentication in Lebanon", desc: "The concerned authority checks your original document to confirm it is genuine. For educational certificates, the university may verify the record first, then the relevant Lebanese ministry adds its official stamp confirming the document is authentic and issued by a recognized institution." },
-  { step: "02", title: "UAE Embassy Legalization in Beirut", desc: "After ministry approval in Lebanon, the document goes to the UAE Embassy in Beirut. The embassy checks the previous stamps and confirms the document is valid for use inside the UAE, connecting the Lebanese authority with the UAE government system." },
-  { step: "03", title: "MOFA Attestation in the UAE", desc: "Once the document reaches the UAE, the Ministry of Foreign Affairs applies the final stamp. MOFA verifies the embassy stamp and confirms the certificate can now be legally used in the UAE." },
+const processToUAE = [
+  { step: "01", title: "Local Authority Attestation in Greece", desc: "The document is first verified by the relevant local authority in Greece." },
+  { step: "02", title: "Greece Ministry of Foreign Affairs Approval", desc: "The Greek Ministry of Foreign Affairs confirms the authenticity of the document." },
+  { step: "03", title: "UAE Embassy Stamp in Greece", desc: "The UAE Embassy in Greece adds its seal to confirm the document can be used in the UAE." },
+  { step: "04", title: "Final MOFA Attestation in UAE", desc: "The UAE Ministry of Foreign Affairs provides the final approval stamp." },
+]
+
+const processToGreece = [
+  { step: "01", title: "Notary Attestation in UAE", desc: "The document is first verified by an authorized notary in the UAE." },
+  { step: "02", title: "UAE Ministry of Foreign Affairs Approval", desc: "The UAE MOFA confirms the authenticity of the document." },
+  { step: "03", title: "Greece Embassy Attestation from Greece Embassy Abu Dhabi", desc: "The Greek consulate Abu Dhabi handles embassy legalization for the document." },
+  { step: "04", title: "Translation into Greek Language When Required", desc: "Documents are translated into Greek where the receiving authority requires it." },
 ]
 
 const docsRequired = [
   "Original certificate",
   "Passport copy",
   "Visa copy in some cases",
-  "Authorization letter for agency processing",
+  "Authorization letter for submission through IndexAUH",
 ]
 
 const timingFactors = [
-  "Type of certificate",
-  "University or ministry verification in Lebanon",
-  "UAE embassy workload",
-  "MOFA appointment availability in UAE",
-  "Accuracy and condition of the document",
-  "Public holidays in Lebanon or UAE",
+  "Document type",
+  "Approval stages involved",
 ]
 
 const feeFactors = [
   "Type of document",
+  "Country of issue",
+  "Translation requirement",
   "Number of certificates",
-  "Embassy charges",
-  "MOFA fees",
-  "Urgent processing request",
 ]
 
 const challenges = [
-  "Submitting laminated certificates",
-  "Spelling errors in names, dates, or passport numbers",
-  "Missing authentication from the Lebanese ministry",
-  "Skipping the UAE embassy Lebanon attestation stage",
-  "Incorrect or unofficial legal translation",
-  "Submitting photocopies instead of original documents",
-  "Providing damaged or unclear certificates",
-  "Mismatch between certificate details and passport information",
-  "Using outdated or amended documents without proper proof",
+  "Submitting damaged certificates",
+  "Missing prior attestation",
+  "Incorrect translation",
+  "Signature mismatch",
 ]
 
 const getStartedSteps = [
-  { step: "01", title: "Contact IndexAUH", desc: "Call us or share your certificate copy through WhatsApp or email. Our team responds quickly." },
-  { step: "02", title: "Document Review", desc: "We check your document and confirm all required stages, including UAE embassy Lebanon attestation and MOFA approval. The timeline and cost are explained clearly." },
-  { step: "03", title: "Secure Processing", desc: "We arrange safe pickup anywhere in the UAE and handle your originals with care." },
-  { step: "04", title: "Final Delivery", desc: "After completing all approvals, we deliver the attested certificate ready for official use." },
+  { step: "01", title: "Contact IndexAUH", desc: "Contact IndexAUH by phone or email." },
+  { step: "02", title: "Send Document for Review", desc: "Send a copy of your document for review." },
+  { step: "03", title: "Receive Confirmation", desc: "Receive confirmation of process, time, and cost." },
+  { step: "04", title: "Submit Original Certificate", desc: "Submit your original certificate." },
+  { step: "05", title: "Collect Completed Document", desc: "Collect your completed document." },
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Our company has served clients in the UAE for over 25 years." },
-  { title: "Strong Procedural Knowledge", desc: "Strong knowledge of embassy and MOFA procedures." },
-  { title: "Clear Communication", desc: "Clear communication at every stage of the process." },
-  { title: "Transparent Pricing", desc: "Transparent cost explanation before we begin." },
-  { title: "Safe Document Handling", desc: "Safe handling of original documents throughout." },
-  { title: "Pickup & Delivery Across UAE", desc: "Pickup and delivery across UAE, with dedicated customer support." },
+  { title: "25+ Years of Experience", desc: "More than 25 years of hands on experience in certificate attestation services across the UAE." },
+  { title: "Deep Knowledge of Requirements", desc: "Our team understands the exact requirements of the Greece Embassy Abu Dhabi and related authorities." },
+  { title: "Careful Document Review", desc: "Every document is reviewed carefully before submission to avoid delays." },
+  { title: "Regular Status Updates", desc: "Regular status updates keep you informed at every stage." },
+  { title: "Support for Both Directions", desc: "Support is available for both directions of attestation." },
+  { title: "Two Convenient Offices", desc: "Offices in Abu Dhabi and Dubai make access easy." },
 ]
 
 const faqs = [
-  { q: "Is Embassy Legalization Mandatory for Lebanese Certificates?", a: "Yes. Embassy approval is required before MOFA stamping." },
-  { q: "Do You Need Original Certificates?", a: "Yes. Authorities require original documents for final attestation." },
-  { q: "Can Someone Else Submit the Documents?", a: "Yes. You can authorize us to handle the full process." },
-  { q: "Is MOFA Attestation Required in UAE?", a: "Yes. Without a MOFA stamp, UAE departments will not accept the document." },
-  { q: "Can someone else submit my document?", a: "Yes. An authorization letter allows a service provider to process it on your behalf." },
+  { q: "Can I attest a laminated document?", a: "No. Laminated documents are usually not accepted for embassy legalization. You may need to remove lamination or get a fresh copy issued before starting the process." },
+  { q: "Do I need to submit my original certificate?", a: "Yes. The original document is required for Greece Embassy Attestation. Photocopies are not accepted for final approval." },
+  { q: "What happens if my document has spelling mistakes?", a: "Errors in name, date of birth, or other details can cause rejection. It is better to correct mistakes from the issuing authority before starting the attestation process." },
+  { q: "Can commercial documents be attested for company use in Greece?", a: "Yes. Business documents can be legalized for official use in Greece after proper approvals from UAE authorities and the Greek embassy." },
 ]
 ---
 
 <BaseLayout
-  title="Lebanon Certificate Attestation in UAE | IndexAUH 25+ Years"
-  description="Lebanon certificate attestation in Dubai by IndexAUH with 25+ years experience. Fast UAE embassy Lebanon attestation. Call today."
+  title="Greece Embassy Attestation in UAE | Indexauh"
+  description="Greece Embassy Attestation in UAE by IndexAUH with 25+ years of experience. Trusted by thousands of clients across UAE."
 >
 
 <style>
@@ -150,12 +147,13 @@ const faqs = [
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
-    .four-col { grid-template-columns: 1fr !important; }
+    .four-col { grid-template-columns: 1fr 1fr !important; }
     .five-col { grid-template-columns: 1fr 1fr !important; }
     .img-first { order: -1 !important; }
     .hero-btns { flex-direction: column !important; align-items: stretch !important; }
     .hero-btns a { text-align: center; justify-content: center; }
     .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+    .process-split { grid-template-columns: 1fr !important; }
   }
 </style>
 
@@ -163,7 +161,7 @@ const faqs = [
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
     src="/images/img-16.webp"
-    alt="Lebanon Certificate Attestation in the UAE"
+    alt="Greece Embassy Attestation in the UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
   <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
@@ -176,10 +174,10 @@ const faqs = [
       <span class="idx-pill">25 Years of Trust</span>
     </div>
     <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
-      LEBANON CERTIFICATE ATTESTATION<br/>IN THE UAE
+      GREECE EMBASSY ATTESTATION<br/>IN THE UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
-      Lebanon Certificate Attestation is the official process that makes your document legally valid here. UAE authorities require proper verification from Lebanon and final approval in the UAE before accepting any foreign certificate. With over 25 years of experience in document legalization across the UAE, our team guides you through Certificate Attestation smoothly and professionally from start to finish.
+      Greece Embassy Attestation is required when you want to use a Greek document in the UAE or a UAE document in Greece. It proves your certificate is genuine and legally accepted. IndexAUH has over 25 years of experience in handling embassy approvals across the UAE. Our team manages the complete process with care, speed, and accuracy.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
@@ -188,42 +186,33 @@ const faqs = [
   </div>
 </section>
 
-<!-- ════ OVERVIEW / WHY NEEDED ════ -->
-<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+<!-- ════ WHEN DO YOU NEED ════ -->
+<section id="details" style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
-    <div>
-      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
-      </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why Do You Need Lebanon Certificate Attestation in UAE?</h2>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
-        You may need it for a job, higher studies, family visa, or business setup. Without correct legalization, your application can face delay or rejection. In all these situations, UAE authorities will not accept your Lebanese certificates without proper legalization.
-      </p>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
-        {whenNeeded.map(item => (
-          <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
-            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-            <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
-          </div>
-        ))}
-      </div>
-      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
-        <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">Missing any stage can lead to serious delays or rejection. If you are planning any of the above, this is the right time to start your attestation process.</p>
-      </div>
-    </div>
-
-    <div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-117.webp" alt="Lebanon document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-115.webp" alt="When to get Greece embassy attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Lebanon Ministry · UAE Embassy Beirut · MOFA UAE</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Lebanon attestation handled end-to-end</p>
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">When You Need Attestation</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visa · Business · Education · Family</p>
         </div>
-        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
-          25+ Years Experience
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Situations Where Greece Embassy Attestation Is Mandatory</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          You need the Greece Embassy Attestation for many reasons. The same applies in reverse — when you plan to use a UAE issued certificate in Greece, the Greece Embassy Attestation makes it valid there. Without proper attestation, authorities will not accept your documents.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whenNeeded.map(item => (
+            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -231,20 +220,20 @@ const faqs = [
 </section>
 
 <!-- ════ DOCUMENT TYPES ════ -->
-<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Lebanese Document Attestation Services</h2>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Greece Embassy Attestation Services</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
           We handle attestation for a wide range of document categories across personal, educational, and commercial needs.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-1.webp" alt="Document types for Lebanon attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <img src="/images/img-1.webp" alt="Document types for Greece attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
           <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
@@ -254,7 +243,7 @@ const faqs = [
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
       {docTypes.map(cat => (
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
             <span style="font-size:1.5rem;">{cat.icon}</span>
             <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
@@ -278,73 +267,95 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="/images/img-7.webp" alt="Lebanon attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-7.webp" alt="Greece attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Step by Step Process of Lebanon Certificate Attestation</h2>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:520px;line-height:1.25;">Greece Embassy Attestation Process</h2>
       </div>
     </div>
 
     <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 32px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;">
-      Understanding the process clearly helps you avoid rejection and delay. Many people face problems because they skip a stage or submit incomplete documents.
+      There are two types of processes based on where your document was issued.
     </p>
 
-    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        {processSteps.map(s => (
-          <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;" class="process-split two-col">
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;">For Greek Issued Documents to Use in UAE</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {processToUAE.map(s => (
+            <div class="step-card">
+              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
             </div>
-          </div>
-        ))}
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;margin-top:4px;">
-          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">Every stage plays a major role in Lebanon Attestation. Missing even one step can result in rejection, which is why proper guidance is important from the beginning.</p>
+          ))}
+        </div>
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:16px;margin-top:14px;">
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.7;margin:0;">After these steps, your document becomes legally valid in the UAE. Greece Embassy Attestation must follow this order to avoid delay or rejection.</p>
         </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:20px;">
-        <!-- Documents Required -->
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">What Documents Do You Need to Start the Process?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Most applications require:</p>
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            {docsRequired.map(d => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;">For UAE Issued Documents to Use in Greece</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {processToGreece.map(s => (
+            <div class="step-card">
+              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
               </div>
-            ))}
-          </div>
-          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Certain documents may require Arabic translation before submission. Our team reviews every paper before starting Lebanon Certificate Attestation in UAE to prevent errors.</p>
+            </div>
+          ))}
         </div>
-
-        <!-- Timing -->
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Lebanon Certificate Attestation Take?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on the type of document and how fast each authority completes its approval. Factors affecting processing time:</p>
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            {timingFactors.map(f => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
-              </div>
-            ))}
-          </div>
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:16px;margin-top:14px;">
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.7;margin:0;">The Greek consulate Abu Dhabi handles embassy legalization for many UAE issued documents. Once completed, your certificate can be used officially in Greece.</p>
         </div>
+      </div>
+    </div>
 
-        <!-- Fees -->
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Much Does Lebanon Certificate Attestation Cost in UAE?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Cost depends on several factors:</p>
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            {feeFactors.map(f => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
-              </div>
-            ))}
-          </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      <!-- Documents Required -->
+      <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">To begin the process, you usually need:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {docsRequired.map(d => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Our team checks your documents before submission to avoid mistakes.</p>
+      </div>
+
+      <!-- Timing -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does It Take?</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on document type and approval stages. Some documents move faster. Commercial documents may take longer due to additional checks. Processing time depends on:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {timingFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Our team gives you a clear timeline after reviewing your certificate, with urgent support for time sensitive cases.</p>
+      </div>
+
+      <!-- Fees -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Greece Embassy Attestation Fees</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">We provide transparent pricing. You will know the full cost before we start. The cost depends on:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {feeFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -356,32 +367,29 @@ const faqs = [
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="two-col">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
-        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">What Mistakes Can Cause Delay or Rejection?</h2>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes That Cause Rejection</h2>
         <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
-          Small errors can create serious problems during the process. We review every document carefully before submission to reduce the risk of delay or rejection.
+          Many delays happen due to simple errors. Greece Embassy Attestation must follow correct steps. We review everything carefully to prevent rejection.
         </p>
-        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);">
-          <img
-            src="/images/img-40.webp"
-            alt="Document rejection mistakes to avoid"
-            style="width:100%;height:320px;object-fit:cover;display:block;"
-          />
-          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
-          <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-            <p style="color:#fff;font-size:0.88rem;font-weight:700;margin:0;">Avoid these mistakes for a smooth attestation process</p>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {challenges.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        {challenges.map(c => (
-          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
-            <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
-            <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
-          </div>
-        ))}
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-16.webp" alt="Common mistakes in attestation" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Rejection</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+        </div>
       </div>
     </div>
   </div>
@@ -393,12 +401,12 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
     <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
-    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How Can You Begin with Lebanon Certificate Attestation?</h2>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Greece Embassy Attestation?</h2>
     <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
-      Starting is simple. Follow these steps to begin your Lebanon Certificate Attestation with IndexAUH.
+      Our team handles the full Greece Embassy Attestation process while you stay stress free.
     </p>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;" class="four-col">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;" class="three-col">
       {getStartedSteps.map(s => (
         <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
           <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
@@ -417,7 +425,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-3.webp" alt="IndexAUH Lebanon attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.webp" alt="IndexAUH Greece attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
@@ -428,7 +436,7 @@ const faqs = [
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Experience makes a major difference in certificate attestation processing. Our company has served clients in the UAE for over 25 years.
+          IndexAUH brings more than 25 years of hands on experience in certificate attestation services across the UAE. With the right experts managing each step, Greece Embassy Attestation becomes smooth and stress free from start to finish.
         </p>
       </div>
     </div>
@@ -451,7 +459,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:820px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:44px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
-      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">What Questions Do Clients Usually Ask?</h2>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;">
       {faqs.map((f, i) => (
@@ -478,9 +486,9 @@ const faqs = [
 
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
-      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">HOW CAN YOU CONTACT US TODAY?</h2>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">START YOUR GREECE EMBASSY ATTESTATION TODAY</h2>
       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
-        Start your Lebanon Certificate Attestation with expert guidance from our experienced team.
+        Contact us now and get a quick quote from our attestation specialists.
       </p>
       <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
         <div>

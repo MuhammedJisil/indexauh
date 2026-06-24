@@ -1,0 +1,551 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const heroPills = ["25+ Years Experience","All Document Types","Embassy & MOFA Approved","UAE Compliance Experts"]
+
+const whoNeeds = [
+  "Professionals moving to the UAE for work",
+  "Students applying for education or equivalency",
+  "Married couples applying for family visas",
+  "Parents sponsoring children",
+  "Business owners submitting commercial documents",
+  "Companies expanding operations in the UAE",
+]
+
+const whyRequired = [
+  { title:"Employment and Work Visas" },
+  { title:"Residence and Family Sponsorship" },
+  { title:"Education and Equivalency Approvals" },
+  { title:"Business and Legal Activities" },
+  { title:"Government and Immigration Submissions" },
+]
+
+const serviceCategories = [
+  { title:"Personal Documents Attestation", image:"/images/img-16.webp", items:["Birth certificate attestation","Marriage certificate attestation","Divorce certificate attestation","Death certificate attestation","Police Clearance Certificate Attestation UAE","Medical Certificate Attestation","Affidavits and declarations"] },
+  { title:"Educational Certificate Attestation", image:"/images/img-52.webp", items:["Degree certificate attestation","Diploma certificate attestation","Master's and PhD certificates","Academic transcripts","School leaving certificates"] },
+  { title:"Commercial Documents Attestation", image:"/images/img-1.webp", items:["Power of Attorney","Memorandum and Articles of Association","Board resolutions","Commercial invoices","Company registration documents","Business agreements"] },
+]
+
+const generalProcedure = [
+  { num:"01", title:"Local Verification or Notarization", desc:"This may involve Notary Public verification, solicitor certification, local government authentication, or issuing authority verification, confirming the document is genuine and legally valid at the initial level." },
+  { num:"02", title:"Regional, State, or Relevant Department Authentication", desc:"The document is submitted to the responsible authority within the issuing country, such as education departments, home or civil departments, chambers of commerce, or state authorities." },
+  { num:"03", title:"National Foreign Affairs Authentication", desc:"The document moves to the national foreign affairs authority, such as the Ministry of Foreign Affairs, Ministry of External Affairs, Department of Foreign Affairs, or Foreign Office." },
+  { num:"04", title:"UAE Embassy or UAE Consulate Attestation", desc:"The document is submitted to the UAE Embassy or UAE Consulate in the issuing country, where UAE authorities verify the previous attestations." },
+  { num:"05", title:"MOFA Attestation in the UAE", desc:"The final step is attestation from the UAE Ministry of Foreign Affairs, confirming official acceptance of the document inside the UAE." },
+]
+
+const indiaProcedure = [
+  { num:"01", title:"Document Verification in India", desc:"The document is first checked for clarity, originality, and issuing authority details to ensure it is eligible for attestation." },
+  { num:"02", title:"State Level Attestation in India", desc:"Educational documents go to the education department of the issuing state, and personal documents go to the home department." },
+  { num:"03", title:"MEA Attestation in India", desc:"After state approval, the document is submitted to the Ministry of External Affairs in India for national level authentication." },
+  { num:"04", title:"UAE Embassy Attestation in India", desc:"Once MEA approval is completed, the document is submitted to the UAE Embassy in India, which verifies and stamps it for use in the UAE." },
+  { num:"05", title:"MOFA Attestation in the UAE", desc:"After reaching the UAE, the document is submitted to the Ministry of Foreign Affairs, confirming acceptance by UAE authorities." },
+]
+
+const procedureTabs = [
+  { key:"general", label:"General Procedure", steps: generalProcedure },
+  { key:"india", label:"Procedure for India", steps: indiaProcedure },
+]
+
+const feeFactors = ["Type of document","Country where the document was issued","Embassy charges","MOFA requirements","Processing urgency"]
+const timeFactors = ["Document category","Embassy workload","Required verification steps","MOFA approval timelines"]
+
+const digitalCapabilities = ["Online submission","QR code verification","Digitally signed approvals","Status tracking through official portals"]
+const digitalBenefits = ["Faster processing","Less physical paperwork","Reduced risk of document loss","Fraud prevention via QR verification","Greater transparency","Environment friendly system"]
+
+const mistakes = ["Submitting laminated documents","Skipping required prior attestations","Choosing the wrong authority","Incorrect document order","Incomplete supporting papers"]
+
+const gettingStarted = [
+  { num:"01", title:"Contact Us", desc:"Reach out to Index office and services by phone, email, or our website. Tell us about your documents and what you need." },
+  { num:"02", title:"Share Your Documents", desc:"Send copies or details of your documents. We check they are complete and ready for attestation." },
+  { num:"03", title:"We Plan the Attestation Route", desc:"We decide the correct steps for your document, including notarization, state or home department verification, embassy attestation, and MOFA approval." },
+  { num:"04", title:"Embassy and MOFA Coordination", desc:"We submit your documents and follow up with the UAE embassy and MOFA. You get updates at every stage." },
+  { num:"05", title:"Get Your Attested Documents", desc:"Your documents are returned to you fully stamped and ready for use in the UAE, for work, study, family visas, or business." },
+  { num:"06", title:"Ongoing Support", desc:"We continue to help after the documents are delivered. You can ask questions and get advice for future attestations." },
+]
+
+const whyUs = [
+  { icon:"🎯", label:"Clear guidance." },
+  { icon:"📋", label:"Correct documentation flow." },
+  { icon:"🇦🇪", label:"UAE compliance knowledge." },
+  { icon:"🔒", label:"Secure handling of certificates." },
+  { icon:"🤝", label:"Dedicated support from start to finish." },
+]
+
+const faqs = [
+  { q:"Do all UAE visas require embassy attestation?", a:"Embassy attestation is mainly required for employment, family sponsorship, and higher studies. Tourist and short visit visas usually do not need it. The requirement connects to the purpose of your document in the UAE." },
+  { q:"How should you proceed after a document rejection?", a:"Most rejections happen due to missing stamps or incorrect formatting. Correct the issue first, then submit the document again for approval. A careful review before submission helps avoid repeat problems." },
+  { q:"Why does the issuing country affect the process?", a:"Each country follows its own verification pattern before the UAE Embassy stamp. Authorities check documents based on their origin, which is why the steps vary from one country to another." },
+  { q:"Are unclear or damaged certificates accepted for attestation?", a:"Authorities expect clean and readable documents. Torn edges, faded prints, or overwritten details often lead to rejection. Submitting a fresh and clear copy improves approval chances." },
+  { q:"For which type of stay is embassy attestation commonly required?", a:"Long term residence, employment, and legal procedures usually require attestation. Short visits for tourism rarely need this process." },
+  { q:"Which business documents usually need embassy attestation?", a:"Power of Attorney, board resolutions, and company agreements often require attestation before business setup or expansion in the UAE. Authorities verify these papers carefully." },
+  { q:"At what stage should the attestation process begin?", a:"Start early in your planning stage. Visa processing and official approvals take time. Early preparation reduces stress and keeps everything on track." },
+  { q:"How does expert support make the process easier?", a:"Attestation rules differ across countries. Expert guidance ensures every step is completed correctly, preventing delays and unnecessary rejection." },
+]
+---
+
+<BaseLayout title="Embassy Attestation in UAE | Attestation Services UAE"
+description="Embassy attestation in UAE by Index Office and Services with 25 years of experience. Trusted support for all documents. Call now."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  .step-card { display:flex; align-items:flex-start; gap:18px; padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .step-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  .purpose-card { padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .purpose-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  .why-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:14px; padding:22px; display:flex; align-items:flex-start; gap:14px; transition:background 0.2s; }
+  .why-card:hover { background:rgba(255,255,255,0.14); }
+
+  .tab-btn { padding:9px 22px; border-radius:9999px; font-size:0.83rem; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; }
+  .tab-btn.active { background:#2D3748; color:#fff; }
+  .tab-btn:not(.active) { background:#F0FFFE; color:#2D3748; border:1px solid #B2F5EA; }
+
+  .fact-item { display:flex; align-items:center; gap:8px; padding:10px 14px; background:#fff; border:1px solid #e0e7ef; border-radius:10px; font-size:0.98rem; color:#1A202C; font-weight:500; }
+  .fact-check { width:20px; height:20px; border-radius:50%; background:#38B2AC; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+  .faq-item { border:1px solid #eef0f6; border-radius:14px; padding:6px 22px; background:#fff; transition:border-color 0.2s; }
+  .faq-item:hover { border-color:#B2F5EA; }
+  .faq-item summary { padding:16px 0; cursor:pointer; font-weight:700; color:#1A202C; font-size:1rem; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content:"+"; font-size:1.4rem; font-weight:400; color:#38B2AC; flex-shrink:0; transition:transform 0.2s; }
+  .faq-item[open] summary::after { transform:rotate(45deg); }
+  .faq-item p { color:#4B5563; font-size:0.98rem; line-height:1.75; margin:0 0 18px; }
+
+  .idx-form input,.idx-form select,.idx-form textarea { width:100%; border:1px solid #e5e7eb; border-radius:10px; padding:11px 14px; font-size:1rem; color:#374151; outline:none; font-family:inherit; background:#fff; box-sizing:border-box; }
+  .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus { border-color:#38B2AC; box-shadow:0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize:none; }
+  .idx-submit { width:100%; background:#2D3748; color:#fff; font-weight:700; padding:13px; border-radius:10px; border:none; cursor:pointer; font-size:0.95rem; letter-spacing:0.04em; transition:background 0.2s; }
+  .idx-submit:hover { background:#1A202C; }
+
+  @media(max-width:900px){
+    .hero-grid { flex-direction:column !important; }
+    .two-col { flex-direction:column !important; }
+    .two-col > div { width:100% !important; }
+  }
+  @media(max-width:640px){
+    .steps-grid, .purpose-grid, .facts-grid { grid-template-columns:1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Embassy Attestation UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.86) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:center;">
+      {heroPills.map(p => <span class="idx-pill">{p}</span>)}
+    </div>
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;font-size:0.75rem;margin:0 0 14px;">Attestation Services</p>
+    <h1 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      Embassy Attestation<br/>in <span style="color:#38B2AC;">UAE</span>
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 16px;max-width:640px;">
+      Embassy attestation in UAE confirms that a document issued in another country is genuine and acceptable for use in the UAE — required before visas, employment, education, family sponsorship, or business activities are approved.
+    </p>
+    <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin:0 auto 32px;max-width:600px;">
+      With over 25+ years of experience, Index Office and Services handles the process clearly and correctly from the start, so your documents move without confusion.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        (+971) 529 300 200
+      </a>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">
+        Start Attestation &rarr;
+      </a>
+    </div>
+    <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Years of Experience</p>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">3</p>
+        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Document Categories Covered</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:-60px;right:-60px;width:400px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex-shrink:0;width:420px;">
+        <div style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
+          <img src="/images/img-113.webp" alt="Embassy attestation UAE" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(26,32,44,0.72));"></div>
+          <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+            <p style="color:#81E6D9;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Legally Recognised</p>
+            <p style="color:#fff;font-size:0.95rem;font-weight:700;margin:0;">Full legalization chain handled end-to-end</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What is Embassy Attestation?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Many people struggle with this process because every document follows a fixed order and embassy rules are strict. A small mistake can delay the entire application.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">Index office and services helps. Our team understands embassy requirements, document flow, and UAE compliance rules, so your documents move without confusion.</p>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px 20px;">
+          <p style="color:#1A202C;font-size:1rem;font-weight:600;margin:0 0 4px;">Index Office and Services</p>
+          <p style="color:#4B5563;font-size:0.98rem;line-height:1.7;margin:0;">Over 25+ years of experience in the UAE attestation field, handled clearly and correctly from the start.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHO NEEDS IT ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Who It's For</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Who Needs UAE Embassy Attestation?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Embassy attestation in UAE is required for many people and businesses, including:</p>
+        <div class="facts-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+          {whoNeeds.map(item => (
+            <div class="fact-item">
+              <span class="fact-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <img src="/images/img-7.webp" alt="People who need UAE embassy attestation" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY REQUIRED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why It Matters</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0;">Why Embassy Attestation Is Required in the UAE?</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:14px auto 0;max-width:680px;">UAE authorities will not approve foreign documents unless they are properly verified. Embassy attestation proves that your certificate is real and approved by official authorities. This requirement applies to:</p>
+    </div>
+    <div class="purpose-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      {whyRequired.map(p => (
+        <div class="purpose-card" style="text-align:center;">
+          <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0;">{p.title}</p>
+        </div>
+      ))}
+    </div>
+    <p style="color:#6B7280;font-size:0.95rem;text-align:center;margin:28px 0 0;">Without embassy attestation, documents are rejected even when they are original.</p>
+  </div>
+</section>
+
+<!-- ════ SERVICES WE PROVIDE ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What We Cover</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">UAE Embassy Attestation Services We Provide</h2>
+      <p style="color:#6B7280;font-size:1.02rem;max-width:680px;margin:0 auto;">IndexAUH offers complete UAE embassy attestation services for all document categories.</p>
+    </div>
+    <div class="purpose-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      {serviceCategories.map(s => (
+        <div class="purpose-card" style="padding:0;overflow:hidden;">
+          <img src={s.image} alt={s.title} style="width:100%;height:150px;object-fit:cover;display:block;" />
+          <div style="padding:22px;">
+            <p style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 14px;">{s.title}</p>
+            <ul style="margin:0;padding-left:18px;color:#6B7280;font-size:0.92rem;line-height:1.85;">
+              {s.items.map(i => <li>{i}</li>)}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCEDURE TABS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Step by Step</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Procedure for UAE Embassy Attestation</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto 24px;max-width:680px;">The exact departments involved may differ from one country to another, but the overall structure remains similar worldwide — followed in countries such as India, the USA, the UK, the Philippines, Canada, and Australia.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;" id="procTabs">
+        {procedureTabs.map((t, i) => (
+          <button class={`tab-btn ${i === 0 ? 'active' : ''}`} data-tab={t.key}>{t.label}</button>
+        ))}
+      </div>
+    </div>
+
+    {procedureTabs.map((t, i) => (
+      <div id={`tab-${t.key}`} class="steps-grid" style={`display:${i === 0 ? 'grid' : 'none'};grid-template-columns:repeat(2,1fr);gap:16px;`}>
+        {t.steps.map(s => (
+          <div class="step-card">
+            <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+            <div>
+              <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
+              <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ════ FEES & TIME ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Plan Ahead</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0 0 14px;">UAE Embassy Attestation Fees and Processing Time</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto;max-width:740px;">There is no fixed price for all documents, and processing time depends on the document type and issuing country.</p>
+    </div>
+    <div class="two-col" style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
+      <div style="flex:1;min-width:260px;background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:24px;">
+        <p style="font-weight:700;color:#1A202C;margin:0 0 14px;font-size:1rem;">Cost Varies Based On:</p>
+        <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.95rem;line-height:1.9;">
+          {feeFactors.map(f => <li>{f}</li>)}
+        </ul>
+      </div>
+      <div style="flex:1;min-width:260px;background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:24px;">
+        <p style="font-weight:700;color:#1A202C;margin:0 0 14px;font-size:1rem;">Processing Time Is Affected By:</p>
+        <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.95rem;line-height:1.9;">
+          {timeFactors.map(t => <li>{t}</li>)}
+        </ul>
+      </div>
+    </div>
+    <p style="color:#6B7280;font-size:0.98rem;line-height:1.8;max-width:900px;margin:0 auto;text-align:center;">The fee differs for educational, personal, and commercial certificates. With proper planning, delays can be reduced.</p>
+  </div>
+</section>
+
+<!-- ════ DIGITAL ATTESTATION ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Smart Government</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Digital Attestation</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto;max-width:740px;">The UAE is moving toward smart government systems and paperless verification.</p>
+    </div>
+    <div class="two-col" style="display:flex;gap:24px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:260px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:24px;">
+        <p style="font-weight:700;color:#1A202C;margin:0 0 14px;font-size:1rem;">Digital Attestation Allows:</p>
+        <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.95rem;line-height:1.9;">
+          {digitalCapabilities.map(c => <li>{c}</li>)}
+        </ul>
+      </div>
+      <div style="flex:1;min-width:260px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:24px;">
+        <p style="font-weight:700;color:#1A202C;margin:0 0 14px;font-size:1rem;">Benefits of Digital Attestation:</p>
+        <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.95rem;line-height:1.9;">
+          {digitalBenefits.map(b => <li>{b}</li>)}
+        </ul>
+      </div>
+    </div>
+    <p style="color:#6B7280;font-size:0.95rem;text-align:center;margin:24px 0 0;">Where available, digital processes reduce time and complexity significantly.</p>
+  </div>
+</section>
+
+<!-- ════ MOFA vs EMBASSY / COMMON MISTAKES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:24px;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;background:#fff;border:1px solid #eef0f6;border-radius:18px;padding:28px;">
+        <h3 style="font-size:1.25rem;font-weight:800;color:#1A202C;margin:0 0 12px;">MOFA Attestation vs UAE Embassy Attestation</h3>
+        <p style="color:#4B5563;font-size:0.98rem;line-height:1.8;margin:0 0 10px;">UAE embassy attestation is done outside the UAE. It confirms the authenticity of a foreign document.</p>
+        <p style="color:#4B5563;font-size:0.98rem;line-height:1.8;margin:0 0 10px;">MOFA attestation is done inside the UAE. It confirms acceptance by UAE authorities.</p>
+        <p style="color:#6B7280;font-size:0.92rem;margin:0;">In most cases, embassy attestation comes first, followed by MOFA attestation.</p>
+      </div>
+
+      <div style="flex:1;min-width:280px;background:#fff;border:1px solid #eef0f6;border-radius:18px;padding:28px;">
+        <h3 style="font-size:1.25rem;font-weight:800;color:#1A202C;margin:0 0 14px;">Common Mistakes to Avoid</h3>
+        <ul style="margin:0 0 12px;padding-left:18px;color:#4B5563;font-size:0.98rem;line-height:1.9;">
+          {mistakes.map(m => <li>{m}</li>)}
+        </ul>
+        <p style="color:#6B7280;font-size:0.92rem;margin:0;">Avoiding these mistakes saves time and cost.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW TO GET STARTED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Get Started</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Embassy Attestation in UAE?</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto;max-width:680px;">Starting embassy attestation in UAE with Index office and services is simple. We guide you at every step so you do not need to visit multiple offices.</p>
+    </div>
+    <div class="two-col" style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;">
+      <div style="flex-shrink:0;width:340px;">
+        <img src="/images/img-54.webp" alt="Getting started with embassy attestation" style="width:100%;height:420px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+      </div>
+      <div style="flex:1;min-width:300px;">
+        <div class="steps-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+          {gettingStarted.map(s => (
+            <div class="step-card">
+              <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+              <div>
+                <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    <p style="color:#6B7280;font-size:0.95rem;text-align:center;margin:28px 0 0;">This guided approach helps people complete the process without confusion.</p>
+  </div>
+</section>
+
+<!-- ════ WHY US ════ -->
+<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 14px;">Why Choose IndexAUH?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Index office and services has over 25+ years of experience handling certificate attestation in UAE. Our expertise comes from working closely with embassies, authorities, and UAE institutions for decades.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whyUs.map(w => (
+            <div class="why-card">
+              <span style="font-size:1.4rem;flex-shrink:0;">{w.icon}</span>
+              <p style="color:#CBD5E0;font-size:0.83rem;line-height:1.65;margin:0;">{w.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <div style="position:relative;">
+          <img src="/images/img-3.webp" alt="IndexAUH team" style="width:100%;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+          <div style="position:absolute;bottom:20px;left:-16px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
+            <p style="font-size:1.8rem;font-weight:900;margin:0;line-height:1;">25+</p>
+            <p style="font-size:0.9rem;margin:4px 0 0;opacity:0.9;">Years of Trust</p>
+          </div>
+          <div style="position:absolute;top:20px;right:-16px;background:#fff;color:#1A202C;padding:12px 16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.15);font-weight:700;font-size:0.75rem;text-align:center;line-height:1.5;">Experience<br/>Matters</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">FAQ</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      {faqs.map(f => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT CTA ════ -->
+<section id="contact" style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get Expert Help Today</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">For Embassy Attestation in the UAE</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Embassy attestation in UAE does not have to be confusing. With the right guidance, documents move smoothly and approvals happen faster. Contact Index office and services to begin your attestation process with clarity and confidence.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <p style="color:#81E6D9;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 6px;">Abu Dhabi Office</p>
+          <p style="color:#fff;margin:0;font-size:0.95rem;">Mob: (+971) 529300200 &nbsp;|&nbsp; Tel: (+971) 26311560</p>
+        </div>
+        <div>
+          <p style="color:#81E6D9;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 6px;">Dubai Office</p>
+          <p style="color:#fff;margin:0;font-size:0.95rem;">Mob: (+971) 529300200 &nbsp;|&nbsp; Tel: (+971) 42279916</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px;">
+        <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:700;padding:13px 24px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);width:fit-content;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          (+971) 529300200
+        </a>
+        <a href="mailto:info@indexauh.com" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:600;padding:13px 24px;border-radius:9999px;text-decoration:none;width:fit-content;">
+          info@indexauh.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  const tabs = document.querySelectorAll('#procTabs .tab-btn');
+  const panelIds = Array.from(tabs).map(t => (t as HTMLElement).dataset.tab);
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = (tab as HTMLElement).dataset.tab;
+      panelIds.forEach(id => {
+        const el = document.getElementById('tab-' + id) as HTMLElement;
+        if (el) el.style.display = id === target ? 'grid' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

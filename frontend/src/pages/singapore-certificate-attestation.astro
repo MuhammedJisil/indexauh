@@ -2,17 +2,24 @@
 import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const whenNeeded = [
-  "Are you planning to work in the UAE?",
-  "Do you want to sponsor your spouse or children?",
-  "Are you applying for university admission?",
-  "Thinking about setting up business in UAE?",
-  "Handling a legal matter that requires official documents?",
+const whoNeeds = [
+  "Employment visa processing",
+  "Labour card and work permit",
+  "Family visa or spouse sponsorship",
+  "Higher education admissions",
+  "Professional license applications",
+  "Business registration and commercial approvals",
+]
+
+const mandatory = [
+  "UAE government departments ask for attested documents to confirm they are genuine",
+  "This protects the country from fake certificates",
+  "Final approval from the Ministry of Foreign Affairs in the UAE makes your certificate officially valid",
 ]
 
 const docTypes = [
   {
-    category: "Personal Documents",
+    category: "Personal Documents Attestation",
     icon: "👤",
     docs: [
       "Marriage certificate attestation",
@@ -26,7 +33,7 @@ const docTypes = [
     ],
   },
   {
-    category: "Educational Documents",
+    category: "Educational Certificate Attestation",
     icon: "🎓",
     docs: [
       "Degree Certificate Attestation",
@@ -40,7 +47,7 @@ const docTypes = [
     ],
   },
   {
-    category: "Commercial Documents",
+    category: "Commercial Documents Attestation",
     icon: "⚖️",
     docs: [
       "Power of Attorney Attestation",
@@ -54,26 +61,40 @@ const docTypes = [
   },
 ]
 
-const processSteps = [
-  { step: "01", title: "Verification and Authentication in Lebanon", desc: "The concerned authority checks your original document to confirm it is genuine. For educational certificates, the university may verify the record first, then the relevant Lebanese ministry adds its official stamp confirming the document is authentic and issued by a recognized institution." },
-  { step: "02", title: "UAE Embassy Legalization in Beirut", desc: "After ministry approval in Lebanon, the document goes to the UAE Embassy in Beirut. The embassy checks the previous stamps and confirms the document is valid for use inside the UAE, connecting the Lebanese authority with the UAE government system." },
-  { step: "03", title: "MOFA Attestation in the UAE", desc: "Once the document reaches the UAE, the Ministry of Foreign Affairs applies the final stamp. MOFA verifies the embassy stamp and confirms the certificate can now be legally used in the UAE." },
+const processRoutes = [
+  {
+    step: "01",
+    title: "Notary & Singapore Authentication",
+    desc: "Your document must first receive local verification in Singapore before it can move on to embassy and UAE stages.",
+    steps: [
+      "Notary or initial verification in Singapore, confirming the authenticity of the certificate",
+      "Singapore Academy of Law authentication, an important step in attestation of documents in Singapore",
+    ],
+  },
+  {
+    step: "02",
+    title: "UAE Embassy & MOFA Attestation",
+    desc: "Once authenticated in Singapore, your document is verified for use in the UAE and given final approval.",
+    steps: [
+      "UAE Embassy attestation in Singapore, where the document is verified for use in the UAE",
+      "UAE Ministry of Foreign Affairs attestation once the document reaches the UAE, giving final approval so you can use your certificate officially",
+    ],
+  },
 ]
 
-const docsRequired = [
-  "Original certificate",
-  "Passport copy",
-  "Visa copy in some cases",
-  "Authorization letter for agency processing",
+const emirates = [
+  "Dubai",
+  "Abu Dhabi",
+  "Sharjah",
+  "Ajman",
+  "Ras Al Khaimah",
+  "Fujairah",
 ]
 
 const timingFactors = [
-  "Type of certificate",
-  "University or ministry verification in Lebanon",
-  "UAE embassy workload",
-  "MOFA appointment availability in UAE",
-  "Accuracy and condition of the document",
-  "Public holidays in Lebanon or UAE",
+  "Normal processing may take several working days",
+  "Express service is available for urgent cases",
+  "Educational certificates can take slightly longer due to verification requirements in Singapore",
 ]
 
 const feeFactors = [
@@ -81,49 +102,43 @@ const feeFactors = [
   "Number of certificates",
   "Embassy charges",
   "MOFA fees",
-  "Urgent processing request",
+  "Urgency of processing",
 ]
 
 const challenges = [
-  "Submitting laminated certificates",
-  "Spelling errors in names, dates, or passport numbers",
-  "Missing authentication from the Lebanese ministry",
-  "Skipping the UAE embassy Lebanon attestation stage",
-  "Incorrect or unofficial legal translation",
-  "Submitting photocopies instead of original documents",
-  "Providing damaged or unclear certificates",
-  "Mismatch between certificate details and passport information",
-  "Using outdated or amended documents without proper proof",
+  "Incorrect notarisation",
+  "Missing authentication from Singapore authorities",
+  "Embassy rejection due to incomplete documents",
+  "Delay at MOFA stage",
 ]
 
 const getStartedSteps = [
-  { step: "01", title: "Contact IndexAUH", desc: "Call us or share your certificate copy through WhatsApp or email. Our team responds quickly." },
-  { step: "02", title: "Document Review", desc: "We check your document and confirm all required stages, including UAE embassy Lebanon attestation and MOFA approval. The timeline and cost are explained clearly." },
-  { step: "03", title: "Secure Processing", desc: "We arrange safe pickup anywhere in the UAE and handle your originals with care." },
-  { step: "04", title: "Final Delivery", desc: "After completing all approvals, we deliver the attested certificate ready for official use." },
+  { step: "01", title: "Contact Us", desc: "Call or send a copy of your certificate through WhatsApp or email." },
+  { step: "02", title: "Document Review", desc: "Our experts check your document and confirm the exact process for Singapore Certificate Attestation." },
+  { step: "03", title: "Processing and Updates", desc: "We handle every stage including authentication, embassy approval, and MOFA attestation. You receive regular updates." },
+  { step: "04", title: "Safe Delivery", desc: "We return your completed document securely to your location in the UAE." },
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Our company has served clients in the UAE for over 25 years." },
-  { title: "Strong Procedural Knowledge", desc: "Strong knowledge of embassy and MOFA procedures." },
-  { title: "Clear Communication", desc: "Clear communication at every stage of the process." },
-  { title: "Transparent Pricing", desc: "Transparent cost explanation before we begin." },
-  { title: "Safe Document Handling", desc: "Safe handling of original documents throughout." },
-  { title: "Pickup & Delivery Across UAE", desc: "Pickup and delivery across UAE, with dedicated customer support." },
+  { title: "25+ Years of Expertise", desc: "Over 25+ years of expertise in handling Singapore Certificate Attestation and other international documents." },
+  { title: "Deep Procedural Knowledge", desc: "Deep knowledge of Singapore and UAE procedures." },
+  { title: "Clear Communication", desc: "Clear communication at every stage of your attestation." },
+  { title: "Fast Processing Support", desc: "Fast processing support to keep your timeline on track." },
+  { title: "Dedicated Team Assistance", desc: "Dedicated team assistance throughout your case." },
+  { title: "Offices in Dubai & Abu Dhabi", desc: "Offices in Dubai and Abu Dhabi for convenient access." },
 ]
 
 const faqs = [
-  { q: "Is Embassy Legalization Mandatory for Lebanese Certificates?", a: "Yes. Embassy approval is required before MOFA stamping." },
-  { q: "Do You Need Original Certificates?", a: "Yes. Authorities require original documents for final attestation." },
-  { q: "Can Someone Else Submit the Documents?", a: "Yes. You can authorize us to handle the full process." },
-  { q: "Is MOFA Attestation Required in UAE?", a: "Yes. Without a MOFA stamp, UAE departments will not accept the document." },
-  { q: "Can someone else submit my document?", a: "Yes. An authorization letter allows a service provider to process it on your behalf." },
+  { q: "Is Apostille enough for UAE use?", a: "No. UAE requires full attestation including embassy and MOFA approval." },
+  { q: "Do I need original documents?", a: "Yes. Authorities require the original certificate." },
+  { q: "Can someone else submit my documents?", a: "Yes. Our team can handle the complete process on your behalf." },
+  { q: "Can I track my document status?", a: "Yes. We provide regular updates until completion." },
 ]
 ---
 
 <BaseLayout
-  title="Lebanon Certificate Attestation in UAE | IndexAUH 25+ Years"
-  description="Lebanon certificate attestation in Dubai by IndexAUH with 25+ years experience. Fast UAE embassy Lebanon attestation. Call today."
+  title="Singapore Certificate Attestation in UAE | Index Office Services"
+  description="Singapore Certificate Attestation in UAE by Index office services with 25+ years of experience. Fast, secure process with clear guidance."
 >
 
 <style>
@@ -131,6 +146,8 @@ const faqs = [
   .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
   .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
   .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .route-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; transition: all 0.25s; }
+  .route-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
   .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
   .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
   .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
@@ -138,12 +155,12 @@ const faqs = [
   .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
   .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .emirate-pill { background: #F0FFFE; border: 1px solid #B2F5EA; color: #1A202C; font-weight: 700; font-size: 0.85rem; padding: 10px 18px; border-radius: 9999px; }
 
   .split-grid { display: grid !important; }
   .three-col { display: grid !important; }
   .two-col { display: grid !important; }
   .four-col { display: grid !important; }
-  .five-col { display: grid !important; }
 
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
@@ -151,11 +168,8 @@ const faqs = [
     .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
     .four-col { grid-template-columns: 1fr !important; }
-    .five-col { grid-template-columns: 1fr 1fr !important; }
-    .img-first { order: -1 !important; }
     .hero-btns { flex-direction: column !important; align-items: stretch !important; }
     .hero-btns a { text-align: center; justify-content: center; }
-    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
 
@@ -163,7 +177,7 @@ const faqs = [
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
     src="/images/img-16.webp"
-    alt="Lebanon Certificate Attestation in the UAE"
+    alt="Singapore Certificate Attestation in the UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
   <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
@@ -171,24 +185,24 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
     <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Singapore Attestation</span>
       <span class="idx-pill">MOFA Attestation</span>
-      <span class="idx-pill">Embassy Attestation</span>
       <span class="idx-pill">25 Years of Trust</span>
     </div>
     <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
-      LEBANON CERTIFICATE ATTESTATION<br/>IN THE UAE
+      SINGAPORE CERTIFICATE<br/>ATTESTATION IN UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
-      Lebanon Certificate Attestation is the official process that makes your document legally valid here. UAE authorities require proper verification from Lebanon and final approval in the UAE before accepting any foreign certificate. With over 25 years of experience in document legalization across the UAE, our team guides you through Certificate Attestation smoothly and professionally from start to finish.
+      Moving to the UAE for a job, family visa, higher studies, or business setup requires proper document approval. Singapore Certificate Attestation is the legal process that makes your Singapore-issued documents valid in the UAE. Without this approval, authorities will not accept your certificate. We are proud to be one of the best attestation service providers in the UAE with over 25+ years of experience.
     </p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
       <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
     </div>
   </div>
 </section>
 
-<!-- ════ OVERVIEW / WHY NEEDED ════ -->
+<!-- ════ OVERVIEW / WHAT IS IT ════ -->
 <section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
@@ -197,32 +211,39 @@ const faqs = [
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
       </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why Do You Need Lebanon Certificate Attestation in UAE?</h2>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Situations That Require Singapore Certificate Attestation</h2>
       <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
-        You may need it for a job, higher studies, family visa, or business setup. Without correct legalization, your application can face delay or rejection. In all these situations, UAE authorities will not accept your Lebanese certificates without proper legalization.
+        UAE government departments ask for attested documents to confirm they are genuine. This protects the country from fake certificates. Singapore Certificate Attestation confirms that your document is real and legally accepted. UAE authorities check every stage carefully. Without proper attestation, your application can face rejection or delay.
       </p>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
-        {whenNeeded.map(item => (
-          <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
-            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-            <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+      <p style="color:#2D3748;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 10px;">Important to know:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+        {mandatory.map(item => (
+          <div style="display:flex;align-items:center;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:10px;padding:10px 14px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;">→</span>
+            <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;">{item}</p>
           </div>
         ))}
       </div>
-      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
-        <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">Missing any stage can lead to serious delays or rejection. If you are planning any of the above, this is the right time to start your attestation process.</p>
+      <p style="color:#2D3748;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 10px;">You may need this service for:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        {whoNeeds.map(item => (
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:10px 14px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;">{item}</p>
+          </div>
+        ))}
       </div>
     </div>
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-117.webp" alt="Lebanon document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-123.webp" alt="Singapore certificate attestation UAE" style="width:100%;height:480px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Lebanon Ministry · UAE Embassy Beirut · MOFA UAE</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Lebanon attestation handled end-to-end</p>
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Singapore Academy of Law · UAE Embassy · MOFA</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Singapore attestation handled end-to-end</p>
         </div>
-        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+        <div style="position:absolute;bottom:90px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
           25+ Years Experience
         </div>
       </div>
@@ -238,13 +259,13 @@ const faqs = [
     <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Lebanese Document Attestation Services</h2>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Singaporean Document Attestation Services</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
-          We handle attestation for a wide range of document categories across personal, educational, and commercial needs.
+          We handle attestation for a wide range of document categories across personal, educational, and commercial needs for use in the UAE.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-1.webp" alt="Document types for Lebanon attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <img src="/images/img-1.webp" alt="Document types for Singapore attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
           <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
@@ -261,7 +282,7 @@ const faqs = [
           </div>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
             {cat.docs.map(d => (
-              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.95rem;color:#4B5563;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
               </li>
             ))}
@@ -272,80 +293,79 @@ const faqs = [
   </div>
 </section>
 
-<!-- ════ PROCESS STEPS ════ -->
+<!-- ════ PROCESS ════ -->
 <section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="/images/img-7.webp" alt="Lebanon attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-7.webp" alt="Singapore certificate attestation process" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Step by Step Process of Lebanon Certificate Attestation</h2>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Complete Process of Singapore Certificate Attestation for UAE</h2>
       </div>
     </div>
 
-    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 32px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;">
-      Understanding the process clearly helps you avoid rejection and delay. Many people face problems because they skip a stage or submit incomplete documents.
-    </p>
-
-    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        {processSteps.map(s => (
-          <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
+    <!-- Two routes side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;" class="two-col">
+      {processRoutes.map(route => (
+        <div class="route-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{route.step}</div>
+            <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0;">{route.title}</h3>
           </div>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">{route.desc}</p>
+          <p style="font-size:0.78rem;font-weight:700;color:#38B2AC;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 10px;">Steps Involved</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            {route.steps.map((s, idx) => (
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-weight:800;font-size:0.72rem;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{idx + 1}</span>
+                <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{s}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Emirates Coverage -->
+    <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;margin-bottom:24px;">
+      <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Singapore Certificate Attestation Across UAE</h3>
+      <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 16px;">We provide services across all Emirates including:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+        {emirates.map(e => (
+          <span class="emirate-pill">{e}</span>
         ))}
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;margin-top:4px;">
-          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">Every stage plays a major role in Lebanon Attestation. Missing even one step can result in rejection, which is why proper guidance is important from the beginning.</p>
-        </div>
       </div>
+      <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">Your final attested document is accepted across the UAE once MOFA approval is completed.</p>
+    </div>
 
-      <div style="display:flex;flex-direction:column;gap:20px;">
-        <!-- Documents Required -->
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">What Documents Do You Need to Start the Process?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Most applications require:</p>
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            {docsRequired.map(d => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
-              </div>
-            ))}
-          </div>
-          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Certain documents may require Arabic translation before submission. Our team reviews every paper before starting Lebanon Certificate Attestation in UAE to prevent errors.</p>
+    <!-- Timing & Fees -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="two-col">
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does It Take?</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The time required depends on document type and authority approvals:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {timingFactors.map(f => (
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
         </div>
-
-        <!-- Timing -->
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Lebanon Certificate Attestation Take?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on the type of document and how fast each authority completes its approval. Factors affecting processing time:</p>
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            {timingFactors.map(f => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
-              </div>
-            ))}
-          </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Our team guides you clearly about the timeline before starting your Singapore Certificate Attestation. We keep you informed throughout the process.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">What Affects the Cost</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The cost of Singapore Certificate Attestation depends on:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {feeFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
         </div>
-
-        <!-- Fees -->
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Much Does Lebanon Certificate Attestation Cost in UAE?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Cost depends on several factors:</p>
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            {feeFactors.map(f => (
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
-              </div>
-            ))}
-          </div>
-        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Each case is different. We explain the full cost in advance so you know what to expect. There are no hidden surprises.</p>
       </div>
     </div>
   </div>
@@ -356,17 +376,17 @@ const faqs = [
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="two-col">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
-        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">What Mistakes Can Cause Delay or Rejection?</h2>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Challenges During Singapore Document Attestation</h2>
         <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
-          Small errors can create serious problems during the process. We review every document carefully before submission to reduce the risk of delay or rejection.
+          Many people face problems due to lack of guidance. Professional support helps you avoid these mistakes. Our experience in attestation of documents in Singapore ensures smooth approval.
         </p>
         <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);">
           <img
             src="/images/img-40.webp"
-            alt="Document rejection mistakes to avoid"
+            alt="Common mistakes in Singapore document attestation"
             style="width:100%;height:320px;object-fit:cover;display:block;"
           />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
@@ -377,9 +397,9 @@ const faqs = [
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;">
         {challenges.map(c => (
-          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:14px 16px;">
             <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
-            <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            <p style="font-size:0.9rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
           </div>
         ))}
       </div>
@@ -393,17 +413,17 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
     <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
-    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How Can You Begin with Lebanon Certificate Attestation?</h2>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Begin with Singapore Certificate Attestation?</h2>
     <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
-      Starting is simple. Follow these steps to begin your Lebanon Certificate Attestation with IndexAUH.
+      Starting is easy. You focus on your career or family plans. We handle the paperwork.
     </p>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;" class="four-col">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:left;" class="four-col">
       {getStartedSteps.map(s => (
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
-          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
-          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
-          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:22px;position:relative;">
+          <div style="font-size:2.8rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:12px;">{s.step}</div>
+          <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
         </div>
       ))}
     </div>
@@ -417,7 +437,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-3.webp" alt="IndexAUH Lebanon attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.webp" alt="IndexAUH Singapore attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
@@ -426,9 +446,9 @@ const faqs = [
       </div>
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Indexauh?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Experience makes a major difference in certificate attestation processing. Our company has served clients in the UAE for over 25 years.
+          Experience makes the difference. We understand how important your certificates are. Our team treats every document with care and responsibility.
         </p>
       </div>
     </div>
@@ -451,7 +471,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:820px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:44px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
-      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">What Questions Do Clients Usually Ask?</h2>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;">
       {faqs.map((f, i) => (
@@ -478,9 +498,9 @@ const faqs = [
 
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
-      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">HOW CAN YOU CONTACT US TODAY?</h2>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">ASK FOR A QUOTE NOW</h2>
       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
-        Start your Lebanon Certificate Attestation with expert guidance from our experienced team.
+        Ready to begin your Singapore Certificate Attestation? Our team is here to guide you clearly and quickly. Get in touch today and let our experts handle your Singapore document attestation with confidence and care.
       </p>
       <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
         <div>

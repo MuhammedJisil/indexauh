@@ -1,0 +1,585 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1", label: "US +1" },
+  { code: "+973", label: "BH +973" },
+]
+
+const purposePoints = [
+  { title: "Confirms Authenticity", desc: "A transfer certificate shows the academic history of a student. Schools in the UAE need proof that the document comes from a real institution. Transfer Certificate Attestation confirms this authenticity." },
+  { title: "Protects Students & Institutions", desc: "Education authorities check this document before approving admission. The process helps schools verify student records and prevents document misuse." },
+  { title: "Smoother Admission", desc: "Once the certificate receives official verification, schools can easily accept the student's previous academic record. As a result, the admission process becomes smoother and faster." }
+]
+
+const steps = [
+  { step: "01", title: "School Verification", desc: "The issuing school must first confirm the document. The school seal and signature prove that the certificate belongs to the institution." },
+  { step: "02", title: "Ministry of Education Attestation", desc: "After school verification, the education department reviews the certificate. This step confirms that the school operates under recognized education authorities." },
+  { step: "03", title: "Ministry of Foreign Affairs in the Issuing Country", desc: "Next, the foreign affairs department verifies the document. This step confirms that the certificate is valid for international use." },
+  { step: "04", title: "UAE Embassy Attestation", desc: "The UAE Embassy in the issuing country checks the certificate again. Embassy verification allows the document to be used inside the UAE." },
+  { step: "05", title: "MOFA Attestation in UAE", desc: "The final step takes place at the UAE Ministry of Foreign Affairs. After this approval, the Transfer Certificate Attestation becomes valid for school admission in the UAE." }
+]
+
+const whenRequiredSituations = [
+  "A student moves from another country to a UAE school",
+  "A family relocates from one education system to another",
+  "Schools ask for proof of the student's previous academic records",
+  "Education authorities request verified school documents"
+]
+
+const formatRequirements = [
+  "Student full name",
+  "Date of birth",
+  "Admission number",
+  "Grade completed",
+  "Academic year",
+  "Name and address of the school",
+  "Date of issue",
+  "School seal and signature of the principal"
+]
+
+const requiredDocs = [
+  { title: "Original Transfer Certificate", desc: "The original document issued by the previous school is required to begin the verification process." },
+  { title: "Passport Copy of the Student", desc: "A clear copy of the student's passport is needed to match identity details on the certificate." },
+  { title: "Passport Copy of the Parent", desc: "Required as part of the supporting documentation for the application." },
+  { title: "UAE Visa Copy", desc: "When available, the UAE visa copy helps confirm residency status during processing." },
+  { title: "Authorization Letter", desc: "Required for processing when a service provider handles the attestation on the family's behalf." }
+]
+
+const costFactors = [
+  "Country of document origin",
+  "Embassy verification charges",
+  "UAE Ministry of Foreign Affairs fees",
+  "Service provider assistance"
+]
+
+const commonMistakes = [
+  "Incorrect spelling of the student name",
+  "Missing school seal or signature",
+  "Submitting photocopies instead of the original certificate",
+  "Incomplete student information",
+  "Legal translation problems when the document is not in English"
+]
+
+const gettingStartedSteps = [
+  { step: "01", title: "Contact IndexAUH", desc: "Parents can reach our team through phone or email. Our experts explain the process and required documents." },
+  { step: "02", title: "Submit Your Documents", desc: "Send the transfer certificate and required copies. Our team reviews the documents before processing." },
+  { step: "03", title: "We Handle the Complete Process", desc: "IndexAUH manages the full Transfer Certificate Attestation procedure. This includes government departments and embassy verification." },
+  { step: "04", title: "Receive the Attested Certificate", desc: "Once verification finishes, the attested document becomes ready for school admission in the UAE." }
+]
+
+const whyChooseUs = [
+  "25+ years of certificate attestation experience",
+  "Complete document handling",
+  "Support for Certificate Attestation in Dubai and Attestation Services in Abu Dhabi",
+  "Quick updates during the process",
+  "Professional guidance from start to finish"
+]
+
+const faqs = [
+  { q: "Is Transfer Certificate Attestation Mandatory for UAE School Admission?", a: "Many schools request attested documents to confirm previous education records." },
+  { q: "Can Transfer Certificate Attestation Be Done After Arriving in UAE?", a: "Yes. Parents can start the process after arrival through attestation services." },
+  { q: "How Long Does the Attestation Process Take?", a: "Processing time depends on the issuing country and embassy verification." },
+  { q: "Do All Schools Require Attested Transfer Certificates?", a: "Many international schools and education authorities request it during admission." },
+  { q: "Is Translation Required for Transfer Certificates?", a: "Translation may be needed when the certificate is not in English or Arabic." },
+  { q: "Can Parents Apply Without Visiting an Office?", a: "Many service providers allow document submission through online or courier support." }
+]
+---
+
+<BaseLayout title="Transfer Certificate Attestation in UAE | Indexauh" 
+description="Starting school in the UAE? Get Transfer Certificate Attestation in UAE done easily with IndexAUH. Backed by 25+ years of experience. Contact Now!"
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+
+  /* pills */
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  /* form */
+  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
+  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize: none; }
+  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
+  .idx-submit:hover { background: #1A202C; }
+
+  /* document type card */
+  .doc-type-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; transition: all 0.25s; }
+  .doc-type-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.06); transform: translateY(-3px); }
+
+  /* steps cards */
+  .step-card { display: flex; align-items: flex-start; gap: 18px; padding: 20px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+
+  /* list items */
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: #fff; border: 1px solid #e0e7ef; border-radius: 10px; font-size: 0.85rem; color: #1A202C; font-weight: 500; }
+
+  /* warning item */
+  .warning-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 10px; font-size: 0.82rem; color: #9B2C2C; font-weight: 500; }
+
+  /* FAQ */
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 200px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+ @media(max-width:768px){
+  .about-hero-title { font-size: 2rem !important; }
+  .about-hero-desc { font-size: 0.88rem !important; }
+  .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .benefits-grid { grid-template-columns: 1fr !important; }
+  .offices-flex { flex-direction: column !important; }
+  .step-sticky { position: static !important; }
+}
+</style>
+
+<!-- ════════════ HERO — image bg, centered text ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <!-- Background image -->
+  <img
+    src="/images/img-16.webp"
+    alt="Transfer Certificate Attestation"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <!-- Dark overlay -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.88) 0%,rgba(45,55,72,0.82) 100%);"></div>
+  <!-- Dot pattern -->
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Fast Processing</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Trusted by Families</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="about-hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      TRANSFER CERTIFICATE ATTESTATION<br/>IN UAE
+    </h1>
+    <p class="about-hero-desc" style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:640px;">
+      Moving a child to a new school in the UAE needs proper documents. One important step is Transfer Certificate Attestation. Schools and education authorities use it to confirm that the student's previous records are genuine.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW / PURPOSE ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+<div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:start;">
+  <!-- Left Text -->
+  <div>
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+      <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+    </p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Purpose of Transfer Certificate Attestation</h2>
+
+    <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+      Without attestation, admission may get delayed. IndexAUH supports families across the UAE with fast document verification. With more than 25 years of experience in certificate services, our team handles the complete process and keeps it simple for parents.
+    </p>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px;">
+      {purposePoints.map(p => (
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+          <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">{p.title}</h3>
+          <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Right side: image -->
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+      <img src="/images/img-16.webp" alt="Transfer certificate attestation documents" style="width:100%;height:340px;object-fit:cover;" />
+      <div style="position:absolute;bottom:20px;left:-16px;background:#2D3748;color:#fff;padding:12px 18px;border-radius:12px;font-size:0.9rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+        25+ Years Experience
+      </div>
+    </div>
+
+    <div style="background:#FFF5F5;border:1px solid #FEB2B2;border-radius:12px;padding:18px;">
+      <h3 style="color:#9B2C2C;font-size:0.95rem;font-weight:700;margin:0 0 10px;">⚠ Education authorities check this document before approving admission</h3>
+      <p style="color:#9B2C2C;font-size:0.82rem;line-height:1.6;margin:0;">The process helps schools verify student records and prevents document misuse. Therefore, attestation protects both students and institutions.</p>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- ════ STEP BY STEP PROCESS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Authentication Workflow</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">Transfer Certificate Attestation Process for UAE</h2>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:620px;margin:0 auto;">The verification process involves several government authorities. Each step confirms the authenticity of the certificate.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
+      <!-- Steps list -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {steps.map(s => (
+          <div class="step-card">
+            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <!-- Right image -->
+      <div style="position:sticky;top:100px;">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+          <img src="/images/img-7.webp" alt="School document authentication process" style="width:100%;height:520px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+            <p style="color:#fff;font-size:1rem;font-weight:800;margin:0 0 4px;">5-Step Verified Process</p>
+            <p style="color:#B2F5EA;font-size:0.9rem;margin:0;">From school verification to MOFA final approval</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHEN REQUIRED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:0.9fr 1.3fr;gap:48px;align-items:center;" class="split-grid">
+      <!-- Left image -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-52.webp" alt="Family relocating with school documents" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.6) 100%);"></div>
+        <div style="position:absolute;bottom:18px;left:18px;right:18px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:700;margin:0;line-height:1.4;">School Admission · Relocation · Verification</p>
+        </div>
+      </div>
+      <!-- Right text -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Eligibility</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">When Transfer Certificate Attestation is Required?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">Many families relocate to the UAE for work or education. During school admission, authorities ask for verified documents. In such situations, Transfer Certificate Attestation becomes necessary.</p>
+        <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:12px;text-transform:uppercase;">Common situations include:</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {whenRequiredSituations.map(s => (
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border-radius:8px;font-size:1rem;color:#1A202C;font-weight:500;border:1px solid #B2F5EA;">
+              <span style="width:24px;height:24px;border-radius:50%;background:#38B2AC;color:#fff;font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</span>
+              {s}
+            </div>
+          ))}
+        </div>
+        <p style="color:#6B7280;font-size:0.9rem;line-height:1.7;margin-top:16px;">For example, many schools in Dubai and Abu Dhabi request an attested transfer certificate during admission. Therefore parents must prepare the document early to avoid delays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FORMAT REQUIREMENTS & DOCUMENTS REQUIRED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Submissions Checklist</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Document Requirements</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 0.85fr;gap:32px;align-items:start;" class="split-grid">
+      <!-- Format requirements -->
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin-bottom:8px;border-left:3px solid #38B2AC;padding-left:12px;">Basic Transfer Certificate Format Requirements</h3>
+        <p style="color:#6B7280;font-size:0.85rem;margin:0 0 16px;padding-left:15px;">Schools expect certain details in a transfer certificate. Missing information can lead to rejection during verification.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {formatRequirements.map(r => (
+            <div class="check-item">
+              <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <p style="margin:0;">{r}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Documents required -->
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin-bottom:8px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required for Attestation</h3>
+        <p style="color:#6B7280;font-size:0.85rem;margin:0 0 16px;padding-left:15px;">Parents need to submit a few documents to start the process.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {requiredDocs.map(d => (
+            <div class="check-item">
+              <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <div>
+                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{d.title}</p>
+                <p style="font-size:0.9rem;color:#6B7280;margin:0;line-height:1.5;">{d.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Image accent -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);height:100%;min-height:280px;">
+        <img src="/images/img-1.webp" alt="Document checklist preparation" style="width:100%;height:100%;object-fit:cover;display:block;min-height:280px;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0 0 3px;">Have Everything Ready</p>
+          <p style="color:#B2F5EA;font-size:0.72rem;margin:0;">Missing documents cause avoidable delays</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TIMELINE & COST ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <!-- Top image banner -->
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-54.webp" alt="Processing time and cost for attestation" style="width:100%;height:260px;object-fit:cover;object-position:center 30%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.82) 0%,rgba(26,32,44,0.45) 60%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Timeline &amp; Pricing</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:480px;line-height:1.25;">How Long it Takes &amp; What it Costs</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;" class="split-grid">
+      <!-- Timeline -->
+      <div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">How Long Does Transfer Certificate Attestation Take</h3>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          The overall processing time may change according to the certificate's country of origin. Each authority reviews the document before approval.
+        </p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          In many cases, the process finishes within several working days. However embassy verification can sometimes take longer.
+        </p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin:0;">
+          Early preparation helps avoid admission delays. Therefore parents often begin Transfer Certificate Attestation before the school admission period.
+        </p>
+      </div>
+
+      <!-- Cost -->
+      <div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:#1A202C;margin-bottom:16px;">Cost of Transfer Certificate Attestation in UAE</h3>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          Attestation fees vary depending on several factors. Each government authority charges separate verification fees.
+        </p>
+        <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:12px;text-transform:uppercase;">Costs usually depend on:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {costFactors.map(c => (
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:6px;">
+              <span style="color:#38B2AC;font-weight:bold;">→</span> {c}
+            </div>
+          ))}
+        </div>
+        <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin-top:16px;">Therefore the total cost may change based on the document and the processing route.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMMON MISTAKES ════ -->
+<section style="background:#FFF5F5;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(229,62,62,0.01) 1px,transparent 1px),linear-gradient(90deg,rgba(229,62,62,0.01) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+      <!-- Left image -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Rejected document stamping" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(154,44,44,0.65) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Avoid Costly Mistakes</p>
+          <p style="color:#FEB2B2;font-size:0.75rem;margin:0;">Small errors cause major delays</p>
+        </div>
+      </div>
+      <!-- Right: warnings -->
+      <div>
+        <p style="color:#C53030;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Verification Warning</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#9B2C2C;margin:0 0 16px;">Common Mistakes During Transfer Certificate Attestation</h2>
+        <p style="color:#9B2C2C;font-size:0.95rem;line-height:1.7;margin-bottom:24px;">Many parents face delays due to small mistakes in documents. Careful preparation helps avoid these issues.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {commonMistakes.map(m => (
+            <div class="warning-item">
+              <span style="color:#E53E3E;font-weight:bold;margin-top:2px;">⚠</span>
+              <p style="margin:0;line-height:1.4;">{m}</p>
+            </div>
+          ))}
+        </div>
+        <p style="color:#9B2C2C;font-size:0.9rem;line-height:1.7;margin-top:16px;">For example, a missing seal can stop verification at the first stage. Therefore checking the document before submission is very important.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW TO GET STARTED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Get Started</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">How to Get Started with Transfer Certificate Attestation?</h2>
+      <p style="color:#6B7280;font-size:1.05rem;max-width:560px;margin:0 auto;">Starting the process becomes easy with professional support. IndexAUH guides parents through each step.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" class="benefits-grid">
+      {gettingStartedSteps.map(s => (
+        <div class="doc-type-card" style="text-align:center;">
+          <div style="width:48px;height:48px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">{s.step}</div>
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US / OFFICES & STATS BANNER ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Our Locations</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#fff;margin:0 0 14px;">WHY CHOOSE INDEXAUH?</h2>
+      <p style="color:#B2F5EA;font-size:0.9rem;max-width:580px;margin:0 auto;line-height:1.65;">
+        Families across the UAE trust IndexAUH for document services. Our team understands the requirements of education authorities and embassies.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:900px;margin:0 auto 48px;" class="benefits-grid">
+      {whyChooseUs.map(w => (
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:14px 18px;border-radius:10px;">
+          <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>
+          <p style="color:#CBD5E0;font-size:0.88rem;margin:0;font-weight:500;">{w}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Offices side-by-side -->
+    <div class="offices-flex" style="display:flex;gap:32px;margin-bottom:52px;">
+      <!-- Abu Dhabi -->
+      <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
+        <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Abu Dhabi Office</h3>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Mob : (+971) 529300200</p>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Tel : (+971) 26311560</p>
+      </div>
+      <!-- Dubai -->
+      <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
+        <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Dubai Office</h3>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Mob : (+971) 529300200</p>
+        <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Tel : (+971) 42279916</p>
+      </div>
+    </div>
+
+    <!-- Stats Banner -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:40px;">
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25,000+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Business Clients</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs ABOUT TC ATTESTATION</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f,i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i+1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH WITH FORM ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left: text -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET YOUR DOCUMENTS ATTESTED NOW.</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">Need help with Transfer Certificate Attestation in the UAE? IndexAUH can guide you through the complete process and help prepare documents for school admission.</p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Reach out now and our team will help you start the process quickly.</p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+      <p style="color:#94A3B8;font-size:0.85rem;margin-top:20px;">info@indexauh.com</p>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ SCRIPTS ════ -->
+<script>
+(function(){
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

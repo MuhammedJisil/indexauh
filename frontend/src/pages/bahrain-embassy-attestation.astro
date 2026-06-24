@@ -1,0 +1,646 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const employmentDocs = [
+  "Engineers",
+  "Teachers",
+  "Healthcare professionals",
+  "Accountants",
+  "Skilled workers",
+]
+
+const educationDocs = [
+  "Degree certificates",
+  "Diplomas",
+  "Academic transcripts",
+  "School leaving certificates",
+  "Transfer certificates",
+]
+
+const familyDocs = [
+  "Family visa applications",
+  "Child sponsorship",
+  "Dependent residence permits",
+]
+
+const commercialDocs = [
+  "Memorandum of Association (MoA)",
+  "Commercial licenses",
+  "Power of Attorney documents",
+  "Incorporation certificates",
+  "Trade agreements",
+  "Board resolutions",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Marriage certificate attestation in Bahrain",
+      "Birth certificate attestation",
+      "Divorce Certificate Attestation",
+      "Death Certificate Attestation",
+      "Transfer Certificate Attestation",
+      "Bahrain Police Clearance Certificate (PCC)",
+      "Affidavit Attestation",
+      "Medical Certificate Attestation",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "School Leaving Certificate Attestation",
+      "Diploma Certificate Attestation",
+      "Degree Certificate Attestation",
+      "Master Degree Certificate Attestation",
+      "Engineering Degree Certificate Attestation",
+      "Transcripts and Mark Sheets Attestation",
+      "Professional Qualification Certificates Attestation",
+      "Certificate of Experience Attestation",
+      "Vocational and Technical Certificates",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "⚖️",
+    docs: [
+      "Memorandum of Association (MoA) Attestation",
+      "Articles of Association (AoA) Attestation",
+      "Certificate of Incorporation Attestation",
+      "Certificate of Good Standing Attestation",
+      "Board Resolutions Attestation",
+      "Commercial License Attestation",
+      "Commercial Invoices Attestation",
+      "Power of Attorney Attestation",
+      "Export/Import Certificates Attestation",
+      "Trade Certificates Attestation",
+    ],
+  },
+]
+
+const processStepsOutbound = [
+  { step: "01", title: "Initial Document Review", desc: "Documents are checked for name mismatch, missing signatures or seals, damaged certificates, incomplete paperwork, and expired ID copies." },
+  { step: "02", title: "UAE MOFA Attestation", desc: "The UAE Ministry of Foreign Affairs verifies the document before embassy legalization." },
+  { step: "03", title: "Bahrain Embassy Attestation", desc: "The Bahrain Embassy reviews and legalizes the documents for official use in Bahrain." },
+  { step: "04", title: "Document Delivery", desc: "Attested documents are returned for employment, education, visa, or business use." },
+]
+
+const processStepsInbound = [
+  { step: "01", title: "Ministry of Foreign Affairs Bahrain Attestation", desc: "The Bahrain Ministry of Foreign Affairs authenticates the document at the source." },
+  { step: "02", title: "Bahrain Embassy Verification", desc: "The Bahrain Embassy reviews the document for UAE acceptance." },
+  { step: "03", title: "UAE MOFA Attestation", desc: "After completion, the documents become legally accepted in the UAE." },
+]
+
+const delayReasons = [
+  "Name differences across documents",
+  "Unclear seals or signatures",
+  "Missing notarization",
+  "Incorrect attestation sequence",
+  "Translation requirements",
+  "Incomplete supporting paperwork",
+]
+
+const feeFactors = [
+  "Document type",
+  "Embassy and MOFA charges",
+  "Translation requirements",
+  "Urgent processing requests",
+  "Number of certificates",
+  "Pickup and delivery services",
+]
+
+const timingFactors = [
+  "Embassy workload",
+  "University verification",
+  "Public holidays",
+  "Additional verification requests",
+  "Missing supporting paperwork",
+]
+
+const translationDocs = [
+  "Marriage certificates",
+  "Affidavits",
+  "Court documents",
+  "Commercial agreements",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Contact Us", desc: "Reach us via phone, email, or WhatsApp. Our team will explain the requirements and guide you clearly." },
+  { step: "02", title: "Send Your Documents", desc: "Send your documents or schedule a convenient pickup from your location." },
+  { step: "03", title: "We Process Everything", desc: "We process them through UAE MOFA and Bahrain Embassy attestation on your behalf." },
+  { step: "04", title: "Receive Attested Docs", desc: "Receive your fully attested documents safely — no multiple visits needed." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Experience", desc: "More than 25 years handling certificate attestation and embassy procedures across the UAE with proven expertise." },
+  { title: "MOFA & Embassy Coordination", desc: "We directly coordinate Bahrain Embassy attestation and MOFA attestation Bahrain procedures on your behalf." },
+  { title: "Pre-Submission Document Review", desc: "Our experts review all documents before submission to identify and resolve issues before they cause rejection." },
+  { title: "Translation Coordination", desc: "We assist with approved Arabic and English translation services to ensure full compliance with Bahrain authorities." },
+  { title: "Pickup and Delivery Support", desc: "Convenient document pickup and delivery service available across the UAE for a hassle-free experience." },
+  { title: "All Document Categories Covered", desc: "We handle educational, personal, and commercial document legalization for employment, visa, study, and business purposes." },
+]
+
+const faqs = [
+  { q: "Do I need to be present at the Bahrain Embassy?", a: "No, our team can handle the entire Bahrain Embassy attestation process for you without requiring your presence." },
+  { q: "Are translations required?", a: "Some documents may need English or Arabic translation. We can assist with certified translation services." },
+  { q: "Can UAE issued documents be attested for Bahrain?", a: "Yes. We process Indian certificate attestation in Bahrain and UAE documents efficiently through the required procedures." },
+  { q: "What if my document is rejected?", a: "Our experts review all documents before submission to prevent rejections. Early review helps avoid repeated submissions and processing delays." },
+  { q: "Can commercial documents be attested remotely?", a: "Yes. We handle business document attestation in Bahrain with pickup and delivery options across the UAE." },
+  { q: "Can Indian certificate attestation in Bahrain be processed from the UAE?", a: "Yes. Indian certificate attestation in Bahrain can often be completed through the required embassy and MOFA procedures within the UAE." },
+]
+---
+
+<BaseLayout
+  title="Bahrain Embassy Attestation in UAE | Attestation in Bahrain"
+  description="Index offers Bahrain Embassy Attestation in UAE with 25+ years of experience. Contact us for complete Bahrain document attestation support."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .img-first { order: -1 !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+    .get-started-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Bahrain Embassy Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Bahrain Embassy Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      BAHRAIN EMBASSY ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      A job opportunity, university admission, or family visa process in Bahrain can quickly get delayed when documents are not properly legalized. Index Office and Services assists individuals and businesses across the UAE with Bahrain Embassy Attestation, MOFA Bahrain attestation, and full document legalization support.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is Bahrain Embassy Attestation?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Bahrain Embassy Attestation confirms that your documents are genuine and legally accepted by Bahrain authorities. Many applicants realize embassy attestation is required only after a certificate gets rejected during submission.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        The process is commonly required for employment, higher studies, family visa applications, and business activities. Index Office and Services handles educational, personal, and commercial records with complete care and accurate coordination at every stage.
+      </p>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — Two Attestation Directions</h3>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
+          The attestation process differs depending on whether your documents were issued outside Bahrain for use in Bahrain, or issued in Bahrain for use in the UAE. Our team guides you through the correct sequence for your specific case.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-126.webp" alt="Bahrain Embassy document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">UAE MOFA · Bahrain Embassy · Document Delivery</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Bahrain Embassy attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHEN IS IT REQUIRED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">When Is Bahrain Embassy Attestation Required?</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:620px;margin:0 auto;">
+        Bahrain authorities may request attested documents for several official purposes depending on the certificate type and application category.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;" class="two-col">
+      <!-- Employment -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span style="font-size:1.4rem;">💼</span>
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">Employment and Work Visa Applications</h3>
+        </div>
+        <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Many employers in Bahrain require attested educational certificates before processing employment visas or labor approvals. Degree attestation for Bahrain is commonly required for:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {employmentDocs.map(d => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span style="font-size:1.4rem;">🎓</span>
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">Higher Education Admissions</h3>
+        </div>
+        <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Universities in Bahrain may request attested documents. Commonly required records include:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {educationDocs.map(d => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Family -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span style="font-size:1.4rem;">👨‍👩‍👧</span>
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">Family and Dependent Visa Procedures</h3>
+        </div>
+        <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Marriage certificate attestation in Bahrain and birth certificate legalization are commonly required for:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {familyDocs.map(d => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Commercial -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span style="font-size:1.4rem;">⚖️</span>
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">Commercial and Business Activities</h3>
+        </div>
+        <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Commercial document attestation in Bahrain allows businesses to legally use:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {commercialDocs.map(d => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Bahrain Document Attestation Services</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          We handle attestation for a wide range of document categories. Always check with the requesting authority to confirm exactly what form of attestation they require.
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-1.webp" alt="Bahrain Embassy attestation document types" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
+      {docTypes.map(cat => (
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:1.5rem;">{cat.icon}</span>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+            {cat.docs.map(d => (
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="Bahrain Embassy attestation process" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Step by Step Bahrain Embassy Attestation Process</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;" class="split-grid">
+      <!-- Outbound -->
+    <!-- Outbound -->
+<div style="display:flex;flex-direction:column;gap:20px;">
+  <div>
+    <div style="background:#2D3748;border-radius:12px;padding:14px 20px;margin-bottom:20px;">
+      <p style="color:#38B2AC;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 2px;">Scenario A</p>
+      <p style="color:#fff;font-size:0.95rem;font-weight:800;margin:0;">Documents Issued Outside Bahrain for Use in Bahrain</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      {processStepsOutbound.map(s => (
+        <div class="step-card">
+          <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+          <div>
+            <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+            <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Timing -->
+  <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+    <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Why Some Cases Take Longer?</h3>
+    <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Starting the process early helps reduce last-minute delays. Processing time can vary because of:</p>
+    <div style="display:flex;flex-direction:column;gap:9px;">
+      {timingFactors.map(f => (
+        <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+          <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+      <!-- Inbound + side panels -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div>
+          <div style="background:#2D3748;border-radius:12px;padding:14px 20px;margin-bottom:20px;">
+            <p style="color:#38B2AC;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 2px;">Scenario B</p>
+            <p style="color:#fff;font-size:0.95rem;font-weight:800;margin:0;">Bahrain Origin Documents for UAE Use</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            {processStepsInbound.map(s => (
+              <div class="step-card">
+                <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+                <div>
+                  <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                  <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Translation -->
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Do Bahrain Documents Require Translation?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Translation is commonly required if the document is not in English or Arabic. We assist with approved translation services. Translation is typically required for:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {translationDocs.map(d => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Fees -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">What Affects Bahrain Embassy Attestation Fees?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Contact Indexauh for accurate pricing and guidance. Fees usually depend on:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {feeFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DELAY REASONS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Reasons Bahrain Attestation Gets Delayed</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Early review often helps avoid repeated submissions and processing delays. Delays usually happen because of:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {delayReasons.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Common reasons for Bahrain attestation delays" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Delays</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We review everything before submission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How IndexAUH Makes It Easy for You</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      At IndexAUH, we handle everything. This ensures you avoid multiple visits and complex procedures.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;" class="get-started-grid two-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office and Services Bahrain Embassy attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office and Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index Office and Services?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          Handling Bahrain Embassy Attestation often involves multiple departments and verification stages. Missing even a small requirement can delay the process. Index Office and Services has more than 25 years of experience handling certificate attestation and embassy procedures across the UAE.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Bahrain Embassy Attestation</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">PLANNING TO USE YOUR DOCUMENTS IN BAHRAIN?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Index Office and Services assists with educational, personal, and commercial document legalization across the UAE, helping make the Bahrain attestation process simpler and easier to manage.
+      </p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        Contact us now to start your attestation process. We are available on WhatsApp via all of our contact numbers.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

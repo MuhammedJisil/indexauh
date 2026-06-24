@@ -1,0 +1,465 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const heroPills = ["25 Years of Trust","All Emirates","Fast Processing","Secure Handling"]
+
+const whyNeed = [
+  { title:"Remarriage Procedures", desc:"Marriage registration offices request attested divorce documents. This confirms the previous marriage legally ended." },
+  { title:"Family Visa Applications", desc:"Visa authorities may request proof of marital status. An attested divorce document helps update official records." },
+  { title:"Legal Matters and Court Procedures", desc:"Courts sometimes require verified documents during legal processes. Divorce Certificate Attestation proves the authenticity of the record." },
+  { title:"Updating Personal Records", desc:"Some government departments ask for attested documents before updating personal details." },
+  { title:"Immigration or Documentation Needs", desc:"Certain immigration procedures also request attested marital records." },
+]
+
+const processSteps = [
+  { num:"01", title:"Notary Verification", desc:"The issuing country verifies the original document through a notary authority." },
+  { num:"02", title:"Home Department Attestation", desc:"State authorities review the document and confirm the notary verification." },
+  { num:"03", title:"Ministry of Foreign Affairs in Home Country", desc:"The foreign affairs department checks the document before it moves to embassy level." },
+  { num:"04", title:"UAE Embassy Attestation", desc:"The UAE embassy in the issuing country confirms the document for UAE use." },
+  { num:"05", title:"MOFA Attestation in UAE", desc:"Finally, the UAE Ministry of Foreign Affairs completes the verification. At this stage the document becomes valid for official use." },
+]
+
+const documentsRequired = [
+  "Original divorce certificate",
+  "Passport copy",
+  "Visa copy",
+  "Authorization letter when using an attestation service",
+]
+
+const timeFactors = [
+  "Country that issued the divorce certificate",
+  "Verification required from local authorities",
+  "UAE Embassy approval in the issuing country",
+  "MOFA attestation in the UAE",
+  "Legal translation requirements for non-Arabic documents",
+  "Public holidays in government departments",
+  "Accuracy of submitted documents",
+]
+
+const costFactors = [
+  "Government verification fees in the issuing country",
+  "UAE Embassy attestation charges",
+  "Ministry of Foreign Affairs approval in the UAE",
+  "Translation fees for non-Arabic documents",
+  "Courier or document handling services",
+  "Urgent processing requests",
+  "Number of verification stages required",
+]
+
+const challenges = [
+  "Name mismatch between passport and certificate",
+  "Missing verification from the issuing authority",
+  "Incorrect document format",
+  "Certificates issued from unrecognized institutions",
+  "Translation required for foreign language documents",
+  "Incomplete document submission",
+  "Missing passport or visa copies",
+  "Damage or unclear printing on the certificate",
+]
+
+const gettingStarted = [
+  { num:"01", title:"Contact Our Team", desc:"Share your document details with our specialists." },
+  { num:"02", title:"Document Review", desc:"Our team checks the certificate and confirms the required verification steps." },
+  { num:"03", title:"Attestation Processing", desc:"Experts manage government and embassy approvals during the attestation process." },
+  { num:"04", title:"Safe Document Delivery", desc:"After completion, the attested certificate is delivered securely to you." },
+]
+
+const whyUs = [
+  { icon:"🏆", label:"More than 25 years of experience in attestation services." },
+  { icon:"🏛️", label:"Strong knowledge of embassy and government procedures." },
+  { icon:"⚡", label:"Fast document processing support." },
+  { icon:"🇦🇪", label:"Assistance across all Emirates." },
+  { icon:"🤝", label:"Clear communication at every stage." },
+  { icon:"🔒", label:"Secure handling of important documents." },
+]
+
+const faqs = [
+  { q:"What is Divorce Certificate Attestation?", a:"It is a legal verification process that confirms the authenticity of a divorce certificate for official use in the UAE." },
+  { q:"Can I attest a divorce certificate issued outside the UAE?", a:"Yes. Authorities verify the document through the issuing country and UAE embassy before final approval." },
+  { q:"Is MOFA attestation required in UAE?", a:"Yes. The Ministry of Foreign Affairs performs the final verification step." },
+  { q:"Do I need translation for my certificate?", a:"Some documents require Arabic translation before submission to UAE authorities." },
+  { q:"Can I complete the process without visiting government offices?", a:"Yes. Many applicants use professional services to handle the entire process." },
+]
+---
+
+<BaseLayout title="Divorce Certificate Attestation UAE | Indexauh"
+description="Get Divorce Certificate Attestation UAE done easily with Indexauh. Trusted, careful, and MOFA-approved attestation services across Dubai, Abu Dhabi, and the UAE."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  .step-card { display:flex; align-items:flex-start; gap:18px; padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .step-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  .purpose-card { padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .purpose-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  .why-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:14px; padding:22px; display:flex; align-items:flex-start; gap:14px; transition:background 0.2s; }
+  .why-card:hover { background:rgba(255,255,255,0.14); }
+
+  .fact-item { display:flex; align-items:center; gap:8px; padding:10px 14px; background:#fff; border:1px solid #e0e7ef; border-radius:10px; font-size:0.98rem; color:#1A202C; font-weight:500; }
+  .fact-check { width:20px; height:20px; border-radius:50%; background:#38B2AC; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+  .faq-item { border:1px solid #eef0f6; border-radius:14px; padding:6px 22px; background:#fff; transition:border-color 0.2s; }
+  .faq-item:hover { border-color:#B2F5EA; }
+  .faq-item summary { padding:16px 0; cursor:pointer; font-weight:700; color:#1A202C; font-size:1rem; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content:"+"; font-size:1.4rem; font-weight:400; color:#38B2AC; flex-shrink:0; transition:transform 0.2s; }
+  .faq-item[open] summary::after { transform:rotate(45deg); }
+  .faq-item p { color:#4B5563; font-size:0.98rem; line-height:1.75; margin:0 0 18px; }
+
+  .idx-form input,.idx-form select,.idx-form textarea { width:100%; border:1px solid #e5e7eb; border-radius:10px; padding:11px 14px; font-size:1rem; color:#374151; outline:none; font-family:inherit; background:#fff; box-sizing:border-box; }
+  .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus { border-color:#38B2AC; box-shadow:0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize:none; }
+  .idx-submit { width:100%; background:#2D3748; color:#fff; font-weight:700; padding:13px; border-radius:10px; border:none; cursor:pointer; font-size:0.95rem; letter-spacing:0.04em; transition:background 0.2s; }
+  .idx-submit:hover { background:#1A202C; }
+
+  @media(max-width:900px){
+    .hero-grid { flex-direction:column !important; }
+    .two-col { flex-direction:column !important; }
+    .two-col > div { width:100% !important; }
+  }
+  @media(max-width:640px){
+    .steps-grid, .purpose-grid, .facts-grid { grid-template-columns:1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Divorce Certificate Attestation UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.86) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:center;">
+      {heroPills.map(p => <span class="idx-pill">{p}</span>)}
+    </div>
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;font-size:0.75rem;margin:0 0 14px;">Document Attestation Services</p>
+    <h1 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      Divorce Certificate Attestation<br/>in <span style="color:#38B2AC;">UAE</span>
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 16px;max-width:640px;">
+      Life moves forward after divorce. Many people later plan remarriage, visa changes, or legal updates in the UAE, and authorities ask proof that the divorce is legally verified.
+    </p>
+    <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin:0 auto 32px;max-width:600px;">
+      IndexAUH has supported people across the UAE for more than 25 years, helping them complete Divorce Certificate Attestation smoothly and without confusion.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        (+971) 529 300 200
+      </a>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">
+        Ask for a Quote &rarr;
+      </a>
+    </div>
+    <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Years of Trust</p>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">All</p>
+        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Emirates Covered</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:-60px;right:-60px;width:400px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex-shrink:0;width:420px;">
+        <div style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
+          <img src="/images/img-112.webp" alt="Divorce certificate attestation UAE" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(26,32,44,0.72));"></div>
+          <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+            <p style="color:#81E6D9;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Legally Recognised</p>
+            <p style="color:#fff;font-size:0.95rem;font-weight:700;margin:0;">Verified divorce documents, accepted by UAE authorities</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What is Divorce Certificate Attestation?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Authorities ask proof that a divorce is legally verified. This process is called Divorce Certificate Attestation. It confirms that the document is genuine and accepted by UAE authorities.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">IndexAUH has supported people across the UAE for more than 25 years, helping them complete Divorce Certificate Attestation smoothly and without confusion.</p>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px 20px;">
+          <p style="color:#1A202C;font-size:1rem;font-weight:600;margin:0 0 4px;">IndexAUH</p>
+          <p style="color:#4B5563;font-size:0.98rem;line-height:1.7;margin:0;">25 Years of Trust in document attestation services across the UAE.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY YOU NEED IT ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why It Matters</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0;">Why You Need Divorce Certificate Attestation?</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:14px auto 0;max-width:680px;">Several situations in the UAE require an attested divorce document. Authorities must confirm that the document is genuine before accepting it.</p>
+    </div>
+    <div class="purpose-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      {whyNeed.map(p => (
+        <div class="purpose-card">
+          <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 8px;">{p.title}</p>
+          <p style="font-size:0.95rem;color:#6B7280;line-height:1.65;margin:0;">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ ATTESTATION PROCESS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Step by Step</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Divorce Certificate Attestation Process for UAE</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto;max-width:680px;">Authorities follow several verification steps before accepting the document in the UAE. Each step confirms authenticity.</p>
+    </div>
+    <div class="steps-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      {processSteps.map(s => (
+        <div class="step-card">
+          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+          <div>
+            <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
+            <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:#2D3748;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">
+        Get Your Documents Attested Now &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Checklist</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Documents Required for Divorce Certificate Attestation</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Applicants usually submit a few basic documents.</p>
+        <div class="facts-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px;">
+          {documentsRequired.map(item => (
+            <div class="fact-item">
+              <span class="fact-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              {item}
+            </div>
+          ))}
+        </div>
+        <p style="color:#6B7280;font-size:0.92rem;margin:0;">Document requirements can change based on the country that issued the certificate. For example, a divorce certificate issued by UAE courts may follow a different procedure compared to documents issued abroad.</p>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <img src="/images/img-7.webp" alt="Divorce certificate documents review" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ TIMELINE & COST ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:40px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Plan Ahead</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Processing Time and Cost</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto;max-width:740px;">Processing time depends on several factors, and each document follows a verification path before approval in the UAE. Attestation cost also depends on several elements, since every stage in the verification process has its own government charge.</p>
+    </div>
+
+    <div class="two-col" style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
+      <div style="flex:1;min-width:260px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:24px;">
+        <p style="font-weight:700;color:#1A202C;margin:0 0 14px;font-size:1rem;">How Long Does It Take?</p>
+        <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.95rem;line-height:1.9;">
+          {timeFactors.map(t => <li>{t}</li>)}
+        </ul>
+      </div>
+      <div style="flex:1;min-width:260px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:24px;">
+        <p style="font-weight:700;color:#1A202C;margin:0 0 14px;font-size:1rem;">What Affects the Cost?</p>
+        <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.95rem;line-height:1.9;">
+          {costFactors.map(c => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <p style="color:#6B7280;font-size:0.98rem;line-height:1.8;max-width:900px;margin:0 auto;text-align:center;">Most cases finish within a few days or a few weeks, though some documents require additional verification that can increase the timeline. Documents issued outside the UAE go through more verification stages, so the total cost becomes higher compared to local documents. Many people who require Divorce Certificate Attestation Services in Dubai and Abu Dhabi contact experts first to understand the exact process and expected cost before starting the procedure.</p>
+  </div>
+</section>
+
+<!-- ════ COMMON CHALLENGES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="background:#fff;border:1px solid #eef0f6;border-radius:18px;padding:32px;">
+      <h3 style="font-size:1.4rem;font-weight:800;color:#1A202C;margin:0 0 8px;">Common Challenges During Attestation</h3>
+      <p style="color:#6B7280;font-size:0.98rem;line-height:1.7;margin:0 0 20px;">Many applicants face delays because of small document mistakes. These issues often appear during the verification stage.</p>
+      <div class="facts-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px;">
+        {challenges.map(c => (
+          <div class="fact-item" style="background:#F8FAFF;">
+            <span style="color:#38B2AC;font-weight:900;flex-shrink:0;">!</span>
+            {c}
+          </div>
+        ))}
+      </div>
+      <p style="color:#6B7280;font-size:0.92rem;margin:0;">Even a small error can stop the process, and authorities may return the document for correction, which increases the waiting time. Proper guidance becomes important during attestation, as professional handling helps avoid these problems and keeps the process smooth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW TO GET STARTED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Get Started</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Divorce Certificate Attestation?</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto;max-width:680px;">Starting the process is simple with expert support.</p>
+    </div>
+    <div class="steps-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      {gettingStarted.map(s => (
+        <div class="step-card">
+          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+          <div>
+            <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
+            <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p style="color:#6B7280;font-size:0.95rem;text-align:center;margin:28px 0 0;">This guided approach helps people complete the process without confusion.</p>
+  </div>
+</section>
+
+<!-- ════ WHY US ════ -->
+<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 14px;">Why Choose IndexAUH?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Many people across the UAE trust IndexAUH for document services.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whyUs.map(w => (
+            <div class="why-card">
+              <span style="font-size:1.4rem;flex-shrink:0;">{w.icon}</span>
+              <p style="color:#CBD5E0;font-size:0.83rem;line-height:1.65;margin:0;">{w.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <div style="position:relative;">
+          <img src="/images/img-3.webp" alt="IndexAUH team" style="width:100%;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+          <div style="position:absolute;bottom:20px;left:-16px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
+            <p style="font-size:1.8rem;font-weight:900;margin:0;line-height:1;">25+</p>
+            <p style="font-size:0.9rem;margin:4px 0 0;opacity:0.9;">Years of Trust</p>
+          </div>
+          <div style="position:absolute;top:20px;right:-16px;background:#fff;color:#1A202C;padding:12px 16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.15);font-weight:700;font-size:0.75rem;text-align:center;line-height:1.5;">All<br/>Emirates</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">FAQ</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      {faqs.map(f => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT CTA ════ -->
+<section id="contact" style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Ask for a Quote</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">For Divorce Certificate Attestation in the UAE</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Need help with Divorce Certificate Attestation in the UAE? Our experts can guide you through every step. Contact IndexAUH today to start your attestation process.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <p style="color:#81E6D9;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 6px;">Abu Dhabi Office</p>
+          <p style="color:#fff;margin:0;font-size:0.95rem;">Mob: (+971) 529300200 &nbsp;|&nbsp; Tel: (+971) 26311560</p>
+        </div>
+        <div>
+          <p style="color:#81E6D9;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 6px;">Dubai Office</p>
+          <p style="color:#fff;margin:0;font-size:0.95rem;">Mob: (+971) 529300200 &nbsp;|&nbsp; Tel: (+971) 42279916</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px;">
+        <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:700;padding:13px 24px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);width:fit-content;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          (+971) 529300200
+        </a>
+        <a href="mailto:info@indexauh.com" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:600;padding:13px 24px;border-radius:9999px;text-decoration:none;width:fit-content;">
+          info@indexauh.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+</BaseLayout>

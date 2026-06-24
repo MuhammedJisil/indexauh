@@ -3,153 +3,234 @@
 
 <footer style="background:#1A202C;color:#9CA3AF;position:relative;overflow:hidden;font-family:inherit;">
 
-  <!-- Glow top-left -->
   <div style="position:absolute;top:-80px;left:-80px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
-  <!-- Glow bottom-right -->
   <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.06) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
 
   <div style="position:relative;z-index:1;max-width:1400px;margin:0 auto;">
 
-    <!-- ── TOP: brand + links ── -->
-    <div style="display:flex;gap:56px;padding:64px 32px 48px;border-bottom:1px solid rgba(255,255,255,0.1);flex-wrap:wrap;align-items:flex-start;">
+    <!-- MAIN GRID: brand col + all link cols in one row on desktop -->
+    <div id="fmain" style="display:flex;gap:28px;flex-wrap:wrap;padding:56px 32px 40px 32px;border-bottom:1px solid rgba(255,255,255,0.1);">
 
-      <!-- Brand -->
-      <div style="flex-shrink:0;width:220px;display:flex;flex-direction:column;gap:16px;">
-        <a href="/" style="display:block;text-decoration:none;">
+      <!-- BRAND COLUMN -->
+      <div id="fbrand" style="flex:0 0 220px;min-width:180px;display:flex;flex-direction:column;gap:0;">
+        <a href="/" style="display:block;text-decoration:none;margin-bottom:14px;">
           <img src="/index_logo.webp" alt="Index Office Services" style="height:48px;width:auto;max-width:180px;object-fit:contain;filter:brightness(1.1);" />
         </a>
-        <p style="font-size:13px;line-height:1.75;color:#A0AEC0;margin:0;">UAE's No.1 trusted partner for certificate attestation, business setup, company formation, and legal services — since 1997.</p>
-
-        <!-- Socials -->
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <a href="#" title="Instagram" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
+        <p style="font-size:13px;line-height:1.75;color:#A0AEC0;margin:0 0 16px;">UAE's No.1 trusted partner for certificate attestation, business setup, company formation, and legal services — since 1997.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+          <a href="https://www.instagram.com/indexgcc/" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="#" title="WhatsApp" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
+          <a href="https://wa.me/971529300200" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           </a>
-          <a href="#" title="Facebook" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
+          <a href="https://www.facebook.com/indexauh" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a href="#" title="YouTube" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
+          <a href="https://www.youtube.com/@IndexOfficialUAE" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
-          <a href="#" title="LinkedIn" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
+          <a href="https://www.linkedin.com/company/index-abudhabi/" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
-          <a href="#" title="X" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
+          <a href="https://x.com/AbudhabiIndex" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#CBD5E0;text-decoration:none;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
         </div>
-
-        <!-- Call button -->
-        <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-size:13px;font-weight:700;padding:10px 18px;border-radius:9999px;text-decoration:none;width:fit-content;box-shadow:0 4px 16px rgba(56,178,172,0.3);">
+        <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-size:13px;font-weight:700;padding:10px 18px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 16px rgba(56,178,172,0.3);">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
           (+971) 529 300 200
         </a>
       </div>
 
-      <!-- Links grid -->
-      <div style="flex:1;min-width:0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;">
-
-        <!-- Col 1: Attestation Services -->
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <h4 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 6px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.4);">Attestation Services</h4>
-          <a href="/certificate-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Certificate Attestation</a>
-          <a href="/certificate-attestation-in-dubai/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Attestation in Dubai</a>
-          <a href="/certificate-attestation-in-abu-dhabi/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Attestation in Abu Dhabi</a>
-          <a href="/certificate-attestation-in-the-uae/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Attestation in UAE</a>
-          <a href="/saudi-certificate-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Saudi Attestation</a>
-          <a href="/qatar-certificate-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Qatar Attestation</a>
-          <a href="/oman-certificate-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Oman Attestation</a>
-          <a href="/kuwait-certificate-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Kuwait Attestation</a>
-          <a href="/certificate-attestation-in-uk/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Attestation in UK</a>
-          <a href="/usa-certificate-attestation-in-uae/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">USA Attestation</a>
-          <a href="/notary-attestation-services/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Notary Attestation</a>
-        </div>
-
-        <!-- Col 2: Document Types -->
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <h4 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 6px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.4);">Document Types</h4>
-          <a href="/certificate-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Personal Documents</a>
-          <a href="/birth-certificate-attestation-in-uae/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Birth Certificate</a>
-          <a href="/marriage-certificate-attestation-in-uae/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Marriage Certificate</a>
-          <a href="/educational-certificate-attestation-in-dubai/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Education Documents</a>
-          <a href="/degree-certificate-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Degree Certificate</a>
-          <a href="/commercial-documents-attestation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Commercial Documents</a>
-          <a href="/equivalency-certificate-service/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Equivalency Certificate</a>
-          <a href="/genuineness-certificate-service/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Genuineness Certificate</a>
-          <a href="/legal-translation-services/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Legal Translation</a>
-          <a href="/certificate-attestation-in-philippines/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Philippines Attestation</a>
-          <a href="/certificate-attestation-in-india/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">India Attestation</a>
-        </div>
-
-        <!-- Col 3: Business Setup -->
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <h4 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 6px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.4);">Business Setup</h4>
-          <a href="/business-setup-in-uae/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Business Setup in UAE</a>
-          <a href="/business-setup-in-dubai/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Business Setup in Dubai</a>
-          <a href="/business-setup-in-abu-dhabi/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Business Setup Abu Dhabi</a>
-          <a href="/company-formation/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Company Formation</a>
-          <a href="/company-formation-in-dubai/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Formation in Dubai</a>
-          <a href="/company-formation-in-abu-dhabi/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Formation in Abu Dhabi</a>
-          <a href="/company-formation-in-qatar/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Formation in Qatar</a>
-          <a href="/company-formation-in-kuwait/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Formation in Kuwait</a>
-          <a href="/company-formation-in-oman/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Formation in Oman</a>
-          <a href="/company-formation-in-saudi/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Formation in Saudi</a>
-          <a href="/company-registration-in-the-uae/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Company Registration UAE</a>
-        </div>
-
-        <!-- Col 4: PCC + Company -->
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          <h4 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 6px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.4);">Police Clearance</h4>
-          <a href="/police-clearance-certificate/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC Overview</a>
-          <a href="/police-clearance-certificate-from-uae/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC from UAE</a>
-          <a href="/police-clearance-certificate-from-usa/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC from USA</a>
-          <a href="/police-clearance-certificate-from-saudi/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC from Saudi</a>
-          <a href="/police-clearance-certificate-from-qatar/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC from Qatar</a>
-          <a href="/police-clearance-certificate-from-kuwait/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC from Kuwait</a>
-          <a href="/police-clearance-certificate-from-bahrain/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC from Bahrain</a>
-          <a href="/police-clearance-certificate-from-oman/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">PCC from Oman</a>
-          <h4 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:16px 0 6px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.4);">Company</h4>
-          <a href="/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Home</a>
-          <a href="/about/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">About Us</a>
-          <a href="/blogs/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Blog</a>
-          <a href="/contact/" style="font-size:12.5px;color:#A0AEC0;text-decoration:none;">Contact Us</a>
-        </div>
-
+      <!-- Col 1: Certificate Attestation -->
+      <div class="fcol" style="flex:1;min-width:160px;display:flex;flex-direction:column;gap:8px;">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 4px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.35);">Certificate Attestation</p>
+        <a href="/certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Certificate Attestation</a>
+        <a href="/birth-certificate-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Birth Certificate Attestation</a>
+        <a href="/marriage-certificate-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Marriage Certificate Attestation</a>
+        <a href="/divorce-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Divorce Certificate Attestation</a>
+        <a href="/death-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Death Certificate Attestation</a>
+        <a href="/experience-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Experience Certificate Attestation</a>
+        <a href="/educational-certificate-attestation-in-dubai/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Educational Certificate Attestation</a>
+        <a href="/degree-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Degree Certificate Attestation</a>
+        <a href="/diploma-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Diploma Certificate Attestation</a>
+        <a href="/transfer-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Transfer Certificate Attestation</a>
+        <a href="/commercial-documents-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Commercial Document Attestation</a>
+        <a href="/mofa-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">MOFA Attestation in UAE</a>
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:14px 0 4px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.35);">Countries</p>
+        <a href="/spain-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Spain Certificate Attestation</a>
+        <a href="/india-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Indian Certificate Attestation</a>
+        <a href="/certificate-attestation-in-uk/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">UK Certificate Attestation</a>
+        <a href="/usa-certificate-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">USA Certificate Attestation</a>
+        <a href="/certificate-attestation-in-the-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">UAE Certificate Attestation</a>
+        <a href="/france-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">France Certificate Attestation</a>
+        <a href="/australia-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Australia Certificate Attestation</a>
+        <a href="/canada-certificate-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Canada Certificate Attestation</a>
       </div>
+
+      <!-- Col 2: Embassy Attestation -->
+      <div class="fcol" style="flex:1;min-width:160px;display:flex;flex-direction:column;gap:8px;">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 4px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.35);">Embassy Attestation</p>
+        <a href="/embassy-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Embassy Attestation in UAE</a>
+        <a href="/spain-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Spain Embassy Attestation</a>
+        <a href="/qatar-embassy-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Qatar Embassy Attestation</a>
+        <a href="/oman-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Oman Embassy Attestation</a>
+        <a href="/saudi-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Saudi Embassy Attestation</a>
+        <a href="/kuwait-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Kuwait Embassy Attestation</a>
+        <a href="/bahrain-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Bahrain Embassy Attestation</a>
+        <a href="/portugal-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Portugal Embassy Attestation</a>
+        <a href="/morocco-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Morocco Embassy Attestation</a>
+        <a href="/canada-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Canada Embassy Attestation</a>
+        <a href="/greece-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Greece Embassy Attestation</a>
+        <a href="/finland-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Finland Embassy Attestation</a>
+        <a href="/turkish-embassy-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Turkish Embassy Attestation</a>
+        <a href="/indian-embassy-attestation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Indian Embassy Attestation</a>
+        <a href="/philippines-embassy-attestation-in-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Philippines Embassy Attestation</a>
+      </div>
+
+      <!-- Col 3: Company Formation -->
+      <div class="fcol" style="flex:1;min-width:160px;display:flex;flex-direction:column;gap:8px;">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 4px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.35);">Company Formation</p>
+        <a href="/company-formation/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Company Formation</a>
+        <a href="/company-formation-in-abu-dhabi/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in Abu Dhabi</a>
+        <a href="/company-formation-in-dubai/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in Dubai</a>
+        <a href="/company-formation-in-the-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in UAE</a>
+        <a href="/company-registration-in-the-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Company Registration UAE</a>
+        <a href="/company-formation-in-qatar/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in Qatar</a>
+        <a href="/company-formation-in-kuwait/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in Kuwait</a>
+        <a href="/company-formation-in-oman/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in Oman</a>
+        <a href="/company-formation-in-saudi/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in Saudi</a>
+        <a href="/company-formation-in-canada/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Formation in Canada</a>
+      </div>
+
+      <!-- Col 4: Police Clearance + Other + Quick Links -->
+      <div class="fcol" style="flex:1;min-width:160px;display:flex;flex-direction:column;gap:8px;">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:0 0 4px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.35);">Police Clearance</p>
+        <a href="/police-clearance-certificate/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Police Clearance Certificate</a>
+        <a href="/police-clearance-certificate-from-uae/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">PCC from UAE / Dubai</a>
+        <a href="/police-clearance-certificate-from-bahrain/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">PCC from Bahrain</a>
+        <a href="/police-clearance-certificate-from-oman/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">PCC from Oman</a>
+        <a href="/police-clearance-certificate-from-qatar/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">PCC from Qatar</a>
+        <a href="/police-clearance-certificate-from-saudi/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">PCC from Saudi</a>
+        <a href="/police-clearance-certificate-from-kuwait/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">PCC from Kuwait</a>
+        <a href="/police-clearance-certificate-from-usa/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">PCC from USA</a>
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:14px 0 4px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.35);">Other Services</p>
+        <a href="/legal-translation-services/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Legal Translation in UAE</a>
+        <a href="/poa-services/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">POA</a>
+        <a href="/notary-attestation-services/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Notary Services</a>
+        <a href="/equivalency-certificate-service/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Equivalency Certificate</a>
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#38B2AC;margin:14px 0 4px;padding-bottom:8px;border-bottom:1px solid rgba(56,178,172,0.35);">Quick Links</p>
+        <a href="/" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Home</a>
+        <a href="/about" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">About Us</a>
+        <a href="/blogs" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Blog</a>
+        <a href="/contact" style="font-size:13.5px;color:#A0AEC0;text-decoration:none;line-height:1.6;">Contact Us</a>
+      </div>
+
     </div>
 
-    <!-- ── BOTTOM BAR ── -->
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 32px;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.06);">
-      <p style="font-size:12.5px;color:#718096;margin:0;">&copy; {new Date().getFullYear()} Index Office Services. All rights reserved.</p>
+    <!-- BOTTOM BAR -->
+    <div id="fbar" style="display:flex;align-items:center;justify-content:space-between;padding:18px 32px;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.06);">
+      <p style="font-size:13px;color:#718096;margin:0;">&copy; {new Date().getFullYear()} Index Office Services. All rights reserved.</p>
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <a href="/contact/" style="font-size:12.5px;color:#718096;text-decoration:none;">Privacy Policy</a>
-        <span style="color:#4A5568;font-size:12px;">·</span>
-        <a href="/contact/" style="font-size:12.5px;color:#718096;text-decoration:none;">Terms of Service</a>
-        <span style="color:#4A5568;font-size:12px;">·</span>
-        <a href="/about/" style="font-size:12.5px;color:#718096;text-decoration:none;">Sitemap</a>
+        <a href="/privacy-policy/" style="font-size:13px;color:#718096;text-decoration:none;">Privacy Policy</a>
+        <span style="color:#4A5568;">·</span>
+        <a href="/terms-of-service/" style="font-size:13px;color:#718096;text-decoration:none;">Terms of Service</a>
+        <span style="color:#4A5568;">·</span>
+        <a href="/sitemap/" style="font-size:13px;color:#718096;text-decoration:none;">Sitemap</a>
       </div>
     </div>
 
   </div>
 </footer>
 
-<style>
-  footer a:hover { color: #38B2AC !important; }
-  footer .footer-call-btn:hover { background: #2C7A7B !important; }
+<script>
+  function updateFooterLayout() {
+    const main = document.getElementById('fmain');
+    const brand = document.getElementById('fbrand');
+    const cols = main ? main.querySelectorAll('.fcol') : [];
+    const bar = document.getElementById('fbar');
+    const w = window.innerWidth;
 
-  @media (max-width: 1100px) {
-    footer .footer-links-inner { grid-template-columns: repeat(2, 1fr) !important; }
+    if (!main) return;
+
+    if (w < 640) {
+      // Mobile: single column for everything
+      main.style.flexDirection = 'column';
+      main.style.padding = '36px 20px 32px 20px';
+      if (brand) {
+        brand.style.flex = '0 0 auto';
+        brand.style.width = '100%';
+        brand.style.minWidth = '0';
+      }
+      cols.forEach(col => {
+        col.style.flex = '0 0 auto';
+        col.style.width = '100%';
+        col.style.minWidth = '0';
+      });
+      // Larger text on mobile
+      main.querySelectorAll('a[href]').forEach(a => {
+        a.style.fontSize = '15px';
+      });
+      if (bar) {
+        bar.style.flexDirection = 'column';
+        bar.style.alignItems = 'center';
+        bar.style.textAlign = 'center';
+        bar.style.padding = '16px 20px';
+      }
+    } else if (w < 1024) {
+      // Tablet: brand full width on top, then 2-column links
+      main.style.flexDirection = 'row';
+      main.style.padding = '48px 28px 36px 28px';
+      if (brand) {
+        brand.style.flex = '0 0 100%';
+        brand.style.width = '100%';
+        brand.style.minWidth = '0';
+      }
+      cols.forEach(col => {
+        col.style.flex = '0 0 calc(50% - 14px)';
+        col.style.width = 'calc(50% - 14px)';
+        col.style.minWidth = '0';
+      });
+      main.querySelectorAll('a[href]').forEach(a => {
+        a.style.fontSize = '13.5px';
+      });
+      if (bar) {
+        bar.style.flexDirection = 'row';
+        bar.style.alignItems = 'center';
+        bar.style.textAlign = 'left';
+        bar.style.padding = '18px 28px';
+      }
+    } else {
+      // Desktop: brand + all 4 link cols in one row
+      main.style.flexDirection = 'row';
+      main.style.padding = '56px 32px 40px 32px';
+      if (brand) {
+        brand.style.flex = '0 0 220px';
+        brand.style.width = 'auto';
+        brand.style.minWidth = '180px';
+      }
+      cols.forEach(col => {
+        col.style.flex = '1';
+        col.style.width = 'auto';
+        col.style.minWidth = '160px';
+      });
+      main.querySelectorAll('a[href]').forEach(a => {
+        a.style.fontSize = '13.5px';
+      });
+      if (bar) {
+        bar.style.flexDirection = 'row';
+        bar.style.alignItems = 'center';
+        bar.style.textAlign = 'left';
+        bar.style.padding = '18px 32px';
+      }
+    }
   }
-  @media (max-width: 768px) {
-    footer .footer-top-inner { flex-direction: column !important; padding: 40px 20px 32px !important; }
-    footer .footer-brand-col { width: 100% !important; }
-    footer .footer-links-inner { grid-template-columns: repeat(2, 1fr) !important; }
-    footer .footer-bottom-inner { flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 16px 20px !important; }
-  }
-  @media (max-width: 480px) {
-    footer .footer-links-inner { grid-template-columns: 1fr !important; }
-  }
+
+  updateFooterLayout();
+  window.addEventListener('resize', updateFooterLayout);
+</script>
+
+<style is:global>
+  footer a:hover { color: #38B2AC !important; }
 </style>

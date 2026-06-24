@@ -3,11 +3,12 @@ import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const whenNeeded = [
-  "Are you planning to work in the UAE?",
-  "Do you want to sponsor your spouse or children?",
-  "Are you applying for university admission?",
-  "Thinking about setting up business in UAE?",
-  "Handling a legal matter that requires official documents?",
+  "Employment and work visa applications",
+  "Higher education and university admissions",
+  "Family visa and residency applications",
+  "Marriage registration and spouse visa processing",
+  "Business setup in the UAE or Bahrain",
+  "Legal transactions",
 ]
 
 const docTypes = [
@@ -15,13 +16,14 @@ const docTypes = [
     category: "Personal Documents",
     icon: "👤",
     docs: [
-      "Marriage certificate attestation",
+      "Marriage certificate attestation in Bahrain",
+      "Divorce Certificate attestation in Bahrain",
       "Birth certificate attestation",
-      "Divorce Certificate Attestation",
-      "Death Certificate Attestation",
-      "Police Clearance Certificate Attestation",
+      "Death Certificate Attestation in Bahrain",
+      "Transfer Certificate Attestation",
+      "Bahrain PCC",
+      "Salary certificate attestation in Bahrain",
       "Medical Certificate Attestation",
-      "Single Status Certificate Attestation",
       "Affidavit",
     ],
   },
@@ -29,101 +31,85 @@ const docTypes = [
     category: "Educational Documents",
     icon: "🎓",
     docs: [
-      "Degree Certificate Attestation",
-      "Diploma Certificate Attestation",
-      "School Certificate Attestation",
-      "Mark Sheets Attestation",
-      "Technical Certificate Attestation",
-      "Nursing Certificate Attestation",
-      "Engineering Certificate Attestation",
-      "Transcript Attestation",
+      "Degree certificates attestation for Bahrain",
+      "School leaving certificates",
+      "Bahrain Diploma Certificate Attestation",
+      "Master Degree Certificate Attestation",
+      "Engineering Degree Certificate Attestation",
+      "Nursing Degree Certificate Attestation in Bahrain",
     ],
   },
   {
     category: "Commercial Documents",
     icon: "⚖️",
     docs: [
-      "Power of Attorney Attestation",
-      "Company Incorporation Documents Attestation",
-      "Memorandum of Association Attestation",
-      "Articles of Association Attestation",
-      "Board Resolution Attestation",
-      "Commercial Invoice Attestation",
+      "Memorandum of Association (MOA)",
+      "Articles of Association (AOA)",
+      "Power of Attorney",
+      "Certificate of Incorporation",
       "Commercial License",
+      "Board Resolutions",
+      "Commercial Invoices",
     ],
   },
 ]
 
 const processSteps = [
-  { step: "01", title: "Verification and Authentication in Lebanon", desc: "The concerned authority checks your original document to confirm it is genuine. For educational certificates, the university may verify the record first, then the relevant Lebanese ministry adds its official stamp confirming the document is authentic and issued by a recognized institution." },
-  { step: "02", title: "UAE Embassy Legalization in Beirut", desc: "After ministry approval in Lebanon, the document goes to the UAE Embassy in Beirut. The embassy checks the previous stamps and confirms the document is valid for use inside the UAE, connecting the Lebanese authority with the UAE government system." },
-  { step: "03", title: "MOFA Attestation in the UAE", desc: "Once the document reaches the UAE, the Ministry of Foreign Affairs applies the final stamp. MOFA verifies the embassy stamp and confirms the certificate can now be legally used in the UAE." },
+  { step: "01", title: "Initial Notary Verification", desc: "The process starts with initial verification from the issuing authority or a registered notary. This confirms that your certificate is genuine and officially issued." },
+  { step: "02", title: "Home Country Government Attestation", desc: "If required, the document is attested by the relevant government departments in the issuing country. This step is common for educational and personal certificates issued outside the UAE." },
+  { step: "03", title: "Bahrain Embassy Attestation", desc: "After home country verification, the certificate is submitted for Bahrain Embassy attestation. The embassy checks the document and approves it for legal use in Bahrain." },
+  { step: "04", title: "MOFA Attestation Bahrain", desc: "The final step is MOFA attestation Bahrain. The Ministry of Foreign Affairs provides the last level of approval, making the certificate fully valid for submission in Bahrain." },
+  { step: "05", title: "Delivery of Attested Certificate", desc: "Our experts handle each stage carefully to ensure the process is smooth and to reduce the chances of delays or rejection." },
 ]
 
 const docsRequired = [
   "Original certificate",
-  "Passport copy",
-  "Visa copy in some cases",
-  "Authorization letter for agency processing",
+  "Passport copy of the certificate holder",
+  "Authorization letter",
+  "Supporting documents if required",
 ]
 
 const timingFactors = [
-  "Type of certificate",
-  "University or ministry verification in Lebanon",
-  "UAE embassy workload",
-  "MOFA appointment availability in UAE",
-  "Accuracy and condition of the document",
-  "Public holidays in Lebanon or UAE",
-]
-
-const feeFactors = [
   "Type of document",
-  "Number of certificates",
-  "Embassy charges",
-  "MOFA fees",
-  "Urgent processing request",
+  "Issuing country",
+  "Embassy and MOFA workload",
+  "Translation requirements",
 ]
 
 const challenges = [
-  "Submitting laminated certificates",
-  "Spelling errors in names, dates, or passport numbers",
-  "Missing authentication from the Lebanese ministry",
-  "Skipping the UAE embassy Lebanon attestation stage",
-  "Incorrect or unofficial legal translation",
-  "Submitting photocopies instead of original documents",
-  "Providing damaged or unclear certificates",
-  "Mismatch between certificate details and passport information",
-  "Using outdated or amended documents without proper proof",
+  "Submitting incomplete documents",
+  "Following the wrong attestation order",
+  "Missing Ministry of Foreign Affairs Bahrain attestation",
+  "Using non-certified translations",
 ]
 
 const getStartedSteps = [
-  { step: "01", title: "Contact IndexAUH", desc: "Call us or share your certificate copy through WhatsApp or email. Our team responds quickly." },
-  { step: "02", title: "Document Review", desc: "We check your document and confirm all required stages, including UAE embassy Lebanon attestation and MOFA approval. The timeline and cost are explained clearly." },
-  { step: "03", title: "Secure Processing", desc: "We arrange safe pickup anywhere in the UAE and handle your originals with care." },
-  { step: "04", title: "Final Delivery", desc: "After completing all approvals, we deliver the attested certificate ready for official use." },
+  { step: "01", title: "Contact Us for a Free Quote", desc: "Reach out to Indexauh. Our team will explain the requirements and guide you clearly." },
+  { step: "02", title: "Submit Your Documents", desc: "Send your certificates safely. We ensure secure handling at every stage." },
+  { step: "03", title: "We Process Your Documents", desc: "Our experts manage all steps with UAE authorities, the Bahrain Embassy, and MOFA Bahrain attestation offices." },
+  { step: "04", title: "Receive Attested Certificates", desc: "Your fully attested documents are delivered to your doorstep." },
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Our company has served clients in the UAE for over 25 years." },
-  { title: "Strong Procedural Knowledge", desc: "Strong knowledge of embassy and MOFA procedures." },
-  { title: "Clear Communication", desc: "Clear communication at every stage of the process." },
-  { title: "Transparent Pricing", desc: "Transparent cost explanation before we begin." },
-  { title: "Safe Document Handling", desc: "Safe handling of original documents throughout." },
-  { title: "Pickup & Delivery Across UAE", desc: "Pickup and delivery across UAE, with dedicated customer support." },
+  { title: "Experienced Attestation Specialists", desc: "Our team brings deep expertise in Bahrain certificate attestation procedures across all document types." },
+  { title: "Best Service in Dubai & Abu Dhabi", desc: "Trusted name for the best certificate attestation in Dubai and Abu Dhabi with proven results." },
+  { title: "Secure Document Handling", desc: "Strict protocols ensure your certificates are handled and tracked securely throughout the entire process." },
+  { title: "Transparent Communication", desc: "We keep you informed at every stage so you are never left wondering about the status of your documents." },
+  { title: "Embassy and MOFA Coordination", desc: "We coordinate directly with the Bahrain Embassy and MOFA Bahrain attestation offices on your behalf." },
+  { title: "Dedicated Customer Support", desc: "A dedicated support team is available to answer your queries and guide you clearly from start to finish." },
 ]
 
 const faqs = [
-  { q: "Is Embassy Legalization Mandatory for Lebanese Certificates?", a: "Yes. Embassy approval is required before MOFA stamping." },
-  { q: "Do You Need Original Certificates?", a: "Yes. Authorities require original documents for final attestation." },
-  { q: "Can Someone Else Submit the Documents?", a: "Yes. You can authorize us to handle the full process." },
-  { q: "Is MOFA Attestation Required in UAE?", a: "Yes. Without a MOFA stamp, UAE departments will not accept the document." },
-  { q: "Can someone else submit my document?", a: "Yes. An authorization letter allows a service provider to process it on your behalf." },
+  { q: "How long does Bahrain certificate attestation take?", a: "Processing time depends on the document and issuing country, but most cases are completed within a few working days." },
+  { q: "Is MOFA attestation Bahrain mandatory?", a: "Yes, Ministry of Foreign Affairs Bahrain attestation is a key step for document acceptance." },
+  { q: "Do Indian certificates need attestation for Bahrain?", a: "Yes, Indian certificate attestation in Bahrain is required for employment, education, and residency purposes." },
+  { q: "Can I track my attestation status?", a: "Yes, Indexauh provides regular updates during the process." },
 ]
 ---
 
 <BaseLayout
-  title="Lebanon Certificate Attestation in UAE | IndexAUH 25+ Years"
-  description="Lebanon certificate attestation in Dubai by IndexAUH with 25+ years experience. Fast UAE embassy Lebanon attestation. Call today."
+  title="Bahrain Certificate Attestation Services | Indexauh"
+  description="Bahrain Certificate Attestation by Indexauh with 25 years of experience. Secure, accurate processing in the UAE. Avoid delays. Contact us today to get started."
 >
 
 <style>
@@ -142,20 +128,16 @@ const faqs = [
   .split-grid { display: grid !important; }
   .three-col { display: grid !important; }
   .two-col { display: grid !important; }
-  .four-col { display: grid !important; }
-  .five-col { display: grid !important; }
 
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
-    .four-col { grid-template-columns: 1fr !important; }
-    .five-col { grid-template-columns: 1fr 1fr !important; }
     .img-first { order: -1 !important; }
     .hero-btns { flex-direction: column !important; align-items: stretch !important; }
     .hero-btns a { text-align: center; justify-content: center; }
-    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+    .get-started-grid { grid-template-columns: 1fr !important; }
   }
 </style>
 
@@ -163,7 +145,7 @@ const faqs = [
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
     src="/images/img-16.webp"
-    alt="Lebanon Certificate Attestation in the UAE"
+    alt="Bahrain Certificate Attestation in the UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
   <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
@@ -171,24 +153,23 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
     <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
-      <span class="idx-pill">MOFA Attestation</span>
-      <span class="idx-pill">Embassy Attestation</span>
-      <span class="idx-pill">25 Years of Trust</span>
+      <span class="idx-pill">Bahrain Attestation</span>
+      <span class="idx-pill">25+ Years of Trust</span>
     </div>
     <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
-      LEBANON CERTIFICATE ATTESTATION<br/>IN THE UAE
+      BAHRAIN CERTIFICATE ATTESTATION<br/>IN THE UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
-      Lebanon Certificate Attestation is the official process that makes your document legally valid here. UAE authorities require proper verification from Lebanon and final approval in the UAE before accepting any foreign certificate. With over 25 years of experience in document legalization across the UAE, our team guides you through Certificate Attestation smoothly and professionally from start to finish.
+      If you plan to work, study, get married, or do business in Bahrain, your documents must be legally verified. At IndexAUH, we manage Bahrain certificate attestation with careful document handling, clear procedures, and dedicated coordination at every stage.
     </p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
       <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
     </div>
   </div>
 </section>
 
-<!-- ════ OVERVIEW / WHY NEEDED ════ -->
+<!-- ════ OVERVIEW ════ -->
 <section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
@@ -197,30 +178,31 @@ const faqs = [
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
       </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why Do You Need Lebanon Certificate Attestation in UAE?</h2>
-      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
-        You may need it for a job, higher studies, family visa, or business setup. Without correct legalization, your application can face delay or rejection. In all these situations, UAE authorities will not accept your Lebanese certificates without proper legalization.
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is Bahrain Certificate Attestation?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Bahrain certificate attestation is the process of verifying documents so they are legally valid for use in Bahrain. This verification confirms that the certificate was issued by a recognized authority and is authentic.
       </p>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
-        {whenNeeded.map(item => (
-          <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
-            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-            <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
-          </div>
-        ))}
-      </div>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Verification from the issuing authority, the Bahrain Embassy, and the Ministry of Foreign Affairs Bahrain attestation stage are typically included in the attestation procedure. Your completed document is accepted by Bahraini government agencies, businesses, academic institutions, and other institutions.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        All significant documents, including birth certificates, marriage licences, educational credentials, and business paperwork, must go through this procedure.
+      </p>
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
-        <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">Missing any stage can lead to serious delays or rejection. If you are planning any of the above, this is the right time to start your attestation process.</p>
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — Translation Requirements</h3>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
+          Some documents may need certified translation before attestation in Bahrain. Translation is usually required if the certificate is not in English or Arabic. We assist with approved translation services to ensure full compliance with Bahrain authorities.
+        </p>
       </div>
     </div>
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-117.webp" alt="Lebanon document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-126.webp" alt="Bahrain document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Lebanon Ministry · UAE Embassy Beirut · MOFA UAE</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Lebanon attestation handled end-to-end</p>
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Notary · Embassy · MOFA Bahrain</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Bahrain attestation handled end-to-end</p>
         </div>
         <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
           25+ Years Experience
@@ -230,21 +212,54 @@ const faqs = [
   </div>
 </section>
 
-<!-- ════ DOCUMENT TYPES ════ -->
+<!-- ════ WHEN DO YOU NEED ════ -->
 <section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-11.webp" alt="Why Bahrain certificate attestation is required" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">When You Need Attestation</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visa · Business · Education · Family</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Why Is Bahrain Certificate Attestation Required?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          Attestation in Bahrain is mandatory for many official purposes. Without proper attestation, authorities may reject your documents. You need Bahrain certificate attestation for:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whenNeeded.map(item => (
+            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Lebanese Document Attestation Services</h2>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Types of Certificates We Attest for Bahrain</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
-          We handle attestation for a wide range of document categories across personal, educational, and commercial needs.
+          We handle attestation for a wide range of document categories. Always check with the requesting authority to confirm exactly what form of attestation they require.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-1.webp" alt="Document types for Lebanon attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <img src="/images/img-1.webp" alt="Document types for Bahrain attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
           <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
@@ -254,7 +269,7 @@ const faqs = [
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
       {docTypes.map(cat => (
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
             <span style="font-size:1.5rem;">{cat.icon}</span>
             <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
@@ -278,17 +293,13 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="/images/img-7.webp" alt="Lebanon attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-7.webp" alt="Bahrain attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Step by Step Process of Lebanon Certificate Attestation</h2>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Step by Step Bahrain Certificate Attestation Process</h2>
       </div>
     </div>
-
-    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 32px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;">
-      Understanding the process clearly helps you avoid rejection and delay. Many people face problems because they skip a stage or submit incomplete documents.
-    </p>
 
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
       <div style="display:flex;flex-direction:column;gap:14px;">
@@ -301,16 +312,13 @@ const faqs = [
             </div>
           </div>
         ))}
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;margin-top:4px;">
-          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">Every stage plays a major role in Lebanon Attestation. Missing even one step can result in rejection, which is why proper guidance is important from the beginning.</p>
-        </div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:20px;">
         <!-- Documents Required -->
         <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">What Documents Do You Need to Start the Process?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Most applications require:</p>
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required for Bahrain Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Requirements may vary based on the certificate and purpose. To begin the attestation process, you usually need:</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {docsRequired.map(d => (
               <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
@@ -318,13 +326,12 @@ const faqs = [
               </div>
             ))}
           </div>
-          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Certain documents may require Arabic translation before submission. Our team reviews every paper before starting Lebanon Certificate Attestation in UAE to prevent errors.</p>
         </div>
 
         <!-- Timing -->
         <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Lebanon Certificate Attestation Take?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on the type of document and how fast each authority completes its approval. Factors affecting processing time:</p>
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Processing Time for Bahrain Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Most cases are completed within a few working days. Contact Indexauh for accurate guidance on your specific case. Processing time depends on:</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {timingFactors.map(f => (
               <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
@@ -334,12 +341,17 @@ const faqs = [
           </div>
         </div>
 
-        <!-- Fees -->
+        <!-- Benefits -->
         <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Much Does Lebanon Certificate Attestation Cost in UAE?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Cost depends on several factors:</p>
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Benefits of Bahrain Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Attestation services in Bahrain offer many advantages for individuals and businesses alike:</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
-            {feeFactors.map(f => (
+            {[
+              "Legal recognition of documents",
+              "Faster visa and employment processing",
+              "Reduced risk of document rejection",
+              "Smooth academic and business procedures",
+            ].map(f => (
               <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
                 <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
               </div>
@@ -356,32 +368,29 @@ const faqs = [
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="two-col">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
-        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">What Mistakes Can Cause Delay or Rejection?</h2>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes to Avoid During Bahrain Attestation</h2>
         <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
-          Small errors can create serious problems during the process. We review every document carefully before submission to reduce the risk of delay or rejection.
+          Delays often happen because of small mistakes that can easily be avoided. Our professional support helps prevent these issues and makes the process smooth.
         </p>
-        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);">
-          <img
-            src="/images/img-40.webp"
-            alt="Document rejection mistakes to avoid"
-            style="width:100%;height:320px;object-fit:cover;display:block;"
-          />
-          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
-          <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-            <p style="color:#fff;font-size:0.88rem;font-weight:700;margin:0;">Avoid these mistakes for a smooth attestation process</p>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {challenges.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        {challenges.map(c => (
-          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
-            <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
-            <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
-          </div>
-        ))}
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Common mistakes in Bahrain attestation" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Delays</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+        </div>
       </div>
     </div>
   </div>
@@ -393,12 +402,12 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
     <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
-    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How Can You Begin with Lebanon Certificate Attestation?</h2>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Bahrain Certificate Attestation?</h2>
     <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
-      Starting is simple. Follow these steps to begin your Lebanon Certificate Attestation with IndexAUH.
+      Getting started is simple. Follow these steps to begin your Bahrain Certificate Attestation with Indexauh.
     </p>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;" class="four-col">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;" class="get-started-grid three-col">
       {getStartedSteps.map(s => (
         <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
           <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
@@ -417,7 +426,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-3.webp" alt="IndexAUH Lebanon attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.webp" alt="IndexAUH Bahrain attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
@@ -426,9 +435,9 @@ const faqs = [
       </div>
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Indexauh for Bahrain Certificate Attestation?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Experience makes a major difference in certificate attestation processing. Our company has served clients in the UAE for over 25 years.
+          Indexauh is a trusted name in certificate attestation services in Bahrain and the UAE. We handle educational, personal, and commercial documents with complete care and accuracy. Our team manages the entire process so you can avoid delays and rejections.
         </p>
       </div>
     </div>
@@ -451,7 +460,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:820px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:44px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
-      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">What Questions Do Clients Usually Ask?</h2>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Bahrain Certificate Attestation – FAQs</h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;">
       {faqs.map((f, i) => (
@@ -478,21 +487,13 @@ const faqs = [
 
     <div style="flex:1;min-width:280px;">
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
-      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">HOW CAN YOU CONTACT US TODAY?</h2>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET YOUR BAHRAIN CERTIFICATE ATTESTED TODAY</h2>
       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
-        Start your Lebanon Certificate Attestation with expert guidance from our experienced team.
+        Indexauh assists individuals and organizations with Bahrain attestation by coordinating each step accurately and securely. Speak to our experts today for quick guidance and secure document processing.
       </p>
-      <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
-        <div>
-          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Abu Dhabi Office</p>
-          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 26311560</p>
-        </div>
-        <div>
-          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Dubai Office</p>
-          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 42279916</p>
-        </div>
-        <p style="color:#94A3B8;font-size:0.9rem;margin:0;">info@indexauh.com</p>
-      </div>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.
+      </p>
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         CALL: (+971) 529 300 200

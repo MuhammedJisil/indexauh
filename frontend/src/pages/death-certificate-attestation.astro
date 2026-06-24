@@ -1,0 +1,478 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const heroPills = ["Doorstep Service","100+ Countries","25+ Yrs Experience","Confidential & Caring"]
+
+const whoNeeds = [
+  "Families of expatriates who passed away abroad",
+  "Residents managing inheritance cases",
+  "Employers cancelling employee visas",
+  "Legal representatives handling property matters",
+  "Family members claiming insurance or financial support",
+]
+
+const purposes = [
+  { title:"Insurance Claim Settlement", desc:"Insurance providers request a legally verified document before releasing funds." },
+  { title:"Property and Inheritance Transfer", desc:"Courts and land departments ask for proper attestation to transfer ownership." },
+  { title:"Bank Account Closure", desc:"Banks require authenticated documents to close or transfer accounts." },
+  { title:"Visa Cancellation Process", desc:"Immigration authorities need an attested document to cancel the residence visa." },
+  { title:"Court and Legal Matters", desc:"Lawyers submit the verified certificate during legal proceedings." },
+  { title:"Pension or Financial Benefits", desc:"Government or private institutions may request it before releasing benefits." },
+]
+
+const generalProcedure = [
+  { num:"01", title:"Verification from Local Authorities", desc:"The death certificate is first verified by the relevant local or regional authority in the country where the document was issued." },
+  { num:"02", title:"Authentication by the Foreign Affairs Authority", desc:"After local verification, the document is authenticated by the Ministry of Foreign Affairs or the designated foreign affairs department of the issuing country." },
+  { num:"03", title:"UAE Embassy or Consulate Attestation", desc:"The UAE Embassy or UAE Consulate in the issuing country verifies the document for official recognition in the UAE." },
+  { num:"04", title:"MOFA Attestation in UAE", desc:"Once the document reaches the UAE, the Ministry of Foreign Affairs completes the final attestation process. This confirms the death certificate is legally accepted for official use within the UAE." },
+]
+
+const countryProcess = [
+  { key:"general", label:"General Procedure", steps:["Verification from local authorities","Authentication by the foreign affairs authority","UAE Embassy or Consulate attestation","MOFA attestation in UAE"] },
+  { key:"india", label:"India", steps:["Notary stamp from local authority","State Home Department attestation","Ministry of External Affairs India stamp","UAE Embassy in India attestation","MOFA UAE final stamp"] },
+  { key:"uk", label:"UK", steps:["Solicitor certification","Legalisation from UK Foreign Office","UAE Embassy London attestation","MOFA UAE approval"] },
+  { key:"usa", label:"USA", steps:["Notary certification","Secretary of State authentication","US Department of State legalization","UAE Embassy USA attestation","MOFA UAE stamp"] },
+  { key:"philippines", label:"Philippines", steps:["Local Civil Registrar verification","Department of Foreign Affairs authentication","UAE Embassy Philippines attestation","MOFA UAE final legalization"] },
+  { key:"pakistan", label:"Pakistan", steps:["Local notary verification","Ministry of Foreign Affairs Pakistan stamp","UAE Embassy Pakistan attestation","MOFA UAE final approval"] },
+]
+
+const documentsRequired = [
+  "Original death certificate",
+  "Passport copy of the deceased",
+  "Passport copy of applicant",
+  "Emirates ID copy",
+  "Authorization letter in some cases",
+]
+
+const timeFactors = ["Country of issue","Embassy workload","Translation requirements","Public holidays"]
+const costFactors = ["Country of origin","Urgent processing request","Courier and handling charges","Government fee structure"]
+
+const commonIssues = [
+  "Name spelling mismatch",
+  "Damaged or laminated certificate",
+  "Missing prior authentication",
+  "Incorrect issuing authority",
+  "Unapproved translation",
+]
+
+const whyUs = [
+  { icon:"🏆", label:"25 plus years of experience in UAE certificate attestation services." },
+  { icon:"🌍", label:"Expertise in 100 plus countries." },
+  { icon:"📋", label:"Clear guidance at every stage." },
+  { icon:"🚚", label:"Doorstep collection and delivery." },
+  { icon:"🤝", label:"Transparent communication." },
+  { icon:"❤️", label:"Dedicated support team." },
+]
+
+
+
+const faqs = [
+  { q:"Can I apply for attestation from inside the UAE if the certificate was issued abroad?", a:"Yes. The document can be processed from the UAE through authorized service providers. The required steps will still follow the issuing country's legal procedure." },
+  { q:"Do I need to be physically present for the attestation process?", a:"No. You do not need to visit embassies or ministries personally. The process can be handled on your behalf with proper authorization." },
+  { q:"What happens after the MOFA stamp is completed?", a:"After final legalization, the document becomes valid for submission to UAE courts, banks, insurance companies, and immigration departments." },
+  { q:"Can I track the progress of my document?", a:"Yes. Professional attestation providers offer regular updates during each stage of the process so you stay informed." },
+  { q:"Is urgent processing available?", a:"Urgent handling may be possible depending on the issuing country and embassy schedule. Timelines depend on authority approval stages." },
+  { q:"What should I do if the original certificate is lost?", a:"You must request a duplicate copy from the issuing authority in the home country before starting the attestation process." },
+  { q:"Can I use a scanned copy for attestation?", a:"You must request a duplicate copy from the issuing authority in the home country before starting the attestation process." },
+  { q:"Will attestation confirm the cause of death details?", a:"No. Attestation only verifies the authenticity of the document, not the content inside it." },
+]
+---
+
+<BaseLayout title="Death Certificate Attestation in UAE | Index Office Services"
+description="Get Death Certificate Attestation UAE with 25+ years experience. Embassy and MOFA legalization for smooth document use in UAE and abroad."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  .step-card { display:flex; align-items:flex-start; gap:18px; padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .step-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  .purpose-card { padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .purpose-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  .why-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:14px; padding:22px; display:flex; align-items:flex-start; gap:14px; transition:background 0.2s; }
+  .why-card:hover { background:rgba(255,255,255,0.14); }
+
+  .tab-btn { padding:9px 22px; border-radius:9999px; font-size:0.83rem; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; }
+  .tab-btn.active { background:#2D3748; color:#fff; }
+  .tab-btn:not(.active) { background:#F0FFFE; color:#2D3748; border:1px solid #B2F5EA; }
+
+  .fact-item { display:flex; align-items:center; gap:8px; padding:10px 14px; background:#fff; border:1px solid #e0e7ef; border-radius:10px; font-size:0.98rem; color:#1A202C; font-weight:500; }
+  .fact-check { width:20px; height:20px; border-radius:50%; background:#38B2AC; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+  .faq-item { border:1px solid #eef0f6; border-radius:14px; padding:6px 22px; background:#fff; transition:border-color 0.2s; }
+  .faq-item:hover { border-color:#B2F5EA; }
+  .faq-item summary { padding:16px 0; cursor:pointer; font-weight:700; color:#1A202C; font-size:1rem; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content:"+"; font-size:1.4rem; font-weight:400; color:#38B2AC; flex-shrink:0; transition:transform 0.2s; }
+  .faq-item[open] summary::after { transform:rotate(45deg); }
+  .faq-item p { color:#4B5563; font-size:0.98rem; line-height:1.75; margin:0 0 18px; }
+
+  .idx-form input,.idx-form select,.idx-form textarea { width:100%; border:1px solid #e5e7eb; border-radius:10px; padding:11px 14px; font-size:1rem; color:#374151; outline:none; font-family:inherit; background:#fff; box-sizing:border-box; }
+  .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus { border-color:#38B2AC; box-shadow:0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize:none; }
+  .idx-submit { width:100%; background:#2D3748; color:#fff; font-weight:700; padding:13px; border-radius:10px; border:none; cursor:pointer; font-size:0.95rem; letter-spacing:0.04em; transition:background 0.2s; }
+  .idx-submit:hover { background:#1A202C; }
+
+  @media(max-width:900px){
+    .hero-grid { flex-direction:column !important; }
+    .two-col { flex-direction:column !important; }
+    .two-col > div { width:100% !important; }
+  }
+  @media(max-width:640px){
+    .steps-grid, .purpose-grid, .facts-grid { grid-template-columns:1fr !important; }
+  }
+  
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Death Certificate Attestation UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.86) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:center;">
+      {heroPills.map(p => <span class="idx-pill">{p}</span>)}
+    </div>
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;font-size:0.75rem;margin:0 0 14px;">Attestation Services</p>
+    <h1 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      Death Certificate Attestation<br/>in <span style="color:#38B2AC;">UAE</span>
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 16px;max-width:640px;">
+      Losing a loved one is hard. Handling paperwork during that time feels stressful. This process makes a foreign death certificate legally valid for use inside the UAE.
+    </p>
+    <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin:0 auto 32px;max-width:600px;">
+      At Index Office Services, we bring over 25 years of experience in UAE certificate attestation. Our team handles every case with care and privacy.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        (+971) 529 300 200
+      </a>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">
+        Free Consultation &rarr;
+      </a>
+    </div>
+    <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Years of Experience</p>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">100+</p>
+        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Countries Supported</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:-60px;right:-60px;width:400px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex-shrink:0;width:420px;">
+        <div style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
+          <img src="/images/img-111.webp" alt="Death certificate attestation UAE" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(26,32,44,0.72));"></div>
+          <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+            <p style="color:#81E6D9;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Legally Recognised</p>
+            <p style="color:#fff;font-size:0.95rem;font-weight:700;margin:0;">Making a foreign death certificate valid for use in the UAE</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Death Certificate Attestation</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Many families need death certificate attestation to complete legal formalities in the UAE. In the UAE, authorities ask for proper verification before accepting any foreign document.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Insurance companies, banks, courts, and immigration departments will request an attested death certificate. That is where expert support becomes important.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">At Index Office Services, we understand the legal steps, the embassy rules, and the Ministry procedures. Our team handles every case with care and privacy.</p>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px 20px;">
+          <p style="color:#1A202C;font-size:1rem;font-weight:600;margin:0 0 4px;">Index Office Services</p>
+          <p style="color:#4B5563;font-size:0.98rem;line-height:1.7;margin:0;">We guide you clearly and complete the process without confusion.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHO NEEDS IT ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Who It's For</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Who Needs Death Certificate Attestation in UAE?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Anyone submitting a foreign death certificate to UAE authorities will need proper legalization. This service is mainly required by:</p>
+        <div class="facts-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+          {whoNeeds.map(item => (
+            <div class="fact-item">
+              <span class="fact-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <img src="/images/img-7.webp" alt="Family handling death certificate paperwork" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ MAJOR PURPOSES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why It Matters</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0;">Major Purposes of Death Certificate Attestation</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:14px auto 0;max-width:640px;">An attested death certificate is required for many official matters in the UAE.</p>
+    </div>
+    <div class="purpose-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      {purposes.map(p => (
+        <div class="purpose-card">
+          <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 8px;">{p.title}</p>
+          <p style="font-size:0.95rem;color:#6B7280;line-height:1.65;margin:0;">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCEDURE / COUNTRY TABS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Step by Step</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Procedure for Death Certificate Attestation</h2>
+      <p style="color:#6B7280;font-size:1.02rem;margin:0 auto 24px;max-width:680px;">We support attestation processes from more than 100 issuing countries. Below is the general procedure and the most requested countries.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;" id="countryTabs">
+        {countryProcess.map((c, i) => (
+          <button class={`tab-btn ${i === 0 ? 'active' : ''}`} data-tab={c.key}>{c.label}</button>
+        ))}
+      </div>
+    </div>
+
+    {countryProcess.map((c, i) => (
+      <div id={`tab-${c.key}`} class="steps-grid" style={`display:${i === 0 ? 'grid' : 'none'};grid-template-columns:repeat(2,1fr);gap:16px;`}>
+        {c.steps.map((s, idx) => (
+          <div class="step-card">
+            <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{String(idx + 1).padStart(2,'0')}</div>
+            <div>
+              <p style="font-size:0.95rem;color:#374151;line-height:1.6;margin:0;">{s}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS / TIME / COST ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Checklist</p>
+        <h2 style="font-size:1.7rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Documents Required</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+          {documentsRequired.map(item => (
+            <div class="fact-item">
+              <span class="fact-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              {item}
+            </div>
+          ))}
+        </div>
+        <p style="color:#6B7280;font-size:0.92rem;margin:0;">Some countries may ask for extra supporting papers depending on their local rules.</p>
+      </div>
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Plan Ahead</p>
+        <h2 style="font-size:1.7rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Processing Time and Cost Factors</h2>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:200px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:18px 20px;">
+            <p style="font-weight:700;color:#1A202C;margin:0 0 10px;font-size:0.95rem;">Processing time depends on:</p>
+            <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.92rem;line-height:1.9;">
+              {timeFactors.map(t => <li>{t}</li>)}
+            </ul>
+          </div>
+          <div style="flex:1;min-width:200px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:18px 20px;">
+            <p style="font-weight:700;color:#1A202C;margin:0 0 10px;font-size:0.95rem;">Cost depends on:</p>
+            <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:0.92rem;line-height:1.9;">
+              {costFactors.map(c => <li>{c}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ TRANSLATION / COMMON ISSUES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:24px;flex-wrap:wrap;">
+
+     <div style="flex:1;min-width:280px;background:#fff;border:1px solid #eef0f6;border-radius:18px;padding:28px;box-sizing:border-box;">
+        <h3 style="font-size:1.25rem;font-weight:800;color:#1A202C;margin:0 0 12px;">Is Translation Required?</h3>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.8;margin:0;">Arabic translation may be required for submission to UAE courts or certain departments. English documents are usually accepted for MOFA. Our team checks and advises before proceeding.</p>
+      </div>
+
+      <div style="flex:1;min-width:280px;background:#fff;border:1px solid #eef0f6;border-radius:18px;padding:28px;box-sizing:border-box;">
+        <h3 style="font-size:1.25rem;font-weight:800;color:#1A202C;margin:0 0 14px;">Common Issues in Attestation</h3>
+        <ul style="margin:0 0 12px;padding-left:18px;color:#4B5563;font-size:0.98rem;line-height:1.9;">
+          {commonIssues.map(c => <li>{c}</li>)}
+        </ul>
+        <p style="color:#6B7280;font-size:0.92rem;margin:0;">We review the document first to avoid delays.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY US ════ -->
+<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 14px;">Why Choose Indexauh?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">We understand the legal system in the UAE deeply. Families trust us because we complete death certificate attestation services with care and accuracy.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whyUs.map(w => (
+            <div class="why-card">
+              <span style="font-size:1.4rem;flex-shrink:0;">{w.icon}</span>
+              <p style="color:#CBD5E0;font-size:0.83rem;line-height:1.65;margin:0;">{w.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <div style="position:relative;">
+          <img src="/images/img-3.webp" alt="Index Office Services team" style="width:100%;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+          <div style="position:absolute;bottom:20px;left:-16px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
+            <p style="font-size:1.8rem;font-weight:900;margin:0;line-height:1;">100+</p>
+            <p style="font-size:0.9rem;margin:4px 0 0;opacity:0.9;">Countries Supported</p>
+          </div>
+          <div style="position:absolute;top:20px;right:-16px;background:#fff;color:#1A202C;padding:12px 16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.15);font-weight:700;font-size:0.75rem;text-align:center;line-height:1.5;">25+ Years<br/>Experience</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">FAQ</p>
+      <h2 style="font-size:2.1rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      {faqs.map(f => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT CTA ════ -->
+<section id="contact" style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get Professional Support</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">For Death Certificate Attestation in the UAE</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Do not let document formalities slow you down. Our team is ready to assist you at every step.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <p style="color:#81E6D9;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 6px;">Abu Dhabi Office</p>
+          <p style="color:#fff;margin:0;font-size:0.95rem;">Mob: (+971) 529300200 &nbsp;|&nbsp; Tel: (+971) 26311560</p>
+        </div>
+        <div>
+          <p style="color:#81E6D9;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 6px;">Dubai Office</p>
+          <p style="color:#fff;margin:0;font-size:0.95rem;">Mob: (+971) 529300200 &nbsp;|&nbsp; Tel: (+971) 42279916</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px;">
+        <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:700;padding:13px 24px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);width:fit-content;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          (+971) 529300200
+        </a>
+        <a href="mailto:info@indexauh.com" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:600;padding:13px 24px;border-radius:9999px;text-decoration:none;width:fit-content;">
+          info@indexauh.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  const tabs = document.querySelectorAll('#countryTabs .tab-btn');
+  const panelIds = Array.from(tabs).map(t => (t as HTMLElement).dataset.tab);
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = (tab as HTMLElement).dataset.tab;
+      panelIds.forEach(id => {
+        const el = document.getElementById('tab-' + id) as HTMLElement;
+        if (el) el.style.display = id === target ? 'grid' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

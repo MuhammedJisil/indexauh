@@ -3,11 +3,12 @@ import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const whenNeeded = [
-  "Are you planning to work in the UAE?",
-  "Do you want to sponsor your spouse or children?",
-  "Are you applying for university admission?",
-  "Thinking about setting up business in UAE?",
-  "Handling a legal matter that requires official documents?",
+  "Employment visa processing",
+  "Family visa and spouse sponsorship",
+  "School or university admission",
+  "Golden visa applications",
+  "Business setup in UAE",
+  "Court or legal submissions",
 ]
 
 const docTypes = [
@@ -15,11 +16,11 @@ const docTypes = [
     category: "Personal Documents",
     icon: "👤",
     docs: [
-      "Marriage certificate attestation",
-      "Birth certificate attestation",
-      "Divorce Certificate Attestation",
-      "Death Certificate Attestation",
-      "Police Clearance Certificate Attestation",
+      "Netherlands Marriage certificate attestation",
+      "Netherlands Birth certificate attestation",
+      "Netherlands Divorce Certificate Attestation",
+      "Netherlands Death Certificate Attestation",
+      "Netherlands Police Clearance Certificate Attestation",
       "Medical Certificate Attestation",
       "Single Status Certificate Attestation",
       "Affidavit",
@@ -29,7 +30,7 @@ const docTypes = [
     category: "Educational Documents",
     icon: "🎓",
     docs: [
-      "Degree Certificate Attestation",
+      "Netherlands Degree Certificate Attestation",
       "Diploma Certificate Attestation",
       "School Certificate Attestation",
       "Mark Sheets Attestation",
@@ -55,9 +56,10 @@ const docTypes = [
 ]
 
 const processSteps = [
-  { step: "01", title: "Verification and Authentication in Lebanon", desc: "The concerned authority checks your original document to confirm it is genuine. For educational certificates, the university may verify the record first, then the relevant Lebanese ministry adds its official stamp confirming the document is authentic and issued by a recognized institution." },
-  { step: "02", title: "UAE Embassy Legalization in Beirut", desc: "After ministry approval in Lebanon, the document goes to the UAE Embassy in Beirut. The embassy checks the previous stamps and confirms the document is valid for use inside the UAE, connecting the Lebanese authority with the UAE government system." },
-  { step: "03", title: "MOFA Attestation in the UAE", desc: "Once the document reaches the UAE, the Ministry of Foreign Affairs applies the final stamp. MOFA verifies the embassy stamp and confirms the certificate can now be legally used in the UAE." },
+  { step: "01", title: "Verification in the Netherlands", desc: "The certificate must first be verified by the issuing authority or notary in the Netherlands." },
+  { step: "02", title: "Ministry of Foreign Affairs in the Netherlands", desc: "After initial verification, the Dutch Ministry confirms the authenticity of the signature and seal." },
+  { step: "03", title: "UAE Embassy Attestation in the Netherlands", desc: "The UAE Embassy checks the document and places its legalization stamp." },
+  { step: "04", title: "MOFA Attestation in UAE", desc: "Once the document reaches the UAE, the Ministry of Foreign Affairs gives the final approval." },
 ]
 
 const docsRequired = [
@@ -68,62 +70,67 @@ const docsRequired = [
 ]
 
 const timingFactors = [
-  "Type of certificate",
-  "University or ministry verification in Lebanon",
-  "UAE embassy workload",
-  "MOFA appointment availability in UAE",
-  "Accuracy and condition of the document",
-  "Public holidays in Lebanon or UAE",
+  "Type of certificate submitted",
+  "Educational document verification from university or board",
+  "Category of document such as personal or commercial",
+  "Workload at the Ministry of Foreign Affairs in the Netherlands",
+  "UAE Embassy processing schedule",
+  "Final MOFA approval timeline in UAE",
+  "Public holidays in the Netherlands or UAE",
+  "Courier transit time between both countries",
+  "Accuracy and condition of the original document",
+  "Translation requirement and certification stage",
 ]
 
 const feeFactors = [
-  "Type of document",
-  "Number of certificates",
-  "Embassy charges",
-  "MOFA fees",
-  "Urgent processing request",
+  "Type of certificate",
+  "Educational or commercial category",
+  "Translation requirement",
+  "Ministry and MOFA fees",
+  "Processing speed",
 ]
 
 const challenges = [
-  "Submitting laminated certificates",
-  "Spelling errors in names, dates, or passport numbers",
-  "Missing authentication from the Lebanese ministry",
-  "Skipping the UAE embassy Lebanon attestation stage",
-  "Incorrect or unofficial legal translation",
-  "Submitting photocopies instead of original documents",
-  "Providing damaged or unclear certificates",
-  "Mismatch between certificate details and passport information",
-  "Using outdated or amended documents without proper proof",
+  "Laminated certificates",
+  "Damaged or unclear documents",
+  "Name mismatch with passport",
+  "Missing supporting documents",
+  "Incorrect translation",
+  "Submitting photocopies instead of originals",
+  "Issuing authority signature does not match ministry records",
 ]
 
 const getStartedSteps = [
-  { step: "01", title: "Contact IndexAUH", desc: "Call us or share your certificate copy through WhatsApp or email. Our team responds quickly." },
-  { step: "02", title: "Document Review", desc: "We check your document and confirm all required stages, including UAE embassy Lebanon attestation and MOFA approval. The timeline and cost are explained clearly." },
-  { step: "03", title: "Secure Processing", desc: "We arrange safe pickup anywhere in the UAE and handle your originals with care." },
-  { step: "04", title: "Final Delivery", desc: "After completing all approvals, we deliver the attested certificate ready for official use." },
+  { step: "01", title: "Share Your Document Copy", desc: "Send us a clear scan through WhatsApp or email. Our team responds quickly." },
+  { step: "02", title: "Free Review", desc: "Our experts review the certificate and confirm the required process for Netherlands Certificate Attestation." },
+  { step: "03", title: "Secure Collection", desc: "We arrange document pickup from your location in the UAE." },
+  { step: "04", title: "Complete Processing", desc: "Our team handles ministry procedures, embassy legalization, and final MOFA stamping. You receive your attested document safely." },
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Our company has served clients in the UAE for over 25 years." },
-  { title: "Strong Procedural Knowledge", desc: "Strong knowledge of embassy and MOFA procedures." },
-  { title: "Clear Communication", desc: "Clear communication at every stage of the process." },
-  { title: "Transparent Pricing", desc: "Transparent cost explanation before we begin." },
-  { title: "Safe Document Handling", desc: "Safe handling of original documents throughout." },
-  { title: "Pickup & Delivery Across UAE", desc: "Pickup and delivery across UAE, with dedicated customer support." },
+  { title: "25+ Years of Experience", desc: "We are the best in the UAE with over 25+ years of experience in certificate attestation UAE." },
+  { title: "Full Dutch Process Knowledge", desc: "Clear understanding of Dutch and UAE legal procedures from start to finish." },
+  { title: "Transparent Status Updates", desc: "Regular and transparent status updates at every stage of the process." },
+  { title: "Safe Document Handling", desc: "Careful protection of your original documents throughout the entire process." },
+  { title: "Translation & Compliance Guidance", desc: "Proper guidance on translation and legal compliance for UAE authorities." },
+  { title: "Urgent Processing Support", desc: "Professional support for urgent requirements with pickup and delivery across the UAE." },
 ]
 
 const faqs = [
-  { q: "Is Embassy Legalization Mandatory for Lebanese Certificates?", a: "Yes. Embassy approval is required before MOFA stamping." },
-  { q: "Do You Need Original Certificates?", a: "Yes. Authorities require original documents for final attestation." },
-  { q: "Can Someone Else Submit the Documents?", a: "Yes. You can authorize us to handle the full process." },
-  { q: "Is MOFA Attestation Required in UAE?", a: "Yes. Without a MOFA stamp, UAE departments will not accept the document." },
-  { q: "Can someone else submit my document?", a: "Yes. An authorization letter allows a service provider to process it on your behalf." },
+  { q: "Is an apostille from the Netherlands accepted in the UAE?", a: "No. The Netherlands is part of the Hague Convention, but the UAE is not. That means an apostille alone is not valid for UAE visa or legal use. Full legalization including embassy and MOFA approval is required." },
+  { q: "Can I use a photocopy for Netherlands document attestation?", a: "No. UAE authorities require the original certificate. Photocopies are not accepted for official stamping." },
+  { q: "Do I need to attest transcripts separately from the degree certificate?", a: "In many cases, yes. Some employers and universities in the UAE request attested transcripts along with the degree. It is better to confirm the requirement before starting the process." },
+  { q: "Is translation required for Dutch documents in the UAE?", a: "Most Dutch documents need English or Arabic translation. Some authorities accept English versions. Arabic translation may be required for court or government submissions. Certified translation is important." },
+  { q: "Can I attest laminated certificates?", a: "No. Laminated documents are usually rejected because authorities cannot stamp on them. The lamination must be removed carefully before submission." },
+  { q: "What happens if my name on the certificate does not match my passport?", a: "Name mismatch can lead to rejection. You may need a name clarification letter or supporting affidavit. It is important to review this before starting the Netherlands Certificate Attestation." },
+  { q: "Can I complete Netherlands Certificate Attestation while staying in the UAE?", a: "Yes. You do not need to travel to the Netherlands. Our team manages the entire process through authorized channels." },
+  { q: "Can commercial documents from the Netherlands be attested for UAE business setup?", a: "Yes. Company documents such as incorporation papers, power of attorney, and board resolutions can be legalized for use in the UAE after completing the required steps." },
 ]
 ---
 
 <BaseLayout
-  title="Lebanon Certificate Attestation in UAE | IndexAUH 25+ Years"
-  description="Lebanon certificate attestation in Dubai by IndexAUH with 25+ years experience. Fast UAE embassy Lebanon attestation. Call today."
+  title="Netherlands Certificate Attestation Services in UAE | Indexauh"
+  description="Netherlands Certificate Attestation in UAE by IndexAUH. 25+ years in document legalization with UAE Embassy Netherlands and MOFA approval. Call today."
 >
 
 <style>
@@ -143,7 +150,6 @@ const faqs = [
   .three-col { display: grid !important; }
   .two-col { display: grid !important; }
   .four-col { display: grid !important; }
-  .five-col { display: grid !important; }
 
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
@@ -151,11 +157,9 @@ const faqs = [
     .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
     .four-col { grid-template-columns: 1fr !important; }
-    .five-col { grid-template-columns: 1fr 1fr !important; }
     .img-first { order: -1 !important; }
     .hero-btns { flex-direction: column !important; align-items: stretch !important; }
     .hero-btns a { text-align: center; justify-content: center; }
-    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
 
@@ -163,7 +167,7 @@ const faqs = [
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
     src="/images/img-16.webp"
-    alt="Lebanon Certificate Attestation in the UAE"
+    alt="Netherlands Certificate Attestation in the UAE"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
   <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
@@ -176,12 +180,12 @@ const faqs = [
       <span class="idx-pill">25 Years of Trust</span>
     </div>
     <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
-      LEBANON CERTIFICATE ATTESTATION<br/>IN THE UAE
+      NETHERLANDS CERTIFICATE ATTESTATION<br/>IN THE UAE
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
-      Lebanon Certificate Attestation is the official process that makes your document legally valid here. UAE authorities require proper verification from Lebanon and final approval in the UAE before accepting any foreign certificate. With over 25 years of experience in document legalization across the UAE, our team guides you through Certificate Attestation smoothly and professionally from start to finish.
+      When you bring a certificate from the Netherlands to the UAE, the government must confirm it is genuine. This process is called Netherlands Certificate Attestation. Without it, your document will not be accepted for visa, job, study, or business use. The Netherlands is part of the Hague Convention. The UAE is not. That is why an apostille alone is not enough for UAE authorities. With over 25+ years of experience in international document legalization, our team understands Dutch procedures and UAE requirements clearly.
     </p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
       <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
     </div>
@@ -197,9 +201,9 @@ const faqs = [
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
       </p>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why Do You Need Lebanon Certificate Attestation in UAE?</h2>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Purpose of Netherlands Certificate Attestation in the UAE</h2>
       <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
-        You may need it for a job, higher studies, family visa, or business setup. Without correct legalization, your application can face delay or rejection. In all these situations, UAE authorities will not accept your Lebanese certificates without proper legalization.
+        The UAE authorities check foreign documents before approving visas or legal applications. They need proof that your certificate is original and issued by the right authority in the Netherlands. Without correct legalization, your application can face delay or rejection.
       </p>
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
         {whenNeeded.map(item => (
@@ -216,11 +220,11 @@ const faqs = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-117.webp" alt="Lebanon document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-119.webp" alt="Netherlands document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Lebanon Ministry · UAE Embassy Beirut · MOFA UAE</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Lebanon attestation handled end-to-end</p>
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Dutch Ministry · UAE Embassy Netherlands · MOFA UAE</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Netherlands attestation handled end-to-end</p>
         </div>
         <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
           25+ Years Experience
@@ -238,13 +242,13 @@ const faqs = [
     <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Lebanese Document Attestation Services</h2>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Our Netherlands Certificate Attestation Services</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
           We handle attestation for a wide range of document categories across personal, educational, and commercial needs.
         </p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-1.webp" alt="Document types for Lebanon attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <img src="/images/img-1.webp" alt="Document types for Netherlands attestation" style="width:100%;height:240px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
         <div style="position:absolute;bottom:16px;left:16px;right:16px;">
           <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
@@ -278,16 +282,16 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
     <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
-      <img src="/images/img-7.webp" alt="Lebanon attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <img src="/images/img-7.webp" alt="Netherlands attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
       <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
         <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
-        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Step by Step Process of Lebanon Certificate Attestation</h2>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">How to Get Dutch Documents Attested for the UAE?</h2>
       </div>
     </div>
 
     <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 32px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;">
-      Understanding the process clearly helps you avoid rejection and delay. Many people face problems because they skip a stage or submit incomplete documents.
+      The process follows clear steps. Each step confirms your document is valid. Understanding the process clearly helps you avoid rejection and delay. Many people face problems because they skip a stage or submit incomplete documents.
     </p>
 
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
@@ -301,8 +305,15 @@ const faqs = [
             </div>
           </div>
         ))}
-        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;margin-top:4px;">
-          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">Every stage plays a major role in Lebanon Attestation. Missing even one step can result in rejection, which is why proper guidance is important from the beginning.</p>
+
+        <!-- Apostille vs Attestation note -->
+        <div style="background:#FFF8E1;border:1px solid #F6E05E;border-radius:14px;padding:18px;margin-top:4px;">
+          <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 6px;">Attestation vs Apostille for Netherlands Documents</p>
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.7;margin:0;">Many people think an apostille is enough. That works only in countries that are part of the Hague Convention. The UAE follows a different system. For UAE use, the document must go through full legalization including ministry verification and embassy stamping. An apostille stamp alone will not help for visa or government use.</p>
+        </div>
+
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;">
+          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">Every stage plays a major role in Netherlands Attestation. Missing even one step can result in rejection, which is why proper guidance is important from the beginning.</p>
         </div>
       </div>
 
@@ -318,13 +329,13 @@ const faqs = [
               </div>
             ))}
           </div>
-          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Certain documents may require Arabic translation before submission. Our team reviews every paper before starting Lebanon Certificate Attestation in UAE to prevent errors.</p>
+          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Most Dutch documents are in Dutch language. UAE authorities usually request English or Arabic. Certified translation must match the original document exactly. Our team reviews every paper before starting Netherlands Certificate Attestation in UAE to prevent errors.</p>
         </div>
 
         <!-- Timing -->
         <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Lebanon Certificate Attestation Take?</h3>
-          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on the type of document and how fast each authority completes its approval. Factors affecting processing time:</p>
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Netherlands Certificate Attestation Take?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on several key factors:</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {timingFactors.map(f => (
               <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
@@ -336,7 +347,7 @@ const faqs = [
 
         <!-- Fees -->
         <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
-          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Much Does Lebanon Certificate Attestation Cost in UAE?</h3>
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Much Does Netherlands Certificate Attestation Cost in UAE?</h3>
           <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Cost depends on several factors:</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
             {feeFactors.map(f => (
@@ -359,14 +370,14 @@ const faqs = [
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="two-col">
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
-        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">What Mistakes Can Cause Delay or Rejection?</h2>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">What are the Common Reasons for Rejections?</h2>
         <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
-          Small errors can create serious problems during the process. We review every document carefully before submission to reduce the risk of delay or rejection.
+          Rejection usually happens due to small mistakes. Many people are not aware of these issues. We check every detail before submitting your document for Dutch document attestation. This reduces risk and saves time.
         </p>
         <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);">
           <img
             src="/images/img-40.webp"
-            alt="Document rejection mistakes to avoid"
+            alt="Common rejection mistakes in Netherlands document attestation"
             style="width:100%;height:320px;object-fit:cover;display:block;"
           />
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
@@ -382,6 +393,9 @@ const faqs = [
             <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
           </div>
         ))}
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:14px 16px;margin-top:4px;">
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.6;margin:0;">Sometimes the issuing authority signature does not match ministry records. In such cases, the document goes back for correction. Proper review at the first stage protects your application from delay.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -393,9 +407,9 @@ const faqs = [
 
   <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
     <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
-    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How Can You Begin with Lebanon Certificate Attestation?</h2>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Begin with Netherlands Certificate Attestation?</h2>
     <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
-      Starting is simple. Follow these steps to begin your Lebanon Certificate Attestation with IndexAUH.
+      Starting is simple. We keep you updated at every stage. You focus on your plans. We handle the paperwork.
     </p>
 
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;" class="four-col">
@@ -417,7 +431,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-3.webp" alt="IndexAUH Lebanon attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.webp" alt="IndexAUH Netherlands attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
@@ -426,9 +440,9 @@ const faqs = [
       </div>
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH for Netherlands Certificate Attestation?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Experience makes a major difference in certificate attestation processing. Our company has served clients in the UAE for over 25 years.
+          Experience makes a major difference in certificate attestation processing. We are the best in the UAE with over 25+ years of experience. Over the years, our team has managed thousands of international cases across multiple countries. That depth of experience ensures your process stays smooth and free from unnecessary stress.
         </p>
       </div>
     </div>
@@ -451,7 +465,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:820px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:44px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
-      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">What Questions Do Clients Usually Ask?</h2>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Netherlands Certificate Attestation</h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;">
       {faqs.map((f, i) => (
@@ -480,7 +494,7 @@ const faqs = [
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">HOW CAN YOU CONTACT US TODAY?</h2>
       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
-        Start your Lebanon Certificate Attestation with expert guidance from our experienced team.
+        Start your Netherlands Certificate Attestation with expert guidance from our experienced team. Contact us today and let our experts handle your Attestation services Netherlands with care and precision.
       </p>
       <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
         <div>
