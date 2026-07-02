@@ -25,10 +25,33 @@ const steps = [
 ]
 
 const majorCountries = [
-  "India","UK","USA","Canada","France","Portugal","Spain","Australia","Malaysia","Germany","Philippines","Italy",
+  { name: "UK", href: "/certificate-attestation-in-uk/" },
+  { name: "USA", href: "/usa-certificate-attestation-in-uae/" },
+  { name: "Canada", href: "/canada-certificate-attestation/" },
+  { name: "France", href: "/france-certificate-attestation/" },
+  { name: "Spain", href: "/spain-certificate-attestation/" },
+  { name: "Australia", href: "/australia-certificate-attestation/" },
+  { name: "Malaysia", href: "/malaysia-certificate-attestation/" },
+  { name: "Germany", href: "/germany-certificate-attestation/" },
+  { name: "Philippines", href: "/certificate-attestation-in-philippines/" },
+  { name: "Italy", href: "/italy-certificate-attestation/" },
+  { name: "Singapore", href: "/singapore-certificate-attestation/" },
+  { name: "Switzerland", href: "/switzerland-certificate-attestation/" },
+  { name: "Netherlands", href: "/netherlands-certificate-attestation/" },
+  { name: "Poland", href: "/poland-certificate-attestation/" },
+  { name: "Nigeria", href: "/nigerian-certificate-attestation/" },
+  { name: "Lebanon", href: "/lebanon-certificate-attestation/" },
+  { name: "China", href: "/china-attestation-services/" },
+  { name: "Austria", href: "/austria-certificate-attestation/" },
 ]
+
 const gccCountries = [
-  "Kuwait","Oman","Qatar","Bahrain","Saudi Arabia","UAE",
+  { name: "Kuwait", href: "/kuwait-certificate-attestation/" },
+  { name: "Oman", href: "/oman-certificate-attestation/" },
+  { name: "Bahrain", href: "/bahrain-certificate-attestation/" },
+  { name: "Saudi Arabia", href: "/saudi-certificate-attestation/" },
+  { name: "UAE", href: "/certificate-attestation-in-the-uae/" },
+  { name: "Qatar", href: "/qatar-certificate-attestation/" },
 ]
 
 const faqs = [
@@ -101,8 +124,35 @@ const countryCodes = [
   @media(max-width:640px) {
     .steps-grid { grid-template-columns:1fr !important; }
     .who-grid { grid-template-columns:1fr !important; }
-    .how-grid { grid-template-columns:repeat(2,1fr) !important; }
+    .how-grid { grid-template-columns:repeat(1,1fr) !important; }
   }
+
+  /* Image hover effects */
+.img-hover-wrap {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.img-hover-wrap:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px rgba(56,178,172,0.18) !important;
+}
+.img-hover-wrap img {
+  transition: transform 0.45s ease;
+}
+.img-hover-wrap:hover img {
+  transform: scale(1.04);
+}
+
+/* Fix mobile image overflow */
+@media(max-width:768px) {
+  .img-side-wrap {
+    width: 100% !important;
+    flex-shrink: unset !important;
+  }
+  .img-side-wrap img {
+    width: 100% !important;
+    height: 260px !important;
+  }
+}
 </style>
 
 <!-- ════════════ HERO — image bg, centered text ════════════ -->
@@ -160,8 +210,8 @@ const countryCodes = [
       </p>
     </div>
 
-    <div style="flex-shrink:0;width:420px;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
+    <div class="img-side-wrap" style="flex-shrink:0;width:420px;">
+  <div class="img-hover-wrap" style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
         <img src="/images/img-36.webp" alt="Certificate attestation documents" style="width:100%;height:100%;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,32,44,0.7));"></div>
         <div style="position:absolute;bottom:24px;left:24px;right:24px;">
@@ -385,20 +435,24 @@ const countryCodes = [
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Our team manages requirements across more than 100 countries. This includes coordination with government departments, embassies, and foreign affairs authorities. As a result, documents move through each stage without confusion.</p>
 
         <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">Major Countries</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:24px;">
-          {majorCountries.map(c => <div class="country-chip">{c} Attestation</div>)}
-        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;margin-bottom:24px;">
+  {majorCountries.map(c => (
+    <a href={c.href} class="country-chip" style="text-decoration:none;display:block;">{c.name} Attestation</a>
+  ))}
+</div>
 
         <p style="font-weight:700;color:#1A202C;font-size:1rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">GCC Countries</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:24px;">
-          {gccCountries.map(c => <div class="gcc-chip">{c} Attestation</div>)}
-        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;margin-bottom:24px;">
+  {gccCountries.map(c => (
+    <a href={c.href} class="gcc-chip" style="text-decoration:none;display:block;">{c.name} Attestation</a>
+  ))}
+</div>
 
         <p style="color:#6B7280;font-size:0.98rem;line-height:1.7;padding:12px 16px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;">Our services are not limited to these countries. We support attestation requirements globally. Our team reviews each case and follows the exact procedure based on the issuing country and destination.</p>
       </div>
 
-      <div style="flex-shrink:0;width:380px;">
-        <div style="position:relative;border-radius:20px;overflow:hidden;height:440px;">
+      <div class="img-side-wrap" style="flex-shrink:0;width:380px;">
+  <div class="img-hover-wrap" style="position:relative;border-radius:20px;overflow:hidden;height:440px;">
           <img src="/images/img-16.webp" alt="Global attestation services" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,32,44,0.75));"></div>
           <div style="position:absolute;bottom:24px;left:24px;right:24px;">
@@ -448,10 +502,11 @@ const countryCodes = [
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:center;">
 
-    <div style="flex-shrink:0;width:380px;">
-      <img src="/images/img-8.webp" alt="Why choose Index Office Services" style="width:100%;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
-    </div>
-
+    <div class="img-side-wrap" style="flex-shrink:0;width:380px;">
+  <div class="img-hover-wrap" style="border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+    <img src="/images/img-8.webp" ... style="width:100%;height:340px;object-fit:cover;display:block;" />
+  </div>
+</div>
     <div style="flex:1;min-width:280px;">
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Our Strengths</p>
       <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">WHY CHOOSE INDEX OFFICE SERVICES?</h2>

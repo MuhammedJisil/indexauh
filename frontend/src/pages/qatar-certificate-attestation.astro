@@ -97,6 +97,14 @@ const mistakes = [
   "Submitting incomplete documents without all required supporting papers",
 ]
 
+const getStartedSteps = [
+  { step: "01", title: "Contact IndexAUH", desc: "Reach out via WhatsApp, phone, or online form with your document details."},
+  { step: "02", title: "Submit Documents", desc: "Upload scanned copies or arrange secure pickup from your location." },
+  { step: "03", title: "Expert Verification", desc: "Documents are checked to meet Qatar attestation requirements." },
+  { step: "04", title: "Processing", desc: "We handle embassy and MOFA Qatar attestation efficiently." },
+  { step: "05", title: "Delivery", desc: "Receive attested documents securely at your location across the UAE." },
+]
+
 const faqs = [
   { q: "Can I use apostille services in Qatar?", a: "No. Qatar does not accept apostille services. Qatar requires full embassy and MOFA attestation for all documents. Using professional Qatar attestation services ensures your documents meet all legal requirements." },
   { q: "Can I get my documents attested after arriving in Qatar?", a: "No. Documents must be attested before arrival to be legally valid in Qatar. All attestation steps — including MEA and Qatar embassy attestation — must be completed in your home country or UAE before travelling." },
@@ -149,6 +157,7 @@ const faqs = [
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
+    .get-started-grid { grid-template-columns: 1fr !important; }
   }
 
   /* Process steps responsive rules */
@@ -259,7 +268,7 @@ const faqs = [
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Qatar certificate attestation is necessary for a wide range of official purposes. Whether you are relocating for work, applying for a family visa, enrolling in education, or registering a business, your documents must be officially verified and attested before they are accepted by Qatari authorities.
         </p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
@@ -475,20 +484,13 @@ const faqs = [
       <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">How to Get Started with Qatar Attestation</h2>
       <p style="color:#6B7280;font-size:1.05rem;max-width:560px;margin:0 auto;">Five simple steps to start your Qatar certificate attestation process with IndexAUH.</p>
     </div>
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
-      {[
-        { step: "01", icon: "📞", title: "Contact IndexAUH", desc: "Reach out via WhatsApp, phone, or online form with your document details." },
-        { step: "02", icon: "📤", title: "Submit Documents", desc: "Upload scanned copies or arrange secure pickup from your location." },
-        { step: "03", icon: "🔍", title: "Expert Verification", desc: "Documents are checked to meet Qatar attestation requirements." },
-        { step: "04", icon: "⚙️", title: "Processing", desc: "We handle embassy and MOFA Qatar attestation efficiently." },
-        { step: "05", icon: "📦", title: "Delivery", desc: "Receive attested documents securely at your location across the UAE." },
-      ].map(s => (
-        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;text-align:center;position:relative;">
-          <div style="width:36px;height:36px;border-radius:9999px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">{s.step}</div>
-          <div style="font-size:1.8rem;margin-bottom:10px;">{s.icon}</div>
-          <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 6px;">{s.title}</p>
-          <p style="font-size:0.75rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-        </div>
+    <div class="get-started-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left;">
+      {getStartedSteps.map(s => (
+       <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+  <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+  <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+  <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+</div>
       ))}
     </div>
   </div>

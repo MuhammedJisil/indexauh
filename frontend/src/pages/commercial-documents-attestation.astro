@@ -158,10 +158,18 @@ const faqs = [
   .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
 
-  @media(max-width:768px){
-    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-    .hero-title { font-size: 2rem !important; }
-  }
+@media(max-width:768px){
+  .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .hero-title { font-size: 2rem !important; }
+  .docs-cat-grid { grid-template-columns: 1fr !important; }
+  .time-cost-grid { grid-template-columns: 1fr !important; }
+  .why-us-grid { grid-template-columns: 1fr !important; }
+  .rejection-grid { grid-template-columns: 1fr !important; }
+  .stats-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  div[style*="position:sticky"] { position: static !important; }
+  section { padding-left: 16px !important; padding-right: 16px !important; }
+  .offices-flex { flex-direction: column !important; }
+}
 </style>
 
 <!-- ════════════ HERO ════════════ -->
@@ -198,7 +206,7 @@ const faqs = [
 <section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;" class="split-grid">
+ <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
     <div>
       <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
@@ -253,54 +261,52 @@ const faqs = [
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">When You Need It</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Commercial Documents We Assist With</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Many companies also need a commercial invoice attested by the chamber of commerce for international trade. Customs departments often ask for this before clearing shipments. Below are the main document categories we handle.</p>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-          <!-- Corporate -->
-          <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
-            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 12px;border-left:3px solid #38B2AC;padding-left:10px;">Corporate Structure</h3>
-            <div style="display:flex;flex-direction:column;gap:7px;">
-              {corporateDocs.map(d => (
-                <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
-                  <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
-                </div>
-              ))}
-            </div>
-          </div>
-          <!-- Right column: Financial + Trade + Legal -->
-          <div style="display:flex;flex-direction:column;gap:14px;">
-            <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
-              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">Financial & Banking</h3>
-              <div style="display:flex;flex-direction:column;gap:6px;">
-                {financialDocs.map(d => (
-                  <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
-                    <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
-              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">Trade & Export</h3>
-              <div style="display:flex;flex-direction:column;gap:6px;">
-                {tradeDocs.map(d => (
-                  <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
-                    <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
-              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">Legal & Authorization</h3>
-              <div style="display:flex;flex-direction:column;gap:6px;">
-                {legalDocs.map(d => (
-                  <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
-                    <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+<div class="docs-cat-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;">
+  <!-- Left: Corporate Structure -->
+  <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
+    <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 12px;border-left:3px solid #38B2AC;padding-left:10px;">Corporate Structure</h3>
+    <div style="display:flex;flex-direction:column;gap:7px;">
+      {corporateDocs.map(d => (
+        <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
+          <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
         </div>
+      ))}
+    </div>
+  </div>
+  <!-- Right: Financial + Trade + Legal stacked -->
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
+      <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">Financial & Banking</h3>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        {financialDocs.map(d => (
+          <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
+          </div>
+        ))}
       </div>
+    </div>
+    <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
+      <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">Trade & Export</h3>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        {tradeDocs.map(d => (
+          <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
+          </div>
+        ))}
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
+      <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">Legal & Authorization</h3>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        {legalDocs.map(d => (
+          <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;color:#4B5563;">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>{d}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </section>
@@ -419,7 +425,7 @@ const faqs = [
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Timelines & Fees</p>
         <h2 style="font-size:1.9rem;font-weight:900;color:#1A202C;margin:0 0 28px;">How Long Does It Take & What Does It Cost?</h2>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div class="time-cost-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
           <!-- Processing time -->
           <div>
             <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:10px;">Factors Affecting Processing Time</h3>
@@ -460,7 +466,8 @@ const faqs = [
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(229,62,62,0.01) 1px,transparent 1px),linear-gradient(90deg,rgba(229,62,62,0.01) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+   <div class="rejection-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;">
+
       <!-- Left image -->
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
         <img src="/images/img-40.webp" alt="Rejected commercial documents" style="width:100%;height:420px;object-fit:cover;display:block;" />
@@ -501,7 +508,7 @@ const faqs = [
     </div>
 
     <!-- Why choose us grid -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:52px;">
+    <div class="why-us-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:52px;">
       {whyChooseUs.map(w => (
         <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:12px;">
           <span style="width:28px;height:28px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -513,7 +520,7 @@ const faqs = [
     </div>
 
     <!-- Offices side-by-side -->
-    <div style="display:flex;gap:32px;margin-bottom:52px;" class="split-grid">
+    <div class="offices-flex" style="display:flex;gap:32px;margin-bottom:52px;">
       <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:24px;border-radius:14px;text-align:center;">
         <h3 style="color:#fff;font-size:1.1rem;font-weight:800;margin:0 0 12px;">Abu Dhabi Office</h3>
         <p style="color:#CBD5E0;font-size:0.83rem;margin:4px 0;">Mob : (+971) 529300200</p>
@@ -529,7 +536,7 @@ const faqs = [
     </div>
 
     <!-- Stats -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:40px;">
+    <div class="stats-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:40px;">
       <div>
         <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">400K+</p>
         <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Happy Clients</p>

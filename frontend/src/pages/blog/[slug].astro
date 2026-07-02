@@ -1,4 +1,7 @@
 ---
+export const prerender = false;
+
+
 import ContactForm from '../../components/ContactForm.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -79,22 +82,7 @@ function formatDate(dateStr: string | null) {
   } catch { return ""; }
 }
 
-// Generate all paths at build time (SSG)
-export async function getStaticPaths() {
-  const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
-  try {
-    const res = await fetch(
-      `${strapiUrl}/api/index-blogs?fields[0]=Slug&pagination[pageSize]=200`
-    );
-    if (!res.ok) return [];
-    const data = await res.json();
-    return (data.data || []).map((item: any) => ({
-      params: { slug: item.Slug || item.slug },
-    }));
-  } catch {
-    return [];
-  }
-}
+
 ---
 
 <BaseLayout

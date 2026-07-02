@@ -226,7 +226,7 @@ const faqs = [
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Oman authorities require attestation to prevent document misuse and ensure that all certificates used for official purposes are genuine and legally valid. Without attestation, no document is accepted for any formal process in Oman.
         </p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>

@@ -88,6 +88,13 @@ const timingFactors = [
   "Whether additional verification is required after arrival in Kuwait",
 ]
 
+const getStartedSteps =  [
+        { step: "01", title: "Contact Index AUH", desc: "Reach out to Index AUH through phone or email. Our team reviews the requirements and provides clear guidance." },
+        { step: "02", title: "Share Your Documents", desc: "Documents can be sent securely through courier or direct submission. Our team checks everything before proceeding." },
+        { step: "03", title: "Attestation Process Begins", desc: "We take care of everything, including coordinating with the Kuwait Embassy and other government agencies." },
+        { step: "04", title: "Receive Your Attested Documents", desc: "Once completed, the attested documents are delivered safely and ready for use in Kuwait." },
+      ]
+
 const faqs = [
   { q: "Is apostille accepted for Kuwait?", a: "No. Kuwait is not a member of the Hague Apostille Convention. Apostille alone is not accepted for use in Kuwait. Kuwait embassy attestation is mandatory for all documents intended for official use in Kuwait." },
   { q: "Is Kuwait PCC attestation mandatory?", a: "Yes. Police Clearance Certificate attestation is required for employment and residence visa purposes in Kuwait. It is a standard part of the Kuwait work and residency application process." },
@@ -97,8 +104,8 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="Kuwait Certificate Attestation — Index Office Services"
-  description="Complete Kuwait certificate attestation services in UAE. Kuwait embassy attestation, MOFA attestation, degree and personal document attestation. 25 years of experience."
+  title="Kuwait Certificate Attestation Services | Indexauh"
+  description="Kuwait Certificate Attestation services with 25 years of proven expertise. Fast, accurate embassy handling you can trust. Contact Index AUH today to get started."
 >
 
 <style>
@@ -124,13 +131,14 @@ const faqs = [
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
+    .get-started-grid { grid-template-columns: 1fr !important; }
   }
 </style>
 
 <!-- ════════════ HERO ════════════ -->
 <section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
   <img
-    src="/images/img-74.webp"
+    src="/images/img-16.webp"
     alt="Kuwait Certificate Attestation"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
   />
@@ -188,7 +196,7 @@ const faqs = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-48.webp" alt="Kuwait document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/img-116.webp" alt="Kuwait document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">MEA · Kuwait Embassy · MOFA</p>
@@ -222,7 +230,7 @@ const faqs = [
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Attestation for Kuwait is necessary to meet government and legal requirements. To verify biographical information, educational background, and civil status, Kuwait authorities rely on attested documents. Without proper certificate attestation, applications may face delays or rejection.
         </p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
@@ -346,42 +354,63 @@ const faqs = [
   </div>
 </section>
 
-<!-- ════ HOW TO GET STARTED ════ -->
+<!-- ════ COMMON MISTAKES ════ -->
 <section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;">
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-3.webp" alt="Getting started with Kuwait attestation" style="width:100%;height:380px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.78) 100%);"></div>
-        <div style="position:absolute;bottom:18px;left:18px;right:18px;">
-          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Simple 4-Step Process</p>
-          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Contact · Submit · Process · Receive</p>
+    <div class="split-grid" style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Common mistakes during Kuwait attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Avoid Common Errors</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Professional handling prevents costly delays</p>
         </div>
       </div>
       <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-          <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Getting Started
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes to Avoid During Kuwait Attestation</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          IndexAUH's professional  certificate attestation services in Kuwait help prevent these issues.
         </p>
-        <h2 style="font-size:clamp(1.6rem,3vw,2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 20px;">How to Get Started with Kuwait Certificate Attestation?</h2>
-        <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;flex-direction:column;gap:12px;">
           {[
-            { step: "01", title: "Contact Index AUH", desc: "Reach out to Index AUH through phone or email. Our team reviews the requirements and provides clear guidance." },
-            { step: "02", title: "Share Your Documents", desc: "Documents can be sent securely through courier or direct submission. Our team checks everything before proceeding." },
-            { step: "03", title: "Attestation Process Begins", desc: "We take care of everything, including coordinating with the Kuwait Embassy and other government agencies." },
-            { step: "04", title: "Receive Your Attested Documents", desc: "Once completed, the attested documents are delivered safely and ready for use in Kuwait." },
-          ].map(s => (
-            <div style="display:flex;align-items:flex-start;gap:12px;">
-              <div style="width:34px;height:34px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-              <div>
-                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{s.title}</p>
-                <p style="font-size:0.9rem;color:#6B7280;margin:0;line-height:1.6;">{s.desc}</p>
-              </div>
+            "Submitting apostilled documents instead of embassy attested ones",
+            "Skipping mandatory pre-attestation steps",
+            "Using incorrect document formats",
+            "Delaying submission due to missing paperwork",
+          ].map(m => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:14px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.9rem;color:#4B5563;line-height:1.5;margin:0;">{m}</p>
             </div>
           ))}
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW TO GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Kuwait Certificate Attestation?</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:600px;">
+      The process becomes much easier when the documentation is reviewed correctly from the beginning. Follow these steps to get started.
+    </p>
+
+    <div class="get-started-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;text-align:left;">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -393,7 +422,7 @@ const faqs = [
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
-        <img src="/images/img-7.webp" alt="Index Office Services Kuwait attestation" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <img src="/images/img-3.webp" alt="Index Office Services Kuwait attestation" style="width:100%;height:340px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>

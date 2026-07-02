@@ -1,0 +1,541 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const poaUses = [
+  "Property and real estate transactions",
+  "Banking and financial operations",
+  "Business or corporate management",
+  "Family and personal matters",
+  "Legal representation in court",
+]
+
+const poaTypes = [
+  {
+    category: "General POA",
+    icon: "📋",
+    desc: "Grants broad authority to your appointed agent to act on your behalf for multiple purposes.",
+    items: [
+      "Legal representation in court",
+      "Banking and financial transactions",
+      "Real estate transactions",
+      "Bill payments and contract management",
+    ],
+  },
+  {
+    category: "Corporate POA",
+    icon: "🏢",
+    desc: "Used by businesses to delegate authority for organizational and legal matters.",
+    items: [
+      "Drafting Memorandum and Articles of Association",
+      "Share transfer agreements",
+      "Corporate resolutions and meeting minutes",
+      "Company amendments, power transfers, and liquidation",
+    ],
+  },
+  {
+    category: "Real Estate POA",
+    icon: "🏠",
+    desc: "Allows your agent to manage, buy, sell, or transfer property on your behalf.",
+    items: [
+      "Property sale and purchase POAs",
+      "Eviction notices and notarization",
+      "Property management POAs",
+      "Mortgage agreements and gifting properties",
+      "Subletting POA",
+    ],
+  },
+  {
+    category: "Family & Personal POA",
+    icon: "👨‍👩‍👧",
+    desc: "Empowers an agent to handle personal or family-related matters.",
+    items: [
+      "Healthcare or financial decisions",
+      "Travel consent forms and child travel authorizations",
+      "NOC for sponsoring dependents",
+    ],
+  },
+  {
+    category: "Vehicle POA",
+    icon: "🚗",
+    desc: "Authorizes your agent to manage vehicle-related transactions.",
+    items: [
+      "Vehicle sale, purchase, and export",
+      "General POA for vehicle-related matters",
+      "Special POA for specific vehicle transactions",
+    ],
+  },
+  {
+    category: "Special POA",
+    icon: "📝",
+    desc: "Designed for specific tasks or one-time transactions with limited scope.",
+    items: [
+      "Signing legal documents for particular purposes",
+      "Handling one-time financial or business transactions",
+      "Authorizing specific real estate or property tasks",
+    ],
+  },
+]
+
+const docsIndividual = [
+  "Passport copy of the Principal",
+  "Passport copy of the Attorney / Agent",
+  "Valid Residence ID or National ID (if applicable)",
+  "Draft or POA Application Form",
+  "Recent passport size photographs",
+  "Proof of address (utility bill or tenancy agreement)",
+  "Supporting documents based on POA purpose",
+]
+
+const docsCompany = [
+  "Company Trade License / Business Registration Certificate",
+  "Certificate of Incorporation",
+  "Memorandum and Articles of Association (MOA & AOA)",
+  "Board Resolution or Shareholder Resolution",
+  "Passport copies of Authorized Signatories",
+  "Company Seal or Official Stamp",
+  "Identification of the Appointed Attorney / Agent",
+]
+
+const processSteps = [
+  { step: "01", title: "Form Filling", desc: "We provide the official POA form and assist in completing it with accurate details about the principal, appointed agent, and scope of authority." },
+  { step: "02", title: "Identity Verification", desc: "We guide you through verifying your identity using official documents such as your passport, national ID, or biometric verification." },
+  { step: "03", title: "Electronic Signing", desc: "Your POA document is signed electronically through a secure and legally recognized e-signature system." },
+  { step: "04", title: "Notarization", desc: "We handle the notarization process either online or via authorized notaries, depending on your location and jurisdiction requirements." },
+  { step: "05", title: "Payment", desc: "We provide secure online payment options, with fees based on the type and complexity of your POA." },
+  { step: "06", title: "Delivery of Your POA", desc: "Once notarized and attested, we deliver your POA digitally via email and, if preferred, courier a physical copy directly to your address." },
+]
+
+const whyChoose = [
+  { title: "Expert Legal Support", desc: "Our experienced legal team specializes in drafting, notarizing, and attesting all types of POA — personal, corporate, real estate, and financial." },
+  { title: "Customized Solutions", desc: "We create POAs tailored to your specific requirements, clearly defining the powers granted and the scope of authority." },
+  { title: "Streamlined Process", desc: "We manage the entire POA process from start to finish — drafting, notarization, attestation, and delivery — so you save time and avoid delays." },
+  { title: "Post-Service Support", desc: "Even after your POA is completed, we provide ongoing assistance for queries, amendments, or additional attestation needs." },
+  { title: "Global Recognition", desc: "We serve clients in the UAE, the UK, the USA, Canada, Australia, and over 100 other countries, ensuring your POA is legally recognized worldwide." },
+  { title: "Fast, Secure & Reliable", desc: "Our process is designed for your peace of mind — fast turnaround, secure document handling, and reliable delivery every time." },
+]
+
+const attestationServices = [
+  { cat: "Educational Documents", icon: "🎓", items: ["Degree Certificate", "Diploma Certificate", "Bachelor Degree", "Master Degree", "Associate Degree", "Engineering Certificate", "Nursing Certificate", "Transcript Attestation"] },
+  { cat: "Personal Documents", icon: "👤", items: ["Birth Certificate", "Marriage Certificate", "Transfer Certificate", "Divorce Certificate", "Singleness Certificate", "Death Certificate", "Medical Certificate", "Affidavit Certificate"] },
+  { cat: "Commercial Documents", icon: "⚖️", items: ["Memorandum of Association", "Article of Association", "Certificate of Incumbency", "Power of Attorney (POA)", "Commercial Invoices Attestation", "Certificate of Incorporation", "Certificate of Good Standing", "Board Resolution Attestation"] },
+  { cat: "Notarization Services", icon: "✅", items: ["Online POA", "Signature verification", "True Copy Attestation", "Embassy Attestation", "MOFA Attestation", "Company Documents", "MOJ Attestation", "Legal Translation"] },
+]
+
+const faqs = [
+  { q: "What is a Power of Attorney?", a: "A Power of Attorney is a legal document that allows one person, called the principal, to authorize another individual, called the agent, to act on their behalf for property, financial, business, family, or legal matters." },
+  { q: "Why is notarization important for a POA?", a: "Notarization confirms the authenticity of the document and signatures. Without notarization, your POA may not be legally recognized by banks, courts, or government authorities." },
+  { q: "Do I need attestation in addition to notarization?", a: "Yes. Attestation — including MOFA attestation or embassy certification — ensures your POA is recognized by authorities in the country where it will be used. Both steps are often required for international use." },
+  { q: "Can I create a POA online?", a: "Yes. Index Office and Services facilitates online POA creation including form filling, identity verification, electronic signing, notarization, and delivery — all managed securely from wherever you are." },
+  { q: "What documents do I need to create a POA?", a: "For individuals, you typically need passport copies of the principal and agent, a valid ID, and supporting documents based on the POA purpose. Companies additionally need a trade license, certificate of incorporation, MOA and AOA, and a board resolution." },
+  { q: "How is the completed POA delivered?", a: "Once notarized and attested, we deliver your POA digitally via email. If preferred, we also courier a physical copy directly to your address with all required certifications." },
+]
+---
+
+<BaseLayout
+  title="Power of Attorney Drafting, Notarization & Attestation Services"
+  description="Helpline Group provides expert Power of Attorney drafting, notarization & attestation in the UAE and across many other countries. Secure, reliable & legally valid POA."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .poa-type-card { background: #F8FAFF; border: 1px solid #eef0f6; border-radius: 16px; padding: 26px; transition: all 0.25s; }
+  .poa-type-card:hover { border-color: #B2F5EA; box-shadow: 0 8px 24px rgba(56,178,172,0.08); }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .four-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .four-col { grid-template-columns: 1fr !important; }
+    .img-first { order: -1 !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Power of Attorney Drafting Notarization and Attestation"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">POA Drafting & Notarization</span>
+      <span class="idx-pill">100+ Countries Covered</span>
+      <span class="idx-pill">MOFA Attestation</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      POWER OF ATTORNEY<br/>DRAFTING, NOTARIZATION & ATTESTATION
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Index Office and Services offers professional Power of Attorney drafting, notarization, and attestation services in the UAE, the UK, the USA, Canada, Australia, and over 100 other countries. Fast, secure, and legally recognized for personal, business, property, or financial matters.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Request POA Services &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is a Power of Attorney?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        A Power of Attorney is a legal document that allows one person, called the principal, to authorize another individual, called the agent, to act on their behalf. POAs are used across a wide range of personal, business, and financial situations.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">A POA is commonly required for:</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+        {poaUses.map(item => (
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:10px;padding:12px 16px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+            <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+          </div>
+        ))}
+      </div>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Why Drafting, Notarization & Attestation All Matter</h3>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">
+          Drafting ensures powers are clear and legally valid. Notarization confirms the authenticity of signatures. Attestation — including MOFA attestation or embassy certification — ensures your POA is recognized by authorities in the country where it will be used.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-11.webp" alt="Power of Attorney notarization and attestation UAE" style="width:100%;height:460px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Draft · Notarize · Attest · Deliver</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete POA process handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:84px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          100+ Countries Covered
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ POA TYPES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Our POA Services</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Types of Power of Attorney We Handle</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:600px;margin:0 auto;">
+        Index Office and Services provides expert assistance in preparing, notarizing, and attesting all types of POA to meet legal requirements worldwide.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
+      {poaTypes.map(t => (
+        <div class="poa-type-card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-size:1.5rem;">{t.icon}</span>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{t.category}</h3>
+          </div>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">{t.desc}</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+            {t.items.map(d => (
+              <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.88rem;color:#4B5563;line-height:1.5;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">•</span>{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Other types note -->
+    <div style="margin-top:28px;background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:20px 24px;display:flex;align-items:flex-start;gap:14px;">
+      <span style="font-size:1.3rem;flex-shrink:0;">ℹ️</span>
+      <div>
+        <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">Other Types of POA</p>
+        <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">We also provide services for a <strong>Limited Power of Attorney</strong> — granting authority for a specific purpose and duration — and a <strong>Durable Power of Attorney</strong> — used for healthcare or long-term responsibilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:48px;" class="split-grid">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Requirements</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Documents Required for POA Notarization</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          Requirements may vary based on the POA type and purpose. Our team reviews your documents before submission to avoid rejection or delay.
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-1.webp" alt="Documents required for Power of Attorney" style="width:100%;height:220px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">Individual & Corporate Requirements Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="two-col">
+      <!-- Individual -->
+      <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span style="font-size:1.4rem;">👤</span>
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">For Individuals</h3>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {docsIndividual.map(d => (
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;line-height:1.5;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">→</span>{d}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span style="font-size:1.4rem;">🏢</span>
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">For Companies or Organizations</h3>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {docsCompany.map(d => (
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;line-height:1.5;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">→</span>{d}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional requirements -->
+    <div style="margin-top:24px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:22px 26px;">
+      <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 10px;">Additional or Optional Requirements (Depending on Country)</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;" class="four-col">
+        {[
+          "Notarization by Local Notary Public",
+          "Embassy or Consulate Attestation",
+          "MOFA Attestation",
+          "Certified Translation",
+        ].map(r => (
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.88rem;color:#4B5563;">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">✓</span>{r}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="Steps to create your Power of Attorney online" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Steps to Create Your Online POA</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="two-col">
+      {processSteps.map(s => (
+        <div class="step-card">
+          <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+          <div>
+            <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+            <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ UAE ATTESTATION SERVICES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">UAE Attestation</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Ministry of Foreign Affairs (MOFA) Attestation</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          Once in the UAE, the document must be attested by MOFA to ensure it is recognized within the UAE. We handle the full range of educational, personal, commercial, and notarization services below.
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-16.webp" alt="UAE MOFA attestation services" style="width:100%;height:220px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All UAE Attestation Categories Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" class="four-col">
+      {attestationServices.map(cat => (
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <span style="font-size:1.3rem;">{cat.icon}</span>
+            <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0;">{cat.cat}</h3>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+            {cat.items.map(d => (
+              <li style="display:flex;align-items:center;gap:8px;font-size:0.86rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office and Services POA experts" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office and Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">UAE · UK · USA · Canada · Australia · 100+ Countries</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index Office and Services for Your POA?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          Index Office and Services manages the entire POA process from start to finish — drafting, notarization, attestation, and delivery. Our comprehensive services simplify the process, making it fast, secure, and reliable for clients worldwide.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Power of Attorney</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET YOUR POWER OF ATTORNEY NOTARIZED AND ATTESTED WITH EASE</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Simplify your Power of Attorney process with Index Office and Services. We handle everything from drafting and notarization to attestation and delivery, ensuring your POA is legally valid.
+      </p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        Our service is fast, secure, and reliable — designed for your peace of mind. Reach us via phone, email, or WhatsApp and we will guide you through the entire process.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

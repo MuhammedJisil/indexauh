@@ -145,7 +145,7 @@ const faqs = [
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
-    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+    .get-started-grid { grid-template-columns: 1fr !important; }
   }
 </style>
 
@@ -243,7 +243,7 @@ const faqs = [
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Saudi certificate attestation is necessary for a wide range of official purposes. Whether you are relocating for work, applying for a family visa, registering a business, or studying in Saudi Arabia, your documents must be officially verified before they are accepted by Saudi authorities.
         </p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
           {purposes.map(p => (
             <div style="background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:18px;">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>

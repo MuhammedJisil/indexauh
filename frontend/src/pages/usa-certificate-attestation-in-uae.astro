@@ -226,7 +226,7 @@ const faqs = [
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           UAE and GCC authorities do not accept unattested US documents for any official purpose. Whether you are seeking employment, enrolling in education, sponsoring family members, or registering a business in the UAE, your US documents must be officially verified and attested before they are accepted.
         </p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>

@@ -83,6 +83,23 @@ const faqs = [
   { q:"At what stage should the attestation process begin?", a:"Start early in your planning stage. Visa processing and official approvals take time. Early preparation reduces stress and keeps everything on track." },
   { q:"How does expert support make the process easier?", a:"Attestation rules differ across countries. Expert guidance ensures every step is completed correctly, preventing delays and unnecessary rejection." },
 ]
+
+const embassyCountries = [
+  { name: "Spain", href: "/spain-embassy-attestation/" },
+  { name: "Qatar", href: "/qatar-embassy-attestation-in-uae/" },
+  { name: "Oman", href: "/oman-embassy-attestation/" },
+  { name: "Saudi Arabia", href: "/saudi-embassy-attestation/" },
+  { name: "Kuwait", href: "/kuwait-embassy-attestation/" },
+  { name: "Bahrain", href: "/bahrain-embassy-attestation/" },
+  { name: "Portugal", href: "/portugal-embassy-attestation/" },
+  { name: "Morocco", href: "/morocco-embassy-attestation/" },
+  { name: "Canada", href: "/canada-embassy-attestation/" },
+  { name: "Greece", href: "/greece-embassy-attestation/" },
+  { name: "Finland", href: "/finland-embassy-attestation/" },
+  { name: "Turkey", href: "/turkish-embassy-attestation-in-uae/" },
+  { name: "India", href: "/indian-embassy-attestation/" },
+  { name: "Philippines", href: "/philippines-embassy-attestation-in-uae/" },
+]
 ---
 
 <BaseLayout title="Embassy Attestation in UAE | Attestation Services UAE"
@@ -128,7 +145,7 @@ description="Embassy attestation in UAE by Index Office and Services with 25 yea
     .two-col { flex-direction:column !important; }
     .two-col > div { width:100% !important; }
   }
-  @media(max-width:640px){
+ @media(max-width:640px){
     .steps-grid, .purpose-grid, .facts-grid { grid-template-columns:1fr !important; }
   }
 </style>
@@ -374,6 +391,41 @@ description="Embassy attestation in UAE by Index Office and Services with 25 yea
       </div>
     </div>
     <p style="color:#6B7280;font-size:0.95rem;text-align:center;margin:24px 0 0;">Where available, digital processes reduce time and complexity significantly.</p>
+  </div>
+</section>
+
+<!-- ════ EMBASSY ATTESTATION BY COUNTRY ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Global Coverage</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 12px;">Embassy Attestation by Country</h2>
+      <p style="color:#6B7280;font-size:1.02rem;max-width:620px;margin:0 auto;">We handle embassy attestation for documents from all major countries. Select your country to learn about the specific process.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">
+      {embassyCountries.map(c => (
+        <a
+          href={c.href}
+          style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:1rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.borderColor='#38B2AC';this.style.background='#F0FFFE';this.style.transform='translateY(-2px)';"
+          onmouseout="this.style.borderColor='#e0e7ef';this.style.background='#fff';this.style.transform='translateY(0)';"
+        >
+          <span style="width:28px;height:28px;border-radius:50%;background:#2D3748;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/></svg>
+          </span>
+          {c.name} Embassy
+          <span style="margin-left:auto;color:#38B2AC;font-size:0.8rem;">→</span>
+        </a>
+      ))}
+    </div>
+
+    <p style="color:#6B7280;font-size:0.95rem;text-align:center;margin:28px 0 0;padding:14px 20px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;max-width:700px;margin-left:auto;margin-right:auto;">
+      Don't see your country? We cover all countries. <a href="/contact" style="color:#38B2AC;font-weight:600;text-decoration:none;">Contact us</a> and our team will guide you through the exact process for your document's country of origin.
+    </p>
   </div>
 </section>
 

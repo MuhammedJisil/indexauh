@@ -223,7 +223,7 @@ const faqs = [
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Attestation for Philippines is necessary to prove that your documents are genuine and issued by a competent authority in your country of origin. It ensures that documents are recognized and accepted by the Philippine government and other institutions. Without proper certificate attestation, applications may face delays or rejection.
         </p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
               <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
