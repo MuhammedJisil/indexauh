@@ -140,11 +140,11 @@ description="Embassy attestation in UAE by Index Office and Services with 25 yea
   .idx-submit { width:100%; background:#2D3748; color:#fff; font-weight:700; padding:13px; border-radius:10px; border:none; cursor:pointer; font-size:0.95rem; letter-spacing:0.04em; transition:background 0.2s; }
   .idx-submit:hover { background:#1A202C; }
 
-  @media(max-width:900px){
-    .hero-grid { flex-direction:column !important; }
-    .two-col { flex-direction:column !important; }
-    .two-col > div { width:100% !important; }
-  }
+@media(max-width:900px){
+  .hero-grid { flex-direction:column !important; }
+  .two-col { flex-direction:column !important; }
+  .two-col > div { width:100% !important; box-sizing:border-box; }
+}
  @media(max-width:640px){
     .steps-grid, .purpose-grid, .facts-grid { grid-template-columns:1fr !important; }
   }

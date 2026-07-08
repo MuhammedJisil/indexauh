@@ -189,22 +189,18 @@ const countryCodes = [
 
   /* ── Hero image wrapper — padding contains the overflow badges ── */
   .hero-fixed-img{
-    flex-shrink:0;
-    width:420px;
-    position:relative;
-    align-self:center;
-    padding:16px; /* room for badges that overflow */
-    box-sizing:border-box;
-  }
-  .hero-fixed-img img{
-    width:100%;
-    height:420px;
-    object-fit:cover;
-    border-radius:20px;
-    display:block;
-    box-shadow:0 20px 56px rgba(0,0,0,0.3);
-  }
-
+  flex-shrink:0;
+  width:420px;
+  position:relative;
+  align-self:center;
+}
+.hero-fixed-img img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  display:block;
+  /* no border-radius, no box-shadow — blends into the section background */
+}
   .sdot{width:8px;height:8px;border-radius:9999px;background:rgba(255,255,255,0.35);border:none;cursor:pointer;padding:0;transition:background 0.3s,width 0.3s;display:inline-block;}
   .sdot.on{background:#38B2AC;width:24px;}
   .sarr{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
@@ -215,17 +211,17 @@ const countryCodes = [
   @media(min-width:768px){.hero-diagonal{display:block;}}
 
   /* ── Hero image responsive ── */
-  @media(max-width:767px){
-    .hero-fixed-img{
-      width:100% !important;
-      max-width:360px;
-      margin:0 auto;
-      padding:16px;
-    }
-    .hero-fixed-img img{
-      height:240px !important;
-    }
+ @media(max-width:767px){
+  .hero-fixed-img{
+    width:100% !important;
+    max-width:360px;
+    margin:0 auto;
   }
+  .hero-fixed-img img{
+    height:280px !important;
+    object-position: top;
+  }
+}
 
   /* ── Service cards ── */
   .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
@@ -390,10 +386,8 @@ const countryCodes = [
 
       <!-- RIGHT: fixed image — padding gives badges space to show -->
       <div class="hero-fixed-img">
-        <img src="/images/img-1.webp" alt="Document attestation UAE" />
+        <img src="globe.webp" alt="Document attestation UAE" />
         <!-- badges use positive inset so padding holds them visible -->
-        <div style="position:absolute;bottom:4px;left:4px;background:#38B2AC;color:#fff;font-weight:800;font-size:0.8rem;padding:11px 15px;border-radius:12px;box-shadow:0 6px 20px rgba(56,178,172,0.4);line-height:1.4;">25+ Years<br/>of Trust</div>
-        <div style="position:absolute;top:4px;right:4px;background:#fff;color:#1A202C;font-weight:700;font-size:0.75rem;padding:9px 13px;border-radius:11px;box-shadow:0 6px 18px rgba(0,0,0,0.15);display:flex;align-items:center;gap:5px;">&#10003; UAE Certified</div>
       </div>
 
     </div>
