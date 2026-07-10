@@ -38,7 +38,7 @@ const steps = [
   { step: "01", title: "Educational Institution or University Verification", desc: "The issuing university or institution verifies the certificate as the first step in the attestation process." },
   { step: "02", title: "Local or Regional Authority Authentication", desc: "The relevant local or regional authority authenticates the document following university verification." },
   { step: "03", title: "Government or Foreign Affairs Legalization", desc: "The government or foreign affairs department of the issuing country legalizes the certificate." },
-  { step: "04", title: "UAE Embassy Attestation", desc: "The UAE Embassy in the issuing country attests the certificate, preparing it for use inside the UAE." },
+  { step: "04", title: "<a href='/embassy-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE Embassy Attestation</a>", desc: "The UAE Embassy in the issuing country attests the certificate, preparing it for use inside the UAE." },
   { step: "05", title: "MOFA Degree Attestation Inside the UAE", desc: "The Ministry of Foreign Affairs gives the final approval, completing the ministry of foreign affairs degree attestation process." },
 ]
 
@@ -59,7 +59,7 @@ const countriesData = [
     id: "uk",
     name: "United Kingdom",
     steps: [
-      "Solicitor or notary verification",
+      "Solicitor or <a href='/notary-attestation-services/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>notary verification</a>",
       "FCDO legalization",
       "UAE Embassy attestation",
       "MOFA attestation in the UAE"
@@ -85,7 +85,7 @@ const countriesData = [
       "Notary public authentication",
       "DFAT authentication",
       "UAE Embassy attestation",
-      "MOFA attestation in the UAE"
+      "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA attestation in the UAE</a>"
     ],
     desc: "Australia Degree Attestation commonly requires notary authentication followed by DFAT authentication."
   },
@@ -101,7 +101,6 @@ const countriesData = [
     desc: "Canada Degree Attestation involves provincial and federal legalization procedures."
   },
 ]
-
 const requiredDocs = [
   { title: "Original Degree Certificate", desc: "The original certificate is required for verification before attestation can proceed." },
   { title: "Passport Copy", desc: "A copy of the applicant's passport is required as part of the standard documentation." },
@@ -320,17 +319,17 @@ description="Degree Certificate Attestation in UAE by Index Office Services with
 
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
       <!-- Steps list -->
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        {steps.map(s => (
-          <div class="step-card">
-            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
-          </div>
-        ))}
+     <div style="display:flex;flex-direction:column;gap:14px;">
+  {steps.map(s => (
+    <div class="step-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
       </div>
+    </div>
+  ))}
+</div>
       <!-- Right image -->
       <div style="position:sticky;top:100px;" class="step-sticky">
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
@@ -372,13 +371,13 @@ description="Degree Certificate Attestation in UAE by Index Office Services with
         <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin:0 0 8px;">Degree Attestation in {c.name}</h3>
         <p style="font-size:1rem;color:#6B7280;margin:0 0 20px;">{c.desc}</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          {c.steps.map((s, sIdx) => (
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#F9FAFB;border-radius:8px;font-size:1rem;color:#1A202C;font-weight:500;">
-              <span style="width:24px;height:24px;border-radius:50%;background:#38B2AC;color:#fff;font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{sIdx + 1}</span>
-              {s}
-            </div>
-          ))}
-        </div>
+  {c.steps.map((s, sIdx) => (
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#F9FAFB;border-radius:8px;font-size:1rem;color:#1A202C;font-weight:500;">
+      <span style="width:24px;height:24px;border-radius:50%;background:#38B2AC;color:#fff;font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{sIdx + 1}</span>
+      <span set:html={s}></span>
+    </div>
+  ))}
+</div>
       </div>
     ))}
 
@@ -468,11 +467,11 @@ description="Degree Certificate Attestation in UAE by Index Office Services with
           Many healthcare, engineering, education, and professional sectors in the UAE require additional educational verification before licensing approval. Depending on the profession and authority, applicants may need:
         </p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-          {["Equivalency procedures","Primary source verification","Qualification recognition","Professional licensing verification"].map(s => (
-            <div style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:6px;">
-              <span style="color:#38B2AC;font-weight:bold;">→</span> {s}
-            </div>
-          ))}
+          {["<a href='/equivalency-certificate/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Equivalency procedures</a>","Primary source verification","Qualification recognition","Professional licensing verification"].map(s => (
+  <div style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:6px;">
+    <span style="color:#38B2AC;font-weight:bold;">→</span> <span set:html={s}></span>
+  </div>
+))}
         </div>
         <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px;">
           <p style="color:#4B5563;font-size:0.9rem;line-height:1.6;margin:0;">Some sectors may also require third-party verification platforms such as DataFlow. Educational certificate attestation is usually completed before licensing and verification procedures move forward.</p>
@@ -563,8 +562,8 @@ description="Degree Certificate Attestation in UAE by Index Office Services with
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why Choose Us</p>
         <h2 style="font-size:1.9rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Why Choose Index Office Services?</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
-          Index Office Services provides professional support for certificate attestation across the UAE. With over 25+ years of experience and service support in 100+ countries, we help individuals, professionals, students, and businesses complete attestation procedures smoothly.
-        </p>
+  Index Office Services provides professional support for <a href="/certificate-attestation/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> across the UAE. With over 25+ years of experience and service support in 100+ countries, we help individuals, professionals, students, and businesses complete attestation procedures smoothly.
+</p>
         <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
           {whyChooseUs.map(b => (
             <div style="background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:18px;">

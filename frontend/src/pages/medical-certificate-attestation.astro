@@ -32,11 +32,11 @@ const uaeSteps = [
 ]
 
 const foreignSteps = [
-  { step: "01", title: "Notary Attestation in the Home Country", desc: "A notary confirms the document's authenticity before proceeding to the next verification stage." },
+  { step: "01", title: "<a href='/notary-attestation-services/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Notary Attestation</a> in the Home Country", desc: "A notary confirms the document's authenticity before proceeding to the next verification stage." },
   { step: "02", title: "Health Department Verification", desc: "The health department validates the medical report issued by the hospital in the issuing country." },
   { step: "03", title: "Home Country Foreign Affairs Verification", desc: "The foreign affairs department confirms the certificate before embassy submission." },
   { step: "04", title: "UAE Embassy Attestation", desc: "The UAE embassy verifies the document for use inside the country." },
-  { step: "05", title: "MOFA Attestation in UAE", desc: "The final stage completes the attestation process and makes the document valid for official use in the UAE." },
+  { step: "05", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation in UAE</a>", desc: "The final stage completes the attestation process and makes the document valid for official use in the UAE." },
 ]
 
 const challenges = [
@@ -55,7 +55,7 @@ const gettingStartedSteps = [
 ]
 
 const whyChooseUs = [
-  "25+ years of experience in UAE attestation services",
+  "25+ years of experience in <a href='/certificate-attestation-in-the-uae/' style='color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE attestation services</a>",
   "Expert support for medical certificate attestation",
   "Free document pick up and delivery across UAE",
   "Fast and smooth processing support",
@@ -220,17 +220,17 @@ const faqs = [
           <h3 style="color:#fff;font-size:0.95rem;font-weight:800;margin:0;">For Foreign Issued Medical Certificates</h3>
         </div>
         <p style="color:#4B5563;font-size:0.88rem;line-height:1.7;margin:0 0 16px;">People moving to the UAE sometimes bring medical documents issued abroad. These documents require several verification stages.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          {foreignSteps.map(s => (
-            <div class="step-card">
-              <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-              <div>
-                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:12px;">
+  {foreignSteps.map(s => (
+    <div class="step-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+      </div>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   </div>
@@ -344,13 +344,13 @@ const faqs = [
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:960px;margin:0 auto 48px;" class="benefits-grid">
-      {whyChooseUs.map(w => (
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:14px 18px;border-radius:10px;">
-          <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>
-          <p style="color:#CBD5E0;font-size:0.88rem;margin:0;font-weight:500;">{w}</p>
-        </div>
-      ))}
+  {whyChooseUs.map(w => (
+    <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:14px 18px;border-radius:10px;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>
+      <p style="color:#CBD5E0;font-size:0.88rem;margin:0;font-weight:500;" set:html={w}></p>
     </div>
+  ))}
+</div>
 
     <!-- Offices -->
     <div class="offices-flex" style="display:flex;gap:32px;margin-bottom:52px;">
@@ -418,7 +418,7 @@ const faqs = [
       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
         Need assistance with medical certificate attestation, sick leave certificate UAE, or medical certificate Dubai verification? The team at IndexAUH is ready to help.
       </p>
-      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin-bottom:28px;">Our specialists will guide you through the process and help you complete your attestation smoothly.</p>
+      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin-bottom:28px;">Contact our offices today to begin your <a href="/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> process.</p>
       <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
         <div>
           <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Abu Dhabi Office</p>

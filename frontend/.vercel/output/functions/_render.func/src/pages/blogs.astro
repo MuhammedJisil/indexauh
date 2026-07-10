@@ -1,0 +1,297 @@
+---
+export const prerender = false;
+
+
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
+
+// Fetch all published index-blog posts from Strapi
+let posts: any[] = [];
+let categories: string[] = [];
+let fetchError = false;
+
+try {
+  const res = await fetch(
+    `${strapiUrl}/api/index-blogs?populate[0]=featuredImage&populate[1]=categories&sort=publishedDate:desc&pagination[pageSize]=100`
+  );
+  if (res.ok) {
+    const data = await res.json();
+    posts = (data.data || []).map((item: any) => ({
+      id: item.id,
+      title: item.title || "Untitled",
+      slug: item.Slug || item.slug || "",
+      excerpt: item.excerpt || "",
+      authorName: item.authorName || "Index Office Services",
+      publishedDate: item.publishedDate || item.publishedAt || null,
+      featuredImage: item.featuredImage?.url
+        ? `${strapiUrl}${item.featuredImage.url}`
+        : item.featuredImage?.formats?.medium?.url
+        ? `${strapiUrl}${item.featuredImage.formats.medium.url}`
+        : item.featuredImage?.formats?.thumbnail?.url
+        ? `${strapiUrl}${item.featuredImage.formats.thumbnail.url}`
+        : null,
+      categories: (item.categories || []).map((c: any) => c.name || c.displayName || c),
+    }));
+    // Collect unique categories
+    const catSet = new Set<string>();
+    posts.forEach(p => p.categories.forEach((c: string) => catSet.add(c)));
+    categories = Array.from(catSet);
+  } else {
+    fetchError = true;
+  }
+} catch (e) {
+  fetchError = true;
+  console.warn("Could not fetch blog posts from Strapi:", e);
+}
+
+function formatDate(dateStr: string | null) {
+  if (!dateStr) return "";
+  try {
+    return new Date(dateStr).toLocaleDateString("en-AE", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch {
+    return "";
+  }
+}
+
+// Static fallback posts when Strapi is not yet connected
+const fallbackPosts = [
+  {
+    id: 1, title: "Complete Guide to Certificate Attestation in UAE", slug: "certificate-attestation-uae-guide",
+    excerpt: "Everything you need to know about getting your documents attested for use in the UAE — from apostille to MOFA.",
+    authorName: "Index Office Services", publishedDate: "2024-03-15",
+    featuredImage: "/images/img-1.webp", categories: ["Attestation"],
+  },
+  {
+    id: 2, title: "How to Set Up a Business in Dubai: Step-by-Step", slug: "business-setup-dubai-guide",
+    excerpt: "A practical guide to mainland, free zone and offshore company formation in Dubai for investors and entrepreneurs.",
+    authorName: "Index Office Services", publishedDate: "2024-02-28",
+    featuredImage: "/images/img-2.webp", categories: ["Business Setup"],
+  },
+  {
+    id: 3, title: "Police Clearance Certificate: What You Need to Know", slug: "police-clearance-certificate-guide",
+    excerpt: "Requirements, process and timelines for obtaining a PCC from UAE, India, Saudi Arabia and other countries.",
+    authorName: "Index Office Services", publishedDate: "2024-02-10",
+    featuredImage: "/images/img-57.webp", categories: ["PCC"],
+  },
+  {
+    id: 4, title: "MOFA Attestation vs Apostille — What's the Difference?", slug: "mofa-vs-apostille-difference",
+    excerpt: "Understanding which process applies to your documents and country is crucial. This guide explains both clearly.",
+    authorName: "Index Office Services", publishedDate: "2024-01-22",
+    featuredImage: "/images/img-36.webp", categories: ["Attestation"],
+  },
+  {
+    id: 5, title: "Embassy Attestation in UAE: A Country-by-Country Overview", slug: "embassy-attestation-uae-overview",
+    excerpt: "Different embassies have different requirements. Learn what each one needs so your documents go through first time.",
+    authorName: "Index Office Services", publishedDate: "2024-01-08",
+    featuredImage: "/images/img-57.webp", categories: ["Attestation"],
+  },
+  {
+    id: 6, title: "Free Zone vs Mainland Company in UAE: Which Is Right for You?", slug: "free-zone-vs-mainland-uae",
+    excerpt: "Comparing the pros and cons of both UAE business structures to help you decide which setup suits your goals.",
+    authorName: "Index Office Services", publishedDate: "2023-12-18",
+    featuredImage: "/images/img-16.webp", categories: ["Business Setup"],
+  },
+];
+
+const displayPosts = posts.length > 0 ? posts : fallbackPosts;
+const displayCategories = categories.length > 0 ? categories : ["Attestation", "Business Setup", "PCC"];
+
+// Fallback image used whenever a post has no featuredImage
+const FALLBACK_IMG = "/fallback.webp";
+---
+
+<BaseLayout
+  title="Blogs - Index Attestation and Business Setup"
+  description="Read expert guides and articles on certificate attestation, MOFA, apostille, company formation, police clearance certificates and business setup in the UAE."
+>
+
+<style>
+  /* ── Page intro (replaces hero) ── */
+  .blog-intro { padding: 48px 24px 32px; }
+  .blog-intro-inner { max-width: 1280px; margin: 0 auto; }
+  .blog-intro-eyebrow { color: #38B2AC; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.78rem; margin: 0 0 10px; }
+  .blog-intro-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: #1A202C; margin: 0; line-height: 1.15; }
+
+  /* ── Filter pills ── */
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
+  .filter-pill { background: #fff; border: 1.5px solid #e0e7ef; color: #374151; border-radius: 9999px; padding: 8px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; white-space: nowrap; }
+  .filter-pill:hover, .filter-pill.active { background: #38B2AC; border-color: #38B2AC; color: #fff; }
+
+  /* ── Grid ── */
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  @media (max-width: 1024px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .blog-grid { grid-template-columns: 1fr; gap: 20px; } }
+
+  /* ── Card (image + title only) ── */
+  .blog-card { background: #fff; border: 1px solid #e0e7ef; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.25s; }
+  .blog-card:hover { border-color: #38B2AC; transform: translateY(-5px); box-shadow: 0 16px 40px rgba(56,178,172,0.15); }
+  .blog-card-img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s; }
+  .blog-card:hover .blog-card-img { transform: scale(1.04); }
+  .blog-card-img-wrap { overflow: hidden; position: relative; aspect-ratio: 16/10; }
+  .blog-card-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(26,32,44,0.35)); }
+  .blog-card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .blog-card-cat { display: inline-block; background: #F0FFFE; color: #38B2AC; border: 1px solid #B2F5EA; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; padding: 3px 12px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; width: fit-content; }
+  .blog-card-title { font-size: 1.05rem; font-weight: 800; color: #1A202C; line-height: 1.4; margin: 0; }
+  .blog-card-read { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; font-weight: 700; color: #38B2AC; margin-top: 16px; }
+
+  /* ── No-posts ── */
+  .no-posts { text-align: center; padding: 60px 24px; color: #6B7280; }
+
+  /* ── Sidebar ── */
+  .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; }
+  @media (max-width: 1100px) { .blog-layout { grid-template-columns: 1fr; } .blog-sidebar { display: none; } }
+
+  .sidebar-card { background: #fff; border: 1px solid #e0e7ef; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .sidebar-card h3 { font-size: 1rem; font-weight: 800; color: #1A202C; margin: 0 0 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .sidebar-recent-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #f0f4f8; text-decoration: none; color: inherit; transition: opacity 0.2s; }
+  .sidebar-recent-item:last-child { border-bottom: none; }
+  .sidebar-recent-item:hover { opacity: 0.75; }
+  .sidebar-recent-img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+  .sidebar-recent-title { font-size: 0.85rem; font-weight: 600; color: #1A202C; line-height: 1.4; }
+  .sidebar-recent-date { font-size: 0.72rem; color: #9CA3AF; margin-top: 4px; }
+
+  @media (max-width: 640px) {
+    .blog-intro { padding: 32px 20px 24px; }
+    .sidebar-card { padding: 18px; }
+  }
+</style>
+
+<!-- ══ PAGE INTRO ══ -->
+<section class="blog-intro">
+  <div class="blog-intro-inner">
+    <p class="blog-intro-eyebrow">Insights & Guides</p>
+    <h1 class="blog-intro-title">Our Blogs &amp; Articles</h1>
+  </div>
+</section>
+
+<!-- ══ MAIN CONTENT ══ -->
+<section style="background:#F8FAFF;padding:8px 24px 80px;position:relative;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;">
+
+    <!-- Category filter -->
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-pill active" data-cat="all">All Posts</button>
+      {displayCategories.map(cat => (
+        <button class="filter-pill" data-cat={cat}>{cat}</button>
+      ))}
+    </div>
+
+    <!-- Two-column layout: grid + sidebar -->
+    <div class="blog-layout">
+
+      <!-- LEFT: Blog grid -->
+      <div>
+        {fetchError && posts.length === 0 && (
+          <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:12px;padding:14px 20px;margin-bottom:28px;font-size:0.9rem;color:#92400E;">
+            ⚠️ Could not connect to Strapi. Showing placeholder content. Make sure Strapi is running and the <code>STRAPI_URL</code> env variable is set.
+          </div>
+        )}
+
+        <div class="blog-grid" id="blogGrid">
+          {displayPosts.map((post, i) => (
+            <a
+              href={`/blog/${post.slug}/`}
+              class="blog-card"
+              data-cats={JSON.stringify(post.categories)}
+            >
+              <div class="blog-card-img-wrap">
+                <img
+                  src={post.featuredImage || FALLBACK_IMG}
+                  alt={post.title}
+                  class="blog-card-img"
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                />
+              </div>
+              <div class="blog-card-body">
+                {post.categories[0] && <span class="blog-card-cat">{post.categories[0]}</span>}
+                <h2 class="blog-card-title">{post.title}</h2>
+                <span class="blog-card-read">
+                  Read Article
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <!-- Empty state after filter -->
+        <div id="noResults" style="display:none;" class="no-posts">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <p style="font-size:1.1rem;font-weight:600;color:#374151;margin:0 0 6px;">No posts in this category</p>
+          <p style="font-size:0.95rem;margin:0;">Try selecting a different filter above.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <aside class="blog-sidebar">
+
+        <!-- Quick enquiry -->
+        <div class="sidebar-card" style="background:#2D3748;border-color:#2D3748;">
+          <h3 style="color:#38B2AC;">Free Consultation</h3>
+          <p style="color:#B2F5EA;font-size:0.88rem;line-height:1.6;margin-bottom:16px;">Need help with attestation, PCC or business setup? Ask our experts — no cost, no obligation.</p>
+          <ContactForm />
+        </div>
+
+        <!-- Recent posts -->
+        {displayPosts.length > 1 && (
+          <div class="sidebar-card">
+            <h3>Recent Articles</h3>
+            {displayPosts.slice(0, 5).map(post => (
+              <a href={`/blog/${post.slug}/`} class="sidebar-recent-item">
+                <img src={post.featuredImage || FALLBACK_IMG} alt={post.title} class="sidebar-recent-img" loading="lazy" />
+                <div>
+                  <p class="sidebar-recent-title">{post.title}</p>
+                  {post.publishedDate && <p class="sidebar-recent-date">{formatDate(post.publishedDate)}</p>}
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+// Category filter logic
+(function () {
+  const filterBar = document.getElementById('filterBar');
+  const grid = document.getElementById('blogGrid');
+  const noResults = document.getElementById('noResults');
+  if (!filterBar || !grid) return;
+
+  filterBar.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('[data-cat]');
+    if (!btn) return;
+
+    const cat = (btn as HTMLElement).dataset.cat || 'all';
+
+    // Update active pill
+    filterBar.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Filter cards
+    const cards = grid.querySelectorAll('.blog-card');
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const cardCats: string[] = JSON.parse((card as HTMLElement).dataset.cats || '[]');
+      const show = cat === 'all' || cardCats.includes(cat);
+      (card as HTMLElement).style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+
+    if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  });
+})();
+</script>
+
+</BaseLayout>

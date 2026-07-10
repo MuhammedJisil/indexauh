@@ -22,7 +22,7 @@ const steps = [
   { step: "02", title: "Ministry of Education Attestation", desc: "After school verification, the education department reviews the certificate. This step confirms that the school operates under recognized education authorities." },
   { step: "03", title: "Ministry of Foreign Affairs in the Issuing Country", desc: "Next, the foreign affairs department verifies the document. This step confirms that the certificate is valid for international use." },
   { step: "04", title: "UAE Embassy Attestation", desc: "The UAE Embassy in the issuing country checks the certificate again. Embassy verification allows the document to be used inside the UAE." },
-  { step: "05", title: "MOFA Attestation in UAE", desc: "The final step takes place at the UAE Ministry of Foreign Affairs. After this approval, the Transfer Certificate Attestation becomes valid for school admission in the UAE." }
+  { step: "05", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation in UAE</a>", desc: "The final step takes place at the UAE Ministry of Foreign Affairs. After this approval, the Transfer Certificate Attestation becomes valid for school admission in the UAE." }
 ]
 
 const whenRequiredSituations = [
@@ -63,7 +63,7 @@ const commonMistakes = [
   "Missing school seal or signature",
   "Submitting photocopies instead of the original certificate",
   "Incomplete student information",
-  "Legal translation problems when the document is not in English"
+  "<a href='/legal-translation-in-uae/' style='color:#9B2C2C;font-weight:700;text-decoration:underline;text-decoration-color:#E53E3E;text-underline-offset:3px;'>Legal translation</a> problems when the document is not in English"
 ]
 
 const gettingStartedSteps = [
@@ -74,9 +74,9 @@ const gettingStartedSteps = [
 ]
 
 const whyChooseUs = [
-  "25+ years of certificate attestation experience",
+  "25+ years of <a href='/' style='color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation</a> experience",
   "Complete document handling",
-  "Support for Certificate Attestation in Dubai and Attestation Services in Abu Dhabi",
+  "Support for <a href='/certificate-attestation-in-dubai/' style='color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Certificate Attestation in Dubai</a> and <a href='/certificate-attestation-in-abu-dhabi/' style='color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Attestation Services in Abu Dhabi</a>",
   "Quick updates during the process",
   "Professional guidance from start to finish"
 ]
@@ -231,16 +231,16 @@ description="Starting school in the UAE? Get Transfer Certificate Attestation in
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
       <!-- Steps list -->
       <div style="display:flex;flex-direction:column;gap:14px;">
-        {steps.map(s => (
-          <div class="step-card">
-            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
-          </div>
-        ))}
+  {steps.map(s => (
+    <div class="step-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
       </div>
+    </div>
+  ))}
+</div>
       <!-- Right image -->
       <div style="position:sticky;top:100px;">
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
@@ -420,13 +420,13 @@ description="Starting school in the UAE? Get Transfer Certificate Attestation in
         <h2 style="font-size:2rem;font-weight:900;color:#9B2C2C;margin:0 0 16px;">Common Mistakes During Transfer Certificate Attestation</h2>
         <p style="color:#9B2C2C;font-size:0.95rem;line-height:1.7;margin-bottom:24px;">Many parents face delays due to small mistakes in documents. Careful preparation helps avoid these issues.</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          {commonMistakes.map(m => (
-            <div class="warning-item">
-              <span style="color:#E53E3E;font-weight:bold;margin-top:2px;">⚠</span>
-              <p style="margin:0;line-height:1.4;">{m}</p>
-            </div>
-          ))}
-        </div>
+  {commonMistakes.map(m => (
+    <div class="warning-item">
+      <span style="color:#E53E3E;font-weight:bold;margin-top:2px;">⚠</span>
+      <p style="margin:0;line-height:1.4;" set:html={m}></p>
+    </div>
+  ))}
+</div>
         <p style="color:#9B2C2C;font-size:0.9rem;line-height:1.7;margin-top:16px;">For example, a missing seal can stop verification at the first stage. Therefore checking the document before submission is very important.</p>
       </div>
     </div>
@@ -469,13 +469,14 @@ description="Starting school in the UAE? Get Transfer Certificate Attestation in
       </p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:900px;margin:0 auto 48px;" class="benefits-grid">
-      {whyChooseUs.map(w => (
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:14px 18px;border-radius:10px;">
-          <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>
-          <p style="color:#CBD5E0;font-size:0.88rem;margin:0;font-weight:500;">{w}</p>
-        </div>
-      ))}
+   <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:900px;margin:0 auto 48px;" class="benefits-grid">
+  {whyChooseUs.map(w => (
+    <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:14px 18px;border-radius:10px;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✔</span>
+      <p style="color:#CBD5E0;font-size:0.88rem;margin:0;font-weight:500;" set:html={w}></p>
+    </div>
+  ))}
+</div>
     </div>
 
     <!-- Offices side-by-side -->

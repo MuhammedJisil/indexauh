@@ -13,12 +13,12 @@ const countryCodes = [
 
 const requiredAttestationDocs = [
   {
-    title: "Degree Certificate Attestation",
+    title: "<a href='/degree-certificate-attestation/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Degree Certificate Attestation</a>",
     desc: "Commonly required for employment visas, engineering jobs, management positions, professional licensing, and UAE equivalency.",
     icon: "🎓"
   },
   {
-    title: "Diploma Certificate Attestation",
+    title: "<a href='/diploma-certificate-attestation/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Diploma Certificate Attestation</a>",
     desc: "Required for technical jobs, vocational professions, and skill-based employment opportunities in the UAE.",
     icon: "📜"
   },
@@ -44,9 +44,9 @@ const steps = [
   { step: "02", title: "Local Notary Attestation", desc: "A public notary validates your document first. This step adds basic legal value. It prepares the certificate for further approvals." },
   { step: "03", title: "Regional Authentication", desc: "Next, the university, board, or regional authority verifies the certificate. This confirms authenticity at the source. As a result, the document gains stronger acceptance." },
   { step: "04", title: "National Level Attestation", desc: "The foreign affairs authority approves the document. They verify all previous steps. Therefore, your certificate becomes valid for international use." },
-  { step: "05", title: "UAE Embassy Attestation", desc: "The UAE Embassy reviews and attests the document. This aligns it with UAE requirements. Hence, accuracy in earlier stages is important." },
-  { step: "06", title: "MOFA Attestation in UAE", desc: "The Ministry of Foreign Affairs gives final approval inside the UAE. Now your certificate becomes legally accepted." },
-  { step: "07", title: "Certified Translation", desc: "Translation is required for documents not in English or Arabic. For example, certified translators in the UAE handle this step for smooth processing." }
+  { step: "05", title: "<a href='/embassy-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE Embassy Attestation</a>", desc: "The UAE Embassy reviews and attests the document. This aligns it with UAE requirements. Hence, accuracy in earlier stages is important." },
+  { step: "06", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation in UAE</a>", desc: "The Ministry of Foreign Affairs gives final approval inside the UAE. Now your certificate becomes legally accepted." },
+  { step: "07", title: "Certified Translation", desc: "Translation is required for documents not in English or Arabic. For example, <a href='/legal-translation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certified translators in the UAE</a> handle this step for smooth processing." }
 ]
 
 const countriesData = [
@@ -136,7 +136,7 @@ const purposes = [
 ]
 
 const benefits = [
-  { title: "Expertise and Experience", desc: "Index Office Services possesses extensive experience and expertise in handling the certificate attestation in UAE process for educational certificates. Their professionals are well-versed in the intricacies of the attestation procedure in Dubai, ensuring a smooth and efficient process." },
+  { title: "Expertise and Experience", desc: "Index Office Services possesses extensive experience and expertise in handling the <a href='/certificate-attestation-in-the-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation in UAE</a> process for educational certificates. Their professionals are well-versed in the intricacies of the attestation procedure in Dubai, ensuring a smooth and efficient process." },
   { title: "Comprehensive Service", desc: "Index Office Services provides end-to-end services for educational certificate attestation, covering all necessary steps, from document collection to final attestation. This ensures a hassle-free experience for clients, saving them time and effort." },
   { title: "Knowledge of Local Regulations", desc: "Understanding the local laws and regulations governing educational certificate attestation is crucial. Index Office Services is well-acquainted with the specific requirements set by Dubai authorities, guaranteeing accurate and compliant attestation services." },
   { title: "Timely Processing", desc: "Index Office Services prioritizes timely processing of educational certificate attestation, enabling clients to meet deadlines for job applications, academic pursuits, or other professional endeavours in Dubai." },
@@ -335,17 +335,17 @@ description="Educational certificate attestation in Dubai with 25+ years of expe
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Education Types</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Educational Certificates That Require Attestation</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Different academic qualifications require attestation for different purposes in the UAE — from employment visas to DHA licensing. Below are the most commonly requested types.</p>
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          {requiredAttestationDocs.map(d => (
-            <div style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
-              <span style="font-size:1.6rem;flex-shrink:0;">{d.icon}</span>
-              <div>
-                <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 4px;">{d.title}</h3>
-                <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{d.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:14px;">
+  {requiredAttestationDocs.map(d => (
+    <div style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:16px;">
+      <span style="font-size:1.6rem;flex-shrink:0;">{d.icon}</span>
+      <div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 4px;" set:html={d.title}></h3>
+        <p style="font-size:0.9rem;color:#4B5563;line-height:1.6;margin:0;">{d.desc}</p>
+      </div>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   </div>
@@ -365,16 +365,16 @@ description="Educational certificate attestation in Dubai with 25+ years of expe
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
       <!-- Steps list -->
       <div style="display:flex;flex-direction:column;gap:14px;">
-        {steps.map(s => (
-          <div class="step-card">
-            <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
-          </div>
-        ))}
+  {steps.map(s => (
+    <div class="step-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;" set:html={s.desc}></p>
       </div>
+    </div>
+  ))}
+</div>
       <!-- Right image -->
       <div style="position:sticky;top:100px;">
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);">
@@ -581,14 +581,14 @@ description="Educational certificate attestation in Dubai with 25+ years of expe
       <div>
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Why Choose Us</p>
         <h2 style="font-size:1.9rem;font-weight:900;color:#1A202C;margin:0 0 28px;">Benefits of Choosing Index Office Services</h2>
-        <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
-          {benefits.map(b => (
-            <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
-              <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
-              <p style="font-size:0.75rem;color:#4B5563;line-height:1.6;margin:0;">{b.desc}</p>
-            </div>
-          ))}
-        </div>
+       <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+  {benefits.map(b => (
+    <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:18px;">
+      <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-bottom:2px solid #B2F5EA;padding-bottom:6px;">{b.title}</h3>
+      <p style="font-size:0.75rem;color:#4B5563;line-height:1.6;margin:0;" set:html={b.desc}></p>
+    </div>
+  ))}
+</div>
       </div>
       <!-- Right: image -->
       <div style="position:sticky;top:100px;">

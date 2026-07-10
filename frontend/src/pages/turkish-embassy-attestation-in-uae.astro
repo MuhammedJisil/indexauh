@@ -104,6 +104,7 @@ const faqs = [
   { q: "Is Turkish consulate attestation different from embassy attestation?", a: "Both serve similar purposes, though procedures may vary slightly depending on location and document type." },
   { q: "What happens if my birth certificate is damaged or has errors?", a: "If a birth certificate is damaged, unclear, laminated, or contains errors such as incorrect names or dates, it may not be accepted for attestation. In such cases, correction or reissuance is usually required. Index AUH helps identify such issues early and guides you on the next step." },
 ]
+import DocumentCoverage from '../components/DocumentCoverage.astro';
 ---
 
 <BaseLayout
@@ -196,7 +197,7 @@ const faqs = [
 
     <div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
-        <img src="/images/img-127.webp" alt="Turkish Embassy document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="/images/turkey-flag.webp" alt="Turkish Embassy document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;right:20px;">
           <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Turkish MOFA · UAE Embassy · Document Delivery</p>
@@ -235,46 +236,14 @@ const faqs = [
 </section>
 
 <!-- ════ DOCUMENT TYPES ════ -->
-<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
-
-  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
-      <div>
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
-        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Types of Turkish Documents We Attest</h2>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
-          We handle attestation for a wide range of document categories. Always check with the requesting authority to confirm exactly what form of attestation they require.
-        </p>
-      </div>
-      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
-        <img src="/images/img-1.webp" alt="Turkish Embassy attestation document types" style="width:100%;height:240px;object-fit:cover;display:block;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
-        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
-          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
-      {docTypes.map(cat => (
-        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-            <span style="font-size:1.5rem;">{cat.icon}</span>
-            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
-          </div>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
-            {cat.docs.map(d => (
-              <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>{d}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+<DocumentCoverage
+  title="Types of Turkish Documents We Attest"
+  description="We handle attestation for a wide range of document categories. Always check with the requesting authority to confirm exactly what form of attestation they require."
+  imageSrc="/images/img-1.webp"
+  imageAlt="Turkish Embassy attestation document types"
+  docTypes={docTypes}
+  country="uae"
+/>
 
 <!-- ════ PROCESS STEPS ════ -->
 <section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">

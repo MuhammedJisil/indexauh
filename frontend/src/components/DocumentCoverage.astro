@@ -1,0 +1,193 @@
+---
+interface DocType {
+  category: string;
+  icon: string;
+  docs: string[];
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  docTypes: DocType[];
+  country?: string;
+  background?: string;
+}
+
+const {
+  title = "Our Attestation Services",
+  description = "We handle attestation for a wide range of document categories. Our team reviews everything carefully before submission to keep your documents compliant.",
+  imageSrc = "/images/img-1.webp",
+  imageAlt = "Document types for attestation",
+  docTypes,
+  country,
+  background = "#fff"
+} = Astro.props;
+
+function getLinkForDoc(docName: string, country?: string) {
+  const name = docName.toLowerCase().trim();
+
+  // 1. Police Clearance Certificate (PCC)
+  if (name.includes("police clearance") || name.includes("pcc") || name.includes("background check")) {
+    const countriesWithPcc = ["kuwait", "bahrain", "oman", "qatar", "saudi", "uae", "usa"];
+    for (const c of countriesWithPcc) {
+      if (name.includes(c)) {
+        return `/police-clearance-certificate-from-${c}/`;
+      }
+    }
+    if (country) {
+      const lowerCountry = country.toLowerCase().trim();
+      if (countriesWithPcc.includes(lowerCountry)) {
+        return `/police-clearance-certificate-from-${lowerCountry}/`;
+      }
+    }
+    return "/police-clearance-certificate/";
+  }
+
+  // 2. Degree Attestation
+  if (name.includes("degree")) {
+    return "/degree-certificate-attestation/";
+  }
+
+  // 3. Diploma Attestation
+  if (name.includes("diploma")) {
+    return "/diploma-certificate-attestation/";
+  }
+
+  // 4. Marriage Certificate
+  if (name.includes("marriage")) {
+    return "/marriage-certificate-attestation-in-the-uae/";
+  }
+
+  // 5. Birth Certificate
+  if (name.includes("birth")) {
+    return "/birth-certificate-attestation-in-uae/";
+  }
+
+  // 6. Death Certificate
+  if (name.includes("death")) {
+    return "/death-certificate-attestation/";
+  }
+
+  // 7. Divorce Certificate
+  if (name.includes("divorce")) {
+    return "/divorce-certificate-attestation/";
+  }
+
+  // 8. Medical Certificate
+  if (name.includes("medical")) {
+    return "/medical-certificate-attestation/";
+  }
+
+  // 9. Transfer Certificate
+  if (name.includes("transfer")) {
+    return "/transfer-certificate-attestation/";
+  }
+
+  // 10. Experience Certificate
+  if (name.includes("experience")) {
+    return "/experience-certificate-attestation/";
+  }
+
+  // 11. Power of Attorney
+  if (name.includes("power of attorney") || name.includes("poa")) {
+    return "/power-of-attorney-notarization/";
+  }
+
+  // 12. Notary Attestation
+  if (name.includes("notary") || name.includes("notarization")) {
+    return "/notary-attestation-services/";
+  }
+
+  return null;
+}
+---
+
+<section style={`background:${background};padding:76px 24px;position:relative;overflow:hidden;`}>
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document Coverage</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">{title}</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;">
+          {description}
+        </p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src={imageSrc} alt={imageAlt} style="width:100%;height:240px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.7) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+          <p style="color:#fff;font-size:0.98rem;font-weight:800;margin:0;">All Document Categories Covered</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col">
+      {docTypes.map(cat => (
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:1.5rem;">{cat.icon}</span>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">{cat.category}</h3>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+            {cat.docs.map(d => {
+              const link = getLinkForDoc(d, country);
+              return (
+                <li style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#4B5563;">
+                  <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>
+                  {link ? (
+                    <a href={link} class="doc-link">
+                      {d}
+                    </a>
+                  ) : (
+                    d
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .split-grid {
+    display: grid !important;
+    grid-template-columns: 1.4fr 0.9fr !important;
+    gap: 48px !important;
+    align-items: center;
+    margin-bottom: 52px;
+  }
+
+  .three-col {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+  }
+
+  .doc-link {
+    color: #38B2AC;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s, text-decoration 0.2s;
+  }
+  .doc-link:hover {
+    color: #2C7A7B !important;
+    text-decoration: underline !important;
+  }
+
+  @media (max-width: 768px) {
+    .split-grid {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+    }
+    .three-col {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
