@@ -14,10 +14,9 @@
 
     <!-- Modal Body -->
     <div class="callback-popup-body">
-      <!-- Web3Forms Integration -->
-      <form action="https://api.web3forms.com/submit" method="POST" id="callbackPopupForm">
-        <!-- Change this to your Web3Forms access key later -->
-        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+      <!-- Web3Forms Integration (via fetch, no page redirect) -->
+      <form id="callbackPopupForm">
+        <input type="hidden" name="access_key" value="17484402-bacf-4efa-abe3-b4777d9e1519" />
         <input type="hidden" name="subject" value="New Call Back Request from Popup" />
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
