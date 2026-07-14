@@ -14,45 +14,44 @@
 
     <!-- Modal Body -->
     <div class="callback-popup-body">
-      <!-- Web3Forms Integration -->
-      <form action="https://api.web3forms.com/submit" method="POST" id="callbackPopupForm">
-        <!-- Change this to your Web3Forms access key later -->
-        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+      <!-- Web3Forms Integration (via fetch, no page redirect) -->
+      <form id="callbackPopupForm">
+        <input type="hidden" name="access_key" value="17484402-bacf-4efa-abe3-b4777d9e1519" />
         <input type="hidden" name="subject" value="New Call Back Request from Popup" />
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
         <!-- Form Fields -->
         <div class="form-group">
           <label for="popupName">Name</label>
-          <input 
-            type="text" 
-            id="popupName" 
-            name="name" 
-            placeholder="Name" 
-            required 
+          <input
+            type="text"
+            id="popupName"
+            name="name"
+            placeholder="Name"
+            required
           />
         </div>
 
         <div class="form-group">
           <label for="popupContact">Contact</label>
-          <input 
-            type="text" 
-            id="popupContact" 
-            name="contact" 
-            placeholder="Enter Your Contact Details (Phone/Email)" 
-            required 
+          <input
+            type="text"
+            id="popupContact"
+            name="contact"
+            placeholder="Enter Your Contact Details (Phone/Email)"
+            required
           />
         </div>
 
-        <button type="submit" class="popup-submit-btn">Submit</button>
+        <button type="submit" class="popup-submit-btn" id="popupSubmitBtn">Submit</button>
       </form>
 
       <!-- Action Buttons (WhatsApp, Call, Email) -->
       <div class="popup-action-buttons">
-        <a 
-          href="https://api.whatsapp.com/send/?phone=971529300200" 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <a
+          href="https://api.whatsapp.com/send/?phone=971529300200"
+          target="_blank"
+          rel="noopener noreferrer"
           class="action-btn whatsapp-btn"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -72,12 +71,40 @@
   </div>
 </div>
 
+<!-- ══ Themed Success Popup ══ -->
+<div id="popupSuccessOverlay" class="callback-popup-overlay">
+  <div class="callback-popup-modal" style="max-width:380px;text-align:center;">
+    <div style="padding:36px 28px;">
+      <div style="width:60px;height:60px;background:#F0FFFE;border:2px solid #38B2AC;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin:0 0 8px;">Thank You!</h3>
+      <p style="font-size:0.9rem;color:#4A5568;line-height:1.6;margin:0 0 22px;">We've received your request. Our team will call you back shortly.</p>
+      <button id="closePopupSuccess" class="popup-submit-btn" style="margin:0;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Themed Error Popup ══ -->
+<div id="popupErrorOverlay" class="callback-popup-overlay">
+  <div class="callback-popup-modal" style="max-width:380px;text-align:center;">
+    <div style="padding:36px 28px;">
+      <div style="width:60px;height:60px;background:#FEF2F2;border:2px solid #EF4444;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </div>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#1A202C;margin:0 0 8px;">Something Went Wrong</h3>
+      <p style="font-size:0.9rem;color:#4A5568;line-height:1.6;margin:0 0 22px;">We couldn't submit your request. Please try again or contact us directly.</p>
+      <button id="closePopupError" class="popup-submit-btn" style="margin:0;background:#2D3748;">Close</button>
+    </div>
+  </div>
+</div>
+
 <style>
   /* Popup overlay */
   .callback-popup-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.65); /* Dark slate semi-transparent overlay */
+    background: rgba(15, 23, 42, 0.65);
     backdrop-filter: blur(4px);
     z-index: 10000;
     display: flex;
@@ -117,7 +144,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #38B2AC; /* Teal accent divider line */
+    border-bottom: 2px solid #38B2AC;
   }
 
   .callback-popup-header h3 {
@@ -142,7 +169,7 @@
   }
 
   .callback-popup-header button:hover {
-    color: #38B2AC; /* Hover to match website's teal theme */
+    color: #38B2AC;
   }
 
   /* Form Body */
@@ -187,7 +214,7 @@
   /* Submit Button */
   .popup-submit-btn {
     width: 100%;
-    background: #38B2AC; /* Teal for high visibility */
+    background: #38B2AC;
     color: #ffffff;
     font-weight: 700;
     padding: 13px;
@@ -203,7 +230,12 @@
   }
 
   .popup-submit-btn:hover {
-    background: #319795; /* Darker teal */
+    background: #319795;
+  }
+
+  .popup-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   /* Action Buttons Section */
@@ -234,17 +266,17 @@
   }
 
   .whatsapp-btn {
-    background: #1A202C; /* Dark Slate background just like the user screenshot */
+    background: #1A202C;
     border: 1px solid #2D3748;
   }
 
   .whatsapp-btn:hover {
-    background: #25D366; /* Hover switches to WhatsApp Green */
+    background: #25D366;
     border-color: #25D366;
   }
 
   .call-btn {
-    background: #1A202C; /* Matching Dark Slate */
+    background: #1A202C;
     border: 1px solid #2D3748;
   }
 
@@ -276,54 +308,87 @@
 </style>
 
 <script>
-  // Client-side execution code to trigger modal only on first entry
   document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('callbackPopupOverlay');
     const closeBtn = document.getElementById('closeCallbackPopupBtn');
     const form = document.getElementById('callbackPopupForm') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('popupSubmitBtn') as HTMLButtonElement | null;
+    const successOverlay = document.getElementById('popupSuccessOverlay');
+    const errorOverlay = document.getElementById('popupErrorOverlay');
+    const closeSuccessBtn = document.getElementById('closePopupSuccess');
+    const closeErrorBtn = document.getElementById('closePopupError');
 
     if (!overlay || !closeBtn) return;
 
-        // Check if the user has already seen the popup in sessionStorage
     const hasSeenPopup = sessionStorage.getItem('hasSeenCallbackPopup');
 
     if (!hasSeenPopup) {
-      // Show the popup after a brief delay (1.5 seconds)
       setTimeout(() => {
         overlay.classList.add('show');
       }, 1500);
     }
 
-    // Function to close the popup and store state in sessionStorage
     function closePopup() {
-      overlay.classList.remove('show');
+      overlay?.classList.remove('show');
       sessionStorage.setItem('hasSeenCallbackPopup', 'true');
     }
 
-    // Close on clicking 'X'
     closeBtn.addEventListener('click', closePopup);
 
-    // Close on clicking outside the modal content
     overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        closePopup();
-      }
+      if (e.target === overlay) closePopup();
     });
 
-    // Close on ESC key press
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('show')) {
-        closePopup();
-      }
+      if (e.key === 'Escape' && overlay.classList.contains('show')) closePopup();
     });
 
-    // Form submission helper (closes popup and sets flag)
-    if (form) {
-      form.addEventListener('submit', () => {
-        // We set the sessionStorage flag on submit so they don't see it again in the same session
-        sessionStorage.setItem('hasSeenCallbackPopup', 'true');
-        // Let the form submit naturally to Web3Forms
+    // ── AJAX submit (no redirect) ──
+    if (form && submitBtn) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: json,
+          });
+          const result = await res.json();
+
+          if (res.status === 200 && result.success) {
+            form.reset();
+            sessionStorage.setItem('hasSeenCallbackPopup', 'true');
+            closePopup();
+            successOverlay?.classList.add('show');
+          } else {
+            errorOverlay?.classList.add('show');
+          }
+        } catch (err) {
+          errorOverlay?.classList.add('show');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
       });
     }
+
+    closeSuccessBtn?.addEventListener('click', () => {
+      successOverlay?.classList.remove('show');
+    });
+    closeErrorBtn?.addEventListener('click', () => {
+      errorOverlay?.classList.remove('show');
+    });
   });
 </script>

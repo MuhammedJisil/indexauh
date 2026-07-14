@@ -7,7 +7,7 @@ const whenNeeded = [
   "Higher education and university admissions",
   "Family visa and residency applications",
   "Marriage registration and spouse visa processing",
-  "Business setup in the UAE or Bahrain",
+  "<a href='/business-setup-in-the-uae/' style='color:#374151;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business setup in the UAE</a> or Bahrain",
   "Legal transactions",
 ]
 
@@ -53,12 +53,11 @@ const docTypes = [
     ],
   },
 ]
-
 const processSteps = [
   { step: "01", title: "Initial Notary Verification", desc: "The process starts with initial verification from the issuing authority or a registered notary. This confirms that your certificate is genuine and officially issued." },
   { step: "02", title: "Home Country Government Attestation", desc: "If required, the document is attested by the relevant government departments in the issuing country. This step is common for educational and personal certificates issued outside the UAE." },
   { step: "03", title: "Bahrain Embassy Attestation", desc: "After home country verification, the certificate is submitted for Bahrain Embassy attestation. The embassy checks the document and approves it for legal use in Bahrain." },
-  { step: "04", title: "MOFA Attestation Bahrain", desc: "The final step is MOFA attestation Bahrain. The Ministry of Foreign Affairs provides the last level of approval, making the certificate fully valid for submission in Bahrain." },
+  { step: "04", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation</a> Bahrain", desc: "The final step is MOFA attestation Bahrain. The Ministry of Foreign Affairs provides the last level of approval, making the certificate fully valid for submission in Bahrain." },
   { step: "05", title: "Delivery of Attested Certificate", desc: "Our experts handle each stage carefully to ensure the process is smooth and to reduce the chances of delays or rejection." },
 ]
 
@@ -92,7 +91,7 @@ const getStartedSteps = [
 
 const whyChoose = [
   { title: "Experienced Attestation Specialists", desc: "Our team brings deep expertise in Bahrain certificate attestation procedures across all document types." },
-  { title: "Best Service in Dubai & Abu Dhabi", desc: "Trusted name for the best certificate attestation in Dubai and Abu Dhabi with proven results." },
+  { title: "Best Service in Dubai & Abu Dhabi", desc: "Trusted name for the best <a href='/certificate-attestation-in-dubai/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation in Dubai</a> and Abu Dhabi with proven results." },
   { title: "Secure Document Handling", desc: "Strict protocols ensure your certificates are handled and tracked securely throughout the entire process." },
   { title: "Transparent Communication", desc: "We keep you informed at every stage so you are never left wondering about the status of your documents." },
   { title: "Embassy and MOFA Coordination", desc: "We coordinate directly with the Bahrain Embassy and MOFA Bahrain attestation offices on your behalf." },
@@ -233,14 +232,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Attestation in Bahrain is mandatory for many official purposes. Without proper attestation, authorities may reject your documents. You need Bahrain certificate attestation for:
         </p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          {whenNeeded.map(item => (
-            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
-              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:12px;">
+  {whenNeeded.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+      <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+      <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;" set:html={item}></p>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   </div>
@@ -272,17 +271,16 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
 
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
       <div style="display:flex;flex-direction:column;gap:14px;">
-        {processSteps.map(s => (
-          <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
-          </div>
-        ))}
+  {processSteps.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
       </div>
-
+    </div>
+  ))}
+</div>
       <div style="display:flex;flex-direction:column;gap:20px;">
         <!-- Documents Required -->
         <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
@@ -411,14 +409,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
-      {whyChoose.map(b => (
-        <div class="benefit-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
-        </div>
-      ))}
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+  {whyChoose.map(b => (
+    <div class="benefit-card">
+      <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+      <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
     </div>
+  ))}
+</div>
   </div>
 </section>
 

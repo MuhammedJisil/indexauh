@@ -6,7 +6,7 @@ const whoNeeds = [
   "You are moving to Qatar for a job",
   "You are submitting papers for a family residence or spouse visa",
   "You are studying in Qatar",
-  "You are setting up a business in Qatar",
+  'You are <a href="/company-formation-in-qatar/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">setting up a business in Qatar</a>',
   "You are submitting documents to Qatar government offices",
 ]
 
@@ -78,7 +78,7 @@ const processRoutes = [
     steps: [
       "Initial verification of the document",
       "Notary or home department attestation",
-      "UAE MOFA attestation",
+      'UAE <a href="/mofa-attestation-in-uae/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">MOFA attestation</a>',
       "Qatar embassy attestation in the UAE",
     ],
   },
@@ -96,9 +96,8 @@ const feeFactors = [
   "Number of documents",
   "Embassy charges",
   "MOFA fees",
-  "Legal translation requirements",
+  '<a href="/legal-translation-in-uae/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">Legal translation</a> requirements',
 ]
-
 const challenges = [
   "Missing MOFA attestation",
   "Wrong attestation order",
@@ -107,7 +106,7 @@ const challenges = [
 ]
 
 const getStartedSteps = [
-  { step: "01", title: "Free Consultation", desc: "Contact our IndexAUH team for a free consultation about your documents and requirements." },
+  { step: "01", title: "Free Consultation", desc: 'Contact our <a href="/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">IndexAUH</a> team for a free consultation about your documents and requirements.' },
   { step: "02", title: "Submit Documents", desc: "Submit your documents through secure pickup or drop off at your convenience." },
   { step: "03", title: "Expert Processing", desc: "Our experts manage all steps with authorities and embassies on your behalf." },
   { step: "04", title: "Doorstep Delivery", desc: "Your attested certificates are delivered to your address once completed." },
@@ -115,7 +114,7 @@ const getStartedSteps = [
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Over 25 years of experience in certificate attestation services in Qatar and across the UAE." },
+  { title: "25+ Years of Experience", desc: 'Over 25 years of experience in <a href="/certificate-attestation-in-dubai/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> services in Qatar and across the UAE.' },
   { title: "Expert Embassy Knowledge", desc: "Strong knowledge of Qatar embassy rules, MOFA procedures, and document flow." },
   { title: "Secure Document Handling", desc: "Secure handling of original documents with full care and accountability throughout." },
   { title: "Pickup & Delivery", desc: "Free document pickup and delivery across the UAE for your convenience." },
@@ -220,14 +219,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         ))}
       </div>
       <p style="color:#2D3748;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 10px;">Who needs this service:</p>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        {whoNeeds.map(item => (
-          <div style="display:flex;align-items:flex-start;gap:12px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:10px 14px;">
-            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
-            <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;">{item}</p>
-          </div>
-        ))}
-      </div>
+     <div style="display:flex;flex-direction:column;gap:8px;">
+  {whoNeeds.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:12px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:10px 14px;">
+      <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+      <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;" set:html={item} />
+    </div>
+  ))}
+</div>
     </div>
 
     <div>
@@ -280,14 +279,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           </div>
           <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">{route.desc}</p>
           <p style="font-size:0.78rem;font-weight:700;color:#38B2AC;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 10px;">Steps Involved</p>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            {route.steps.map((s, idx) => (
-              <div style="display:flex;align-items:flex-start;gap:10px;">
-                <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-weight:800;font-size:0.72rem;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{idx + 1}</span>
-                <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{s}</p>
-              </div>
-            ))}
-          </div>
+         <div style="display:flex;flex-direction:column;gap:8px;">
+  {route.steps.map((s, idx) => (
+    <div style="display:flex;align-items:flex-start;gap:10px;">
+      <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-weight:800;font-size:0.72rem;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{idx + 1}</span>
+      <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;" set:html={s} />
+    </div>
+  ))}
+</div>
         </div>
       ))}
     </div>
@@ -310,12 +309,12 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Qatar Embassy Attestation Fees</h3>
         <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Qatar embassy attestation fees vary based on:</p>
         <div style="display:flex;flex-direction:column;gap:9px;">
-          {feeFactors.map(f => (
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
-              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
-            </div>
-          ))}
-        </div>
+  {feeFactors.map(f => (
+    <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span><span set:html={f} />
+    </div>
+  ))}
+</div>
         <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">We provide clear cost details before starting. There are no hidden charges. Contact us to get an exact estimate based on your documents.</p>
       </div>
     </div>
@@ -376,10 +375,10 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:left;" class="five-col">
       {getStartedSteps.map(s => (
         <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:22px;position:relative;">
-          <div style="font-size:2.8rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:12px;">{s.step}</div>
-          <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
-          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-        </div>
+  <div style="font-size:2.8rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:12px;">{s.step}</div>
+  <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+  <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;" set:html={s.desc} />
+</div>
       ))}
     </div>
   </div>
@@ -409,12 +408,12 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
-      {whyChoose.map(b => (
-        <div class="benefit-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
-        </div>
-      ))}
+     {whyChoose.map(b => (
+  <div class="benefit-card">
+    <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+    <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc} />
+  </div>
+))}
     </div>
   </div>
 </section>

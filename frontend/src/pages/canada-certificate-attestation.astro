@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
 const educationalNeeded = [
   "Employment visa processing",
-  "MOE equivalency procedures",
+  "MOE <a href='/equivalency-certificate/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>equivalency</a> procedures",
   "University admissions",
   "Professional licensing",
   "Skilled migration requirements",
@@ -21,7 +21,7 @@ const personalNeeded = [
 ]
 
 const commercialNeeded = [
-  "Business setup in UAE",
+  "<a href='/business-setup-in-the-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business setup in UAE</a>",
   "Corporate banking procedures",
   "Legal representation",
   "Contract approvals",
@@ -72,7 +72,7 @@ const docTypes = [
 ]
 
 const standardSteps = [
-  { step: "01", title: "Notarization in Canada", desc: "The document is notarized by authorized notary authorities in Canada." },
+  { step: "01", title: "<a href='/notary-attestation-services/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Notarization</a> in Canada", desc: "The document is notarized by authorized notary authorities in Canada." },
   { step: "02", title: "Authentication from Global Affairs Canada", desc: "Global Affairs Canada authenticates the notarized document for international use." },
   { step: "03", title: "Canada Embassy Attestation", desc: "The UAE Embassy in Canada verifies the document for acceptance inside the Emirates." },
   { step: "04", title: "MOFA Attestation in the UAE", desc: "The UAE Ministry of Foreign Affairs provides the final mandatory approval stamp." },
@@ -82,7 +82,7 @@ const diplomaSteps = [
   { step: "01", title: "Verify the Diploma Certificate", desc: "The issuing institution confirms the diploma is genuine." },
   { step: "02", title: "Notarization in Canada", desc: "Authorized notary verifies the diploma document." },
   { step: "03", title: "Global Affairs Canada Authentication", desc: "Federal authentication for international acceptance." },
-  { step: "04", title: "UAE Embassy Attestation", desc: "The UAE Embassy confirms the diploma for UAE use." },
+  { step: "04", title: "<a href='/embassy-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE Embassy Attestation</a>", desc: "The UAE Embassy confirms the diploma for UAE use." },
   { step: "05", title: "MOFA Attestation in the UAE", desc: "Final UAE MOFA stamp completes the process." },
 ]
 
@@ -90,7 +90,7 @@ const degreeSteps = [
   { step: "01", title: "Degree Verification and Notarization", desc: "The degree is verified at the issuing institution and notarized in Canada." },
   { step: "02", title: "Authentication from Global Affairs Canada", desc: "Federal authentication confirms the degree for international use." },
   { step: "03", title: "Canada Embassy Attestation", desc: "UAE Embassy in Canada verifies the degree document." },
-  { step: "04", title: "UAE MOFA Attestation", desc: "MOFA provides the final stamp making the degree valid in the UAE." },
+  { step: "04", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE MOFA Attestation</a>", desc: "MOFA provides the final stamp making the degree valid in the UAE." },
 ]
 
 const authSteps = [
@@ -258,13 +258,13 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           <span style="font-size:1.5rem;">🎓</span>
           <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">Educational Certificates</h3>
         </div>
-        <div style="display:flex;flex-direction:column;gap:9px;">
-          {educationalNeeded.map(item => (
-            <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:#4B5563;">
-              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{item}
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:9px;">
+  {educationalNeeded.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:#4B5563;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span><span set:html={item}></span>
+    </div>
+  ))}
+</div>
       </div>
       <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
@@ -285,12 +285,12 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0;">Commercial Documents</h3>
         </div>
         <div style="display:flex;flex-direction:column;gap:9px;">
-          {commercialNeeded.map(item => (
-            <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:#4B5563;">
-              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{item}
-            </div>
-          ))}
-        </div>
+  {commercialNeeded.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:#4B5563;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span><span set:html={item}></span>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   </div>
@@ -326,14 +326,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin:0 0 18px;padding-left:14px;border-left:3px solid #38B2AC;">Standard Legalization Process</h3>
         <div style="display:flex;flex-direction:column;gap:12px;">
           {standardSteps.map(s => (
-            <div class="step-card">
-              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-              <div>
-                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-              </div>
-            </div>
-          ))}
+  <div class="step-card">
+    <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+    <div>
+      <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+      <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+    </div>
+  </div>
+))}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:28px;">
@@ -342,29 +342,30 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin:0 0 14px;padding-left:14px;border-left:3px solid #38B2AC;">Canadian Diploma Certificate Attestation</h3>
           <div style="display:flex;flex-direction:column;gap:10px;">
             {diplomaSteps.map(s => (
-              <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
-                <div style="width:32px;height:32px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-                <div>
-                  <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{s.title}</p>
-                  <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;">{s.desc}</p>
-                </div>
-              </div>
-            ))}
+  <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
+    <div style="width:32px;height:32px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+    <div>
+      <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 2px;" set:html={s.title}></p>
+      <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;">{s.desc}</p>
+    </div>
+  </div>
+))}
+
           </div>
         </div>
         <!-- Degree -->
         <div>
           <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin:0 0 14px;padding-left:14px;border-left:3px solid #38B2AC;">Degree Attestation Canada Procedure</h3>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            {degreeSteps.map(s => (
-              <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
-                <div style="width:32px;height:32px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-                <div>
-                  <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 2px;">{s.title}</p>
-                  <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;">{s.desc}</p>
-                </div>
-              </div>
-            ))}
+{degreeSteps.map(s => (
+  <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
+    <div style="width:32px;height:32px;border-radius:8px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+    <div>
+      <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 2px;" set:html={s.title}></p>
+      <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;">{s.desc}</p>
+    </div>
+  </div>
+))}
           </div>
         </div>
       </div>

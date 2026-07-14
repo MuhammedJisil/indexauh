@@ -6,7 +6,7 @@ const whenNeeded = [
   "Are you planning to work in the UAE?",
   "Do you want to sponsor your spouse or children?",
   "Are you applying for university admission?",
-  "Thinking about setting up business in UAE?",
+  "Thinking about <a href='/business-setup-in-the-uae/' style='color:#374151;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>setting up business in UAE</a>?",
   "Handling a legal matter that requires official documents?",
 ]
 
@@ -89,13 +89,12 @@ const challenges = [
   "Spelling errors in names, dates, or passport numbers",
   "Missing authentication from the Lebanese ministry",
   "Skipping the UAE embassy Lebanon attestation stage",
-  "Incorrect or unofficial legal translation",
+  "Incorrect or unofficial <a href='/legal-translation-in-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#E53E3E;text-underline-offset:3px;'>legal translation</a>",
   "Submitting photocopies instead of original documents",
   "Providing damaged or unclear certificates",
   "Mismatch between certificate details and passport information",
   "Using outdated or amended documents without proper proof",
 ]
-
 const getStartedSteps = [
   { step: "01", title: "Contact IndexAUH", desc: "Call us or share your certificate copy through WhatsApp or email. Our team responds quickly." },
   { step: "02", title: "Document Review", desc: "We check your document and confirm all required stages, including UAE embassy Lebanon attestation and MOFA approval. The timeline and cost are explained clearly." },
@@ -203,13 +202,13 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         You may need it for a job, higher studies, family visa, or business setup. Without correct legalization, your application can face delay or rejection. In all these situations, UAE authorities will not accept your Lebanese certificates without proper legalization.
       </p>
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
-        {whenNeeded.map(item => (
-          <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
-            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-            <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
-          </div>
-        ))}
-      </div>
+  {whenNeeded.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
+      <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+      <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;" set:html={item}></p>
+    </div>
+  ))}
+</div>
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">Missing any stage can lead to serious delays or rejection. If you are planning any of the above, this is the right time to start your attestation process.</p>
       </div>
@@ -344,14 +343,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           </div>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        {challenges.map(c => (
-          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
-            <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
-            <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
-          </div>
-        ))}
-      </div>
+     <div style="display:flex;flex-direction:column;gap:10px;">
+  {challenges.map(c => (
+    <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+      <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+      <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;" set:html={c}></p>
+    </div>
+  ))}
+</div>
     </div>
   </div>
 </section>
@@ -396,9 +395,9 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Experience makes a major difference in certificate attestation processing. Our company has served clients in the UAE for over 25 years.
-        </p>
+       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+  Experience makes a major difference in <a href="/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> processing. Our company has served clients in the UAE for over 25 years.
+</p>
       </div>
     </div>
 

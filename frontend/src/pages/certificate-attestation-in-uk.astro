@@ -65,10 +65,8 @@ const processSteps = [
   { step: "01", title: "Document Verification & Preparation", desc: "Submit your original documents to Index Office Services. We review them for completeness, accuracy, and suitability before initiating the process." },
   { step: "02", title: "FCDO Apostille", desc: "Your documents are submitted to the UK's Foreign, Commonwealth & Development Office (FCDO) for apostille — an official stamp confirming the document's authenticity." },
   { step: "03", title: "UAE Embassy Attestation in London", desc: "Documents are submitted to the UAE Embassy in London for counter attestation (legalization) along with all required supporting documents." },
-  { step: "04", title: "MOFA Attestation in the UAE", desc: "Final attestation is completed by the UAE Ministry of Foreign Affairs (MOFA), making your documents officially accepted for use in the UAE." },
-  { step: "05", title: "Secure Return", desc: "Your fully attested documents are returned to you safely via secure courier or in-person collection from our offices." },
+  { step: "04", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation in the UAE</a>", desc: "Final attestation is completed by the UAE Ministry of Foreign Affairs (MOFA), making your documents officially accepted for use in the UAE." },
 ]
-
 const spotlightDocs = [
   {
     title: "UK Marriage Certificate Attestation UAE",
@@ -77,7 +75,7 @@ const spotlightDocs = [
   },
   {
     title: "UK Degree Certificate Attestation for UAE",
-    steps: ["Degree verification (if required)", "Additional certification (if applicable)", "FCDO Apostille", "UAE Embassy Attestation", "MOFA Attestation in the UAE"],
+    steps: ["Degree verification (if required)", "Additional certification (if applicable)", "FCDO Apostille", "<a href='/embassy-attestation-in-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE Embassy Attestation</a>", "MOFA Attestation in the UAE"],
     uses: ["Employment visa application", "Professional licensing", "Career progression", "Higher education admission"],
   },
   {
@@ -316,16 +314,16 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
 
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
       <div style="display:flex;flex-direction:column;gap:14px;">
-        {processSteps.map(s => (
-          <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
-          </div>
-        ))}
+  {processSteps.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
       </div>
+    </div>
+  ))}
+</div>
 
       <div>
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
@@ -367,14 +365,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <div class="spotlight-card">
           <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid #B2F5EA;">{doc.title}</h3>
           <p style="font-size:0.75rem;font-weight:700;color:#38B2AC;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 10px;">Process</p>
-          <ol style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px;counter-reset:step-counter;">
-            {doc.steps.map((s, i) => (
-              <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4B5563;line-height:1.5;">
-                <span style="background:#2D3748;color:#38B2AC;font-weight:800;font-size:0.7rem;width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{i+1}</span>
-                {s}
-              </li>
-            ))}
-          </ol>
+         <ol style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px;counter-reset:step-counter;">
+  {doc.steps.map((s, i) => (
+    <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4B5563;line-height:1.5;">
+      <span style="background:#2D3748;color:#38B2AC;font-weight:800;font-size:0.7rem;width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{i+1}</span>
+      <span set:html={s}></span>
+    </li>
+  ))}
+</ol>
           <p style="font-size:0.75rem;font-weight:700;color:#38B2AC;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 10px;">Common Uses</p>
           <div style="display:flex;flex-wrap:wrap;gap:7px;">
             {doc.uses.map(u => (
@@ -510,9 +508,9 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index for Certificate Attestation in the UK?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Index is a leading service provider for certificate attestation in the UK. With over 25 years of experience, we offer fast, reliable, and affordable services for all document types — managed by a team of qualified professionals with global reach.
-        </p>
+       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+  Index is a leading service provider for <a href="/certificate-attestation/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> in the UK. With over 25 years of experience, we offer fast, reliable, and affordable services for all document types — managed by a team of qualified professionals with global reach.
+</p>
       </div>
     </div>
 

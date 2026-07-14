@@ -69,11 +69,10 @@ const steps = [
   { step: "01", title: "Verification from the Issuing Authority", desc: "The document is verified with the department or institution that issued it, confirming the certificate is original and valid." },
   { step: "02", title: "Attestation from UAE Authorities", desc: "After initial verification, the document is attested by relevant UAE authorities, confirming it has been legally verified within the UAE." },
   { step: "03", title: "Oman Embassy Attestation (When Required)", desc: "Some documents require Oman embassy attestation based on their type and purpose. The embassy confirms the document meets Oman's legal requirements." },
-  { step: "04", title: "Ministry of Foreign Affairs Oman Attestation", desc: "The final step — the Ministry of Foreign Affairs gives official approval for the document to be used inside Oman. Without this, the document is not legally accepted." },
+  { step: "04", title: "Ministry of Foreign Affairs Oman Attestation", desc: "The final step — the<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'> Ministry of Foreign Affairs </a> gives official approval for the document to be used inside Oman. Without this, the document is not legally accepted." },
 ]
-
 const benefits = [
-  { title: "25+ Years of Experience", desc: "Over two decades of handling Oman certificate attestation in UAE, Dubai, Abu Dhabi and across the GCC — we understand every step of the process." },
+  { title: "25+ Years of Experience", desc: "Over two decades of handling Oman <a href='/certificate-attestation-in-dubai/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation in Dubai</a>, UAE, Abu Dhabi and across the GCC — we understand every step of the process." },
   { title: "Complete Document Handling", desc: "We manage the entire attestation process from start to finish — issuing authority, UAE attestation, Oman embassy, and MOFA Oman." },
   { title: "Door Delivery Service", desc: "Safe and easy document return with door delivery service. Your attested certificates are returned securely to your location." },
   { title: "Transparent Pricing", desc: "Clear guidance with no hidden charges. Costs depend on document type, issuing country, and authority approvals involved." },
@@ -272,7 +271,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
             <div>
               <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;"set:html={s.desc}></p>
             </div>
           </div>
         ))}
@@ -404,9 +403,9 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index for Oman Certificate Attestation?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Indexauh has over 25 years of experience in certificate attestation services. We understand every step of the Oman attestation process and handle documents with complete care. Over the years, we have supported thousands of trusted clients across the UAE and beyond, with attestation support extending to 100+ countries.
-        </p>
+       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+  Indexauh has over 25 years of experience in <a href="/certificate-attestation/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation services</a>. We understand every step of the Oman attestation process and handle documents with complete care. Over the years, we have supported thousands of trusted clients across the UAE and beyond, with attestation support extending to 100+ countries.
+</p>
       </div>
     </div>
 
@@ -414,7 +413,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       {benefits.map(b => (
         <div class="benefit-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
         </div>
       ))}
     </div>

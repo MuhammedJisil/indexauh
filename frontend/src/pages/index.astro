@@ -82,13 +82,13 @@ const services = [
     img: "/images/img-57.webp",
     title: "Embassy & MOFA Attestation",
     features: ["Full legalization through UAE Ministry of Foreign Affairs","Coordination with embassies and consulates for document approval","Complete workflow from home country to embassy and MOFA stages"],
-    link: "#",
+    link: "/embassy-attestation-in-uae/",
   },
   {
     img: "/images/img-16.webp",
     title: "Apostille Services",
     features: ["Apostille processing for Hague Convention countries","Pre-check of documents before official stamping","Accepted for legal, academic and official purposes abroad"],
-    link: "#",
+    link: "/apostille-service-uae/",
   },
   {
     img: "/images/img-11.webp",
@@ -111,29 +111,41 @@ const services = [
 ]
 
 const attestationServices = [
-  { path: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z", label: "MOFA Attestation Services" },
-  { path: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z", label: "Embassy Attestation Service" },
-  { path: "M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z", label: "Degree Certificate Attestation" },
-  { path: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z", label: "Marriage Certificate Attestation" },
-  { path: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z", label: "Birth Certificate Attestation" },
-  { path: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4", label: "Transfer Certificate Attestation" },
-  { path: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "Diploma Certificate Attestation" },
-  { path: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253", label: "Education Certificate Attestation" },
-  { path: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "Experience Certificate Attestation" },
-  { path: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4", label: "Medical Certificate Attestation" },
-  { path: "M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636", label: "Divorce Certificate Attestation" },
-  { path: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z", label: "Death Certificate Attestation" },
-  { path: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", label: "Commercial Document Attestation" },
-  { path: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01", label: "Equivalency Service in UAE" },
-  { path: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", label: "Genuineness Certificate Service" },
-  { path: "M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129", label: "Legal Translation Services" },
-  { path: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z", label: "Notary Attestation Services" },
-  { path: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", label: "Police Clearance Certificate (PCC)" },
-  { path: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z", label: "Apostille Service in UAE" },
+  { path: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z", label: "MOFA Attestation Services", href: "/mofa-attestation-in-uae/" },
+  { path: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z", label: "Embassy Attestation Service", href: "/embassy-attestation-in-uae/" },
+  { path: "M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z", label: "Degree Certificate Attestation", href: "/degree-certificate-attestation/" },
+  { path: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z", label: "Marriage Certificate Attestation", href: "/marriage-certificate-attestation-in-the-uae/" },
+  { path: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z", label: "Birth Certificate Attestation", href: "/birth-certificate-attestation-in-uae/" },
+  { path: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4", label: "Transfer Certificate Attestation", href: "/transfer-certificate-attestation/" },
+  { path: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "Diploma Certificate Attestation", href: "/diploma-certificate-attestation/" },
+  { path: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253", label: "Education Certificate Attestation", href: "/educational-certificate-attestation-in-dubai/" },
+  { path: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "Experience Certificate Attestation", href: "/experience-certificate-attestation/" },
+  { path: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4", label: "Medical Certificate Attestation", href: "/medical-certificate-attestation/" },
+  { path: "M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636", label: "Divorce Certificate Attestation", href: "/divorce-certificate-attestation/" },
+  { path: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z", label: "Death Certificate Attestation", href: "/death-certificate-attestation/" },
+  { path: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", label: "Commercial Document Attestation", href: "/commercial-documents-attestation/" },
+  { path: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01", label: "Equivalency Service in UAE", href: "/equivalency-certificate/" },
+  { path: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", label: "Genuineness Certificate Service", href: "/genuineness-certificate-service/" },
+  { path: "M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129", label: "Legal Translation Services", href: "/legal-translation-in-uae/" },
+  { path: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z", label: "Notary Attestation Services", href: "/notary-attestation-services/" },
+  { path: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", label: "Police Clearance Certificate (PCC)", href: "/police-clearance-certificate/" },
+  { path: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z", label: "Apostille Service in UAE", href: "/apostille-service-uae/" },
 ]
 
 const embassyServices = [
-  "Indian Embassy Attestation","UAE Embassy Attestation","Saudi Embassy Attestation","Qatar Embassy Attestation","Kuwait Embassy Attestation","Oman Embassy Attestation","Bahrain Embassy Attestation","Canada Embassy Attestation","Spain Embassy Attestation","Morocco Embassy Attestation","Greece Embassy Attestation","Finland Embassy Attestation","Turkish Embassy Attestation",
+  { name: "Indian Embassy Attestation",   href: "/indian-embassy-attestation/" },
+  { name: "Saudi Embassy Attestation",     href: "/saudi-embassy-attestation/" },
+  { name: "Qatar Embassy Attestation",     href: "/qatar-embassy-attestation-in-uae/" },
+  { name: "Kuwait Embassy Attestation",    href: "/kuwait-embassy-attestation/" },
+  { name: "Oman Embassy Attestation",      href: "/oman-embassy-attestation/" },
+  { name: "Bahrain Embassy Attestation",   href: "/bahrain-embassy-attestation/" },
+  { name: "Canada Embassy Attestation",    href: "/canada-embassy-attestation/" },
+  { name: "Spain Embassy Attestation",     href: "/spain-embassy-attestation/" },
+  { name: "Morocco Embassy Attestation",   href: "/morocco-embassy-attestation/" },
+  { name: "Greece Embassy Attestation",    href: "/greece-embassy-attestation/" },
+  { name: "Finland Embassy Attestation",   href: "/finland-embassy-attestation/" },
+  { name: "Turkish Embassy Attestation",   href: "/turkish-embassy-attestation-in-uae/" },
+  { name: "Philippines Embassy Attestation", href: "/philippine-embassy-attestation/" },
 ]
 
 const countries = [
@@ -147,6 +159,7 @@ const whyUs = [
   { icon: "👩‍⚖️", label: "Dedicated compliance experts" },
   { icon: "🔄", label: "Real-time process updates" },
   { icon: "🚪", label: "Doorstep collection & delivery" },
+  { icon: "👥", label: "200+ attestation professionals" },
 ]
 
 const faqs = [
@@ -217,10 +230,11 @@ const countryCodes = [
     max-width:360px;
     margin:0 auto;
   }
-  .hero-fixed-img img{
-    height:280px !important;
-    object-position: top;
-  }
+ .hero-fixed-img img{
+  height:auto !important;
+  object-fit:contain;
+  object-position:center;
+}
 }
 
   /* ── Service cards ── */
@@ -483,26 +497,26 @@ const countryCodes = [
       <p style="color:#6B7280;font-size:1.05rem;max-width:600px;margin:0 auto 8px;">Complete Legal and Business Support Under One Roof</p>
       <p style="color:#9CA3AF;font-size:0.98rem;max-width:700px;margin:0 auto 44px;">We support individuals, professionals, and corporate clients with documentation, attestation, and business setup services across the UAE and international locations.</p>
     </div>
-    <div class="svc-grid">
-      {services.map(s => (
-        <div class="svc-card">
-          <div class="svc-card-img-wrap">
-            <img src={s.img} alt={s.title} class="svc-card-img" />
-          </div>
-          <div class="svc-card-body">
-            <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 12px;">{s.title}</h3>
-            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
-              {s.features.map(f => (
-                <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.98rem;color:#4B5563;line-height:1.6;">
-                  <span style="color:#38B2AC;font-weight:700;flex-shrink:0;margin-top:2px;">&#10003;</span>{f}
-                </li>
-              ))}
-            </ul>
-            <a href={s.link} style="display:inline-flex;align-items:center;gap:4px;color:#2D3748;font-size:0.98rem;font-weight:600;text-decoration:none;margin-top:16px;">Explore &rarr;</a>
-          </div>
-        </div>
-      ))}
-    </div>
+<div class="svc-grid">
+  {services.map(s => (
+    <a href={s.link} class="svc-card" style="text-decoration:none;display:block;">
+      <div class="svc-card-img-wrap">
+        <img src={s.img} alt={s.title} class="svc-card-img" />
+      </div>
+      <div class="svc-card-body">
+        <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 12px;">{s.title}</h3>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
+          {s.features.map(f => (
+            <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.98rem;color:#4B5563;line-height:1.6;">
+              <span style="color:#38B2AC;font-weight:700;flex-shrink:0;margin-top:2px;">&#10003;</span>{f}
+            </li>
+          ))}
+        </ul>
+        <span style="display:inline-flex;align-items:center;gap:4px;color:#2D3748;font-size:0.98rem;font-weight:600;margin-top:16px;">Explore &rarr;</span>
+      </div>
+    </a>
+  ))}
+</div>
   </div>
 </section>
 
@@ -537,7 +551,7 @@ const countryCodes = [
     </div>
     <div class="att-card-grid">
       {attestationServices.map(s => (
-        <a href="#" class="att-card">
+        <a href={s.href} class="att-card">
           <div class="att-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#2D3748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48">
               <path d={s.path}/>
@@ -697,13 +711,15 @@ const countryCodes = [
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
       {embassyServices.map(s => (
-        <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:9999px;padding:9px 18px;font-size:0.98rem;color:#fff;font-weight:500;text-decoration:none;transition:all 0.2s;">
-          <span style="color:#38B2AC;">&#10003;</span>{s}
+        <a href={s.href} style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:9999px;padding:9px 18px;font-size:0.98rem;color:#fff;font-weight:500;text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.background='rgba(56,178,172,0.25)';this.style.borderColor='rgba(56,178,172,0.6)';"
+          onmouseout="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.2)';">
+          <span style="color:#38B2AC;">&#10003;</span>{s.name}
         </a>
       ))}
     </div>
     <div style="text-align:center;margin-top:32px;">
-      <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;padding:13px 28px;border-radius:9999px;font-weight:700;text-decoration:none;">Explore All Embassy Services &rarr;</a>
+      <a href="/embassy-attestation-in-uae/" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;padding:13px 28px;border-radius:9999px;font-weight:700;text-decoration:none;">Explore All Embassy Services &rarr;</a>
     </div>
   </div>
 </section>

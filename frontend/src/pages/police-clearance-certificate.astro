@@ -256,6 +256,46 @@ const whyIndex = [
   </div>
 </section>
 
+<!-- ════ RELATED PCC SERVICES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Country Coverage</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 12px;">Our Police Clearance Certificate Services</h2>
+      <p style="color:#6B7280;font-size:1.02rem;max-width:620px;margin:0 auto;">We handle Police Clearance Certificate (PCC) from all major countries. Select your country to learn about the specific process.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+      {[
+        { name: "PCC from UAE",          href: "/police-clearance-certificate-from-uae/" },
+        { name: "PCC from Saudi Arabia", href: "/police-clearance-certificate-from-saudi/" },
+        { name: "PCC from Qatar",        href: "/police-clearance-certificate-from-qatar/" },
+        { name: "PCC from Kuwait",       href: "/police-clearance-certificate-from-kuwait/" },
+        { name: "PCC from Bahrain",      href: "/police-clearance-certificate-from-bahrain/" },
+        { name: "PCC from Oman",         href: "/police-clearance-certificate-from-oman/" },
+        { name: "PCC from USA",          href: "/police-clearance-certificate-from-usa/" },
+      ].map(item => (
+        <a
+          href={item.href}
+          style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:14px 18px;font-size:0.98rem;color:#1A202C;font-weight:500;text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.borderColor='#38B2AC';this.style.background='#F0FFFE';this.style.transform='translateY(-2px)';"
+          onmouseout="this.style.borderColor='#e0e7ef';this.style.background='#fff';this.style.transform='translateY(0)';"
+        >
+          <span style="width:28px;height:28px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </span>
+          {item.name}
+          <span style="margin-left:auto;color:#2D3748;font-size:0.8rem;">→</span>
+        </a>
+      ))}
+    </div>
+    <p style="color:#6B7280;font-size:0.95rem;text-align:center;margin:28px 0 0;padding:14px 20px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;max-width:700px;margin-left:auto;margin-right:auto;">
+      Don't see your country? We cover 40+ countries. <a href="/contact/" style="color:#38B2AC;font-weight:600;text-decoration:none;">Contact us</a> and our team will guide you through the PCC process for your country of residence.
+    </p>
+  </div>
+</section>
+
 <!-- ════════════ GET IN TOUCH ════════════ -->
 <section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>

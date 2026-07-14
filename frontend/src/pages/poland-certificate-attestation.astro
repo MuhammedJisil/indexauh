@@ -96,7 +96,7 @@ const getStartedSteps = [
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Over 25 years of experience in UAE attestation services with thousands of successful cases." },
+  { title: "25+ Years of Experience", desc: "Over 25 years of experience in <a href='/certificate-attestation-in-the-uae/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE attestation services</a> with thousands of successful cases." },
   { title: "Expert Knowledge of Procedures", desc: "Strong understanding of embassy rules, ministry procedures, and Poland-specific attestation requirements." },
   { title: "Expert Handling End-to-End", desc: "Expert handling of Poland Certificate Attestation from start to finish with full accuracy." },
   { title: "Document Review Before Submission", desc: "Proper document review before submission to avoid rejection and unnecessary delays." },
@@ -397,13 +397,13 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
-      {whyChoose.map(b => (
-        <div class="benefit-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
-        </div>
-      ))}
+  {whyChoose.map(b => (
+    <div class="benefit-card">
+      <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+      <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
     </div>
+  ))}
+</div>
   </div>
 </section>
 

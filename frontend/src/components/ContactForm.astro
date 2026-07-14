@@ -1,44 +1,291 @@
 ---
 const countryCodes = [
-  { code: "+971", label: "🇦🇪 AE +971" },
-  { code: "+966", label: "🇸🇦 SA +966" },
-  { code: "+974", label: "🇶🇦 QA +974" },
-  { code: "+965", label: "🇰🇼 KW +965" },
-  { code: "+968", label: "🇴🇲 OM +968" },
-  { code: "+973", label: "🇧🇭 BH +973" },
-  { code: "+91",  label: "🇮🇳 IN +91" },
-  { code: "+44",  label: "🇬🇧 UK +44" },
-  { code: "+1",   label: "🇺🇸 US +1" },
-  { code: "+63",  label: "🇵🇭 PH +63" },
-  { code: "+92",  label: "🇵🇰 PK +92" },
+  { code: "+971", flag: "🇦🇪", name: "United Arab Emirates" },
+  { code: "+966", flag: "🇸🇦", name: "Saudi Arabia" },
+  { code: "+974", flag: "🇶🇦", name: "Qatar" },
+  { code: "+965", flag: "🇰🇼", name: "Kuwait" },
+  { code: "+968", flag: "🇴🇲", name: "Oman" },
+  { code: "+973", flag: "🇧🇭", name: "Bahrain" },
+  { code: "+91", flag: "🇮🇳", name: "India" },
+  { code: "+44", flag: "🇬🇧", name: "United Kingdom" },
+  { code: "+1", flag: "🇺🇸", name: "United States" },
+  { code: "+63", flag: "🇵🇭", name: "Philippines" },
+  { code: "+92", flag: "🇵🇰", name: "Pakistan" },
+  { code: "+93", flag: "🇦🇫", name: "Afghanistan" },
+  { code: "+355", flag: "🇦🇱", name: "Albania" },
+  { code: "+213", flag: "🇩🇿", name: "Algeria" },
+  { code: "+1684", flag: "🇦🇸", name: "American Samoa" },
+  { code: "+376", flag: "🇦🇩", name: "Andorra" },
+  { code: "+244", flag: "🇦🇴", name: "Angola" },
+  { code: "+1264", flag: "🇦🇮", name: "Anguilla" },
+  { code: "+672", flag: "🇦🇶", name: "Antarctica" },
+  { code: "+1268", flag: "🇦🇬", name: "Antigua and Barbuda" },
+  { code: "+54", flag: "🇦🇷", name: "Argentina" },
+  { code: "+374", flag: "🇦🇲", name: "Armenia" },
+  { code: "+297", flag: "🇦🇼", name: "Aruba" },
+  { code: "+61", flag: "🇦🇺", name: "Australia" },
+  { code: "+43", flag: "🇦🇹", name: "Austria" },
+  { code: "+994", flag: "🇦🇿", name: "Azerbaijan" },
+  { code: "+1242", flag: "🇧🇸", name: "Bahamas" },
+  { code: "+880", flag: "🇧🇩", name: "Bangladesh" },
+  { code: "+1246", flag: "🇧🇧", name: "Barbados" },
+  { code: "+375", flag: "🇧🇾", name: "Belarus" },
+  { code: "+32", flag: "🇧🇪", name: "Belgium" },
+  { code: "+501", flag: "🇧🇿", name: "Belize" },
+  { code: "+229", flag: "🇧🇯", name: "Benin" },
+  { code: "+1441", flag: "🇧🇲", name: "Bermuda" },
+  { code: "+975", flag: "🇧🇹", name: "Bhutan" },
+  { code: "+591", flag: "🇧🇴", name: "Bolivia, Plurinational State of bolivia" },
+  { code: "+387", flag: "🇧🇦", name: "Bosnia and Herzegovina" },
+  { code: "+267", flag: "🇧🇼", name: "Botswana" },
+  { code: "+47", flag: "🇧🇻", name: "Bouvet Island" },
+  { code: "+55", flag: "🇧🇷", name: "Brazil" },
+  { code: "+246", flag: "🇮🇴", name: "British Indian Ocean Territory" },
+  { code: "+673", flag: "🇧🇳", name: "Brunei Darussalam" },
+  { code: "+359", flag: "🇧🇬", name: "Bulgaria" },
+  { code: "+226", flag: "🇧🇫", name: "Burkina Faso" },
+  { code: "+257", flag: "🇧🇮", name: "Burundi" },
+  { code: "+855", flag: "🇰🇭", name: "Cambodia" },
+  { code: "+237", flag: "🇨🇲", name: "Cameroon" },
+  { code: "+1", flag: "🇨🇦", name: "Canada" },
+  { code: "+238", flag: "🇨🇻", name: "Cape Verde" },
+  { code: "+345", flag: "🇰🇾", name: "Cayman Islands" },
+  { code: "+236", flag: "🇨🇫", name: "Central African Republic" },
+  { code: "+235", flag: "🇹🇩", name: "Chad" },
+  { code: "+56", flag: "🇨🇱", name: "Chile" },
+  { code: "+86", flag: "🇨🇳", name: "China" },
+  { code: "+61", flag: "🇨🇽", name: "Christmas Island" },
+  { code: "+61", flag: "🇨🇨", name: "Cocos (Keeling) Islands" },
+  { code: "+57", flag: "🇨🇴", name: "Colombia" },
+  { code: "+269", flag: "🇰🇲", name: "Comoros" },
+  { code: "+242", flag: "🇨🇬", name: "Congo" },
+  { code: "+243", flag: "🇨🇩", name: "Congo, The Democratic Republic of the Congo" },
+  { code: "+682", flag: "🇨🇰", name: "Cook Islands" },
+  { code: "+506", flag: "🇨🇷", name: "Costa Rica" },
+  { code: "+225", flag: "🇨🇮", name: "Cote d'Ivoire" },
+  { code: "+385", flag: "🇭🇷", name: "Croatia" },
+  { code: "+53", flag: "🇨🇺", name: "Cuba" },
+  { code: "+357", flag: "🇨🇾", name: "Cyprus" },
+  { code: "+420", flag: "🇨🇿", name: "Czech Republic" },
+  { code: "+45", flag: "🇩🇰", name: "Denmark" },
+  { code: "+253", flag: "🇩🇯", name: "Djibouti" },
+  { code: "+1767", flag: "🇩🇲", name: "Dominica" },
+  { code: "+1849", flag: "🇩🇴", name: "Dominican Republic" },
+  { code: "+593", flag: "🇪🇨", name: "Ecuador" },
+  { code: "+20", flag: "🇪🇬", name: "Egypt" },
+  { code: "+503", flag: "🇸🇻", name: "El Salvador" },
+  { code: "+240", flag: "🇬🇶", name: "Equatorial Guinea" },
+  { code: "+291", flag: "🇪🇷", name: "Eritrea" },
+  { code: "+372", flag: "🇪🇪", name: "Estonia" },
+  { code: "+268", flag: "🇸🇿", name: "Eswatini" },
+  { code: "+251", flag: "🇪🇹", name: "Ethiopia" },
+  { code: "+500", flag: "🇫🇰", name: "Falkland Islands (Malvinas)" },
+  { code: "+298", flag: "🇫🇴", name: "Faroe Islands" },
+  { code: "+679", flag: "🇫🇯", name: "Fiji" },
+  { code: "+358", flag: "🇫🇮", name: "Finland" },
+  { code: "+33", flag: "🇫🇷", name: "France" },
+  { code: "+594", flag: "🇬🇫", name: "French Guiana" },
+  { code: "+689", flag: "🇵🇫", name: "French Polynesia" },
+  { code: "+262", flag: "🇹🇫", name: "French Southern Territories" },
+  { code: "+241", flag: "🇬🇦", name: "Gabon" },
+  { code: "+220", flag: "🇬🇲", name: "Gambia" },
+  { code: "+995", flag: "🇬🇪", name: "Georgia" },
+  { code: "+49", flag: "🇩🇪", name: "Germany" },
+  { code: "+233", flag: "🇬🇭", name: "Ghana" },
+  { code: "+350", flag: "🇬🇮", name: "Gibraltar" },
+  { code: "+30", flag: "🇬🇷", name: "Greece" },
+  { code: "+299", flag: "🇬🇱", name: "Greenland" },
+  { code: "+1473", flag: "🇬🇩", name: "Grenada" },
+  { code: "+590", flag: "🇬🇵", name: "Guadeloupe" },
+  { code: "+1671", flag: "🇬🇺", name: "Guam" },
+  { code: "+502", flag: "🇬🇹", name: "Guatemala" },
+  { code: "+44", flag: "🇬🇬", name: "Guernsey" },
+  { code: "+224", flag: "🇬🇳", name: "Guinea" },
+  { code: "+245", flag: "🇬🇼", name: "Guinea-Bissau" },
+  { code: "+592", flag: "🇬🇾", name: "Guyana" },
+  { code: "+509", flag: "🇭🇹", name: "Haiti" },
+  { code: "+672", flag: "🇭🇲", name: "Heard Island and Mcdonald Islands" },
+  { code: "+379", flag: "🇻🇦", name: "Holy See (Vatican City State)" },
+  { code: "+504", flag: "🇭🇳", name: "Honduras" },
+  { code: "+852", flag: "🇭🇰", name: "Hong Kong" },
+  { code: "+36", flag: "🇭🇺", name: "Hungary" },
+  { code: "+354", flag: "🇮🇸", name: "Iceland" },
+  { code: "+62", flag: "🇮🇩", name: "Indonesia" },
+  { code: "+98", flag: "🇮🇷", name: "Iran, Islamic Republic of Persian Gulf" },
+  { code: "+964", flag: "🇮🇶", name: "Iraq" },
+  { code: "+353", flag: "🇮🇪", name: "Ireland" },
+  { code: "+44", flag: "🇮🇲", name: "Isle of Man" },
+  { code: "+972", flag: "🇮🇱", name: "Israel" },
+  { code: "+39", flag: "🇮🇹", name: "Italy" },
+  { code: "+1876", flag: "🇯🇲", name: "Jamaica" },
+  { code: "+81", flag: "🇯🇵", name: "Japan" },
+  { code: "+44", flag: "🇯🇪", name: "Jersey" },
+  { code: "+962", flag: "🇯🇴", name: "Jordan" },
+  { code: "+7", flag: "🇰🇿", name: "Kazakhstan" },
+  { code: "+254", flag: "🇰🇪", name: "Kenya" },
+  { code: "+686", flag: "🇰🇮", name: "Kiribati" },
+  { code: "+850", flag: "🇰🇵", name: "Korea, Democratic People's Republic of Korea" },
+  { code: "+82", flag: "🇰🇷", name: "Korea, Republic of South Korea" },
+  { code: "+383", flag: "🇽🇰", name: "Kosovo" },
+  { code: "+996", flag: "🇰🇬", name: "Kyrgyzstan" },
+  { code: "+856", flag: "🇱🇦", name: "Laos" },
+  { code: "+371", flag: "🇱🇻", name: "Latvia" },
+  { code: "+961", flag: "🇱🇧", name: "Lebanon" },
+  { code: "+266", flag: "🇱🇸", name: "Lesotho" },
+  { code: "+231", flag: "🇱🇷", name: "Liberia" },
+  { code: "+218", flag: "🇱🇾", name: "Libyan Arab Jamahiriya" },
+  { code: "+423", flag: "🇱🇮", name: "Liechtenstein" },
+  { code: "+370", flag: "🇱🇹", name: "Lithuania" },
+  { code: "+352", flag: "🇱🇺", name: "Luxembourg" },
+  { code: "+853", flag: "🇲🇴", name: "Macao" },
+  { code: "+389", flag: "🇲🇰", name: "Macedonia" },
+  { code: "+261", flag: "🇲🇬", name: "Madagascar" },
+  { code: "+265", flag: "🇲🇼", name: "Malawi" },
+  { code: "+60", flag: "🇲🇾", name: "Malaysia" },
+  { code: "+960", flag: "🇲🇻", name: "Maldives" },
+  { code: "+223", flag: "🇲🇱", name: "Mali" },
+  { code: "+356", flag: "🇲🇹", name: "Malta" },
+  { code: "+692", flag: "🇲🇭", name: "Marshall Islands" },
+  { code: "+596", flag: "🇲🇶", name: "Martinique" },
+  { code: "+222", flag: "🇲🇷", name: "Mauritania" },
+  { code: "+230", flag: "🇲🇺", name: "Mauritius" },
+  { code: "+262", flag: "🇾🇹", name: "Mayotte" },
+  { code: "+52", flag: "🇲🇽", name: "Mexico" },
+  { code: "+691", flag: "🇫🇲", name: "Micronesia, Federated States of Micronesia" },
+  { code: "+373", flag: "🇲🇩", name: "Moldova" },
+  { code: "+377", flag: "🇲🇨", name: "Monaco" },
+  { code: "+976", flag: "🇲🇳", name: "Mongolia" },
+  { code: "+382", flag: "🇲🇪", name: "Montenegro" },
+  { code: "+1664", flag: "🇲🇸", name: "Montserrat" },
+  { code: "+212", flag: "🇲🇦", name: "Morocco" },
+  { code: "+258", flag: "🇲🇿", name: "Mozambique" },
+  { code: "+95", flag: "🇲🇲", name: "Myanmar" },
+  { code: "+264", flag: "🇳🇦", name: "Namibia" },
+  { code: "+674", flag: "🇳🇷", name: "Nauru" },
+  { code: "+977", flag: "🇳🇵", name: "Nepal" },
+  { code: "+31", flag: "🇳🇱", name: "Netherlands" },
+  { code: "+687", flag: "🇳🇨", name: "New Caledonia" },
+  { code: "+64", flag: "🇳🇿", name: "New Zealand" },
+  { code: "+505", flag: "🇳🇮", name: "Nicaragua" },
+  { code: "+227", flag: "🇳🇪", name: "Niger" },
+  { code: "+234", flag: "🇳🇬", name: "Nigeria" },
+  { code: "+683", flag: "🇳🇺", name: "Niue" },
+  { code: "+672", flag: "🇳🇫", name: "Norfolk Island" },
+  { code: "+1670", flag: "🇲🇵", name: "Northern Mariana Islands" },
+  { code: "+47", flag: "🇳🇴", name: "Norway" },
+  { code: "+680", flag: "🇵🇼", name: "Palau" },
+  { code: "+970", flag: "🇵🇸", name: "Palestinian Territory, Occupied" },
+  { code: "+507", flag: "🇵🇦", name: "Panama" },
+  { code: "+675", flag: "🇵🇬", name: "Papua New Guinea" },
+  { code: "+595", flag: "🇵🇾", name: "Paraguay" },
+  { code: "+51", flag: "🇵🇪", name: "Peru" },
+  { code: "+64", flag: "🇵🇳", name: "Pitcairn" },
+  { code: "+48", flag: "🇵🇱", name: "Poland" },
+  { code: "+351", flag: "🇵🇹", name: "Portugal" },
+  { code: "+1939", flag: "🇵🇷", name: "Puerto Rico" },
+  { code: "+262", flag: "🇷🇪", name: "Reunion" },
+  { code: "+40", flag: "🇷🇴", name: "Romania" },
+  { code: "+7", flag: "🇷🇺", name: "Russia" },
+  { code: "+250", flag: "🇷🇼", name: "Rwanda" },
+  { code: "+590", flag: "🇧🇱", name: "Saint Barthelemy" },
+  { code: "+290", flag: "🇸🇭", name: "Saint Helena, Ascension and Tristan Da Cunha" },
+  { code: "+1869", flag: "🇰🇳", name: "Saint Kitts and Nevis" },
+  { code: "+1758", flag: "🇱🇨", name: "Saint Lucia" },
+  { code: "+590", flag: "🇲🇫", name: "Saint Martin" },
+  { code: "+508", flag: "🇵🇲", name: "Saint Pierre and Miquelon" },
+  { code: "+1784", flag: "🇻🇨", name: "Saint Vincent and the Grenadines" },
+  { code: "+685", flag: "🇼🇸", name: "Samoa" },
+  { code: "+378", flag: "🇸🇲", name: "San Marino" },
+  { code: "+239", flag: "🇸🇹", name: "Sao Tome and Principe" },
+  { code: "+221", flag: "🇸🇳", name: "Senegal" },
+  { code: "+381", flag: "🇷🇸", name: "Serbia" },
+  { code: "+248", flag: "🇸🇨", name: "Seychelles" },
+  { code: "+232", flag: "🇸🇱", name: "Sierra Leone" },
+  { code: "+65", flag: "🇸🇬", name: "Singapore" },
+  { code: "+421", flag: "🇸🇰", name: "Slovakia" },
+  { code: "+386", flag: "🇸🇮", name: "Slovenia" },
+  { code: "+677", flag: "🇸🇧", name: "Solomon Islands" },
+  { code: "+252", flag: "🇸🇴", name: "Somalia" },
+  { code: "+27", flag: "🇿🇦", name: "South Africa" },
+  { code: "+500", flag: "🇬🇸", name: "South Georgia and the South Sandwich Islands" },
+  { code: "+211", flag: "🇸🇸", name: "South Sudan" },
+  { code: "+34", flag: "🇪🇸", name: "Spain" },
+  { code: "+94", flag: "🇱🇰", name: "Sri Lanka" },
+  { code: "+249", flag: "🇸🇩", name: "Sudan" },
+  { code: "+597", flag: "🇸🇷", name: "Suriname" },
+  { code: "+47", flag: "🇸🇯", name: "Svalbard and Jan Mayen" },
+  { code: "+46", flag: "🇸🇪", name: "Sweden" },
+  { code: "+41", flag: "🇨🇭", name: "Switzerland" },
+  { code: "+963", flag: "🇸🇾", name: "Syrian Arab Republic" },
+  { code: "+886", flag: "🇹🇼", name: "Taiwan" },
+  { code: "+992", flag: "🇹🇯", name: "Tajikistan" },
+  { code: "+255", flag: "🇹🇿", name: "Tanzania, United Republic of Tanzania" },
+  { code: "+66", flag: "🇹🇭", name: "Thailand" },
+  { code: "+670", flag: "🇹🇱", name: "Timor-Leste" },
+  { code: "+228", flag: "🇹🇬", name: "Togo" },
+  { code: "+690", flag: "🇹🇰", name: "Tokelau" },
+  { code: "+676", flag: "🇹🇴", name: "Tonga" },
+  { code: "+1868", flag: "🇹🇹", name: "Trinidad and Tobago" },
+  { code: "+216", flag: "🇹🇳", name: "Tunisia" },
+  { code: "+90", flag: "🇹🇷", name: "Turkey" },
+  { code: "+993", flag: "🇹🇲", name: "Turkmenistan" },
+  { code: "+1649", flag: "🇹🇨", name: "Turks and Caicos Islands" },
+  { code: "+688", flag: "🇹🇻", name: "Tuvalu" },
+  { code: "+256", flag: "🇺🇬", name: "Uganda" },
+  { code: "+380", flag: "🇺🇦", name: "Ukraine" },
+  { code: "+598", flag: "🇺🇾", name: "Uruguay" },
+  { code: "+998", flag: "🇺🇿", name: "Uzbekistan" },
+  { code: "+678", flag: "🇻🇺", name: "Vanuatu" },
+  { code: "+58", flag: "🇻🇪", name: "Venezuela, Bolivarian Republic of Venezuela" },
+  { code: "+84", flag: "🇻🇳", name: "Vietnam" },
+  { code: "+1284", flag: "🇻🇬", name: "Virgin Islands, British" },
+  { code: "+1340", flag: "🇻🇮", name: "Virgin Islands, U.S." },
+  { code: "+681", flag: "🇼🇫", name: "Wallis and Futuna" },
+  { code: "+967", flag: "🇾🇪", name: "Yemen" },
+  { code: "+260", flag: "🇿🇲", name: "Zambia" },
+  { code: "+263", flag: "🇿🇼", name: "Zimbabwe" },
+  { code: "+358", flag: "🇦🇽", name: "Åland Islands" },
 ]
 ---
-<form action="https://api.web3forms.com/submit" method="POST" class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
-  <!-- Replace with your actual Web3Forms Access Key -->
-  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+<form id="idxContactForm" class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
+  <input type="hidden" name="access_key" value="17484402-bacf-4efa-abe3-b4777d9e1519">
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-    <div>
-      <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label>
-      <input type="text" name="name" placeholder="Your Name*" required />
-    </div>
-    <div>
-      <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label>
-      <input type="email" name="email" placeholder="Your Email Address*" required />
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+  <div>
+    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label>
+    <input type="text" name="name" placeholder="Your Name*" required />
+  </div>
+  <div>
+    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label>
+    <input type="email" name="email" placeholder="Your Email Address*" required />
+  </div>
+</div>
+
+<div style="display:flex;gap:10px;">
+  <div style="width:120px;min-width:100px;flex-shrink:1;position:relative;">
+    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
+    <input type="hidden" name="country_code" id="ccHidden" value={countryCodes[0].code} />
+
+    <button type="button" id="ccTrigger" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #e5e7eb;border-radius:10px;padding:11px 12px;background:#fff;cursor:pointer;font-size:0.85rem;color:#374151;font-family:inherit;">
+      <span id="ccSelected" style="display:flex;align-items:center;gap:6px;overflow:hidden;">
+        <span>{countryCodes[0].flag}</span><span>{countryCodes[0].code}</span>
+      </span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+
+    <div id="ccPanel" style="display:none;position:absolute;top:calc(100% + 6px);left:0;width:280px;max-height:320px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.15);z-index:50;overflow:hidden;">
+      <div style="padding:10px;border-bottom:1px solid #f0f0f0;">
+        <input type="text" id="ccSearch" placeholder="Search country..." style="width:100%;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;font-size:0.85rem;outline:none;box-sizing:border-box;" />
+      </div>
+      <div id="ccList" style="max-height:250px;overflow-y:auto;"></div>
     </div>
   </div>
-  <div style="display:flex;gap:10px;">
-    <div style="width:120px;flex-shrink:0;">
-      <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
-      <select name="country_code">
-        {countryCodes.map(c => <option value={c.code}>{c.label}</option>)}
-      </select>
-    </div>
-    <div style="flex:1;">
-      <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label>
-      <input type="tel" name="phone" placeholder="Phone Number*" required />
-    </div>
+
+  <div style="flex:1;min-width:0;">
+    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label>
+    <input type="tel" name="phone" placeholder="Phone Number*" required />
   </div>
+</div>
   <div>
     <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
     <select name="service" required>
@@ -57,15 +304,147 @@ const countryCodes = [
     <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label>
     <textarea name="message" placeholder="Enter your message*" rows="3" required></textarea>
   </div>
-  
-  <!-- Spam Protection -->
+
   <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-  <!-- Optional Custom Redirect (Remove to use Web3Forms default success page) -->
-  <!-- <input type="hidden" name="redirect" value="https://web3forms.com/success"> -->
-
-  <button type="submit" class="idx-submit">Submit</button>
+  <button type="submit" class="idx-submit" id="idxSubmitBtn">Submit</button>
 </form>
+
+<!-- ══ Themed Success Popup ══ -->
+<div id="idxSuccessOverlay" style="display:none;position:fixed;inset:0;background:rgba(26,32,44,0.6);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#fff;border-radius:20px;max-width:420px;width:100%;padding:36px 28px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);position:relative;">
+    <div style="width:64px;height:64px;background:#F0FFFE;border:2px solid #38B2AC;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#38B2AC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h3 style="font-size:1.25rem;font-weight:800;color:#1A202C;margin:0 0 10px;">Thank You!</h3>
+    <p style="font-size:0.95rem;color:#6B7280;line-height:1.6;margin:0 0 24px;">Your request has been submitted successfully. Our team will get back to you shortly.</p>
+    <button id="idxCloseSuccess" style="background:#2D3748;color:#fff;font-weight:700;padding:11px 28px;border-radius:9999px;border:none;cursor:pointer;font-size:0.9rem;">Close</button>
+  </div>
+</div>
+
+<!-- ══ Themed Error Popup ══ -->
+<div id="idxErrorOverlay" style="display:none;position:fixed;inset:0;background:rgba(26,32,44,0.6);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#fff;border-radius:20px;max-width:420px;width:100%;padding:36px 28px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);">
+    <div style="width:64px;height:64px;background:#FEF2F2;border:2px solid #EF4444;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </div>
+    <h3 style="font-size:1.25rem;font-weight:800;color:#1A202C;margin:0 0 10px;">Something Went Wrong</h3>
+    <p style="font-size:0.95rem;color:#6B7280;line-height:1.6;margin:0 0 24px;">We couldn't submit your request. Please try again or contact us directly.</p>
+    <button id="idxCloseError" style="background:#2D3748;color:#fff;font-weight:700;padding:11px 28px;border-radius:9999px;border:none;cursor:pointer;font-size:0.9rem;">Close</button>
+  </div>
+</div>
+
+<style>
+  .idx-form input,.idx-form select,.idx-form textarea{width:100%;border:1px solid #e5e7eb;border-radius:10px;padding:11px 14px;font-size:0.85rem;color:#374151;outline:none;font-family:inherit;background:#fff;box-sizing:border-box;}
+  .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus{border-color:#38B2AC;box-shadow:0 0 0 3px rgba(56,178,172,0.15);}
+  .idx-form textarea{resize:none;}
+  .idx-submit{width:100%;background:#2D3748;color:#fff;font-weight:700;padding:13px;border-radius:10px;border:none;cursor:pointer;font-size:0.95rem;letter-spacing:0.04em;transition:background 0.2s;}
+  .idx-submit:hover{background:#1A202C;}
+  .idx-submit:disabled{opacity:0.6;cursor:not-allowed;}
+ @media(max-width:400px){
+  #ccTrigger { padding: 11px 6px; font-size: 0.78rem; }
+}
+</style>
+
+<script define:vars={{ countryCodes }}>
+(function(){
+  const trigger  = document.getElementById('ccTrigger');
+  const panel    = document.getElementById('ccPanel');
+  const list     = document.getElementById('ccList');
+  const search   = document.getElementById('ccSearch');
+  const hidden   = document.getElementById('ccHidden');
+  const selected = document.getElementById('ccSelected');
+
+  function renderList(filter = '') {
+    const f = filter.trim().toLowerCase();
+    const items = countryCodes.filter(c =>
+      c.name.toLowerCase().includes(f) || c.code.includes(f)
+    );
+    list.innerHTML = items.map(c => `
+      <div class="cc-item" data-code="${c.code}" data-flag="${c.flag}"
+        style="display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;font-size:0.88rem;color:#1A202C;">
+        <span style="font-size:1.1rem;">${c.flag}</span>
+        <span style="flex:1;">${c.name}</span>
+        <span style="color:#6B7280;font-size:0.82rem;">${c.code}</span>
+      </div>
+    `).join('') || `<div style="padding:14px;color:#9CA3AF;font-size:0.85rem;">No results</div>`;
+
+    list.querySelectorAll('.cc-item').forEach(el => {
+      el.addEventListener('mouseenter', () => el.style.background = '#F0FFFE');
+      el.addEventListener('mouseleave', () => el.style.background = 'transparent');
+      el.addEventListener('click', () => {
+        hidden.value = el.dataset.code;
+        selected.innerHTML = `<span>${el.dataset.flag}</span><span>${el.dataset.code}</span>`;
+        panel.style.display = 'none';
+      });
+    });
+  }
+
+  trigger?.addEventListener('click', () => {
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    if (!isOpen) { renderList(); search.value = ''; search.focus(); }
+  });
+
+  search?.addEventListener('input', () => renderList(search.value));
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#ccTrigger') && !e.target.closest('#ccPanel')) {
+      panel.style.display = 'none';
+    }
+  });
+})();
+</script>
+
+<script>
+  const form = document.getElementById('idxContactForm');
+  const submitBtn = document.getElementById('idxSubmitBtn');
+  const successOverlay = document.getElementById('idxSuccessOverlay');
+  const errorOverlay = document.getElementById('idxErrorOverlay');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: json,
+      });
+      const result = await res.json();
+
+      if (res.status === 200 && result.success) {
+        form.reset(); // clears all fields
+        successOverlay.style.display = 'flex';
+      } else {
+        errorOverlay.style.display = 'flex';
+      }
+    } catch (err) {
+      errorOverlay.style.display = 'flex';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+
+  document.getElementById('idxCloseSuccess')?.addEventListener('click', () => {
+    successOverlay.style.display = 'none';
+  });
+  document.getElementById('idxCloseError')?.addEventListener('click', () => {
+    errorOverlay.style.display = 'none';
+  });
+</script>
 
 <style>
   .idx-form input, .idx-form select, .idx-form textarea {
