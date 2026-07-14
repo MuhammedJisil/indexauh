@@ -7,7 +7,7 @@ const whenNeeded = [
   "Family visa sponsorship",
   "Higher education admission",
   "Professional license approval",
-  "Business setup UAE",
+  "<a href='/business-setup-in-the-uae/' style='color:#374151;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business setup UAE</a>",
   "Legal matters in court",
 ]
 
@@ -201,14 +201,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
         UAE authorities ask for attested documents to confirm that your certificate is genuine. This protects employers, universities, and government offices from false documents. For example, an employer in Dubai will ask for an attested degree certificate before issuing a work permit. A family visa application requires attestation of birth certificate or marriage certificate verification.
       </p>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
-        {whenNeeded.map(item => (
-          <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
-            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-            <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
-          </div>
-        ))}
-      </div>
+     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+  {whenNeeded.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
+      <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+      <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;" set:html={item}></p>
+    </div>
+  ))}
+</div>
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">This process gives official approval from both Nigeria and the UAE. It builds trust in your document and ensures government offices accept your certificate without issue.</p>
       </div>
@@ -397,8 +397,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Experience matters in document legalization. We have more than 25 years of experience in handling certificate attestation and other international document approvals. We focus on accuracy and smooth processing. Our team understands how important your certificate is for your future plans.
-        </p>
+  Experience matters in document legalization. We have more than 25 years of experience in handling <a href="/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> and other international document approvals. We focus on accuracy and smooth processing. Our team understands how important your certificate is for your future plans.
+</p>
       </div>
     </div>
 

@@ -64,7 +64,7 @@ const processSteps = [
   { step: "01", title: "Notary Attestation in Austria", desc: "The document gets verified by a notary authority in Austria." },
   { step: "02", title: "Austrian Ministry Attestation", desc: "The concerned ministry in Austria confirms the document." },
   { step: "03", title: "UAE Embassy Attestation in Austria", desc: "The UAE Embassy in Austria stamps the document." },
-  { step: "04", title: "UAE MOFA Attestation", desc: "The Ministry of Foreign Affairs in UAE gives the final approval." },
+  { step: "04", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE MOFA Attestation</a>", desc: "The Ministry of Foreign Affairs in UAE gives the final approval." },
 ]
 
 const docsRequired = [
@@ -102,7 +102,7 @@ const getStartedSteps = [
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Over 25 years of experience in certificate attestation UAE with deep knowledge of Austria and UAE procedures." },
+  { title: "25+ Years of Experience", desc: "Over 25 years of experience in <a href='/certificate-attestation-in-the-uae/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation UAE</a> with deep knowledge of Austria and UAE procedures." },
   { title: "Clear Process Explanation", desc: "We explain the process clearly before starting, so you always know what to expect at every stage." },
   { title: "Dedicated Support Team", desc: "A dedicated support team is assigned to your case and available to answer your queries promptly." },
   { title: "Regular Status Updates", desc: "We update you at each stage so you always know the status of your document without having to ask." },
@@ -283,16 +283,16 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        {processSteps.map(s => (
-          <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
-          </div>
-        ))}
+     <div style="display:flex;flex-direction:column;gap:14px;">
+  {processSteps.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+      </div>
+    </div>
+  ))}
         <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;margin-top:4px;">
           <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">Our experience of 25+ years helps us prevent mistakes and guide you clearly through each stage of the Austria Certificate Attestation process. We ensure the correct order is followed without delay.</p>
         </div>
@@ -422,13 +422,13 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
-      {whyChoose.map(b => (
-        <div class="benefit-card">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
-        </div>
-      ))}
+  {whyChoose.map(b => (
+    <div class="benefit-card">
+      <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+      <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
     </div>
+  ))}
+</div>
   </div>
 </section>
 

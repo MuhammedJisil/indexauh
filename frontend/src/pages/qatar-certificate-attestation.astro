@@ -15,7 +15,7 @@ const purposes = [
   { icon: "💼", title: "Employment", desc: "Companies in Qatar require attested educational and professional certificates for employment and work permit processing." },
   { icon: "🎓", title: "Education", desc: "Universities and colleges in Qatar accept only attested degrees and transcripts for enrolment and recognition." },
   { icon: "👪", title: "Family Visas", desc: "Birth, marriage, and other personal certificates must be verified and attested for family sponsorship in Qatar." },
-  { icon: "🏢", title: "Business Setup", desc: "Business setup in Qatar, trade licenses, agreements, and contracts require legally attested commercial documents." },
+  { icon: "🏢", title: "Business Setup", desc: "<a href='/company-formation-in-qatar/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business set up in Qatar</a>, trade licenses, agreements, and contracts require legally attested commercial documents." },
   { icon: "📜", title: "Legal Matters", desc: "Divorce, death, and medical certificates need attestation for legal registration and official proceedings in Qatar." },
   { icon: "🛂", title: "Residency & Visa", desc: "Qatar residency and visa applications require properly attested personal and educational documents." },
 ]
@@ -68,12 +68,12 @@ const steps = [
   { step: "02", title: "State Attestation", desc: "Required for certificates issued outside Qatar. State-level authentication is completed before embassy submission." },
   { step: "03", title: "MEA Attestation", desc: "The Ministry of External Affairs verifies your certificates to ensure they are accepted for international use." },
   { step: "04", title: "Qatar Embassy Attestation", desc: "The Qatar Embassy confirms the authenticity of your certificates, legalizing them for use in Qatar." },
-  { step: "05", title: "MOFA Attestation Qatar", desc: "Final legalization by the Qatar Ministry of Foreign Affairs completes the attestation process." },
+  { step: "05", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation</a> Qatar", desc: "Final legalization by the Qatar Ministry of Foreign Affairs completes the attestation process." },
 ]
 
 const benefits = [
   { title: "25+ Years of Experience", desc: "Over two decades of handling Qatar certificate attestation in UAE, Dubai, Abu Dhabi and across the GCC with expert knowledge of all procedures." },
-  { title: "Fast & Professional Service", desc: "Fast, professional Qatar attestation handling with structured updates at every stage — no unnecessary delays or complications." },
+  { title: "Fast & Professional Service", desc: "Fast, professional <a href='/certificate-attestation/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation</a> services in qatar handling with structured updates at every stage — no unnecessary delays or complications." },
   { title: "Safe & Confidential", desc: "Your documents are handled with strict confidentiality, secure physical transfer protocols, and tracked at every step." },
   { title: "Transparent Pricing", desc: "Competitive and transparent pricing with no hidden charges. Costs are clearly communicated based on your document type and requirements." },
   { title: "Pickup & Delivery Across UAE", desc: "We offer doorstep pickup and delivery options across the UAE so you never need to leave your office or home." },
@@ -269,15 +269,15 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           Qatar certificate attestation is necessary for a wide range of official purposes. Whether you are relocating for work, applying for a family visa, enrolling in education, or registering a business, your documents must be officially verified and attested before they are accepted by Qatari authorities.
         </p>
-       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
-          {purposes.map(p => (
-            <div class="purpose-card">
-              <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
-              <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
-              <p style="font-size:0.76rem;color:#4B5563;line-height:1.55;margin:0;">{p.desc}</p>
-            </div>
-          ))}
-        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
+  {purposes.map(p => (
+    <div class="purpose-card">
+      <div style="font-size:1.6rem;margin-bottom:10px;">{p.icon}</div>
+      <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{p.title}</h3>
+      <p style="font-size:0.76rem;color:#4B5563;line-height:1.55;margin:0;" set:html={p.desc}></p>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   </div>
@@ -314,7 +314,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             <div class="step-card">
               <div class="step-num">{s.step}</div>
               <div>
-                <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
                 <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
               </div>
             </div>
@@ -376,18 +376,18 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           <h3 class="info-card-title info-card-title--teal">Documents Required for Qatar Certificate Attestation</h3>
           <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">To start the Qatar attestation process, you will need:</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
-            {[
-              "Original certificate",
-              "Photocopies of all certificates",
-              "Passport copy of the certificate holder",
-              "Authorization letter or Power of Attorney (if someone else submits)",
-              "Certified legal translations for documents not in English or Arabic",
-            ].map(d => (
-              <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">→</span>{d}
-              </div>
-            ))}
-          </div>
+  {[
+    "Original certificate",
+    "Photocopies of all certificates",
+    "Passport copy of the certificate holder",
+    "Authorization letter or Power of Attorney (if someone else submits)",
+    "Certified <a href='/legal-translation-in-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>legal translations</a> for documents not in English or Arabic",
+  ].map(d => (
+    <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:2px;">→</span><span set:html={d}></span>
+    </div>
+  ))}
+</div>
         </div>
       </div>
     </div>
@@ -420,8 +420,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
     <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
       {benefits.map(b => (
         <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:22px;">
-          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;"{b.title}></h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
         </div>
       ))}
     </div>

@@ -52,7 +52,7 @@ const processSteps = [
   { step: "02", title: "Authentication by Chinese Authorities", desc: "Government departments in China check and approve the document. This step confirms it is genuine." },
   { step: "03", title: "UAE Embassy Attestation in China", desc: "The UAE Embassy reviews the document and adds an official stamp. This makes it valid for use in UAE." },
   { step: "04", title: "MOFA Attestation in UAE", desc: "The Ministry of Foreign Affairs in UAE gives the final approval. After this, the document becomes legally accepted." },
-  { step: "05", title: "Translation", desc: "Arabic legal translation may be required for official use in UAE." },
+  { step: "05", title: "<a href='/legal-translation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Legal Translation</a>", desc: "Arabic legal translation may be required for official use in UAE." },
 ]
 
 const requiredDocs = [
@@ -245,16 +245,16 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           <p style="color:#fff;font-size:0.95rem;font-weight:800;margin:0;">China to UAE — The Complete Process</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px;">
-          {processSteps.map(s => (
-            <div class="step-card">
-              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-              <div>
-                <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-                <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  {processSteps.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+      </div>
+    </div>
+  ))}
+</div>
         <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px;margin-top:16px;">
           <p style="color:#4B5563;font-size:0.85rem;line-height:1.7;margin:0;">Because this process has many stages, many people choose China attestation services to complete it without delays.</p>
         </div>
@@ -387,9 +387,9 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH for China Attestation Services?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          IndexAUH has over 25 years of experience in handling certificate attestation services in UAE. Because of this experience, many people trust their services for China attestation. Connect with IndexAUH today and get clear guidance based on your document.
-        </p>
+       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+  IndexAUH has over 25 years of experience in handling <a href="/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> services in UAE. Because of this experience, many people trust their services for China attestation. Connect with IndexAUH today and get clear guidance based on your document.
+</p>
       </div>
     </div>
 

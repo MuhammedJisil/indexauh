@@ -63,7 +63,7 @@ const docTypes = [
 ]
 
 const steps = [
-  { step: "01", title: "Initial Verification", desc: "Documents are reviewed for accuracy and format. In some cases, notary attestation in Kuwait or in the issuing country is required as an initial step." },
+  { step: "01", title: "Initial Verification", desc: "Documents are reviewed for accuracy and format. In some cases, <a href='/notary-attestation-services/' style='color:#6B7280;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>notary attestation</a> in Kuwait or in the issuing country is required as an initial step." },
   { step: "02", title: "State or Department Attestation", desc: "Educational certificates are verified by education authorities. Personal documents are attested by home or administrative departments." },
   { step: "03", title: "Ministry of External Affairs Attestation", desc: "The Ministry of External Affairs authenticates the document at the national level for international use." },
   { step: "04", title: "Kuwait Embassy Attestation", desc: "Kuwait embassy attestation is a crucial step. The embassy confirms the document for official use in Kuwait." },
@@ -71,7 +71,7 @@ const steps = [
 ]
 
 const benefits = [
-  { title: "25 Years of Experience", desc: "25 years of experience in certificate attestation handling all types of attestation for Kuwait with accuracy and compliance." },
+  { title: "25 Years of Experience", desc: "25 years of experience in <a href='/certificate-attestation-in-dubai/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation</a> handling all types of attestation for Kuwait with accuracy and compliance." },
   { title: "Complete End-to-End Processing", desc: "We handle the complete document attestation process from start to finish, including coordination with the Kuwait Embassy and government agencies." },
   { title: "GCC-Wide Attestation Support", desc: "Attestation support across all GCC countries and the UAE, making cross-border document legalization simple and efficient." },
   { title: "Clear Communication", desc: "Clear communication at every stage so you always know the status of your documents and what comes next." },
@@ -276,7 +276,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
             <div>
               <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;"set:html={s.desc}></p>
             </div>
           </div>
         ))}
@@ -341,8 +341,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes to Avoid During Kuwait Attestation</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
-          IndexAUH's professional  certificate attestation services in Kuwait help prevent these issues.
-        </p>
+  IndexAUH's professional <a href="/certificate-attestation-in-the-uae/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation services</a> in Kuwait help prevent these issues.
+</p>
         <div style="display:flex;flex-direction:column;gap:12px;">
           {[
             "Submitting apostilled documents instead of embassy attested ones",
@@ -411,7 +411,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       {benefits.map(b => (
         <div class="benefit-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
         </div>
       ))}
     </div>

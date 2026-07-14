@@ -57,7 +57,7 @@ const standardSteps = [
   { step: "01", title: "Verification in Australia", desc: "The document is verified by a Notary Public or issuing authority." },
   { step: "02", title: "DFAT Authentication", desc: "The Department of Foreign Affairs and Trade confirms the authenticity of the document." },
   { step: "03", title: "UAE Embassy Attestation in Australia", desc: "UAE embassy attestation validates the document for UAE use." },
-  { step: "04", title: "MOFA Attestation in the UAE", desc: "The document receives final confirmation from the UAE Ministry of Foreign Affairs." },
+  { step: "04", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation in the UAE</a>", desc: "The document receives final confirmation from the UAE Ministry of Foreign Affairs." },
 ]
 
 const specialisedFlows = [
@@ -296,16 +296,16 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div>
         <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 18px;padding-left:14px;border-left:3px solid #38B2AC;">Standard Attestation Flow</h3>
         <div style="display:flex;flex-direction:column;gap:14px;">
-          {standardSteps.map(s => (
-            <div class="step-card">
-              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-              <div>
-                <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-                <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  {standardSteps.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.88rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+      </div>
+    </div>
+  ))}
+</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:20px;">
         <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
@@ -423,9 +423,9 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div>
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index Office Services?</h2>
-        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Ready to get your Australian certificates attested without delays or confusion? Our team brings over 25+ years of proven experience in Australian and UAE attestation procedures with thousands of happy clients across the UAE who trust our service.
-        </p>
+<p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+  Ready to get your Australian certificates attested without delays or confusion? Our team brings over 25+ years of proven experience in Australian and <a href="/certificate-attestation-in-the-uae/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">UAE attestation</a> procedures with thousands of happy clients across the UAE who trust our service.
+</p>
       </div>
     </div>
 
