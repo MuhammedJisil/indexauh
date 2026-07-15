@@ -250,7 +250,7 @@ const countryCodes = [
 <form id="idxContactForm" class="idx-form" style="display:flex;flex-direction:column;gap:12px;">
   <input type="hidden" name="access_key" value="17484402-bacf-4efa-abe3-b4777d9e1519">
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+<div class="idx-name-email-grid">
   <div>
     <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label>
     <input type="text" name="name" placeholder="Your Name*" required />
@@ -341,8 +341,14 @@ const countryCodes = [
   .idx-submit{width:100%;background:#2D3748;color:#fff;font-weight:700;padding:13px;border-radius:10px;border:none;cursor:pointer;font-size:0.95rem;letter-spacing:0.04em;transition:background 0.2s;}
   .idx-submit:hover{background:#1A202C;}
   .idx-submit:disabled{opacity:0.6;cursor:not-allowed;}
+  .idx-name-email-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
  @media(max-width:400px){
   #ccTrigger { padding: 11px 6px; font-size: 0.78rem; }
+}
+@media(max-width:520px){
+  .idx-name-email-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 </style>
 
@@ -483,3 +489,41 @@ const countryCodes = [
     background: #1A202C;
   }
 </style>
+
+<style is:global>
+  @media (max-width: 768px) {
+    /* 1. Target the outer section containing the contact form to adjust padding on mobile */
+    section:has(> .sec-inner > div > #idxContactForm),
+    section:has(> div > div > #idxContactForm) {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+      padding-top: 48px !important;
+      padding-bottom: 48px !important;
+    }
+
+    /* 2. Target the flex container to stack columns vertically and reduce gap */
+    .sec-inner:has(> div > #idxContactForm),
+    div:has(> div > #idxContactForm) {
+      flex-direction: column !important;
+      gap: 32px !important;
+    }
+
+    /* 3. Target the left text column to be full width */
+    .sec-inner:has(> div > #idxContactForm) > div:first-child,
+    div:has(> div > #idxContactForm) > div:first-child {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    /* 4. Target the form card wrapper to prevent right side overflow, reduce padding and border-radius */
+    div:has(> #idxContactForm) {
+      padding: 24px 16px !important;
+      border-radius: 16px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+  }
+</style>
+
