@@ -322,15 +322,33 @@
 
     const hasSeenPopup = sessionStorage.getItem('hasSeenCallbackPopup');
 
+    // Tracks the auto-close timer so it can be cancelled if the user
+    // closes or submits the popup manually before it fires.
+    let autoCloseTimer: ReturnType<typeof setTimeout> | null = null;
+
+    function clearAutoCloseTimer() {
+      if (autoCloseTimer) {
+        clearTimeout(autoCloseTimer);
+        autoCloseTimer = null;
+      }
+    }
+
     if (!hasSeenPopup) {
       setTimeout(() => {
         overlay.classList.add('show');
+
+        // Auto-close the popup after 10 seconds if the user hasn't
+        // closed it or submitted the form themselves.
+        autoCloseTimer = setTimeout(() => {
+          closePopup();
+        }, 10000);
       }, 1500);
     }
 
     function closePopup() {
       overlay?.classList.remove('show');
       sessionStorage.setItem('hasSeenCallbackPopup', 'true');
+      clearAutoCloseTimer();
     }
 
     closeBtn.addEventListener('click', closePopup);
@@ -347,6 +365,9 @@
     if (form && submitBtn) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Cancel the auto-close timer once the user starts submitting.
+        clearAutoCloseTimer();
 
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
