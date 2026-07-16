@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://indexauh.com/sitemap-index.xml
+Sitemap: https://indexauh.com/sitemap.xml
