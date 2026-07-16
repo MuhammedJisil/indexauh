@@ -198,7 +198,7 @@ const FALLBACK_IMG = "/fallback.webp";
         <div class="blog-grid" id="blogGrid">
           {displayPosts.map((post, i) => (
             <a
-              href={`/blog/${post.slug}/`}
+              href={`/${post.slug}/`}
               class="blog-card"
               data-cats={JSON.stringify(post.categories)}
             >
@@ -245,7 +245,7 @@ const FALLBACK_IMG = "/fallback.webp";
           <div class="sidebar-card">
             <h3>Recent Articles</h3>
             {displayPosts.slice(0, 5).map(post => (
-              <a href={`/blog/${post.slug}/`} class="sidebar-recent-item">
+              <a href={`/${post.slug}/`} class="sidebar-recent-item">
                 <img src={post.featuredImage || FALLBACK_IMG} alt={post.title} class="sidebar-recent-img" loading="lazy" />
                 <div>
                   <p class="sidebar-recent-title">{post.title}</p>

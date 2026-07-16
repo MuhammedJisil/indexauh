@@ -16,7 +16,7 @@ export const GET: APIRoute = async () => {
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${posts.map((p: any) => `  <url>
-    <loc>https://indexauh.com/blog/${p.Slug || p.slug}/</loc>
+    <loc>https://indexauh.com/${p.Slug || p.slug}/</loc>
     <lastmod>${p.updatedAt || ''}</lastmod>
   </url>`).join('\n')}
 </urlset>`;
