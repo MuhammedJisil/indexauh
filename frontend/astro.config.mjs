@@ -26,6 +26,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       customPages: await getBlogUrls(),
+      xslURL: '/sitemap.xsl',
     }),
   ],
   vite: { plugins: [tailwindcss()] },
