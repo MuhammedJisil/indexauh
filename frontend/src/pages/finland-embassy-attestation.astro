@@ -8,7 +8,7 @@ const purpose = [
   "Employment visa processing",
   "University admission in Finland",
   "Spouse or family residence visa",
-  "Business set up in UAE",
+  "<a href='/business-setup-in-the-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business set up in UAE</a>",
   "Power of Attorney use",
   "Immigration formalities",
 ]
@@ -23,13 +23,13 @@ const finlandToUae = [
   { num:"01", title:"Notary Attestation in Finland", desc:"The document is first notarized in Finland to confirm its authenticity." },
   { num:"02", title:"Finland Ministry of Foreign Affairs Approval", desc:"The Finland Ministry of Foreign Affairs authenticates the document for international use." },
   { num:"03", title:"UAE Embassy Attestation in Finland", desc:"The UAE Embassy in Finland verifies and attests the document for use in the UAE." },
-  { num:"04", title:"Final MOFA Attestation in UAE", desc:"Once in the UAE, the Ministry of Foreign Affairs completes the final attestation. After this, UAE authorities can legally accept the document." },
+  { num:"04", title:"Final <a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation</a> in UAE", desc:"Once in the UAE, the Ministry of Foreign Affairs completes the final attestation. After this, UAE authorities can legally accept the document." },
 ]
 
 const uaeToFinland = [
-  { num:"01", title:"UAE Notary Attestation", desc:"The document is first notarized in the UAE to confirm its authenticity." },
+  { num:"01", title:"<a href='/notary-attestation-services/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE Notary Attestation</a>", desc:"The document is first notarized in the UAE to confirm its authenticity." },
   { num:"02", title:"UAE Ministry of Foreign Affairs Approval", desc:"The UAE Ministry of Foreign Affairs authenticates the document for international use." },
-  { num:"03", title:"Finland Embassy Attestation in Abu Dhabi", desc:"The Finland Embassy in Abu Dhabi completes verification. Once done, the document becomes valid for use in Finland." },
+  { num:"03", title:"Finland Embassy <a href='/certificate-attestation-in-abu-dhabi/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Attestation in Abu Dhabi</a>", desc:"The Finland Embassy in Abu Dhabi completes verification. Once done, the document becomes valid for use in Finland." },
 ]
 
 const procedureTabs = [
@@ -50,7 +50,7 @@ const gettingStarted = [
 ]
 
 const whyUs = [
-  { icon:"🏆", label:"25+ years of experience in UAE attestation services." },
+  { icon:"🏆", label:"25+ years of experience in <a href='/certificate-attestation-in-the-uae/' style='color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE attestation services</a>." },
   { icon:"🏛️", label:"Direct handling of embassy procedures in Abu Dhabi." },
   { icon:"🎯", label:"Clear guidance at every stage." },
   { icon:"⚡", label:"Fast response and status updates." },
@@ -212,16 +212,16 @@ description="Embassy attestation in UAE by Index Office and Services with 25 yea
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Why It Matters</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Purpose of Finland Embassy Attestation</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">People request Finland Embassy Attestation for many reasons. Most cases relate to work, study, family, or business. You may need it for:</p>
-        <div class="facts-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
-          {purpose.map(item => (
-            <div class="fact-item">
-              <span class="fact-check">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
-              </span>
-              {item}
-            </div>
-          ))}
-        </div>
+       <div class="facts-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+  {purpose.map(item => (
+    <div class="fact-item">
+      <span class="fact-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+      </span>
+      <span set:html={item}></span>
+    </div>
+  ))}
+</div>
       </div>
 
       <div style="flex-shrink:0;width:380px;">
@@ -249,7 +249,7 @@ description="Embassy attestation in UAE by Index Office and Services with 25 yea
           <div style="padding:22px;">
             <p style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 14px;">{s.title}</p>
             <ul style="margin:0;padding-left:18px;color:#6B7280;font-size:0.92rem;line-height:1.85;">
-              {s.items.map(i => <li>{i}</li>)}
+              {s.items.map(i => <li>{i}</li>)}>
             </ul>
           </div>
         </div>
@@ -280,7 +280,7 @@ description="Embassy attestation in UAE by Index Office and Services with 25 yea
           <div class="step-card">
             <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
             <div>
-              <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
+              <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;" set:html={s.title}></p>
               <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
             </div>
           </div>
@@ -379,14 +379,14 @@ description="Embassy attestation in UAE by Index Office and Services with 25 yea
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
         <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 14px;">Why Choose IndexAUH?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">Choosing the right service partner makes a difference. Finland Embassy Attestation requires correct sequencing — a small mistake can restart the process.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          {whyUs.map(w => (
-            <div class="why-card">
-              <span style="font-size:1.4rem;flex-shrink:0;">{w.icon}</span>
-              <p style="color:#CBD5E0;font-size:0.83rem;line-height:1.65;margin:0;">{w.label}</p>
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:12px;">
+  {whyUs.map(w => (
+    <div class="why-card">
+      <span style="font-size:1.4rem;flex-shrink:0;">{w.icon}</span>
+      <p style="color:#CBD5E0;font-size:0.83rem;line-height:1.65;margin:0;" set:html={w.label}></p>
+    </div>
+  ))}
+</div>
         <p style="color:#94A3B8;font-size:0.9rem;margin:20px 0 0;">Our team understands the exact requirements followed by the embassy and MOFA authorities.</p>
       </div>
 

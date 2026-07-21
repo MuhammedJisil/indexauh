@@ -146,7 +146,7 @@ const getStartedSteps = [
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "More than 25 years of experience in certificate attestation and document legalization in the UAE." },
+  { title: "25+ Years of Experience", desc: "More than 25 years of experience in <a href='/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation</a> and document legalization in the UAE." },
   { title: "Expert Embassy Knowledge", desc: "Strong knowledge of embassy procedures, MOFA requirements, and country specific rules." },
   { title: "Reduce Delays & Resubmissions", desc: "Helps reduce delays, re-submissions, and unnecessary complications with proper document review." },
   { title: "Trusted by Thousands", desc: "Trusted by thousands of clients across the UAE for accurate and smooth attestation." },
@@ -481,7 +481,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       {whyChoose.map(b => (
         <div class="benefit-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
         </div>
       ))}
     </div>

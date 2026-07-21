@@ -110,12 +110,12 @@ const getStartedSteps = [
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "Over 25 years of experience in certificate attestation services and Oman embassy attestation in the UAE and internationally." },
+  { title: "25+ Years of Experience", desc: "Over 25 years of experience in <a href='/certificate-attestation-in-dubai/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation</a> services and Oman embassy attestation in the UAE and internationally." },
   { title: "Complete Document Handling", desc: "Complete handling of your documents from start to finish with secure management of original certificates and sensitive documents." },
   { title: "Step-by-Step Guidance", desc: "We guide you at every step, keeping you informed throughout the entire attestation process." },
   { title: "Pickup & Delivery Across UAE", desc: "Secure pickup and delivery anywhere in the UAE for your convenience, with no office visits required." },
   { title: "Trusted by Thousands", desc: "Trusted by thousands of clients across the UAE and GCC with attestation services available in 100+ countries worldwide." },
-  { title: "Fast & Accurate Processing", desc: "Fast, accurate processing to meet embassy and MOFA attestation requirements with personalized support." },
+  { title: "Fast & Accurate Processing", desc: "Fast, accurate processing to meet embassy and <a href='/mofa-attestation-in-uae/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA attestation</a> requirements with personalized support." },
 ]
 
 const faqs = [
@@ -443,7 +443,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       {whyChoose.map(b => (
         <div class="benefit-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
         </div>
       ))}
     </div>

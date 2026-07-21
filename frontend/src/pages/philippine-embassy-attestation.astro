@@ -69,7 +69,7 @@ const processRoutes = [
       "Prepare your original document and check that names, dates, and other details match your passport and supporting documents",
       "Get authentication from the Philippine Department of Foreign Affairs (DFA). As the Philippines is part of the Apostille Convention, eligible documents receive an Apostille Philippines certificate",
       "Submit the document to the UAE Embassy in the Philippines for attestation",
-      "Send the document for MOFA attestation in UAE, the final verification step before UAE authorities can accept it",
+      "Send the document for <a href='/mofa-attestation-in-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA attestation in UAE</a>, the final verification step before UAE authorities can accept it",
     ],
   },
   {
@@ -78,7 +78,7 @@ const processRoutes = [
     desc: "This applies to documents issued in the UAE and required for official use in the Philippines.",
     steps: [
       "Prepare your original document and any supporting documents, verifying names and dates before submission",
-      "Get notary attestation where required for legal, commercial, or privately issued documents",
+      "Get <a href='/notary-attestation-services/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>notary attestation</a> where required for legal, commercial, or privately issued documents",
       "Submit the document to the Ministry of Foreign Affairs (MOFA) in UAE for attestation",
       "Get Philippine Embassy attestation in UAE through the Embassy of the Philippines in Abu Dhabi or the Philippine Consulate in Dubai",
     ],
@@ -299,7 +299,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             {route.steps.map((s, idx) => (
               <div style="display:flex;align-items:flex-start;gap:10px;">
                 <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-weight:800;font-size:0.72rem;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{idx + 1}</span>
-                <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{s}</p>
+                <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;" set:html={s}></p>
               </div>
             ))}
           </div>

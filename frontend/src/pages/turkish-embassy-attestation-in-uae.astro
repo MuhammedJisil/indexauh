@@ -57,11 +57,10 @@ const processStepsTurkeyToUAE = [
 
 const processStepsUAEToTurkey = [
   { step: "01", title: "Notarization or Initial Verification in the UAE", desc: "The document is verified by the relevant authority to confirm its validity within the UAE." },
-  { step: "02", title: "Attestation from Ministry of Foreign Affairs UAE", desc: "MOFA Attestation confirms the document before submission to Turkish authorities." },
+  { step: "02", title: "Attestation from Ministry of Foreign Affairs UAE", desc: "<a href='/mofa-attestation-in-uae/' style='color:#6B7280;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation</a> confirms the document before submission to Turkish authorities." },
   { step: "03", title: "Submission at the Embassy of Turkey in UAE", desc: "Documents are submitted based on location and requirement. In some cases, people refer to this stage as Turkish consulate attestation, especially when handled through the consulate in Dubai." },
   { step: "04", title: "Final Legalization in Turkey", desc: "The document is sent to Turkey for final approval. This ensures full legal acceptance by Turkish institutions." },
 ]
-
 const costTable = [
   { factor: "Processing Time (Turkey Side)", details: "A few working days depending on document type and authority workload" },
   { factor: "Processing Time (UAE Side)", details: "Additional few days for final approval from Ministry of Foreign Affairs UAE" },
@@ -89,7 +88,7 @@ const getStartedSteps = [
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "More than 25 years handling certificate attestation and embassy procedures across the UAE with proven expertise." },
+  { title: "25+ Years of Experience", desc: "More than 25 years handling <a href='/certificate-attestation-in-the-uae/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation</a> and embassy procedures across the UAE with proven expertise." },
   { title: "UAE and Turkey Procedures", desc: "Strong understanding of both UAE and Turkey procedures ensures the correct sequence is followed every time." },
   { title: "Careful Document Verification", desc: "Every document goes through a detailed check before submission to prevent errors and reduce rejection risk." },
   { title: "Clear Updates at Every Stage", desc: "You stay informed throughout the process with regular progress updates at each attestation stage." },
@@ -294,7 +293,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
                 <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
                 <div>
                   <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-                  <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+                  <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;" set:html={s.desc}></p>
                 </div>
               </div>
             ))}
@@ -425,7 +424,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       {whyChoose.map(b => (
         <div class="benefit-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
         </div>
       ))}
     </div>

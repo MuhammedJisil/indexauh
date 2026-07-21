@@ -361,6 +361,48 @@ const countryCodes = [
   const hidden   = document.getElementById('ccHidden');
   const selected = document.getElementById('ccSelected');
 
+  const DEFAULT_CODE = countryCodes[0].code; // +971, matches your existing default
+
+  function setSelectedCode(code) {
+    const match = countryCodes.find(c => c.code === code);
+    if (!match) return false;
+    hidden.value = match.code;
+    selected.innerHTML = `<span>${match.flag}</span><span>${match.code}</span>`;
+    return true;
+  }
+
+  // Auto-detect visitor's country and preselect their code
+  (async () => {
+    // Try primary provider
+    try {
+      const res = await fetch('https://ipapi.co/json/');
+      if (res.ok) {
+        const geo = await res.json();
+        if (geo?.country_calling_code && setSelectedCode(geo.country_calling_code)) return;
+        console.warn('ipapi.co: no usable country_calling_code in response', geo);
+      } else {
+        console.warn('ipapi.co responded with status', res.status);
+      }
+    } catch (err) {
+      console.warn('ipapi.co lookup failed:', err);
+    }
+
+    // Fallback provider
+    try {
+      const res2 = await fetch('https://ipwho.is/');
+      if (res2.ok) {
+        const geo2 = await res2.json();
+        const code2 = geo2?.calling_code ? `+${geo2.calling_code}` : null;
+        if (code2 && setSelectedCode(code2)) return;
+        console.warn('ipwho.is: no usable calling_code in response', geo2);
+      }
+    } catch (err) {
+      console.warn('ipwho.is lookup failed:', err);
+    }
+
+    console.warn('Country auto-detect failed on both providers — keeping default', DEFAULT_CODE);
+  })();
+
   function renderList(filter = '') {
     const f = filter.trim().toLowerCase();
     const items = countryCodes.filter(c =>

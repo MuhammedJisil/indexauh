@@ -6,7 +6,7 @@ const whenNeeded = [
   "Employment and work visas",
   "Family or residence visas",
   "Higher education admissions",
-  "Business set up in Kuwait or company registration",
+  "<a href='/company-formation-in-kuwait/' style='color:#374151;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business set up in Kuwait</a> or company registration",
 ]
 
 const docTypes = [
@@ -55,7 +55,7 @@ const docTypes = [
 const processToUAE = [
   { step: "01", title: "Verify Document Authenticity", desc: "Verify the authenticity of your Kuwait-issued document." },
   { step: "02", title: "Ministry of Foreign Affairs Attestation Kuwait", desc: "The document is attested by the Kuwait Ministry of Foreign Affairs." },
-  { step: "03", title: "UAE MOFA Attestation", desc: "The UAE Ministry of Foreign Affairs attests the document." },
+  { step: "03", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE MOFA Attestation</a>", desc: "The UAE Ministry of Foreign Affairs attests the document." },
   { step: "04", title: "Translation if Required", desc: "Translate documents into English or Arabic if required." },
   { step: "05", title: "Final Submission for Approval", desc: "The document is submitted for final approval." },
 ]
@@ -89,7 +89,7 @@ const feeFactors = [
   "Type of document – personal, educational, commercial, or legal documents have different attestation requirements",
   "Number of documents – multiple certificates may increase the fees",
   "Document origin – UAE-issued documents may have fewer steps compared to foreign-issued documents",
-  "Required attestations – some documents need notary attestation in Kuwait, MOFA attestation Kuwait, or translations",
+  "Required attestations – some documents need <a href='/notary-attestation-services/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>notary attestation</a> in Kuwait, MOFA attestation Kuwait, or translations",
   "Embassy or consulate regulations – different embassies may have varying service charges",
   "Urgency of service – expedited processing may affect fees",
 ]
@@ -100,7 +100,7 @@ const timingFactors = [
   "Number of attestations required – documents needing multiple attestations, such as embassy and MOFA, may take more time",
   "Accuracy and completeness – missing information, errors, or lack of required signatures can cause delays",
   "Embassy schedules and workload – processing may vary depending on embassy working hours or peak periods",
-  "Translation requirements – documents needing certified legal translation may take extra time",
+  "Translation requirements – documents needing certified <a href='/legal-translation-in-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>legal translation</a> may take extra time",
 ]
 
 const challenges = [
@@ -219,8 +219,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         Kuwait Embassy Attestation is the official verification of your documents. It proves that your certificates, degrees, or personal papers are authentic. This attestation is required for using documents in Kuwait for jobs, education, residence, or business.
       </p>
       <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
-        IndexAUH helps you complete certificate attestation in Kuwait quickly. Our team guides every step so your documents are ready for Kuwait authorities without any delays.
-      </p>
+  IndexAUH helps you complete <a href="/certificate-attestation/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> in Kuwait quickly. Our team guides every step so your documents are ready for Kuwait authorities without any delays.
+</p>
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — No Apostille in Kuwait</h3>
         <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
@@ -265,14 +265,14 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
           You need attestation for Kuwait to prove that your documents are real. It is required for:
         </p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          {whenNeeded.map(item => (
-            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
-              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:12px;">
+  {whenNeeded.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+      <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+      <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;" set:html={item}></p>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   </div>
@@ -306,16 +306,16 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div>
         <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;">Steps for Attesting Kuwait-Issued Documents for Use in UAE</h3>
         <div style="display:flex;flex-direction:column;gap:14px;">
-          {processToUAE.map(s => (
-            <div class="step-card">
-              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-              <div>
-                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  {processToUAE.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+      </div>
+    </div>
+  ))}
+</div>
       </div>
 
       <div>
@@ -372,26 +372,26 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
         <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Kuwait Embassy Certificate Attestation Fees</h3>
         <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 16px;">Kuwait embassy attestation charges vary depending on the document and the steps involved. Several factors affect the cost, including:</p>
-        <div style="display:flex;flex-direction:column;gap:11px;">
-          {feeFactors.map(f => (
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:#4B5563;line-height:1.6;">
-              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:1px;">→</span>{f}
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:11px;">
+    {feeFactors.map(f => (
+      <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:#4B5563;line-height:1.6;">
+        <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:1px;">→</span> <span set:html={f}></span>
+      </div>
+    ))}
+  </div>
       </div>
 
       <!-- Timing -->
       <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:28px;">
         <h3 style="font-size:1.1rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Processing Time</h3>
         <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 16px;">The processing time for Kuwait Embassy Attestation depends on several factors:</p>
-        <div style="display:flex;flex-direction:column;gap:11px;">
-          {timingFactors.map(f => (
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:#4B5563;line-height:1.6;">
-              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:1px;">→</span>{f}
-            </div>
-          ))}
-        </div>
+       <div style="display:flex;flex-direction:column;gap:11px;">
+  {timingFactors.map(f => (
+    <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:#4B5563;line-height:1.6;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;margin-top:1px;">→</span> <span set:html={f}></span>
+    </div>
+  ))}
+</div>
       </div>
     </div>
     <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;margin-top:24px;">

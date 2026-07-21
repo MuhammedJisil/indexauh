@@ -69,6 +69,28 @@ const {
       transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
     }
     .g-reveal-pop.g-visible { opacity: 1; transform: scale(1); }
+
+    /* ── Google Translate cleanup ── */
+    iframe.goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+    .goog-te-gadget-icon {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
+    }
+    .goog-tooltip,
+    .goog-tooltip:hover {
+      display: none !important;
+    }
+    .goog-text-highlight {
+      background: none !important;
+      box-shadow: none !important;
+    }
+    #google_translate_element {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -78,6 +100,93 @@ const {
   </main>
   <Footer />
   <CallbackPopup />
+
+  <!-- Google Translate widget (hidden UI, driven by the toggle button in Navbar) -->
+  <div id="google_translate_element"></div>
+  <script is:inline>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en', includedLanguages: 'ar', autoDisplay: false },
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script is:inline src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Language toggle logic — pairs with [data-lang-toggle] buttons in Navbar.astro -->
+  <script is:inline>
+    (function () {
+      function getCookie(name) {
+        const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return match ? decodeURIComponent(match[2]) : null;
+      }
+
+      function isArabicActive() {
+        const c = getCookie('googtrans');
+        return !!(c && c.includes('/en/ar'));
+      }
+
+      function setToggleLabels() {
+        const arabicActive = isArabicActive();
+        document.querySelectorAll('[data-lang-toggle]').forEach((btn) => {
+          btn.textContent = arabicActive ? 'English' : 'العربية';
+        });
+      }
+
+      function toggleLanguage() {
+        if (isArabicActive()) {
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + location.hostname;
+        } else {
+          document.cookie = 'googtrans=/en/ar; path=/;';
+          document.cookie = 'googtrans=/en/ar; path=/; domain=' + location.hostname;
+        }
+        location.reload();
+      }
+
+      function init() {
+        setToggleLabels();
+        document.querySelectorAll('[data-lang-toggle]').forEach((btn) => {
+          btn.addEventListener('click', toggleLanguage);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+
+  <!-- Force-hide the Google Translate banner even after Google's script re-applies its own inline styles -->
+<script is:inline>
+  (function () {
+    function forceRemoveBanner() {
+      document.body.style.setProperty('top', '0px', 'important');
+      document.body.style.setProperty('position', 'static', 'important');
+
+      document.querySelectorAll('iframe.goog-te-banner-frame, iframe.skiptranslate').forEach((banner) => {
+        banner.style.setProperty('display', 'none', 'important');
+        banner.style.setProperty('visibility', 'hidden', 'important');
+        banner.style.setProperty('height', '0', 'important');
+      });
+    }
+
+    forceRemoveBanner();
+
+    // Watch for the iframe being INSERTED, not just body attribute changes
+    const observer = new MutationObserver(forceRemoveBanner);
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+    });
+
+    // Backup net
+    setInterval(forceRemoveBanner, 300);
+  })();
+</script>
 
   <script>
   /* ════════════════════════════════════════════════════════

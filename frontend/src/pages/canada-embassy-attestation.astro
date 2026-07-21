@@ -8,7 +8,7 @@ const whyRequired = [
   "Higher education",
   "Professional license",
   "Business registration",
-  "Business set up in UAE",
+  "<a href='/business-setup-in-the-uae/' style='color:#374151;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business set up in UAE</a>",
   "Court or legal matters",
 ]
 
@@ -95,7 +95,7 @@ const getStartedSteps = [
 ]
 
 const whyChoose = [
-  { title: "25+ Years of Experience", desc: "More than 25 years of experience in certificate attestation services across the UAE with thousands of trusted clients served." },
+  { title: "25+ Years of Experience", desc: "More than 25 years of experience in <a href='/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>certificate attestation</a> services across the UAE with thousands of trusted clients served." },
   { title: "UAE Embassy Ottawa Expertise", desc: "Strong knowledge of UAE Embassy Ottawa attestation procedures and a clear understanding of UAE Embassy Canada attestation requirements." },
   { title: "Pre-Submission Document Review", desc: "Our team checks your documents before submission. This avoids delay, rejection, and the extra expense that comes with repeated submissions." },
   { title: "Transparent Fees", desc: "We explain the full cost clearly before we start. There are no hidden surprises. You know exactly what you are paying for." },
@@ -194,12 +194,12 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
         <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 12px;">You need it for:</h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          {whyRequired.map(item => (
-            <div style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:#4B5563;">
-              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{item}
-            </div>
-          ))}
-        </div>
+  {whyRequired.map(item => (
+    <div style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:#4B5563;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span><span set:html={item}></span>
+    </div>
+  ))}
+</div>
       </div>
     </div>
 
@@ -394,7 +394,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       {whyChoose.map(b => (
         <div class="benefit-card">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
-          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
         </div>
       ))}
     </div>

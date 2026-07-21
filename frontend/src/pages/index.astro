@@ -14,7 +14,7 @@ try {
         text: item.text,
         by: item.by,
         role: item.role,
-        img: item.img?.url ? `${strapiUrl}${item.img.url}` : '/images/img-66.webp'
+        img: item.img?.url ? `${strapiUrl}${item.img.url}` : null
       }));
       if (fetched.length > 0 && fetched.length < 5) {
         while (fetched.length < 5) {
@@ -787,7 +787,7 @@ const countryCodes = [
       <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 10px;">WHAT OUR CLIENTS SAY</h2>
       <p style="color:#6B7280;font-size:1.05rem;max-width:500px;margin:0 auto;">Trusted by thousands across the UAE and beyond for attestation, business setup and legal services.</p>
     </div>
-    <div id="testimonialStage" style="position:relative;width:100%;height:480px;overflow:hidden;"></div>
+    <div id="testimonialStage" style="position:relative;width:100%;min-height:480px;overflow:visible;transition:height 0.3s ease;"></div>
     <div style="display:flex;justify-content:center;gap:12px;margin-top:32px;">
       <button id="tPrev" style="width:48px;height:48px;border-radius:12px;background:#fff;border:2px solid #e0e7ef;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;color:#2D3748;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -801,15 +801,15 @@ const countryCodes = [
 
 <script define:vars={{ strapiTestimonials }}>
 (function(){
-  const testimonials = strapiTestimonials && strapiTestimonials.length > 0 ? strapiTestimonials : [
-    { text: "Index Office Services made our attestation process seamless. Got everything done in record time without any hassle.", by: "Arjun Menon", role: "Business Owner, Dubai", img: "/images/img-66.webp" },
-    { text: "Professional team, excellent communication. They handled our embassy attestation perfectly from start to finish.", by: "Sarah Al-Rashid", role: "HR Manager, Abu Dhabi", img: "/images/img-67.webp" },
-    { text: "I needed a Police Clearance Certificate urgently. Index Office Services delivered faster than I expected. Highly recommend!", by: "Rajesh Kumar", role: "IT Professional, Sharjah", img: "/images/img-68.webp" },
-    { text: "We used their company formation service for our Dubai mainland setup. The team guided us through every step with clarity.", by: "Mohammed Al-Farsi", role: "Entrepreneur, Dubai", img: "/images/img-69.webp" },
-    { text: "MOFA attestation done without me having to step out of my office even once. Truly doorstep service!", by: "Priya Nair", role: "Finance Executive, Dubai", img: "/images/img-70.webp" },
-    { text: "Reliable, honest and efficient. 25 years of experience really shows in how they handle even complex cases.", by: "Thomas George", role: "Legal Consultant, UAE", img: "/images/img-71.webp" },
-    { text: "The apostille service was handled perfectly. Very professional team with great attention to detail.", by: "Amina Khalid", role: "Educator, Abu Dhabi", img: "/images/img-72.webp" },
-    { text: "I've referred 5 colleagues already. Best attestation service in UAE, no question.", by: "Vikram Sharma", role: "Project Manager, Ajman", img: "/images/img-73.webp" },
+ const testimonials = strapiTestimonials && strapiTestimonials.length > 0 ? strapiTestimonials : [
+    { text: "Index Office Services made our attestation process seamless. Got everything done in record time without any hassle.", by: "Arjun Menon", role: "Business Owner, Dubai" },
+    { text: "Professional team, excellent communication. They handled our embassy attestation perfectly from start to finish.", by: "Sarah Al-Rashid", role: "HR Manager, Abu Dhabi" },
+    { text: "I needed a Police Clearance Certificate urgently. Index Office Services delivered faster than I expected. Highly recommend!", by: "Rajesh Kumar", role: "IT Professional, Sharjah" },
+    { text: "We used their company formation service for our Dubai mainland setup. The team guided us through every step with clarity.", by: "Mohammed Al-Farsi", role: "Entrepreneur, Dubai" },
+    { text: "MOFA attestation done without me having to step out of my office even once. Truly doorstep service!", by: "Priya Nair", role: "Finance Executive, Dubai" },
+    { text: "Reliable, honest and efficient. 25 years of experience really shows in how they handle even complex cases.", by: "Thomas George", role: "Legal Consultant, UAE" },
+    { text: "The apostille service was handled perfectly. Very professional team with great attention to detail.", by: "Amina Khalid", role: "Educator, Abu Dhabi" },
+    { text: "I've referred 5 colleagues already. Best attestation service in UAE, no question.", by: "Vikram Sharma", role: "Project Manager, Ajman" },
   ];
 
   const stage = document.getElementById('testimonialStage');
@@ -828,8 +828,26 @@ const countryCodes = [
     return pos;
   }
 
+  function getInitialsHtml(t, isCenter, borderColor) {
+    const initial = (t.by || '?').trim().charAt(0).toUpperCase();
+    const bg = isCenter ? '#38B2AC' : 'rgba(56,178,172,0.15)';
+    const color = isCenter ? '#fff' : '#2D3748';
+    return `<div style="width:48px;height:48px;border-radius:50%;border:2px solid ${borderColor};background:${bg};color:${color};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;flex-shrink:0;">${initial}</div>`;
+  }
+
+  function getAvatarHtml(t, isCenter) {
+    const borderColor = isCenter ? '#38B2AC' : '#e0e7ef';
+    if (t.img) {
+      const fallback = getInitialsHtml(t, isCenter, borderColor).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      return `<img src="${t.img}" alt="${t.by}" onerror="this.outerHTML='${fallback}'" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid ${borderColor};flex-shrink:0;" />`;
+    }
+    return getInitialsHtml(t, isCenter, borderColor);
+  }
+
   function renderCards() {
     stage.innerHTML = '';
+    let maxCardHeight = 0;
+
     for (let i = 0; i < testimonials.length; i++) {
       const pos = getPosition(i);
       if (Math.abs(pos) > 2) continue;
@@ -862,10 +880,10 @@ const countryCodes = [
 
       card.innerHTML = `
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
-          <img src="${t.img}" alt="${t.by}" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid ${isCenter ? '#38B2AC' : '#e0e7ef'};" />
+          ${getAvatarHtml(t, isCenter)}
           <div>
             <p style="font-weight:700;font-size:1.05rem;color:${isCenter ? '#fff' : '#1A202C'};margin:0;">${t.by}</p>
-            <p style="font-size:0.75rem;color:${isCenter ? '#81E6D9' : '#6B7280'};margin:0;">${t.role}</p>
+            ${t.role ? `<p style="font-size:0.75rem;color:${isCenter ? '#81E6D9' : '#6B7280'};margin:0;">${t.role}</p>` : ''}
           </div>
         </div>
         <div style="color:#38B2AC;font-size:1.8rem;line-height:1;margin-bottom:8px;">"</div>
@@ -879,7 +897,12 @@ const countryCodes = [
         card.addEventListener('click', () => { current = i; renderCards(); });
       }
       stage.appendChild(card);
+      maxCardHeight = Math.max(maxCardHeight, card.offsetHeight);
     }
+
+    // Resize stage to fit the tallest card in the current stack, so long
+    // reviews push the container taller instead of getting clipped.
+    stage.style.height = Math.max(480, maxCardHeight + 90) + 'px';
   }
 
   prevBtn?.addEventListener('click', () => { current = (current - 1 + testimonials.length) % testimonials.length; renderCards(); });
@@ -933,12 +956,74 @@ const countryCodes = [
       <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Get In Touch</p>
       <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:#fff;margin:0;">From Business Setup To Legal Services,<br/>Visa, IT, Trading &amp; Transportation...</h2>
     </div>
-    <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
-      <h3 style="font-size:1.3rem;font-weight:700;color:#1A202C;margin:0 0 22px;text-align:center;">Free Consultation</h3>
-      <ContactForm />
+
+    <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:stretch;">
+
+      <!-- LEFT: Map + Office Info (transparent, no box) -->
+      <div style="flex:1;min-width:320px;display:flex;flex-direction:column;">
+
+        <!-- ════ MAP ════ -->
+        <section class="c-map" style="flex-shrink:0;line-height:0;border-radius:16px;overflow:hidden;">
+          <iframe
+            src="https://www.google.com/maps?q=Conrad+Hotel+Business+Tower,+Sheikh+Zayed+Road,+Dubai,+UAE&output=embed"
+            width="100%"
+            height="260"
+            style="display:block;border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Index Office Services Dubai Location"
+          ></iframe>
+        </section>
+
+        <!-- Office info fills remaining height to match the form box -->
+        <div style="flex:1;padding:24px 0 0;display:flex;flex-direction:column;gap:18px;">
+          <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:11px 18px;border-radius:9999px;text-decoration:none;width:fit-content;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            CALL NOW: (+971) 529 300 200
+          </a>
+
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="font-size:1.1rem;flex-shrink:0;">📍</div>
+              <div>
+                <strong style="display:block;color:#fff;font-size:0.92rem;">Dubai Office</strong>
+                <span style="color:#B2F5EA;font-size:0.85rem;line-height:1.5;">Sheikh Zayed Road, 9th Floor, Conrad Hotel Business Tower, Opposite World Trade Metro Station, Exit 2</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="font-size:1.1rem;flex-shrink:0;">📍</div>
+              <div>
+                <strong style="display:block;color:#fff;font-size:0.92rem;">Abu Dhabi Office</strong>
+                <span style="color:#B2F5EA;font-size:0.85rem;line-height:1.5;">Ground Floor, Behind Marks &amp; Spencer, Electra Street, Abu Dhabi, UAE</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="font-size:1.1rem;flex-shrink:0;">📞</div>
+              <div>
+                <strong style="display:block;color:#fff;font-size:0.92rem;">Phone / WhatsApp</strong>
+                <a href="https://api.whatsapp.com/send/?phone=971529300200" style="color:#38B2AC;font-size:0.85rem;text-decoration:none;">(+971) 529 300 200</a>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="font-size:1.1rem;flex-shrink:0;">✉️</div>
+              <div>
+                <strong style="display:block;color:#fff;font-size:0.92rem;">Email</strong>
+                <a href="mailto:info@indexauh.com" style="color:#38B2AC;font-size:0.85rem;text-decoration:none;">info@indexauh.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div style="flex:1;min-width:320px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);display:flex;flex-direction:column;justify-content:center;">
+        <h3 style="font-size:1.3rem;font-weight:700;color:#1A202C;margin:0 0 22px;text-align:center;">Free Consultation</h3>
+        <ContactForm />
+      </div>
+
     </div>
-  </div>
-</section>
+    </section>
 
 <!-- ════ SCRIPTS ════ -->
 <script>

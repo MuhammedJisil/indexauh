@@ -128,7 +128,7 @@ const outsideSteps = [
   { step: "01", title: "Notarization", desc: "The document is signed before a Notary Public in the country where the POA is issued." },
   { step: "02", title: "Home Country Ministry of Foreign Affairs", desc: "The document is authenticated by the Ministry of Foreign Affairs or the equivalent authority in the issuing country." },
   { step: "03", title: "UAE Embassy or Consulate", desc: "The UAE Embassy or Consulate verifies the previous attestations and legalizes the document for use in the UAE." },
-  { step: "04", title: "UAE MOFA Attestation", desc: "After the document arrives in the UAE, it must receive final attestation from the UAE Ministry of Foreign Affairs. Once this stage is completed, the Power of Attorney Attestation Dubai process is generally complete." },
+  { step: "04", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE MOFA Attestation</a>", desc: "After the document arrives in the UAE, it must receive final attestation from the UAE Ministry of Foreign Affairs. Once this stage is completed, the Power of Attorney Attestation Dubai process is generally complete." },
   { step: "05", title: "Legal Translation", desc: "When the document is prepared in a language other than Arabic, it should be translated by a legal translator approved by the UAE Ministry of Justice before submission to many authorities." },
 ]
 
@@ -404,7 +404,7 @@ const faqs = [
         <div class="step-card">
           <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
           <div>
-            <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+            <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
             <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
           </div>
         </div>

@@ -63,7 +63,7 @@ const docTypes = [
 ]
 
 const steps = [
-  { step: "01", title: "Notary Attestation", desc: "The document is notarized by a notary public to authenticate its content and signature as the first step of the attestation process." },
+  { step: "01", title: "Notary Attestation", desc: "The document is <a href='/notary-attestation-services/' style='color:#6B7280;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>notarized</a> by a notary public to authenticate its content and signature as the first step of the attestation process." },
   { step: "02", title: "Home Department Authentication", desc: "The document is submitted to the respective State Home Department or General Administration Department for state-level authentication." },
   { step: "03", title: "Ministry of External Affairs (MEA) Attestation", desc: "After state-level authentication, the document is sent to the MEA for further attestation. The MEA verifies the signature and seal of the state authorities." },
   { step: "04", title: "Embassy or Consulate Attestation", desc: "The document is submitted to the embassy or consulate of the concerned country in India. They verify the MEA stamp and authenticate the document for use abroad." },
@@ -221,8 +221,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Core Reasons</p>
         <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Why Is Certificate Attestation Required?</h2>
         <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
-          Certificate attestation from India is required to provide assurance to foreign authorities regarding the authenticity of your credentials. Without proper attestation, documents issued in India are not legally recognized abroad and may lead to visa rejections, employment denials, or admission refusals.
-        </p>
+  <a href="/certificate-attestation/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">Certificate attestation</a> from India is required to provide assurance to foreign authorities regarding the authenticity of your credentials. Without proper <a href="/certificate-attestation-in-uk/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">attestation</a>, documents issued in India are not legally recognized abroad and may lead to visa rejections, employment denials, or admission refusals.
+</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
           {purposes.map(p => (
             <div class="purpose-card">
@@ -262,17 +262,17 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
     </div>
 
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;">
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        {steps.map(s => (
-          <div class="step-card">
-            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
-            <div>
-              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
-            </div>
-          </div>
-        ))}
+     <div style="display:flex;flex-direction:column;gap:14px;">
+  {steps.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;" set:html={s.desc}></p>
       </div>
+    </div>
+  ))}
+</div>
 
       <div>
         <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
@@ -373,8 +373,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index for Certificate Attestation in India?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Choosing Index for certificate attestation in India gives you access to over 25 years of expertise, a global network spanning 9+ countries, native professionals with deep local knowledge, and 24/7 customer support. Our commitment to customer satisfaction and personalized solutions makes us a reliable choice for all your attestation needs.
-        </p>
+  Choosing Index for <a href="/certificate-attestation-in-philippines/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> in India gives you access to over 25 years of expertise, a global network spanning 9+ countries, native professionals with deep local knowledge, and 24/7 customer support. Our commitment to customer satisfaction and personalized solutions makes us a reliable choice for all your attestation needs.
+</p>
       </div>
     </div>
 

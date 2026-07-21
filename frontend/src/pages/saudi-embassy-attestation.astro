@@ -71,17 +71,17 @@ const processRoutes = [
       "Some documents, like degrees, may need translation into Arabic or Cultural Attache approval before they are ready to use in Saudi Arabia",
     ],
   },
-  {
-    step: "02",
-    title: "For Using Saudi Issued Documents in the UAE",
-    desc: "This applies to documents issued in Saudi Arabia and required for use in the UAE.",
-    steps: [
-      "Verify your documents in Saudi Arabia, checking that all details are correct with the proper authorities",
-      "Get MOFA UAE attestation to confirm your documents are valid for use in the UAE",
-      "Submit to the Saudi embassy in the UAE if additional approval is required for your documents",
-      "Receive your fully attested documents, which can be delivered to your home",
-    ],
-  },
+{
+  step: "02",
+  title: "For Using Saudi Issued Documents in the UAE",
+  desc: "This applies to documents issued in Saudi Arabia and required for use in the UAE.",
+  steps: [
+    "Verify your documents in Saudi Arabia, checking that all details are correct with the proper authorities",
+    "Get <a href='/mofa-attestation-in-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA attestation</a> to confirm your documents are valid for use in the UAE",
+    "Submit to the Saudi embassy in the UAE if additional approval is required for your documents",
+    "Receive your fully attested documents, which can be delivered to your home",
+  ],
+},
 ]
 
 const timingFactors = [
@@ -295,7 +295,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             {route.steps.map((s, idx) => (
               <div style="display:flex;align-items:flex-start;gap:10px;">
                 <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-weight:800;font-size:0.72rem;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{idx + 1}</span>
-                <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{s}</p>
+                <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;" set:html={s}></p>
               </div>
             ))}
           </div>

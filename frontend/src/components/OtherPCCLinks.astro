@@ -1,0 +1,120 @@
+---
+interface Props {
+  excludeCountry: string;
+}
+
+const { excludeCountry } = Astro.props;
+
+const allPCCs = [
+  { name: "PCC from UAE",          href: "/police-clearance-certificate-from-uae/",          code: "uae",          flag: "/images/uae-flag.webp" },
+  { name: "PCC from Saudi Arabia", href: "/police-clearance-certificate-from-saudi/",        code: "saudi",        flag: "/images/saudi-flag.webp" },
+  { name: "PCC from Qatar",        href: "/police-clearance-certificate-from-qatar/",        code: "qatar",        flag: "/images/qatar-flag.webp" },
+  { name: "PCC from Kuwait",       href: "/police-clearance-certificate-from-kuwait/",       code: "kuwait",       flag: "/images/kuwait-flag.webp" },
+  { name: "PCC from Bahrain",      href: "/police-clearance-certificate-from-bahrain/",      code: "bahrain",      flag: "/images/bahrain-flag.webp" },
+  { name: "PCC from Oman",         href: "/police-clearance-certificate-from-oman/",         code: "oman",         flag: "/images/oman-flag.webp" },
+  { name: "PCC from USA",          href: "/police-clearance-certificate-from-usa/",          code: "usa",          flag: "/images/usa-flag.webp" },
+];
+
+const filteredPCCs = allPCCs.filter(item => item.code !== excludeCountry);
+---
+
+<style>
+  .pcc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 900px) {
+    .pcc-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .pcc-grid { grid-template-columns: 1fr; }
+  }
+
+  .pcc-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .pcc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(56,178,172,0.25);
+  }
+
+  .pcc-card-imgwrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .pcc-card-imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .pcc-card:hover .pcc-card-imgwrap img {
+    transform: scale(1.08);
+  }
+
+  .pcc-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3) 55%, rgba(26,32,44,0.85));
+    transition: background 0.3s ease;
+  }
+  .pcc-card:hover .pcc-card-overlay {
+    background: linear-gradient(to bottom, transparent, rgba(56,178,172,0.9));
+  }
+
+  .pcc-card-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 24px;
+    z-index: 1;
+  }
+  .pcc-card-label h3 {
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+</style>
+
+<!-- ════ OTHER COUNTRY PCC LINKS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;border-top:1px solid #edf2f7;border-bottom:1px solid #edf2f7;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.06) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Global Coverage</p>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.2rem);font-weight:900;color:#1A202C;margin:0 0 12px;line-height:1.2;">Police Clearance Services in Other Countries</h2>
+      <p style="color:#6B7280;font-size:1.02rem;max-width:620px;margin:0 auto;line-height:1.6;">Apply for Police Clearance / Good Standing Certificates from other major countries easily through Index Office Services.</p>
+    </div>
+
+    <div class="pcc-grid">
+      {filteredPCCs.map(item => (
+        <a href={item.href} class="pcc-card">
+          <div class="pcc-card-imgwrap">
+            <img src={item.flag} alt={`${item.name} flag`} loading="lazy" />
+          </div>
+          <div class="pcc-card-overlay"></div>
+          <div class="pcc-card-label">
+            <h3>{item.name}</h3>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

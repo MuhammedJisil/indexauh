@@ -173,10 +173,10 @@
       <a href="/blogs" class="nav-link">Blog</a>
     </nav>
 
-    <div class="nav-actions">
-      <a href="/contact" class="btn btn-primary">Contact</a>
-    </div>
-
+   <div class="nav-actions">
+  <button type="button" class="btn btn-lang" data-lang-toggle>العربية</button>
+  <a href="/contact" class="btn btn-primary">Contact</a>
+</div>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -329,9 +329,10 @@
       </div>
     </div>
 
-    <a href="/blogs" class="mobile-link">Blog</a>
-    <a href="/contact" class="btn btn-primary" style="margin-top: 20px; justify-content: center; align-self: center; padding: 10px 32px;">Contact</a>
-  </div>
+   <a href="/blogs" class="mobile-link">Blog</a>
+  <button type="button" class="btn btn-lang" data-lang-toggle style="margin-top: 12px; justify-content: center; align-self: center; padding: 10px 32px; width: 100%;">العربية</button>
+  <a href="/contact" class="btn btn-primary" style="margin-top: 12px; justify-content: center; align-self: center; padding: 10px 32px;">Contact</a>
+</div>
 </header>
 
 <script>
@@ -737,6 +738,15 @@
   }
   .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(56,178,172,0.25); }
   .btn-primary:hover { background: var(--primary-dark); box-shadow: 0 4px 15px rgba(56,178,172,0.35); }
+
+  .btn-lang {
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+  .btn-lang:hover {
+    background: var(--primary-light);
+  }
 
   /* ── Hide mobile menu on desktop ── */
   .mobile-menu { display: none; }

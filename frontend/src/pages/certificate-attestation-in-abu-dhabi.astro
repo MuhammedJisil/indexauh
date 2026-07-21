@@ -2,6 +2,7 @@
 import ContactForm from '../components/ContactForm.astro';
 
 import BaseLayout from '../layouts/BaseLayout.astro'
+import DocumentCoverage from '../components/DocumentCoverage.astro';
 
 const countryCodes = [
   { code: "+91", label: "IN +91" },
@@ -16,6 +17,50 @@ const purposes = [
   { icon: "🎓", title: "Higher Education", desc: "Many students pursue their academic dreams in Abu Dhabi's prestigious universities. To enroll and gain recognition for previous qualifications, certificate attestation is a must." },
   { icon: "🏢", title: "Business Expansion", desc: "Businesses expanding into Abu Dhabi or the UAE often need to prove the authenticity of their legal documents, including company registration and incorporation certificates." },
   { icon: "📋", title: "Legal Matters", desc: "In legal proceedings or while establishing personal legal matters such as marriage or child custody, certificate attestation helps prove the legitimacy of documents." },
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Marriage Certificate Attestation",
+      "Birth Certificate Attestation",
+      "Divorce Certificate Attestation",
+      "Death Certificate Attestation",
+      "Police Clearance Certificate Attestation",
+      "Medical Certificate Attestation",
+      "Single Status Certificate Attestation",
+      "Affidavit",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "Degree Certificate Attestation",
+      "Diploma Certificate Attestation",
+      "School Certificate Attestation",
+      "Mark Sheets Attestation",
+      "Technical Certificate Attestation",
+      "Nursing Certificate Attestation",
+      "Engineering Certificate Attestation",
+      "Transcript Attestation",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "🏢",
+    docs: [
+      "Power of Attorney Attestation",
+      "Company Incorporation Documents Attestation",
+      "Memorandum of Association Attestation",
+      "Articles of Association Attestation",
+      "Board Resolution Attestation",
+      "Commercial Invoice Attestation",
+      "Commercial License",
+    ],
+  },
 ]
 
 const benefits = [
@@ -34,6 +79,100 @@ const timingFactors = [
   "Incomplete paperwork or incorrect formats can cause delays",
   "Whether the document requires translation before attestation",
   "Specific requirements of the authority requesting the attested document",
+]
+
+const commonDocSteps = [
+  {
+    title: "Birth Certificate Attestation in Abu Dhabi",
+    desc: "A birth certificate is commonly required for family visa applications, school admissions, and other official purposes.",
+    steps: [
+      "Verification by the issuing authority",
+      "Authentication by the concerned government authority in the home country",
+      "UAE Embassy or Consulate attestation",
+      "UAE MOFA attestation",
+      "Document ready for official use in the UAE",
+    ],
+  },
+  {
+    title: "Marriage Certificate Attestation in Abu Dhabi",
+    desc: "Marriage certificate attestation is usually required for spouse visa applications, family sponsorship, and other legal procedures.",
+    steps: [
+      "Verification by the issuing authority",
+      "Home country authentication",
+      "UAE Embassy or Consulate attestation",
+      "UAE MOFA attestation",
+      "Submission for official use in the UAE",
+    ],
+  },
+  {
+    title: "Degree Attestation Abu Dhabi",
+    desc: "A degree certificate is often required for employment, higher education, and professional licensing.",
+    steps: [
+      "University verification",
+      "Authentication by the education authority",
+      "Approval from the Ministry of Foreign Affairs in the document's country of origin",
+      "UAE Embassy or Consulate attestation",
+      "UAE MOFA attestation",
+    ],
+  },
+  {
+    title: "Commercial Document Attestation Abu Dhabi",
+    desc: "Commercial document attestation is required for company registration, business expansion, international trade, and other corporate activities.",
+    steps: [
+      "Verification by the issuing authority",
+      "Chamber of Commerce attestation, where applicable",
+      "Ministry authentication in the home country",
+      "UAE Embassy or Consulate attestation",
+      "UAE MOFA attestation",
+    ],
+  },
+]
+
+const requiredDocsByCategory = [
+  { title: "Educational Certificates", items: ["Original certificate", "Passport copy", "Visa copy, when required", "Authorization letter, where applicable"] },
+  { title: "Personal Certificates", items: ["Original certificate", "Passport copy", "Emirates ID or visa copy, when required", "Supporting documents based on the application"] },
+  { title: "Commercial Documents", items: ["Original commercial document", "Company trade licence copy", "Passport or Emirates ID of the authorized signatory, where required", "Supporting business documents, based on the document type"] },
+]
+
+const processingTimes = [
+  { type: "Educational Certificates", time: "7 to 15 working days" },
+  { type: "Birth Certificates", time: "5 to 10 working days" },
+  { type: "Marriage Certificates", time: "5 to 10 working days" },
+  { type: "Commercial Documents", time: "7 to 15 working days" },
+]
+
+const costFactors = [
+  "The specific document category, including educational, personal, and commercial certificates",
+  "Country of origin, as every country follows a different attestation process and fee structure",
+  "Embassy requirements, since embassy charges vary from one country to another",
+  "MOFA attestation, which is required before many documents can be used officially in the UAE",
+  "Legal translation, when documents need to be translated into Arabic or another required language",
+  "Urgent processing, for applications that need faster completion",
+  "Courier or document collection services, when documents are sent within the UAE or internationally",
+]
+
+const countries = ["India", "United Kingdom", "United States", "Canada", "Australia", "Philippines", "Pakistan", "Malaysia", "Saudi Arabia", "Oman", "Qatar", "Kuwait", "Bahrain"]
+
+const rejectionReasons = [
+  "Incorrect or incomplete information on the certificate",
+  "Name mismatch between the certificate and passport",
+  "Missing stamps or signatures from the required authorities",
+  "Damaged, laminated, or unreadable documents",
+  "Missing supporting documents",
+  "Certificates issued by an unauthorized institution",
+  "Documents submitted in the wrong attestation order",
+  "Missing legal translation, where required",
+]
+
+const whyChooseList = [
+  "25+ years of industry experience in attestation services in Abu Dhabi",
+  "200+ attestation professionals handling educational, personal, and commercial documents",
+  "Attestation services for documents issued in 100+ countries",
+  "Complete handling of the attestation process, from document collection to final delivery",
+  "Regular updates on the progress of your application",
+  "Secure handling of original documents",
+  "Support for individuals, families, professionals, and businesses",
+  "Clear communication with no unnecessary paperwork",
 ]
 
 const faqs = [
@@ -61,17 +200,27 @@ const faqs = [
   .purpose-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 22px; transition: all 0.25s; }
   .purpose-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); transform: translateY(-3px); }
   .benefit-card { border-radius: 14px; padding: 22px; }
+  .doc-step-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; }
+  .req-cat-card { background: #F0FFFE; border: 1px solid #B2F5EA; border-radius: 16px; padding: 24px; }
+  .why-list-item { display: flex; align-items: flex-start; gap: 12px; }
   .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
   .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
   .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
   .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .pt-table { width: 100%; border-collapse: collapse; }
+  .pt-table th, .pt-table td { text-align: left; padding: 14px 18px; font-size: 0.9rem; }
+  .pt-table th { background: #2D3748; color: #fff; font-weight: 700; }
+  .pt-table td { color: #4B5563; border-bottom: 1px solid #eef0f6; }
+  .pt-table tr:nth-child(even) td { background: #F8FAFF; }
+  .country-chip { background: #fff; border: 1px solid #eef0f6; border-radius: 9999px; padding: 9px 18px; font-size: 0.85rem; font-weight: 600; color: #2D3748; }
   @media(max-width:768px){
     .hero-title { font-size: 2rem !important; }
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
     .two-col { grid-template-columns: 1fr !important; }
+    .pt-table th, .pt-table td { padding: 10px 12px; font-size: 0.8rem; }
   }
 </style>
 
@@ -97,7 +246,7 @@ const faqs = [
     </h1>
     <p style="color:#38B2AC;font-size:1.05rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 20px;">MOFA Attestation | Embassy Attestation | Degree & Personal Document Attestation | 25 Years of Trust</p>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:680px;">
-      Certificate attestation is a critical process for individuals and businesses in Abu Dhabi, offering a gateway to international opportunities and recognition. Index Office Services provides complete attestation services under one roof with 25+ years of experience.
+      Certificate attestation in Abu Dhabi confirms that your educational, personal, and commercial documents are genuine and legally accepted by the required authorities. At Index Office Services, we have more than 25 years of experience and a team of 200+ attestation professionals helping individuals and businesses complete the attestation process with confidence.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
@@ -184,6 +333,16 @@ const faqs = [
   </div>
 </section>
 
+<!-- ════ DOCUMENT TYPES ════ -->
+<DocumentCoverage
+  title="Types of Documents We Attest"
+  description="The attestation process varies based on the type of document and its purpose. In general, documents are grouped into educational, personal, and commercial certificates. Here are the common document attestation services that we provide in Abu Dhabi."
+  imageSrc="/images/img-11.webp"
+  imageAlt="Document types for Abu Dhabi attestation"
+  docTypes={docTypes}
+  country="abu-dhabi"
+/>
+
 <!-- ════ PROCESS STEPS ════ -->
 <section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
@@ -205,6 +364,7 @@ const faqs = [
           { step: "02", title: "Ministry of External Affairs (MEA) Attestation", desc: "After initial verification, the certificate is attested by the Ministry of External Affairs or equivalent authority in the issuing country, validating the document for international use." },
           { step: "03", title: "UAE Embassy Attestation", desc: "Once MEA attestation is completed, the certificate is submitted to the UAE Embassy in the issuing country. The embassy verifies the document for use in the United Arab Emirates." },
           { step: "04", title: "MOFA Attestation in Abu Dhabi", desc: "The final step is Ministry of Foreign Affairs (MOFA) attestation in the UAE. MOFA confirms the certificate is legally valid for use within Abu Dhabi and across the UAE." },
+          { step: "05", title: "Document Ready for Use", desc: "Once all required attestations are completed, your document can be submitted for employment, family visa, higher education, business, or other official purposes in the UAE." },
         ].map(s => (
           <div style="display:flex;align-items:flex-start;gap:16px;background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:18px;transition:all 0.25s;" class="step-card-hover">
             <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
@@ -257,6 +417,184 @@ const faqs = [
   </div>
 </section>
 
+<!-- ════ STEPS FOR COMMON DOCUMENT ATTESTATION ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;max-width:760px;margin:0 auto 44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Document-Specific Process</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Steps for Common Document Attestation in Abu Dhabi</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        The attestation process can vary depending on the document type and the country where it was issued. Below are the common steps followed for the documents most frequently submitted in the UAE.
+      </p>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px;">
+      {commonDocSteps.map(doc => (
+        <div class="doc-step-card">
+          <h3 style="font-size:1.05rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{doc.title}</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 16px;">{doc.desc}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {doc.steps.map((s, i) => (
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4B5563;line-height:1.5;">
+                <span style="width:20px;height:20px;border-radius:6px;background:#F0FFFE;color:#38B2AC;font-weight:800;font-size:0.7rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{i + 1}</span>{s}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED BY CATEGORY ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;max-width:760px;margin:0 auto 44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Checklist</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Documents Required for Certificate Attestation</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        The documents required can vary depending on the certificate type and the country where it was issued. In most cases, you may be asked to provide the following.
+      </p>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+      {requiredDocsByCategory.map(cat => (
+        <div class="req-cat-card">
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;">{cat.title}</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {cat.items.map(item => (
+              <div style="display:flex;align-items:flex-start;gap:9px;font-size:0.85rem;color:#4B5563;line-height:1.5;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✓</span>{item}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESSING TIME TABLE ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:900px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Timelines</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Processing Time for Certificate Attestation</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        The processing time depends on the type of document, the country where it was issued, and the authorities involved. Certain documents are processed faster, while others may need additional checks.
+      </p>
+    </div>
+
+    <div style="border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.06);margin-bottom:20px;">
+      <table class="pt-table">
+        <thead>
+          <tr>
+            <th>Document Type</th>
+            <th>Estimated Processing Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {processingTimes.map(row => (
+            <tr>
+              <td>{row.type}</td>
+              <td>{row.time}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p style="color:#6B7280;font-size:0.85rem;line-height:1.7;text-align:center;margin:0;">
+      The timeline may vary based on the issuing country, embassy requirements, public holidays, and additional verification requested by the concerned authorities. Some countries complete the process faster than others — checking the document requirements in advance can help avoid unnecessary delays.
+    </p>
+  </div>
+</section>
+
+<!-- ════ COST FACTORS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Pricing</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Factors That Affect Certificate Attestation Costs</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        The cost of certificate attestation depends on several factors. The final amount can change based on the document, the country where it was issued, and the authorities involved in the process.
+      </p>
+    </div>
+    <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:28px;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {costFactors.map(f => (
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;line-height:1.6;">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COUNTRIES WE HANDLE ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:900px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Global Coverage</p>
+    <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Countries We Handle</h2>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 auto 30px;max-width:720px;">
+      Every country follows its own attestation process. The required authorities, supporting documents, and processing time can vary based on the country where your certificate was issued. At Index Office Services, we provide certificate attestation services for documents issued in 100+ countries. Some of the most common countries include:
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;">
+      {countries.map(c => (
+        <span class="country-chip">{c}</span>
+      ))}
+    </div>
+    <p style="color:#6B7280;font-size:0.85rem;line-height:1.7;margin:0;">
+      With 25+ years of experience, we handle the complete attestation process for educational, personal, and commercial documents, making the process smooth from start to finish.
+    </p>
+  </div>
+</section>
+
+<!-- ════ REJECTION REASONS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner two-col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Avoid Delays</p>
+      <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Reasons Documents Are Rejected</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+        A small mistake can delay the attestation process or lead to rejection. Checking your documents before submission can save both time and effort. Some of the most common reasons include:
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        {rejectionReasons.map(r => (
+          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+            <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+            <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{r}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-16.webp" alt="Common mistakes in certificate attestation" style="width:100%;height:460px;object-fit:cover;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Delays</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+      </div>
+    </div>
+  </div>
+  <p style="color:#6B7280;font-size:0.8rem;line-height:1.6;text-align:center;max-width:800px;margin:36px auto 0;">
+    Reviewing your documents before starting the process helps avoid unnecessary delays and reduces the chance of additional verification.
+  </p>
+</section>
+
 <!-- ════ WHY CHOOSE INDEX ════ -->
 <section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
@@ -280,7 +618,7 @@ const faqs = [
       </div>
     </div>
 
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:52px;">
       {benefits.map(b => (
         <div class="benefit-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
           <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
@@ -289,7 +627,19 @@ const faqs = [
       ))}
     </div>
 
-    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;margin-top:52px;">
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:32px;margin-bottom:52px;">
+      <h3 style="font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 20px;">What You Can Expect From Us</h3>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;">
+        {whyChooseList.map(item => (
+          <div class="why-list-item">
+            <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✓</span>
+            <span style="font-size:0.9rem;color:#CBD5E0;line-height:1.6;">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
       <div>
         <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">2500+</p>
         <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Companies Formed</p>

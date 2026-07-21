@@ -8,11 +8,10 @@ const whenNeeded = [
   "Marriage registration",
   "Birth certificate submission",
   "Higher education admission",
-  "Business set up in UAE or expansion",
+  "<a href='/business-setup-in-the-uae/' style='color:#374151;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Business set up in UAE</a> or expansion",
   "Commercial agreements",
   "Power of attorney use",
 ]
-
 const docTypes = [
   {
     category: "Personal Documents",
@@ -66,7 +65,7 @@ const docTypes = [
 
 const processToMorocco = [
   { step: "01", title: "Notary Attestation in UAE", desc: "The document is first verified by a notary public in the UAE." },
-  { step: "02", title: "Ministry of Foreign Affairs UAE Approval", desc: "The UAE Ministry of Foreign Affairs stamps the document to confirm authenticity." },
+  { step: "02", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE Ministry of Foreign Affairs</a> Approval", desc: "The UAE Ministry of Foreign Affairs stamps the document to confirm authenticity." },
   { step: "03", title: "Submission to Morocco Embassy", desc: "The document is submitted to the Morocco Embassy in Abu Dhabi or the Moroccan Consulate Dubai based on jurisdiction." },
   { step: "04", title: "Embassy Stamping", desc: "After the embassy stamp, the document becomes legally valid for use in Morocco." },
 ]
@@ -213,7 +212,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
           {whenNeeded.map(item => (
             <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
               <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
-              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;" set:html={item}></p>
             </div>
           ))}
         </div>
@@ -254,7 +253,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             <div class="step-card">
               <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
               <div>
-                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
                 <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
               </div>
             </div>
@@ -371,8 +370,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Us?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          Experience matters in attestation work. With over 25 years in the UAE, we have handled thousands of embassy cases.
-        </p>
+  Experience matters in <a href="/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">attestation</a> work. With over 25 years in the UAE, we have handled thousands of embassy cases.
+</p>
       </div>
     </div>
 

@@ -57,7 +57,7 @@ const processSteps = [
   { step: "01", title: "Document Verification", desc: "Check that your document is original and issued by a recognized authority in India. Ensure all details are correct and legible." },
   { step: "02", title: "Attestation in India (If Required)", desc: "Certain documents need state-level approval. Ministry of External Affairs (MEA) attestation may also be needed, confirming your document is genuine before embassy submission." },
   { step: "03", title: "Indian Embassy or Consulate Attestation in UAE", desc: "Submit your document to the Indian Embassy in Abu Dhabi or Consulate in Dubai. Embassy staff verify the authenticity and place an official stamp." },
-  { step: "04", title: "UAE MOFA Attestation", desc: "The Ministry of Foreign Affairs in UAE provides final approval, making your document legally valid for use with UAE authorities." },
+  { step: "04", title: "UAE MOFA Attestation", desc: "The <a href='/mofa-attestation-in-uae/' style='color:#6B7280;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>Ministry of Foreign Affairs</a> in UAE provides final approval, making your document legally valid for use with UAE authorities." },
   { step: "05", title: "Secure Document Delivery", desc: "After all approvals, your attested document is returned safely, ready for visas, legal, property, employment, or business purposes." },
 ]
 
@@ -264,7 +264,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
             <div>
               <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
-              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;" set:html={s.desc}></p>
             </div>
           </div>
         ))}
@@ -394,6 +394,7 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
             </div>
           ))}
         </div>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-top:16px;">At <a href="/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">Indexauh</a>, we are here to support you at every step. Our team reviews your documents carefully and guides you through the process to prevent these issues.</p>
       </div>
       <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
         <img src="/images/img-40.webp" alt="Common mistakes in attestation" style="width:100%;height:380px;object-fit:cover;display:block;" />
@@ -446,8 +447,8 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
         <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Indexauh?</h2>
         <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
-          We have over 25 years of experience in certificate attestation and have successfully served thousands of clients across the UAE.
-        </p>
+  We have over 25 years of experience in <a href="/certificate-attestation/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> and have successfully served thousands of clients across the UAE.
+</p>
       </div>
     </div>
 
