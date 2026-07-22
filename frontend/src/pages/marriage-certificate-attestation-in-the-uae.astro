@@ -1,10 +1,122 @@
 ---
 import ContactForm from '../components/ContactForm.astro';
-
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const countryCodes = [
-  { code:"+91", label:"IN +91" },{ code:"+971", label:"AE +971" },{ code:"+44", label:"GB +44" },{ code:"+1", label:"US +1" },{ code:"+973", label:"BH +973" },
+const glance = [
+  { label: "Service", value: "Marriage Certificate Attestation" },
+  { label: "Purpose", value: "To make your marriage certificate legally valid for official use in the UAE" },
+  { label: "Common Uses", value: "Family visa, spouse sponsorship, residence applications, government records, banking, and legal procedures" },
+  { label: "Process", value: "Verification → Government Authentication → Marriage Certificate Embassy Attestation → MOFA Marriage Certificate Attestation" },
+  { label: "Documents Required", value: "The original marriage certificate, passport copies, a UAE visa or Emirates ID (where applicable), and any additional documents required by the issuing country" },
+  { label: "Processing Time", value: "Varies depending on the country of issue and embassy requirements" },
+  { label: "Service Coverage", value: "Dubai, Abu Dhabi, Sharjah, and all other Emirates" },
+  { label: "Additional Support", value: "Legal translation, document review, pickup and delivery, and status updates" },
+]
+
+const whyNeeded = [
+  {
+    category: "Immigration and Visa Services",
+    intro: "An attested marriage certificate is commonly required for:",
+    items: [
+      "Family residence visa applications",
+      "Spouse sponsorship",
+      "Dependent visa processing",
+      "Marriage certificate attestation for UAE visa applications",
+      "Immigration record updates",
+    ],
+  },
+  {
+    category: "Government Records",
+    intro: "Many government services ask for an attested marriage certificate to verify your marital status. This may include:",
+    items: [
+      "Registering the birth of a child",
+      "Updating personal records with UAE authorities",
+      "Completing family-related government procedures",
+    ],
+  },
+  {
+    category: "Banking and Financial Services",
+    intro: "Some financial institutions request proof of marriage before processing certain applications. An attested certificate may be needed for:",
+    items: [
+      "Opening a joint bank account",
+      "Applying for family health insurance",
+      "Financial or employment-related documentation",
+    ],
+  },
+  {
+    category: "Legal and Property Matters",
+    intro: "A marriage attestation UAE may also be required for legal matters involving family rights and ownership, including:",
+    items: [
+      "Property transactions",
+      "Inheritance claims",
+      "Court proceedings",
+      "Other legal formalities that require proof of marriage",
+    ],
+  },
+]
+
+const countries = [
+  {
+    key: "india",
+    label: "India",
+    steps: [
+      { title: "State Home Department Attestation", desc: "The marriage certificate is verified by the State Home Department or the designated authority in the state where the marriage was registered." },
+      { title: "Ministry of External Affairs (MEA) Attestation", desc: "The certificate is authenticated by the Ministry of External Affairs, India." },
+      { title: "UAE Embassy Attestation in India", desc: "The document is then submitted to the UAE Embassy for embassy authentication." },
+      { title: "MOFA Marriage Certificate Attestation", desc: "After the certificate reaches the UAE, the Ministry of Foreign Affairs completes the final attestation." },
+    ],
+  },
+  {
+    key: "uk",
+    label: "United Kingdom",
+    steps: [
+      { title: "General Register Office (GRO) Marriage Certificate", desc: "Obtain the original marriage certificate issued by the General Register Office or the local Register Office." },
+      { title: "FCDO Legalisation", desc: "The certificate is legalised by the Foreign, Commonwealth & Development Office (FCDO). Civil marriage certificates usually go directly to FCDO without solicitor certification." },
+      { title: "UAE Embassy Attestation in London", desc: "After FCDO legalisation, the document is attested by the UAE Embassy in London." },
+      { title: "MOFA Marriage Certificate Attestation", desc: "Once the certificate reaches the UAE, the Ministry of Foreign Affairs (MOFA) completes the final attestation." },
+    ],
+  },
+  {
+    key: "philippines",
+    label: "Philippines",
+    steps: [
+      { title: "PSA Marriage Certificate", desc: "Obtain the marriage certificate issued by the Philippine Statistics Authority (PSA)." },
+      { title: "Department of Foreign Affairs (DFA) Authentication", desc: "The certificate is authenticated by the Department of Foreign Affairs (DFA), Philippines." },
+      { title: "UAE Embassy Attestation in the Philippines", desc: "The authenticated document is attested by the UAE Embassy through its authorized submission process." },
+      { title: "MOFA Marriage Certificate Attestation", desc: "After the document arrives in the UAE, MOFA completes the final attestation." },
+    ],
+  },
+  {
+    key: "usa",
+    label: "USA",
+    steps: [
+      { title: "County or State-Issued Marriage Certificate", desc: "Obtain a certified marriage certificate from the issuing authority." },
+      { title: "Secretary of State Authentication", desc: "The document is authenticated by the Secretary of State in the state where the certificate was issued." },
+      { title: "U.S. Department of State Authentication", desc: "The authenticated certificate is then legalized by the U.S. Department of State, when required before embassy attestation." },
+      { title: "UAE Embassy Attestation in Washington, D.C.", desc: "The document is attested by the UAE Embassy." },
+      { title: "MOFA Marriage Certificate Attestation", desc: "After arrival in the UAE, MOFA completes the final attestation." },
+    ],
+  },
+  {
+    key: "canada",
+    label: "Canada",
+    steps: [
+      { title: "Provincial Marriage Certificate", desc: "Obtain the marriage certificate from the relevant provincial Vital Statistics office." },
+      { title: "Authentication by Global Affairs Canada", desc: "The certificate is authenticated by Global Affairs Canada." },
+      { title: "UAE Embassy Attestation in Canada", desc: "The authenticated document is submitted to the UAE Embassy for attestation." },
+      { title: "MOFA Marriage Certificate Attestation", desc: "The final attestation is completed by the Ministry of Foreign Affairs in the UAE." },
+    ],
+  },
+  {
+    key: "pakistan",
+    label: "Pakistan",
+    steps: [
+      { title: "Marriage Certificate Verification", desc: "Obtain the marriage certificate or NADRA Marriage Registration Certificate from the appropriate authority." },
+      { title: "Ministry of Foreign Affairs (Pakistan)", desc: "The certificate is authenticated by Pakistan's Ministry of Foreign Affairs." },
+      { title: "UAE Embassy Attestation in Pakistan", desc: "The authenticated certificate is attested by the UAE Embassy." },
+      { title: "MOFA Marriage Certificate Attestation", desc: "The final attestation is completed by the Ministry of Foreign Affairs in the UAE." },
+    ],
+  },
 ]
 
 const howToIssueSteps = [
@@ -24,13 +136,74 @@ const howToGainSteps = [
   { num:"05", title:"Municipality Registration", desc:"After completing the attestation, register the marriage with the municipality or civil affairs department in the emirate to ensure it is officially recognized and recorded in the UAE." },
 ]
 
+const docsRequired = [
+  "Original marriage certificate",
+  "Passport copy of both husband and wife",
+  "Emirates ID copy, when available",
+  "UAE residence visa copy, when applicable",
+  "Authorization letter, when someone else is submitting the documents on your behalf",
+  "Additional supporting documents requested by the embassy or government authority",
+]
+
+const timingFactors = [
+  "Country of issue",
+  "Government authority processing time",
+  "UAE Embassy processing",
+  "MOFA attestation in the UAE",
+  "Legal translation, when required",
+  "Public holidays or embassy closures",
+  "Missing or incorrect documents",
+]
+
+const feeFactors = [
+  "Country where the marriage certificate was issued",
+  "Government and embassy attestation fees",
+  "MOFA attestation charges in the UAE",
+  "Legal translation requirements, when applicable",
+  "Standard or express processing",
+  "Courier or document collection and delivery services",
+]
+
+const delayReasons = [
+  "Name mismatch between the marriage certificate and passport",
+  "Spelling differences in the names of either spouse",
+  "Damaged, torn, or unreadable marriage certificates",
+  "Laminated certificates that are not accepted by certain authorities",
+  "Missing government or embassy stamps",
+  "Following the attestation process in the wrong order",
+  "Incomplete supporting documents",
+  "Unregistered or incorrectly issued marriage certificates",
+  "Missing legal translation when required",
+  "Expired passport or visa copies submitted with the application",
+]
+
+const emirates = [
+  { title: "Marriage Certificate Attestation Dubai", desc: "Our marriage certificate attestation Dubai service supports residents across the city with end-to-end document handling. From document verification to MOFA marriage certificate attestation, we guide you through each stage and keep you updated throughout the process." },
+  { title: "Marriage Certificate Attestation in Abu Dhabi", desc: "We assist with document submission, embassy coordination, and final MOFA attestation based on your certificate's country of issue. We also handle Abu Dhabi marriage certificate attestation requests for both residents and businesses." },
+  { title: "Marriage Certificate Attestation Sharjah", desc: "Our marriage certificate attestation Sharjah service is available for individuals and families who need their documents accepted for official use in the UAE. We review every application carefully before submission to help reduce delays and make the process easier from start to finish." },
+]
+
 const whyUs = [
-  { icon:"🏆", label:"More than 25 years of expertise in providing customers with effective solutions." },
-  { icon:"🌍", label:"Strong presence around the globe in Qatar, Abu Dhabi, Dubai, India, and many more nations thanks to affiliate offices and business networks." },
-  { icon:"📋", label:"Multinational organisation with ISO certification offering startup company advice." },
-  { icon:"❤️", label:"Dedicated to having our clients' trust and happiness as our main motivator." },
-  { icon:"🏢", label:"Comprehensive services for establishing businesses, incorporating them, registering them, assisting with visas and bank account establishment." },
-  { icon:"⚖️", label:"PRO, legal translation, and diplomatic services under one roof." },
+  { title: "25+ Years of Experience", desc: "25+ years of experience in document attestation services." },
+  { title: "Country-Specific Expertise", desc: "Expert guidance based on your certificate's country of issue." },
+  { title: "End-to-End Support", desc: "Complete support from document review to final MOFA attestation." },
+  { title: "Translation Under One Roof", desc: "Certified legal translation services under one roof." },
+  { title: "Careful Verification", desc: "Careful verification to reduce delays and resubmissions." },
+  { title: "Secure Handling", desc: "Secure handling of original documents." },
+  { title: "Pickup & Delivery", desc: "Pickup and delivery services across the UAE." },
+  { title: "Regular Updates", desc: "Regular updates throughout the attestation process." },
+  { title: "Transparent Pricing", desc: "Clear pricing with no hidden charges." },
+]
+
+const faqs = [
+  { q: "Can I attest a marriage certificate issued many years ago?", a: "Yes. Older marriage certificates can usually be attested as long as they were issued by the appropriate authority and are in good condition. Some cases may require additional verification before the process begins." },
+  { q: "Is my presence required during the attestation process?", a: "In most cases, no. The process can often be completed through an authorized representative, provided the required supporting documents are available." },
+  { q: "Can I use the same attested marriage certificate for multiple purposes?", a: "Yes. An attested marriage certificate is generally accepted for various official purposes, such as visa applications, banking, insurance, and legal procedures, provided the receiving authority accepts the document." },
+  { q: "What should I do if my marriage certificate is damaged or difficult to read?", a: "Damaged or unclear certificates may not be accepted by some authorities. It is usually better to obtain a fresh copy from the issuing authority before starting the attestation process." },
+  { q: "Can handwritten marriage certificates be attested?", a: "Acceptance is determined by the issuing country's requirements and the certificate's format. Some handwritten certificates are accepted, while others may require a recently issued computerized version." },
+  { q: "Will the attestation expire?", a: "There is usually no set validity period for a completed attestation. However, some authorities may request a recently attested document depending on the purpose of your application." },
+  { q: "Can I start the attestation process while I am outside the UAE?", a: "Yes. Many applicants begin the process from their home country before relocating to the UAE. The process varies according to the country that issued the marriage certificate." },
+  { q: "Do I need to attest my marriage certificate again if I change my passport?", a: "Generally, no. However, when there is a significant change in your personal details, some authorities may ask for additional supporting documents to establish the connection between your old and new records." },
 ]
 ---
 
@@ -51,21 +224,40 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
   .step-card { display:flex; align-items:flex-start; gap:18px; padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
   .step-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
 
+  .info-card { background:#fff; border:1px solid #eef0f6; border-radius:16px; padding:24px; }
+  .info-card h3 { font-size:0.95rem; font-weight:800; color:#1A202C; margin:0 0 14px; border-left:3px solid #38B2AC; padding-left:12px; }
+  .info-card .info-intro { font-size:0.85rem; color:#6B7280; line-height:1.6; margin:0 0 12px; }
+  .info-list-item { display:flex; align-items:flex-start; gap:10px; font-size:0.9rem; color:#4B5563; margin:0 0 9px; line-height:1.6; }
+
   .why-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:14px; padding:22px; display:flex; align-items:flex-start; gap:14px; transition:background 0.2s; }
   .why-card:hover { background:rgba(255,255,255,0.14); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
 
-  .tab-btn { padding:9px 22px; border-radius:9999px; font-size:0.83rem; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; }
+  .tab-btn { padding:9px 22px; border-radius:9999px; font-size:0.83rem; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; white-space:nowrap; }
   .tab-btn.active { background:#2D3748; color:#fff; }
   .tab-btn:not(.active) { background:#F0FFFE; color:#2D3748; border:1px solid #B2F5EA; }
+  .country-panel { display:none; }
+  .country-panel.active { display:grid; }
+
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 260px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
 
   @media(max-width:900px){
-    .hero-grid { flex-direction:column !important; }
-    .hero-form { width:100% !important; }
-    .two-col { flex-direction:column !important; }
-    .two-col > div { width:100% !important; }
-  }
+  .hero-grid { flex-direction:column !important; }
+  .hero-form { width:100% !important; }
+  .two-col { flex-direction:column !important; grid-template-columns:1fr !important; }
+  .two-col > div { width:100% !important; }
+  .grid-2 { grid-template-columns:1fr !important; }
+  .grid-3 { grid-template-columns:1fr !important; }
+  .grid-4 { grid-template-columns:1fr 1fr !important; }
+}
   @media(max-width:640px){
     .steps-grid { grid-template-columns:1fr !important; }
+    .country-tabs { overflow-x:auto; flex-wrap:nowrap !important; justify-content:flex-start !important; padding-bottom:6px; }
   }
 </style>
 
@@ -81,22 +273,23 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
 
   <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:center;">
-      <span class="idx-pill">Convenient</span>
-      <span class="idx-pill">Budget-Friendly</span>
-      <span class="idx-pill">25+ Yrs Experience</span>
-      <span class="idx-pill">Genuine</span>
+      <span class="idx-pill">Marriage Certificate Attestation</span>
+      <span class="idx-pill">25+ Years of Trust</span>
     </div>
     <p style="color:#38B2AC;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;font-size:0.75rem;margin:0 0 14px;">Attestation Services</p>
     <h1 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
       Marriage Certificate Attestation<br/>in <span style="color:#38B2AC;">UAE</span>
     </h1>
     <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 16px;max-width:640px;">
-      Before embarking on your journey to live abroad with your family, make sure to get your marriage certificate attested.
+      Moving to the UAE with your spouse or planning to sponsor your family? A foreign marriage certificate is not accepted for official use until it completes the marriage certificate attestation process.
+    </p>
+    <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin:0 auto 16px;max-width:640px;">
+      This page explains everything you need to know, from the required steps and country-specific procedures to MOFA approval, documents, and timelines.
     </p>
     <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin:0 auto 32px;max-width:600px;">
-      Index Office Services provides quick and effortless service in marriage registration and certificate attestation with our experts. We have 25 years of experience.
+      With 25+ years of experience, Index Office Services helps individuals and families complete the process smoothly and avoid unnecessary delays.
     </p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         (+971) 529 300 200
@@ -105,21 +298,10 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
         Free Consultation &rarr;
       </a>
     </div>
-    <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap;">
-      <div style="text-align:center;">
-        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">25K+</p>
-        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Happy Customers</p>
-      </div>
-      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
-      <div style="text-align:center;">
-        <p style="font-size:1.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
-        <p style="color:#81E6D9;font-size:0.75rem;margin:2px 0 0;font-weight:500;">Years of Experience</p>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ════ WHAT IS MARRIAGE CERTIFICATE ATTESTATION ════ -->
+<!-- ════ WHAT IS MARRIAGE CERTIFICATE ATTESTATION + AT A GLANCE ════ -->
 <section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;top:-60px;right:-60px;width:400px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
@@ -141,12 +323,14 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
       <div style="flex:1;min-width:280px;">
         <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Marriage Certificate Attestation</h2>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Marriage certificate attestation in the UAE is an essential process for couples who intend to live, work, or settle in the country. It involves verifying the authenticity and validity of the marriage certificate issued in the home country.</p>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">It is essential to go through the attestation procedure since it guarantees that the marriage certificate will be approved and legally recognised by UAE authorities. The procedure typically involves notarization of the marriage certificate, followed by authentication from the respective state authorities and the Ministry of External Affairs (MEA) in the home country.</p>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">Subsequently, the marriage certificate is attested by the UAE embassy or consulate in the home country, and finally, it undergoes verification by the Ministry of Foreign Affairs (MOFA) in the UAE.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">Need a quick overview before starting? Here's what you should know about marriage certificate attestation in the UAE.</p>
         <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px 20px;">
-          <p style="color:#1A202C;font-size:1rem;font-weight:600;margin:0 0 4px;">Index Office Services</p>
-          <p style="color:#4B5563;font-size:0.98rem;line-height:1.7;margin:0;">We provide quick and effortless service in <a href="https://helplinegroupuae.com/marriage-registration/" target="_blank" rel="noopener" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">marriage registration</a> and certificate attestation with our experts. We have 25 years of experience.</p>
+          <p style="color:#1A202C;font-size:1rem;font-weight:600;margin:0 0 10px;">Marriage Certificate Attestation at a Glance</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            {glance.map(row => (
+              <p style="color:#4B5563;font-size:0.9rem;line-height:1.7;margin:0;"><span style="color:#1A202C;font-weight:700;">{row.label}:</span> {row.value}</p>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -154,29 +338,19 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
   </div>
 </section>
 
-<!-- ════ WHAT IS A MARRIAGE CERTIFICATE ════ -->
+<!-- ════ WHY DO YOU NEED IT ════ -->
 <section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
-    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:flex-start;flex-wrap:wrap;">
 
       <div style="flex:1;min-width:280px;">
-        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Legal Document</p>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">What is a Marriage Certificate?</h2>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">A marriage certificate is a legal proof of marriage issued by a government agency or marriage register after a couple has solemnized their marriage. It contains details like spouse names, wedding date and location, and witnesses or officiants.</p>
-        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">The certificate is essential for legal rights, obligations, changing surnames, receiving spousal benefits, and paying joint taxes.</p>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
-          {["Spouse names","Wedding date & location","Witnesses or officiants","Legal rights & obligations","Changing surnames","Spousal benefits"].map(item => (
-            <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border:1px solid #e0e7ef;border-radius:10px;font-size:0.98rem;color:#1A202C;font-weight:500;">
-              <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
-              </span>
-              {item}
-            </div>
-          ))}
-        </div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Key Situations</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Why Do You Need Marriage Certificate Attestation in the UAE?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Your marriage certificate is more than a personal document. In the UAE, it must be officially verified before government departments and many private organizations accept it. Completing the marriage certificate attestation process confirms that the document is genuine and legally recognized for use in the country.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">You may need marriage attestation in the UAE for several important purposes.</p>
       </div>
 
       <div style="flex-shrink:0;width:380px;">
@@ -184,13 +358,61 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
       </div>
 
     </div>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;">
+      {whyNeeded.map(group => (
+        <div class="info-card">
+          <h3>{group.category}</h3>
+          <p class="info-intro">{group.intro}</p>
+          {group.items.map(item => (
+            <div class="info-list-item"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{item}</div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <div style="background:#fff;border:1px solid #eef0f6;border-radius:14px;padding:18px 22px;margin-top:24px;">
+      <p style="font-size:0.9rem;color:#4B5563;line-height:1.7;margin:0;">Every issuing country follows its own approval process before the document reaches the Ministry of Foreign Affairs in the UAE. Completing each stage in the correct order helps prevent delays and keeps your application moving forward. At Index Office Services, we review every document before submission so small issues can be identified early, saving our clients time and unnecessary follow-up visits.</p>
+    </div>
   </div>
 </section>
 
-<!-- ════ HOW TO / TWO TABS ════ -->
+<!-- ════ COUNTRY-SPECIFIC PROCESS (TABS) ════ -->
 <section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;bottom:-60px;right:-60px;width:400px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">By Country of Issue</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Country-Specific Marriage Certificate Attestation Process</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:720px;margin:0 auto 24px;">Whether your marriage certificate was issued in India, the UK, the Philippines, the USA, Canada, Pakistan, or another country, our team follows the correct attestation route based on the issuing country's requirements.</p>
+      <div class="country-tabs" id="countryTabs" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        {countries.map((c, i) => (
+          <button class={`tab-btn${i === 0 ? ' active' : ''}`} data-country={c.key}>{c.label}</button>
+        ))}
+      </div>
+    </div>
+
+    {countries.map((c, i) => (
+      <div id={`country-${c.key}`} class={`country-panel steps-grid${i === 0 ? ' active' : ''}`} style="grid-template-columns:repeat(2,1fr);gap:16px;">
+        {c.steps.map((s, idx) => (
+          <div class="step-card">
+            <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{String(idx + 1).padStart(2, '0')}</div>
+            <div>
+              <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
+              <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ════ HOW TO PROCESS YOUR MARRIAGE CERTIFICATE (TWO TABS) ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:44px;">
@@ -231,45 +453,226 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
   </div>
 </section>
 
-<!-- ════ WHY US ════ -->
-<section style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
-  <div style="position:absolute;bottom:-60px;right:-60px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+<!-- ════ DOCUMENTS / TIMING / FEES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+
+    <!-- Banner image with heading overlay -->
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:44px;">
+      <img src="/images/img-7.webp" alt="Documents, timing, and fees for marriage certificate attestation" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Requirements & Timelines</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:480px;line-height:1.25;">Documents, Timing, and Fees</h2>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <!-- Documents Required -->
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required for Marriage Certificate Attestation</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The documents required can vary based on the country where the certificate was issued and the purpose of the attestation. Having the correct documents ready before you begin helps avoid delays and repeated submissions. In most cases, you'll need:</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:14px;">
+          {docsRequired.map(d => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">At Index Office Services, every document is reviewed before submission to confirm that all required paperwork is in place. This simple step helps reduce delays and makes the attestation process smoother from the beginning.</p>
+      </div>
+
+      <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+        <!-- Timing -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Marriage Certificate Attestation Take?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 10px;">The time required depends on the country where the certificate was issued and the authorities involved. Some applications move quickly, while others take longer because of embassy processing times or additional verification requirements.</p>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The overall timeline can be affected by:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {timingFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Fees -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Marriage Certificate Attestation Charges in UAE</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Some of the main factors that affect the marriage certificate attestation price in Dubai include:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:14px;">
+            {feeFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 10px;">Since every case is different, there isn't a fixed marriage certificate attestation UAE price that applies to everyone. Knowing the exact requirements before you begin helps you avoid unexpected expenses and unnecessary delays.</p>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">At Index Office Services, we review your documents first and explain the expected process and applicable charges before starting the attestation. This gives you a clear understanding of the service with complete transparency and no hidden costs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ LEGAL TRANSLATION ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
 
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
     <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
 
       <div style="flex:1;min-width:280px;">
-        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:10px;">Our Strengths</p>
-        <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 14px;">WHY US?</h2>
-       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">A reputable company for <a href="/certificate-attestation-in-the-uae/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation in the UAE</a>.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          {whyUs.map(w => (
-            <div class="why-card">
-              <span style="font-size:1.4rem;flex-shrink:0;">{w.icon}</span>
-              <p style="color:#CBD5E0;font-size:0.83rem;line-height:1.65;margin:0;">{w.label}</p>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Translation</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Do You Need Legal Translation for a Marriage Certificate in the UAE?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">In many cases, yes. A marriage certificate issued in a language other than Arabic may need legal translation before it is accepted by government departments, courts, or other authorities in the UAE.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;">The requirement depends on the authority reviewing your documents and the purpose of your application. Documents submitted for immigration, court procedures, or official government services often require a certified Arabic translation along with the attested marriage certificate.</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+          {["Keep names, dates, and personal details consistent","Meet the requirements of UAE authorities","Reduce delays caused by translation errors","Support a smoother attestation process"].map(item => (
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;font-size:0.9rem;color:#1A202C;font-weight:500;">
+              <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              {item}
             </div>
           ))}
         </div>
       </div>
 
       <div style="flex-shrink:0;width:380px;">
-        <div style="position:relative;">
-          <img src="/images/img-3.webp" alt="Index Office Services team" style="width:100%;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
-          <div style="position:absolute;bottom:20px;left:-16px;background:#38B2AC;color:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 8px 24px rgba(56,178,172,0.4);">
-            <p style="font-size:1.8rem;font-weight:900;margin:0;line-height:1;">25K+</p>
-            <p style="font-size:0.9rem;margin:4px 0 0;opacity:0.9;">Happy Customers</p>
-          </div>
-          <div style="position:absolute;top:20px;right:-16px;background:#fff;color:#1A202C;padding:12px 16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.15);font-weight:700;font-size:0.75rem;text-align:center;line-height:1.5;">25+ Years<br/>Experience</div>
-        </div>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.8;margin:0 0 16px;background:#F8FAFF;border:1px solid #e0e7ef;border-radius:16px;padding:20px;">The stage at which translation is required can also vary. Some authorities request translation after the Ministry of Foreign Affairs marriage certificate attestation, while others may ask for it earlier in the process.</p>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.8;margin:0;background:#F8FAFF;border:1px solid #e0e7ef;border-radius:16px;padding:20px;">Index Office Services provides certified legal translation services along with marriage certificate attestation services. Since both services are handled under one roof, you don't have to coordinate with multiple providers. Our team checks your document requirements first and arranges the translation at the right stage, helping you complete the process with less hassle and fewer delays.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ════ CONTACT CTA ════ -->
+<!-- ════ COMMON MISTAKES  ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Reasons for Delays or Rejection</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:12px;">
+          Many delays happen because of small mistakes that are easy to miss. A document may need to be submitted again when the required approvals are incomplete or the information doesn't match. Taking a few minutes to review everything before submission can save days or even weeks later.
+        </p>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Some of the most common reasons include:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {delayReasons.map(r => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{r}</p>
+            </div>
+          ))}
+        </div>
+        <div style="background:#F8FAFF;border:1px solid #e0e7ef;border-radius:12px;padding:16px 20px;margin-top:16px;">
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.7;margin:0;">Many of these issues are discovered only after the document reaches the next authority, which can delay the entire process. Before any document is submitted, Index Office Services carefully reviews the certificate and supporting documents to identify potential issues early. This simple check helps reduce the risk of rejection and keeps the marriage certificate attestation process on track.</p>
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Common mistakes in marriage certificate attestation" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Delays</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COVERAGE ACROSS EMIRATES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Nationwide Support</p>
+    <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Marriage Certificate Attestation Services Across the UAE</h2>
+    <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin:0 auto 40px;max-width:760px;">No matter where you are in the UAE, getting your documents attested should be simple. Index Office Services supports individuals and families across all Emirates, handling the complete process from document review to final attestation. Our team also offers pickup and delivery services, helping you complete the process without visiting multiple government offices.</p>
+
+    <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:left;">
+      {emirates.map(e => (
+        <div class="info-card">
+          <h3>{e.title}</h3>
+          <p style="font-size:0.9rem;color:#6B7280;line-height:1.65;margin:0;">{e.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:32px auto 0;max-width:760px;">Whether your marriage certificate was issued in India, the UK, the Philippines, the USA, Canada, Pakistan, or another country, our team follows the correct attestation route based on the issuing country's requirements.</p>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE (France layout) ════ -->
 <section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="two-col">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">25+ Years of Experience</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index Office Services?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          We know how important these documents are for your family, visa, and future plans. That's why every application is handled with care, accuracy, and attention to detail from the very beginning. Here's what you can expect from us.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="grid-3">
+      {whyUs.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT CTA ════ -->
+<section id="contact" style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
 
@@ -302,16 +705,45 @@ description="Get Marriage Certificate Attestation UAE done easily with Indexauh.
 
 <script>
 (function(){
-  const tabs = document.querySelectorAll('.tab-btn');
-  tabs.forEach(tab => {
+  // Country tabs
+  const countryTabs = document.querySelectorAll('#countryTabs .tab-btn');
+  countryTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
+      countryTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const key = (tab as HTMLElement).dataset.country;
+      document.querySelectorAll('.country-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === `country-${key}`);
+      });
+    });
+  });
+
+  // How-to tabs
+  const howTabs = document.querySelectorAll('#howTabs .tab-btn');
+  howTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      howTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       const target = (tab as HTMLElement).dataset.tab;
       ['issue','gain'].forEach(t => {
         const el = document.getElementById('tab-' + t) as HTMLElement;
         el.style.display = t === target ? 'grid' : 'none';
       });
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
     });
   });
 })();
