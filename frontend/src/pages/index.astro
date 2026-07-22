@@ -177,6 +177,7 @@ const stats = [
   { num: "400K+", label: "Happy Clients" },
   { num: "100+",  label: "Countries Served" },
   { num: "25+",   label: "Years of Experience" },
+  { num: "460K+",   label: "Project handled" }, 
 ]
 
 const countryCodes = [
@@ -340,16 +341,17 @@ const countryCodes = [
           Index Office Services |<br/><span style="color:#38B2AC;">Trusted No.1 Attestation</span><br/>Services in UAE
         </h1>
 
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+          <span class="idx-pill">Convenient</span>
+          <span class="idx-pill">Budget-Friendly</span>
+          <span class="idx-pill">25+ Yrs Experience</span>
+          <span class="idx-pill">Genuine</span>
+        </div>
+
         <div style="overflow:hidden;width:100%;">
           <div id="slideTrack">
             {slides.map(s => (
               <div class="hero-slide">
-                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-                  <span class="idx-pill">Convenient</span>
-                  <span class="idx-pill">Budget-Friendly</span>
-                  <span class="idx-pill">25+ Yrs Experience</span>
-                  <span class="idx-pill">Genuine</span>
-                </div>
                 <p style="color:#fff;font-size:1.4rem;font-weight:800;margin:0 0 8px;line-height:1.3;">{s.title} <span style="color:#38B2AC;">{s.highlight}</span></p>
                 <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 16px;max-width:480px;">{s.desc}</p>
                 <a href={s.link} style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:9px 20px;border-radius:9999px;font-weight:600;font-size:0.98rem;text-decoration:none;">
@@ -412,7 +414,7 @@ const countryCodes = [
 <section style="background:#1A202C;padding:38px 24px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.2) 1.5px,transparent 1.5px);background-size:24px 24px;pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(56,178,172,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
-  <div class="sec-inner" style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;">
+  <div class="sec-inner" style="max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center;">
     {stats.map(s => (
       <div>
         <p style="font-size:clamp(1.4rem,4vw,2.4rem);font-weight:900;color:#38B2AC;margin:0;">{s.num}</p>
@@ -425,25 +427,23 @@ const countryCodes = [
 <!-- ════ CLIENTS ════ -->
 <section style="background:#fff;padding:48px 0;position:relative;overflow:hidden;border-bottom:1px solid #f0f0f0;">
   <div style="text-align:center;margin-bottom:32px;padding:0 24px;">
-    <p style="color:#9CA3AF;font-size:0.9rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin:0;">Trusted by leading organisations across the UAE &amp; GCC</p>
+    <p style="color:#000000;font-size:0.9rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin:0;">Trusted by leading organisations across the UAE &amp; GCC</p>
   </div>
   <div style="position:relative;">
-    <div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,#fff,transparent);z-index:2;pointer-events:none;"></div>
-    <div style="position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,#fff,transparent);z-index:2;pointer-events:none;"></div>
     <div class="marquee-track">
       <div class="marquee-inner">
         {[
           { src: "/ADNOC-.svg",                                    alt: "ADNOC" },
-          { src: "/Al-Ain-University.svg",                         alt: "Al Ain University" },
+          { src: "/Al-Ain-University.png",                         alt: "Al Ain University" },
           { src: "/Heriot-Watt_University_logo.svg",               alt: "Heriot-Watt University" },
           { src: "/Hult_International_Business_School_logo.png",   alt: "Hult International Business School" },
-          { src: "/University_of_Cambridge-Logo.svg",              alt: "University of Cambridge" },
+          { src: "/University_of_Cambridge-Logo.png",              alt: "University of Cambridge" },
           { src: "/washington-state-university-seeklogo.png",      alt: "Washington State University" },
           { src: "/ADNOC-.svg",                                    alt: "ADNOC" },
-          { src: "/Al-Ain-University.svg",                         alt: "Al Ain University" },
+          { src: "/Al-Ain-University.png",                         alt: "Al Ain University" },
           { src: "/Heriot-Watt_University_logo.svg",               alt: "Heriot-Watt University" },
           { src: "/Hult_International_Business_School_logo.png",   alt: "Hult International Business School" },
-          { src: "/University_of_Cambridge-Logo.svg",              alt: "University of Cambridge" },
+          { src: "/University_of_Cambridge-Logo.png",              alt: "University of Cambridge" },
           { src: "/washington-state-university-seeklogo.png",      alt: "Washington State University" },
         ].map(logo => (
           <div class="marquee-logo-img">
@@ -457,7 +457,12 @@ const countryCodes = [
 
 <style>
   @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .marquee-track { overflow: hidden; width: 100%; }
+  .marquee-track {
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 160px, black calc(100% - 160px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, black 160px, black calc(100% - 160px), transparent 100%);
+  }
   .marquee-inner {
     display: flex;
     align-items: center;
@@ -476,7 +481,7 @@ const countryCodes = [
     height: 64px;
   }
   .marquee-logo-img img {
-    height: 36px;
+    height: 56px;
     width: auto;
     max-width: 140px;
     object-fit: contain;
