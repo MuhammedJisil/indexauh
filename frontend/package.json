@@ -17,6 +17,8 @@
     "@astrojs/vercel": "^10.0.8",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.2",
+    "isomorphic-dompurify": "^3.19.0",
+    "marked": "^18.0.7",
     "tailwindcss": "^4.3.0",
     "wrangler": "^4.110.0"
   },

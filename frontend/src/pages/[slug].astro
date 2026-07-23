@@ -251,6 +251,7 @@ const countryCodes = [
 
 import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { marked } from 'marked';
 
 const { slug } = Astro.params;
 
@@ -273,7 +274,7 @@ try {
         id: raw.id,
         title: raw.title || "Untitled",
         slug: raw.Slug || raw.slug || slug,
-        content: raw.content || "",
+        content: marked.parse(raw.content || "", { breaks: true }),
         excerpt: raw.excerpt || "",
         authorName: raw.authorName || "Index Office Services",
         publishedDate: raw.publishedDate || raw.publishedAt || null,
