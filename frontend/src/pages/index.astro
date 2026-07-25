@@ -190,7 +190,7 @@ const countryCodes = [
 
 <BaseLayout title="Certificate Attestation Services in UAE — 25 Years of Trust">
 <style>
-  .idx-pill{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:0.9rem;padding:5px 14px;border-radius:9999px;font-weight:500;white-space:nowrap;}
+  .idx-pill{background:rgba(45,55,72,0.08);border:1px solid rgba(45,55,72,0.25);color:#1A202C;font-size:0.9rem;padding:5px 14px;border-radius:9999px;font-weight:500;white-space:nowrap;}
   .idx-form input,.idx-form select,.idx-form textarea{width:100%;border:1px solid #e5e7eb;border-radius:10px;padding:11px 14px;font-size:1rem;color:#374151;outline:none;font-family:inherit;background:#fff;box-sizing:border-box;}
   .idx-form input:focus,.idx-form select:focus,.idx-form textarea:focus{border-color:#38B2AC;box-shadow:0 0 0 3px rgba(56,178,172,0.15);}
   .idx-form textarea{resize:none;}
@@ -202,40 +202,43 @@ const countryCodes = [
   .hero-slide{min-width:100%;box-sizing:border-box;}
 
   /* ── Hero image wrapper — padding contains the overflow badges ── */
-  .hero-fixed-img{
+/* ── Hero image wrapper ── */
+.hero-fixed-img{
   flex-shrink:0;
-  width:420px;
+  width:600px;
+  max-width:100%;
+  margin-left:40px;
   position:relative;
   align-self:center;
 }
 .hero-fixed-img img{
   width:100%;
-  height:420px;
-  object-fit:cover;
+  height:auto;
+  object-fit:contain;
   display:block;
-  /* no border-radius, no box-shadow — blends into the section background */
 }
-  .sdot{width:8px;height:8px;border-radius:9999px;background:rgba(255,255,255,0.35);border:none;cursor:pointer;padding:0;transition:background 0.3s,width 0.3s;display:inline-block;}
-  .sdot.on{background:#38B2AC;width:24px;}
-  .sarr{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
-  .sarr:hover{background:rgba(255,255,255,0.25);}
+  .sdot{width:8px;height:8px;border-radius:9999px;background:rgba(45,55,72,0.25);border:none;cursor:pointer;padding:0;transition:background 0.3s,width 0.3s;display:inline-block;}
+.sdot.on{background:#38B2AC;width:24px;}
+.sarr{width:34px;height:34px;border-radius:50%;background:rgba(45,55,72,0.06);border:1px solid rgba(45,55,72,0.25);color:#1A202C;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
+.sarr:hover{background:rgba(45,55,72,0.14);}
 
   /* ── Hero diagonal (desktop only) ── */
   .hero-diagonal{display:none;}
   @media(min-width:768px){.hero-diagonal{display:block;}}
 
-  /* ── Hero image responsive ── */
- @media(max-width:767px){
+@media(max-width:767px){
   .hero-fixed-img{
-    width:100% !important;
-    max-width:360px;
-    margin:0 auto;
+    width:100%;
+    max-width:340px;
+    margin:16px auto 0;
+    align-self:center;
   }
- .hero-fixed-img img{
-  height:auto !important;
-  object-fit:contain;
-  object-position:center;
-}
+  .hero-fixed-img img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+  }
 }
 
   /* ── Service cards ── */
@@ -311,7 +314,7 @@ const countryCodes = [
   }
 
   /* ── Social icons branded hover ── */
-  .soc-icon{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:background 0.25s,border-color 0.25s,color 0.25s;flex-shrink:0;}
+  .soc-icon{width:38px;height:38px;border-radius:10px;background:rgba(45,55,72,0.06);border:1px solid rgba(45,55,72,0.2);display:flex;align-items:center;justify-content:center;color:#1A202C;text-decoration:none;transition:background 0.25s,border-color 0.25s,color 0.25s;flex-shrink:0;}
   .soc-instagram:hover{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-color:transparent;color:#fff;}
   .soc-whatsapp:hover{background:#25D366;border-color:#25D366;color:#fff;}
   .soc-facebook:hover{background:#1877F2;border-color:#1877F2;color:#fff;}
@@ -328,16 +331,13 @@ const countryCodes = [
 </style>
 
 <!-- ════════════════════ HERO ════════════════════ -->
-<section style="background:#2D3748;position:relative;overflow:hidden;">
-  <div class="hero-diagonal" style="position:absolute;top:0;right:0;width:55%;height:100%;background:rgba(255,255,255,0.02);clip-path:polygon(30% 0%,100% 0%,100% 100%,0% 100%);pointer-events:none;"></div>
-  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
-
+<section style="background:url('/herobg.webp') center/cover no-repeat;position:relative;">
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;padding:60px 24px 56px;">
-    <div style="display:flex;align-items:center;gap:48px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
 
       <!-- LEFT -->
       <div style="flex:1;min-width:280px;">
-        <h1 style="font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 28px;">
+        <h1 style="font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;color:#1A202C;line-height:1.15;margin:0 0 28px;">
           Index Office Services |<br/><span style="color:#38B2AC;">Trusted No.1 Attestation</span><br/>Services in UAE
         </h1>
 
@@ -351,9 +351,9 @@ const countryCodes = [
           <div id="slideTrack">
             {slides.map(s => (
               <div class="hero-slide">
-                <p style="color:#fff;font-size:1.4rem;font-weight:800;margin:0 0 8px;line-height:1.3;">{s.title} <span style="color:#38B2AC;">{s.highlight}</span></p>
-                <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 16px;max-width:480px;">{s.desc}</p>
-                <a href={s.link} style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:9px 20px;border-radius:9999px;font-weight:600;font-size:0.98rem;text-decoration:none;">
+                <p style="color:#1A202C;font-size:1.4rem;font-weight:800;margin:0 0 8px;line-height:1.3;">{s.title} <span style="color:#38B2AC;">{s.highlight}</span></p>
+                <p style="color:#374151;font-size:1.05rem;line-height:1.8;margin:0 0 16px;max-width:480px;">{s.desc}</p>
+                <a href={s.link} style="display:inline-flex;align-items:center;gap:8px;background:rgba(45,55,72,0.08);border:1px solid rgba(45,55,72,0.25);color:#1A202C;padding:9px 20px;border-radius:9999px;font-weight:600;font-size:0.98rem;text-decoration:none;">
                   Learn More &rarr;
                 </a>
               </div>
@@ -361,7 +361,7 @@ const countryCodes = [
           </div>
         </div>
 
-        <div style="display:flex;align-items:center;gap:10px;margin-top:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
           <button class="sarr" id="sPrev">&#8592;</button>
           <div id="sDots" style="display:flex;align-items:center;gap:6px;">
             {slides.map((_, i) => (
@@ -399,10 +399,9 @@ const countryCodes = [
         </div>
       </div>
 
-      <!-- RIGHT: fixed image — padding gives badges space to show -->
+      <!-- RIGHT: globe image -->
       <div class="hero-fixed-img">
-        <img src="globe.webp" alt="Document attestation UAE" />
-        <!-- badges use positive inset so padding holds them visible -->
+        <img src="/globe.webp" alt="Document attestation UAE" />
       </div>
 
     </div>
