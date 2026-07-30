@@ -28,6 +28,7 @@ const {
 function getLinkForDoc(docName: string, country?: string) {
   const name = docName.toLowerCase().trim();
 
+  // 1. Police Clearance Certificate (PCC)
   if (name.includes("police clearance") || name.includes("pcc") || name.includes("background check")) {
     const countriesWithPcc = ["kuwait", "bahrain", "oman", "qatar", "saudi", "uae", "usa"];
     for (const c of countriesWithPcc) {
@@ -44,46 +45,57 @@ function getLinkForDoc(docName: string, country?: string) {
     return "/police-clearance-certificate/";
   }
 
+  // 2. Degree Attestation
   if (name.includes("degree")) {
     return "/degree-certificate-attestation/";
   }
 
+  // 3. Diploma Attestation
   if (name.includes("diploma")) {
     return "/diploma-certificate-attestation/";
   }
 
+  // 4. Marriage Certificate
   if (name.includes("marriage")) {
     return "/marriage-certificate-attestation-in-the-uae/";
   }
 
+  // 5. Birth Certificate
   if (name.includes("birth")) {
     return "/birth-certificate-attestation-in-uae/";
   }
 
+  // 6. Death Certificate
   if (name.includes("death")) {
     return "/death-certificate-attestation/";
   }
 
+  // 7. Divorce Certificate
   if (name.includes("divorce")) {
     return "/divorce-certificate-attestation/";
   }
 
+  // 8. Medical Certificate
   if (name.includes("medical")) {
     return "/medical-certificate-attestation/";
   }
 
+  // 9. Transfer Certificate
   if (name.includes("transfer")) {
     return "/transfer-certificate-attestation/";
   }
 
+  // 10. Experience Certificate
   if (name.includes("experience")) {
     return "/experience-certificate-attestation/";
   }
 
+  // 11. Power of Attorney
   if (name.includes("power of attorney") || name.includes("poa")) {
     return "/power-of-attorney-notarization/";
   }
 
+  // 12. Notary Attestation
   if (name.includes("notary") || name.includes("notarization")) {
     return "/notary-attestation-services/";
   }
