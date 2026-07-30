@@ -320,17 +320,6 @@ const {
     }
 
     function setupCounters() {
-      // Explicit data-count attributes override
-      document.querySelectorAll('[data-count]').forEach(el => {
-        const io = new IntersectionObserver(entries => {
-          if (entries[0].isIntersecting) {
-            animateCountel;
-            io.disconnect();
-          }
-        }, { threshold: 0.5 });
-        io.observe(el);
-      });
-
       // Auto-detect: all teal bold stat <p> elements across every page
       document.querySelectorAll('p[style*="font-weight:900"][style*="color:#38B2AC"]').forEach(el => {
         const txt = (el.textContent || '').trim();
@@ -342,12 +331,25 @@ const {
 
           const io = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
-              animateCountel;
+              animateCount(el);
               io.disconnect();
             }
           }, { threshold: 0.5 });
           io.observe(el);
         }
+      });
+
+      // Explicit data-count attributes (set after auto-detect above)
+      document.querySelectorAll('[data-count]').forEach(el => {
+        if (el.hasAttribute('data-count-bound')) return;
+        el.setAttribute('data-count-bound', '1');
+        const io = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            animateCount(el);
+            io.disconnect();
+          }
+        }, { threshold: 0.5 });
+        io.observe(el);
       });
     }
 

@@ -79,7 +79,7 @@ const faqs = [
 ]
 ---
 
-<BaseLayout title="Death Certificate Attestation Services in the UAE"
+<BaseLayout title="Death Certificate Attestation Services in the UAE
 description="Death certificate attestation by Index Office Services with 25+ years of experience. Fast, hassle-free processing for official use. Contact us today."
 >
 
@@ -460,14 +460,14 @@ description="Death certificate attestation by Index Office Services with 25+ yea
 <script>
 (function(){
   const tabs = document.querySelectorAll('#countryTabs .tab-btn');
-  const panelIds = Array.from(tabs).map(t => t.dataset.tab);
+  const panelIds = Array.from(tabs).map(t => (t as HTMLElement).dataset.tab);
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      const target = tab.dataset.tab;
+      const target = (tab as HTMLElement).dataset.tab;
       panelIds.forEach(id => {
-        const el = document.getElementById('tab-' + id);
+        const el = document.getElementById('tab-' + id) as HTMLElement;
         if (el) el.style.display = id === target ? 'grid' : 'none';
       });
     });

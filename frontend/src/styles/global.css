@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+ * ── GLOBAL DESIGN TOKENS ──────────────────────────────────────────────────────
+ * Change these variables here to update styles across ALL pages at once.
+ *
+ * --desc-size-primary : Body/description text that uses color #4B5563 / #374151
+ *                       (main content paragraphs on most pages).
+ *
+ * --desc-size-secondary : Smaller card/grid description text that uses color
+ *                         #6B7280 (who-cards, step descs, feature lists, etc.)
+ *                         Previously scattered as 0.8–0.9rem across all pages.
+ *                         Change this ONE value to resize them all at once.
+ *
+ * --desc-line-height : Shared line-height for all description text.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+:root {
+  --desc-size-primary:   1.08rem;
+  --desc-size-secondary: 1.06rem;   /* ← change this to resize all card/grid desc text site-wide */
+  --desc-line-height:    1.85;
+}
+
+/* ── Primary description paragraphs (#4B5563 / #374151) ── */
+p[style*="color:#4B5563"],
+p[style*="color:#374151"],
+p[style*="color: #4B5563"],
+p[style*="color: #374151"] {
+  font-size: var(--desc-size-primary) !important;
+  line-height: var(--desc-line-height) !important;
+}
+
+/*
+ * ── Secondary / card description paragraphs (#6B7280) ──
+ *
+ * These appear inside who-cards, step lists, feature grids, info boxes, etc.
+ * across every page and were previously written as 0.8rem – 0.9rem inline.
+ * The rule below overrides ALL of them in one place.
+ *
+ * Exception: paragraphs that are also font-weight:700 (titles / labels) are
+ * NOT overridden because they carry font-size as a presentational part of
+ * their identity (e.g. "Scenario A" uppercase labels, step numbers, etc.).
+ */
+p[style*="color:#6B7280"]:not([style*="font-weight:700"]):not([style*="font-weight: 700"]) {
+  font-size: var(--desc-size-secondary) !important;
+  line-height: var(--desc-line-height) !important;
+}
+
+/*
+ * Also catch the reversed property order used on some pages:
+ *   style="color:#6B7280;font-size:..."   (caught above)
+ *   style="font-size:...;color:#6B7280;"  (caught above too — substring match)
+ */
