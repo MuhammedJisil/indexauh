@@ -352,8 +352,12 @@ const countryCodes = [
 }
 </style>
 
-<script define:vars={{ countryCodes }}>
+<script type="application/json" id="idxCountryCodes">{JSON.stringify(countryCodes)}</script>
+
+<script>
 (function(){
+  const countryCodes = JSON.parse(document.getElementById('idxCountryCodes').textContent);
+
   const trigger  = document.getElementById('ccTrigger');
   const panel    = document.getElementById('ccPanel');
   const list     = document.getElementById('ccList');
@@ -362,6 +366,7 @@ const countryCodes = [
   const selected = document.getElementById('ccSelected');
 
   const DEFAULT_CODE = countryCodes[0].code; // +971, matches your existing default
+
 
   function setSelectedCode(code) {
     const match = countryCodes.find(c => c.code === code);
