@@ -549,10 +549,10 @@ description="Confused about MOFA attestation requirements? Trust Index Office Se
     btn.addEventListener('click', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const target = (btn as HTMLElement).dataset.tab;
+      const target = btn.dataset.tab;
 
       ['outside','inside'].forEach(id => {
-        const el = document.getElementById('mofa-' + id) as HTMLElement;
+        const el = document.getElementById('mofa-' + id);
         if(el) {
           el.style.display = id === target ? 'block' : 'none';
         }
@@ -566,11 +566,11 @@ description="Confused about MOFA attestation requirements? Trust Index Office Se
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(x => {
         x.classList.remove('open');
-        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+        x.querySelector('.faq-a').classList.remove('open');
       });
       if (!isOpen) {
         item.classList.add('open');
-        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
       }
     });
   });

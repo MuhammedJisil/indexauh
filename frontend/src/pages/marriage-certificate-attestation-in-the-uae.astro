@@ -711,7 +711,7 @@ description="Is marriage certificate attestation delaying your visa plans? Index
     tab.addEventListener('click', () => {
       countryTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      const key = (tab as HTMLElement).dataset.country;
+      const key = tab.dataset.country;
       document.querySelectorAll('.country-panel').forEach(panel => {
         panel.classList.toggle('active', panel.id === `country-${key}`);
       });
@@ -724,9 +724,9 @@ description="Is marriage certificate attestation delaying your visa plans? Index
     tab.addEventListener('click', () => {
       howTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      const target = (tab as HTMLElement).dataset.tab;
+      const target = tab.dataset.tab;
       ['issue','gain'].forEach(t => {
-        const el = document.getElementById('tab-' + t) as HTMLElement;
+        const el = document.getElementById('tab-' + t);
         el.style.display = t === target ? 'grid' : 'none';
       });
     });
@@ -738,11 +738,11 @@ description="Is marriage certificate attestation delaying your visa plans? Index
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(x => {
         x.classList.remove('open');
-        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+        x.querySelector('.faq-a').classList.remove('open');
       });
       if (!isOpen) {
         item.classList.add('open');
-        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
       }
     });
   });

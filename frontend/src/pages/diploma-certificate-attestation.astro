@@ -161,7 +161,8 @@ const uaeAreas = [
 ---
 
 <BaseLayout title="Diploma Certificate Attestation Services in the UAE" 
-description="Diploma certificate attestation by Index Office Services with 25+ years of experience. Fast document processing. Get started today.">
+description="Diploma certificate attestation by Index Office Services with 25+ years of experience. Fast document processing. Get started today."
+>
 
 <style>
   .sec-inner { position: relative; z-index: 1; }
@@ -716,9 +717,9 @@ description="Diploma certificate attestation by Index Office Services with 25+ y
     btn.addEventListener('click', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const target = (btn as HTMLElement).dataset.tab;
+      const target = btn.dataset.tab;
       ['india','uk','usa','canada','australia','phil','china','gcc'].forEach(id => {
-        const el = document.getElementById('country-' + id) as HTMLElement;
+        const el = document.getElementById('country-' + id);
         if(el) {
           el.style.display = id === target ? 'block' : 'none';
         }
@@ -732,11 +733,11 @@ description="Diploma certificate attestation by Index Office Services with 25+ y
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(x => {
         x.classList.remove('open');
-        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+        x.querySelector('.faq-a').classList.remove('open');
       });
       if (!isOpen) {
         item.classList.add('open');
-        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
       }
     });
   });

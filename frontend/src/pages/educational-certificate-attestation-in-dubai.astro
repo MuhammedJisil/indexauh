@@ -743,11 +743,11 @@ description="Educational certificate attestation in Dubai by Index Office Servic
     btn.addEventListener('click', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const target = (btn as HTMLElement).dataset.tab;
+      const target = btn.dataset.tab;
       
       // Hide all panels, show matching one
       ['india','uk','usa','phil','pak'].forEach(id => {
-        const el = document.getElementById('country-' + id) as HTMLElement;
+        const el = document.getElementById('country-' + id);
         if(el) {
           el.style.display = id === target ? 'block' : 'none';
         }
@@ -761,11 +761,11 @@ description="Educational certificate attestation in Dubai by Index Office Servic
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(x => {
         x.classList.remove('open');
-        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+        x.querySelector('.faq-a').classList.remove('open');
       });
       if (!isOpen) {
         item.classList.add('open');
-        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
       }
     });
   });

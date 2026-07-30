@@ -456,11 +456,11 @@ import DocumentCoverage from '../components/DocumentCoverage.astro';
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(x => {
         x.classList.remove('open');
-        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+        x.querySelector('.faq-a').classList.remove('open');
       });
       if (!isOpen) {
         item.classList.add('open');
-        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
       }
     });
   });

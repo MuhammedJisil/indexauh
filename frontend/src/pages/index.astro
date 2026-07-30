@@ -1032,14 +1032,14 @@ const countryCodes = [
 <script>
 (function(){
   // ── Infinite loop slider ──
-  const track = document.getElementById('slideTrack') as HTMLElement
-  const dots  = Array.from(document.querySelectorAll('.sdot')) as HTMLElement[]
+  const track = document.getElementById('slideTrack')
+  const dots  = Array.from(document.querySelectorAll('.sdot'))
   const total = dots.length
   if(!track || total===0) return
 
-  const origSlides = Array.from(track.children) as HTMLElement[]
-  const firstClone = origSlides[0].cloneNode(true) as HTMLElement
-  const lastClone  = origSlides[total-1].cloneNode(true) as HTMLElement
+  const origSlides = Array.from(track.children)
+  const firstClone = origSlides[0].cloneNode(true)
+  const lastClone  = origSlides[total-1].cloneNode(true)
   track.appendChild(firstClone)
   track.insertBefore(lastClone, origSlides[0])
 
@@ -1095,8 +1095,8 @@ const countryCodes = [
   document.querySelectorAll('.faq-item').forEach(item=>{
     item.querySelector('.faq-q')?.addEventListener('click',()=>{
       const isOpen = item.classList.contains('open')
-      document.querySelectorAll('.faq-item').forEach(x=>{ x.classList.remove('open'); (x.querySelector('.faq-a') as HTMLElement).classList.remove('open') })
-      if(!isOpen){ item.classList.add('open'); (item.querySelector('.faq-a') as HTMLElement).classList.add('open') }
+      document.querySelectorAll('.faq-item').forEach(x=>{ x.classList.remove('open'); x.querySelector('.faq-a').classList.remove('open') })
+      if(!isOpen){ item.classList.add('open'); item.querySelector('.faq-a').classList.add('open') }
     })
   })
 })()

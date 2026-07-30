@@ -324,7 +324,7 @@ const {
       document.querySelectorAll('[data-count]').forEach(el => {
         const io = new IntersectionObserver(entries => {
           if (entries[0].isIntersecting) {
-            animateCount(el as HTMLElement);
+            animateCountel;
             io.disconnect();
           }
         }, { threshold: 0.5 });
@@ -342,7 +342,7 @@ const {
 
           const io = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
-              animateCount(el as HTMLElement);
+              animateCountel;
               io.disconnect();
             }
           }, { threshold: 0.5 });

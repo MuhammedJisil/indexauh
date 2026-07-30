@@ -585,14 +585,14 @@ description="Embassy attestation in the UAE by Index Office Services with 25+ ye
 <script>
 (function(){
   const tabs = document.querySelectorAll('#procTabs .tab-btn');
-  const panelIds = Array.from(tabs).map(t => (t as HTMLElement).dataset.tab);
+  const panelIds = Array.from(tabs).map(t => t.dataset.tab);
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      const target = (tab as HTMLElement).dataset.tab;
+      const target = tab.dataset.tab;
       panelIds.forEach(id => {
-        const el = document.getElementById('tab-' + id) as HTMLElement;
+        const el = document.getElementById('tab-' + id);
         if (el) el.style.display = id === target ? 'grid' : 'none';
       });
     });

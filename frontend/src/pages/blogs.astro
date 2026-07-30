@@ -9,7 +9,7 @@ const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
 
 // Fetch all published index-blog posts from Strapi
 let posts: any[] = [];
-let categories: string[] = [];
+let categories = [];
 let fetchError = false;
 
 try {
@@ -270,10 +270,10 @@ const FALLBACK_IMG = "/fallback.webp";
   if (!filterBar || !grid) return;
 
   filterBar.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('[data-cat]');
+    const btn = e.target.closest('[data-cat]');
     if (!btn) return;
 
-    const cat = (btn as HTMLElement).dataset.cat || 'all';
+    const cat = btn.dataset.cat || 'all';
 
     // Update active pill
     filterBar.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
@@ -283,9 +283,9 @@ const FALLBACK_IMG = "/fallback.webp";
     const cards = grid.querySelectorAll('.blog-card');
     let visibleCount = 0;
     cards.forEach(card => {
-      const cardCats: string[] = JSON.parse((card as HTMLElement).dataset.cats || '[]');
+      const cardCats = JSON.parse(card.dataset.cats || '[]');
       const show = cat === 'all' || cardCats.includes(cat);
-      (card as HTMLElement).style.display = show ? '' : 'none';
+      card.style.display = show ? '' : 'none';
       if (show) visibleCount++;
     });
 
