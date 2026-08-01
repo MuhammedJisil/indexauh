@@ -470,6 +470,24 @@
   }
   .navbar.scrolled { top: 12px; }
 
+  /*
+    FIX for scroll jerk:
+    Previously this rule animated height (72px → 64px) and
+    padding (0 24px → 0 20px) alongside margin/border-radius/shadow.
+    Because .navbar is position:sticky, it still reserves its own
+    box in normal document flow. Animating height/padding shrinks
+    that reserved space WHILE the user is mid-scroll, so the
+    content below the navbar visibly snaps upward the instant the
+    "scrolled" class is added at scrollY > 80. That was the jerk.
+
+    Fix: keep height and padding CONSTANT between states. Only
+    animate properties that don't affect the box's flow footprint
+    (margin is fine — it's horizontal only here; border-radius,
+    border, box-shadow don't affect layout at all). The "floating
+    pill" look now comes from the horizontal margin + rounded
+    corners + shadow + the existing `top: 12px` shift, with zero
+    reflow.
+  */
   .nav-inner {
     display: flex;
     align-items: center;
@@ -484,15 +502,14 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-    transition: margin .4s, border-radius .4s, padding .4s, height .4s, box-shadow .4s, border .4s;
+    transition: margin .4s, border-radius .4s, box-shadow .4s, border .4s;
   }
   .navbar.scrolled .nav-inner {
     margin: 0 20px;
-    padding: 0 20px;
-    height: 64px;
     border-radius: 16px;
     border: 1px solid var(--border-color);
     box-shadow: 0 6px 32px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.04);
+    /* height and padding intentionally NOT overridden — see note above */
   }
 
   .logo { display:flex; align-items:center; flex-shrink:0; text-decoration:none; }
@@ -762,7 +779,7 @@
   @media (min-width: 1280px) {
     .nav-link { padding: 8px 10px; font-size: 14.5px; }
     .nav-inner { padding: 0 40px; gap: 16px; }
-    .navbar.scrolled .nav-inner { padding: 0 32px; }
+    /* .navbar.scrolled .nav-inner padding override removed — padding no longer changes on scroll */
   }
   @media (max-width: 1279px) and (min-width: 1025px) {
     .nav-inner { padding: 0 16px; gap: 8px; }
