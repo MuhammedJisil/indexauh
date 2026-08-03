@@ -7,11 +7,13 @@ import CallbackPopup from '../components/CallbackPopup.astro'
 interface Props {
   title?: string
   description?: string
+  canonicalURL?: string
 }
 
 const {
-  title = 'Convex Professional Academy',
-  description = 'Modern skill development institute focused on practical, job-oriented training programs.'
+  title = 'Certificate Attestation Services in UAE — 25 Years of Trust',
+  description = 'Certificate attestation services by Index Office Services with 25+ years of experience. Fast processing for 100+ countries.',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href
 } = Astro.props
 ---
 
@@ -22,8 +24,9 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <title>{title}</title>
+  <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
