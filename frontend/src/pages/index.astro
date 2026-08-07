@@ -441,10 +441,10 @@ const countryCodes = [
         <!-- Trust strip: avatars + rating (reference design) -->
         <div class="hero-trust-strip">
           <div class="hero-trust-avatars">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" />
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" />
-            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client" />
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" />
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" loading="eager" fetchpriority="high" width="1200" height="600" />
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" loading="lazy" width="800" height="450" />
+            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client" loading="lazy" width="800" height="450" />
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" loading="lazy" width="800" height="450" />
           </div>
           <div class="hero-trust-text">
             <p style="font-size:0.92rem;font-weight:600;color:#1A202C;">Trusted by 400,000+ clients across UAE</p>
@@ -485,7 +485,7 @@ const countryCodes = [
             <span class="hero-float-card-label">PRO<br/>Services</span>
           </div>
         </div>
-        <img src="/hero_image.webp" alt="Document attestation UAE" />
+        <img src="/hero_image.webp" alt="Document attestation UAE" loading="lazy" width="800" height="450" />
       </div>
 
     </div>
@@ -516,20 +516,20 @@ const countryCodes = [
       <div class="marquee-inner">
         {[
           { src: "/ADNOC-.svg",                                    alt: "ADNOC" },
-          { src: "/Al-Ain-University.png",                         alt: "Al Ain University" },
+          { src: "/Al-Ain-University.webp",                         alt: "Al Ain University" },
           { src: "/Heriot-Watt_University_logo.svg",               alt: "Heriot-Watt University" },
-          { src: "/Hult_International_Business_School_logo.png",   alt: "Hult International Business School" },
-          { src: "/University_of_Cambridge-Logo.png",              alt: "University of Cambridge" },
-          { src: "/washington-state-university-seeklogo.png",      alt: "Washington State University" },
+          { src: "/Hult_International_Business_School_logo.webp",   alt: "Hult International Business School" },
+          { src: "/University_of_Cambridge-Logo.webp",              alt: "University of Cambridge" },
+          { src: "/washington-state-university-seeklogo.webp",      alt: "Washington State University" },
           { src: "/ADNOC-.svg",                                    alt: "ADNOC" },
-          { src: "/Al-Ain-University.png",                         alt: "Al Ain University" },
+          { src: "/Al-Ain-University.webp",                         alt: "Al Ain University" },
           { src: "/Heriot-Watt_University_logo.svg",               alt: "Heriot-Watt University" },
-          { src: "/Hult_International_Business_School_logo.png",   alt: "Hult International Business School" },
-          { src: "/University_of_Cambridge-Logo.png",              alt: "University of Cambridge" },
-          { src: "/washington-state-university-seeklogo.png",      alt: "Washington State University" },
+          { src: "/Hult_International_Business_School_logo.webp",   alt: "Hult International Business School" },
+          { src: "/University_of_Cambridge-Logo.webp",              alt: "University of Cambridge" },
+          { src: "/washington-state-university-seeklogo.webp",      alt: "Washington State University" },
         ].map(logo => (
           <div class="marquee-logo-img">
-            <img src={logo.src} alt={logo.alt} loading="lazy" />
+            <img src={logo.src} alt={logo.alt} loading="lazy" width="400" height="260" />
           </div>
         ))}
       </div>
@@ -588,7 +588,7 @@ const countryCodes = [
   {services.map(s => (
     <a href={s.link} class="svc-card" style="text-decoration:none;display:block;">
       <div class="svc-card-img-wrap">
-        <img src={s.img} alt={s.title} class="svc-card-img" />
+        <img src={s.img} alt={s.title} class="svc-card-img" loading="lazy" width="800" height="450" />
       </div>
       <div class="svc-card-body">
         <h3 style="font-size:1rem;font-weight:700;color:#1A202C;margin:0 0 12px;">{s.title}</h3>
@@ -622,7 +622,7 @@ const countryCodes = [
     </div>
     <!-- responsive image panel -->
     <div class="panel-img">
-      <img src="/images/img-8.webp" alt="Professional team" style="height:320px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" />
+      <img src="/images/img-8.webp" alt="Professional team" style="height:320px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" loading="lazy" width="800" height="450" />
     </div>
   </div>
 </section>
@@ -689,7 +689,7 @@ const countryCodes = [
         </p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 20px;">Company Formation Services Across the GCC</h2>
         <div style="position:relative;border-radius:16px;overflow:hidden;height:220px;margin-bottom:24px;">
-          <img src="/images/img-2.webp" alt="UAE GCC business skyline" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="/images/img-2.webp" alt="UAE GCC business skyline" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,32,44,0.6) 100%);"></div>
           <div style="position:absolute;bottom:16px;left:20px;display:flex;gap:10px;flex-wrap:wrap;">
             <span style="background:#38B2AC;color:#fff;font-size:0.72rem;font-weight:700;padding:5px 12px;border-radius:9999px;">UAE</span>
@@ -746,7 +746,7 @@ const countryCodes = [
         </p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 20px;">Police Clearance Certificate Services for UAE and International Requirements</h2>
         <div style="position:relative;border-radius:16px;overflow:hidden;height:220px;margin-bottom:24px;">
-          <img src="/images/img-57.webp" alt="Police clearance certificate" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="/images/img-57.webp" alt="Police clearance certificate" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
           <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.65) 0%,transparent 70%);"></div>
           <div style="position:absolute;top:50%;left:24px;transform:translateY(-50%);">
             <p style="color:#81E6D9;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Fast &amp; Reliable</p>
@@ -832,7 +832,7 @@ const countryCodes = [
       </div>
       <!-- responsive image panel -->
       <div class="panel-img-sm">
-        <img src="/images/img-3.webp" alt="Trusted professionals" style="height:340px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" />
+        <img src="/images/img-3.webp" alt="Trusted professionals" style="height:340px;box-shadow:0 16px 48px rgba(0,0,0,0.3);" loading="lazy" width="800" height="450" />
       </div>
     </div>
   </div>
@@ -876,10 +876,10 @@ const countryCodes = [
     </div>
     <div id="testimonialStage" style="position:relative;width:100%;min-height:480px;overflow:visible;transition:height 0.3s ease;"></div>
     <div style="display:flex;justify-content:center;gap:12px;margin-top:32px;">
-      <button id="tPrev" style="width:48px;height:48px;border-radius:12px;background:#fff;border:2px solid #e0e7ef;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;color:#2D3748;">
+      <button id="tPrev" aria-label="Previous testimonial" style="width:48px;height:48px;border-radius:12px;background:#fff;border:2px solid #e0e7ef;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;color:#2D3748;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <button id="tNext" style="width:48px;height:48px;border-radius:12px;background:#38B2AC;border:2px solid #38B2AC;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;color:#fff;">
+      <button id="tNext" aria-label="Next testimonial" style="width:48px;height:48px;border-radius:12px;background:#38B2AC;border:2px solid #38B2AC;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;color:#fff;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
     </div>
@@ -926,7 +926,7 @@ const countryCodes = [
     const borderColor = isCenter ? '#38B2AC' : '#e0e7ef';
     if (t.img) {
       const fallback = getInitialsHtml(t, isCenter, borderColor).replace(/'/g, "\\'").replace(/"/g, '&quot;');
-      return `<img src="${t.img}" alt="${t.by}" onerror="this.outerHTML='${fallback}'" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid ${borderColor};flex-shrink:0;" />`;
+      return `<img src="${t.img}" alt="${t.by}" onerror="this.outerHTML='${fallback}'" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid ${borderColor};flex-shrink:0;" loading="lazy" width="800" height="450" />`;
     }
     return getInitialsHtml(t, isCenter, borderColor);
   }

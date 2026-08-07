@@ -203,12 +203,7 @@ const FALLBACK_IMG = "/fallback.webp";
               data-cats={JSON.stringify(post.categories)}
             >
               <div class="blog-card-img-wrap">
-                <img
-                  src={post.featuredImage || FALLBACK_IMG}
-                  alt={post.title}
-                  class="blog-card-img"
-                  loading={i < 3 ? 'eager' : 'lazy'}
-                />
+                <img src={post.featuredImage || FALLBACK_IMG} alt={post.title} class="blog-card-img" loading={i < 3 ? 'eager' : 'lazy'} loading="eager" fetchpriority="high" width="1200" height="600" />
               </div>
               <div class="blog-card-body">
                 {post.categories[0] && <span class="blog-card-cat">{post.categories[0]}</span>}
@@ -246,7 +241,7 @@ const FALLBACK_IMG = "/fallback.webp";
             <h3>Recent Articles</h3>
             {displayPosts.slice(0, 5).map(post => (
               <a href={`/${post.slug}/`} class="sidebar-recent-item">
-                <img src={post.featuredImage || FALLBACK_IMG} alt={post.title} class="sidebar-recent-img" loading="lazy" />
+                <img src={post.featuredImage || FALLBACK_IMG} alt={post.title} class="sidebar-recent-img" loading="lazy" width="800" height="450" />
                 <div>
                   <p class="sidebar-recent-title">{post.title}</p>
                   {post.publishedDate && <p class="sidebar-recent-date">{formatDate(post.publishedDate)}</p>}

@@ -21,6 +21,11 @@
   --desc-size-primary:   1.08rem;
   --desc-size-secondary: 1.06rem;   /* ← change this to resize all card/grid desc text site-wide */
   --desc-line-height:    1.85;
+
+  /* ── Accessibility Color Tokens ── */
+  --color-teal-text:  #237A76;   /* Accessible dark teal for text contrast on light background */
+  --color-teal-bg:    #38B2AC;   /* Pure brand teal for buttons and backgrounds */
+  --color-label-gray: #4A5568;   /* High contrast label gray */
 }
 
 /* ── Primary description paragraphs (#4B5563 / #374151) ── */
@@ -47,6 +52,25 @@ p[style*="color:#6B7280"]:not([style*="font-weight:700"]):not([style*="font-weig
   font-size: var(--desc-size-secondary) !important;
   line-height: var(--desc-line-height) !important;
 }
+
+/*
+ * ── Accessibility Contrast Overrides ──
+ * Enforce high contrast text colors across all pages
+ */
+span[style*="color:#38B2AC"],
+span[style*="color: #38B2AC"],
+p[style*="color:#38B2AC"],
+p[style*="color: #38B2AC"],
+a[style*="color:#38B2AC"]:not([style*="background"]),
+a[style*="color: #38B2AC"]:not([style*="background"]) {
+  color: var(--color-teal-text) !important;
+}
+
+label[style*="color:#9CA3AF"],
+label[style*="color: #9CA3AF"] {
+  color: var(--color-label-gray) !important;
+}
+
 
 /*
  * Also catch the reversed property order used on some pages:

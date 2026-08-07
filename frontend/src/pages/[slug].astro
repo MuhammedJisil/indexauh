@@ -480,11 +480,7 @@ function formatDate(dateStr: string | null) {
   <div style="background:#F8FAFF;padding:0 24px;">
     <div style="max-width:900px;margin:0 auto;transform:translateY(-40px);">
       <div class="featured-img-frame">
-        <img
-          src={post.featuredImage}
-          alt={post.title}
-          loading="eager"
-        />
+        <img src={post.featuredImage} alt={post.title} loading="eager" fetchpriority="high" width="1200" height="600" />
       </div>
     </div>
   </div>
@@ -633,7 +629,7 @@ function formatDate(dateStr: string | null) {
           {relatedPosts.map(p => (
             <a href={`/${p.slug}/`} class="related-item">
               {p.featuredImage
-                ? <img src={p.featuredImage} alt={p.title} class="related-img" loading="lazy" />
+                ? <img src={p.featuredImage} alt={p.title} class="related-img" loading="lazy" width="800" height="450" />
                 : <div style="width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#2D3748,#38B2AC);flex-shrink:0;"></div>
               }
               <div>

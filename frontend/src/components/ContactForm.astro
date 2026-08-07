@@ -252,21 +252,21 @@ const countryCodes = [
 
 <div class="idx-name-email-grid">
   <div>
-    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label>
-    <input type="text" name="name" placeholder="Your Name*" required />
+    <label for="contactName" style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Name</label>
+    <input type="text" id="contactName" name="name" placeholder="Your Name*" required />
   </div>
   <div>
-    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label>
-    <input type="email" name="email" placeholder="Your Email Address*" required />
+    <label for="contactEmail" style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Email</label>
+    <input type="email" id="contactEmail" name="email" placeholder="Your Email Address*" required />
   </div>
 </div>
 
 <div style="display:flex;gap:10px;">
   <div style="width:120px;min-width:100px;flex-shrink:1;position:relative;">
-    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
+    <label for="ccTrigger" style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Code</label>
     <input type="hidden" name="country_code" id="ccHidden" value={countryCodes[0].code} />
 
-    <button type="button" id="ccTrigger" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #e5e7eb;border-radius:10px;padding:11px 12px;background:#fff;cursor:pointer;font-size:0.85rem;color:#374151;font-family:inherit;">
+    <button type="button" id="ccTrigger" aria-label="Select Country Code" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #e5e7eb;border-radius:10px;padding:11px 12px;background:#fff;cursor:pointer;font-size:0.85rem;color:#374151;font-family:inherit;">
       <span id="ccSelected" style="display:flex;align-items:center;gap:6px;overflow:hidden;">
         <span>{countryCodes[0].flag}</span><span>{countryCodes[0].code}</span>
       </span>
@@ -275,20 +275,20 @@ const countryCodes = [
 
     <div id="ccPanel" style="display:none;position:absolute;top:calc(100% + 6px);left:0;width:280px;max-height:320px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.15);z-index:50;overflow:hidden;">
       <div style="padding:10px;border-bottom:1px solid #f0f0f0;">
-        <input type="text" id="ccSearch" placeholder="Search country..." style="width:100%;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;font-size:0.85rem;outline:none;box-sizing:border-box;" />
+        <input type="text" id="ccSearch" aria-label="Search country code" placeholder="Search country..." style="width:100%;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;font-size:0.85rem;outline:none;box-sizing:border-box;" />
       </div>
       <div id="ccList" style="max-height:250px;overflow-y:auto;"></div>
     </div>
   </div>
 
   <div style="flex:1;min-width:0;">
-    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label>
-    <input type="tel" name="phone" placeholder="Phone Number*" required />
+    <label for="contactPhone" style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Phone</label>
+    <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number*" required />
   </div>
 </div>
   <div>
-    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
-    <select name="service" required>
+    <label for="contactService" style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Service</label>
+    <select id="contactService" name="service" required>
       <option value="">Select a Service</option>
       <option>Company Formation</option>
       <option>PRO Services</option>
@@ -301,8 +301,8 @@ const countryCodes = [
     </select>
   </div>
   <div>
-    <label style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label>
-    <textarea name="message" placeholder="Enter your message*" rows="3" required></textarea>
+    <label for="contactMessage" style="display:block;font-size:0.7rem;font-weight:600;color:#9CA3AF;margin-bottom:3px;">Message</label>
+    <textarea id="contactMessage" name="message" placeholder="Enter your message*" rows="3" required></textarea>
   </div>
 
   <input type="checkbox" name="botcheck" class="hidden" style="display: none;">

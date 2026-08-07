@@ -1,0 +1,17 @@
+# Cache static images long term
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache Astro build assets long term
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache WebP and logo files
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
