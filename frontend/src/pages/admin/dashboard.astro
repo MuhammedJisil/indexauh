@@ -11,7 +11,7 @@ const apiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
     <div class="stat-card"><div class="stat-value stat-blue" id="s-progress">—</div><div class="stat-label">In Progress</div></div>
     <div class="stat-card"><div class="stat-value stat-green" id="s-completed">—</div><div class="stat-label">Completed</div></div>
     <div class="stat-card"><div class="stat-value stat-red" id="s-hold">—</div><div class="stat-label">On Hold</div></div>
-    <div class="stat-card"><div class="stat-value" id="s-doctypes" style="color:#C084FC;">—</div><div class="stat-label">Doc Types</div></div>
+    <div class="stat-card"><div class="stat-value" id="s-doctypes" style="color:#38B2AC;">—</div><div class="stat-label">Doc Types</div></div>
   </div>
 
   <!-- Recent Records -->
@@ -84,7 +84,7 @@ const apiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
             <td><strong style="color:var(--primary);font-family:monospace;font-size:0.86rem;letter-spacing:0.03em;">${r.tracking_id}</strong></td>
             <td style="font-weight:600;">${r.doc_type_name || '—'}</td>
             <td>${statusBadge[r.status] || r.status}</td>
-            <td style="color:var(--secondary);font-size:0.82rem;">${r.current_step_label ? `<span style="display:inline-block;padding:2px 6px;background:rgba(255,255,255,0.06);border-radius:4px;margin-right:6px;font-weight:700;color:var(--primary)">Step ${r.current_step_order}</span>${r.current_step_label}` : '<span style="color:var(--muted)">No step set</span>'}</td>
+            <td style="color:var(--secondary);font-size:0.82rem;">${r.current_step_label ? `<span style="display:inline-block;padding:2px 6px;background:rgba(56,178,172,0.08);border-radius:4px;margin-right:6px;font-weight:700;color:var(--primary)">Step ${r.current_step_order}</span>${r.current_step_label}` : '<span style="color:var(--muted)">No step set</span>'}</td>
             <td style="color:var(--muted);font-size:0.78rem;">${fmtDate(r.updated_at)}</td>
           </tr>`).join('');
       }

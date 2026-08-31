@@ -18,8 +18,8 @@
 
     body {
       font-family:'Inter',system-ui,sans-serif;
-      background:#060C18;
-      color:#F1F5F9;
+      background:#F6F9FA;
+      color:#1A202C;
       min-height:100vh;
       display:flex;
       align-items:center;
@@ -32,7 +32,7 @@
     body::before {
       content:'';
       position:fixed; inset:0;
-      background-image:radial-gradient(rgba(45,212,191,0.12) 1px, transparent 1px);
+      background-image:radial-gradient(rgba(56,178,172,0.15) 1px, transparent 1px);
       background-size:28px 28px;
       pointer-events:none;
     }
@@ -41,8 +41,8 @@
     .orb {
       position:fixed; border-radius:50%; filter:blur(80px); pointer-events:none; z-index:0;
     }
-    .orb-1 { width:400px; height:400px; background:rgba(45,212,191,0.07); top:-120px; left:-120px; }
-    .orb-2 { width:300px; height:300px; background:rgba(99,102,241,0.06); bottom:-80px; right:-80px; }
+    .orb-1 { width:400px; height:400px; background:rgba(56,178,172,0.1); top:-120px; left:-120px; }
+    .orb-2 { width:300px; height:300px; background:rgba(99,102,241,0.07); bottom:-80px; right:-80px; }
 
     .login-wrap {
       position:relative; z-index:1;
@@ -55,22 +55,21 @@
     .brand-icon {
       display:inline-flex; align-items:center; justify-content:center;
       width:52px; height:52px; border-radius:14px;
-      background:rgba(45,212,191,0.12);
-      border:1px solid rgba(45,212,191,0.25);
+      background:rgba(56,178,172,0.12);
+      border:1px solid rgba(56,178,172,0.25);
       margin-bottom:14px;
     }
-    .brand-icon svg { width:26px; height:26px; color:#2DD4BF; }
-    .brand-name { font-size:1.4rem; font-weight:800; letter-spacing:-0.03em; color:#F1F5F9; }
+    .brand-icon svg { width:26px; height:26px; color:#38B2AC; }
+    .brand-name { font-size:1.4rem; font-weight:800; letter-spacing:-0.03em; color:#1A202C; }
     .brand-sub  { font-size:0.78rem; color:#64748B; margin-top:4px; }
 
     /* Card */
     .card {
-      background:#0D1424;
-      border:1px solid rgba(255,255,255,0.07);
+      background:#FFFFFF;
+      border:1px solid #E2E8F0;
       border-radius:20px;
       padding:32px;
-      box-shadow:0 32px 80px rgba(0,0,0,0.5);
-      backdrop-filter:blur(2px);
+      box-shadow:0 32px 80px rgba(15,23,42,0.1);
     }
     .card-title { font-size:1rem; font-weight:700; margin-bottom:4px; }
     .card-sub   { font-size:0.8rem; color:#64748B; margin-bottom:24px; }
@@ -79,25 +78,26 @@
     .form-group { margin-bottom:16px; }
     .form-label {
       display:block; font-size:0.73rem; font-weight:600;
-      color:#94A3B8; margin-bottom:6px;
+      color:#64748B; margin-bottom:6px;
       text-transform:uppercase; letter-spacing:0.07em;
     }
     .form-control {
-      width:100%; background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
+      width:100%; background:#F6F9FA;
+      border:1px solid #E2E8F0;
       border-radius:10px; padding:11px 14px;
-      color:#F1F5F9; font-size:0.875rem; font-family:inherit; outline:none;
+      color:#1A202C; font-size:0.875rem; font-family:inherit; outline:none;
       transition:border-color 0.15s, box-shadow 0.15s;
     }
     .form-control:focus {
-      border-color:#2DD4BF;
-      box-shadow:0 0 0 3px rgba(45,212,191,0.14);
+      border-color:#38B2AC;
+      box-shadow:0 0 0 3px rgba(56,178,172,0.14);
+      background:#FFFFFF;
     }
-    .form-control::placeholder { color:#475569; }
+    .form-control::placeholder { color:#94A3B8; }
 
     .btn-login {
       width:100%; padding:12px;
-      background:#2DD4BF; color:#060C18;
+      background:#38B2AC; color:#FFFFFF;
       font-weight:700; font-size:0.9rem; font-family:inherit;
       border:none; border-radius:10px; cursor:pointer;
       transition:all 0.2s;
@@ -105,29 +105,29 @@
       margin-top:8px;
     }
     .btn-login:hover:not(:disabled) {
-      background:#22C5B5;
-      box-shadow:0 6px 24px rgba(45,212,191,0.35);
+      background:#319795;
+      box-shadow:0 6px 24px rgba(56,178,172,0.35);
       transform:translateY(-1px);
     }
     .btn-login:disabled { opacity:0.55; cursor:not-allowed; transform:none; }
 
     .error-msg {
-      background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25);
-      color:#FCA5A5; border-radius:9px; padding:10px 14px;
+      background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25);
+      color:#B91C1C; border-radius:9px; padding:10px 14px;
       font-size:0.82rem; margin-top:14px; display:none;
     }
     .error-msg.show { display:block; }
 
     .spinner {
       width:16px; height:16px;
-      border:2px solid rgba(0,0,0,0.2);
-      border-top-color:#060C18;
+      border:2px solid rgba(255,255,255,0.35);
+      border-top-color:#FFFFFF;
       border-radius:50%;
       animation:spin 0.55s linear infinite;
     }
     @keyframes spin { to { transform:rotate(360deg); } }
 
-    .footer-note { text-align:center; font-size:0.73rem; color:#334155; margin-top:20px; }
+    .footer-note { text-align:center; font-size:0.73rem; color:#94A3B8; margin-top:20px; }
   </style>
 </head>
 <body>

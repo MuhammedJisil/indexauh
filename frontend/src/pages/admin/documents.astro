@@ -19,19 +19,19 @@ const apiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
     padding: 13px 15px;
     border-radius: 12px;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(15,23,42,0.08);
     transition: all 0.15s;
     margin-bottom: 8px;
-    background: rgba(255,255,255,0.02);
+    background: rgba(15,23,42,0.015);
   }
   .doc-list-item:hover {
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.12);
+    background: rgba(15,23,42,0.04);
+    border-color: rgba(15,23,42,0.14);
   }
   .doc-list-item.selected {
-    background: rgba(45,212,191,0.09);
-    border-color: rgba(45,212,191,0.35);
-    box-shadow: 0 0 0 1px rgba(45,212,191,0.25);
+    background: rgba(56,178,172,0.09);
+    border-color: rgba(56,178,172,0.35);
+    box-shadow: 0 0 0 1px rgba(56,178,172,0.25);
   }
   .doc-list-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
   .doc-list-meta { font-size: 0.73rem; color: var(--muted); margin-top: 3px; font-weight: 500; }
@@ -44,15 +44,15 @@ const apiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
     border-radius: 10px;
     border: 1px solid var(--border);
     margin-bottom: 8px;
-    background: rgba(255,255,255,0.02);
+    background: rgba(15,23,42,0.015);
     transition: background 0.15s;
   }
-  .step-row:hover { background: rgba(255,255,255,0.04); }
+  .step-row:hover { background: rgba(15,23,42,0.035); }
   .step-order {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: rgba(45,212,191,0.15);
+    background: rgba(56,178,172,0.15);
     color: var(--primary);
     display: flex;
     align-items: center;
