@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
 ---
 
 <BaseLayout
@@ -11,48 +12,236 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .track-page {
     position: relative;
     overflow: hidden;
-    background: #1A202C;
-    min-height: 70vh;
+    background: #0B1120;
+    min-height: 75vh;
     padding-bottom: 80px;
   }
   .track-page::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(56,178,172,0.18) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(45,212,191,0.15) 1px, transparent 1px);
     background-size: 28px 28px;
     pointer-events: none;
   }
 
-  .track-hero-inner { position:relative; z-index:1; max-width:640px; margin:0 auto; padding:80px 24px 96px; text-align:center; width:100%; }
+  .track-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 72px 20px 56px;
+    text-align: center;
+    width: 100%;
+  }
 
-  .track-form { display:flex; gap:10px; max-width:520px; margin: 0 auto; flex-wrap: wrap; }
-  .track-input { flex:1; min-width:220px; border:1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color:#fff; border-radius:10px; padding:14px 16px; font-size:1rem; outline:none; }
-  .track-input::placeholder { color:#94A3B8; }
-  .track-input:focus { border-color:#38B2AC; box-shadow:0 0 0 3px rgba(56,178,172,0.2); }
-  .track-btn { background:#38B2AC; color:#fff; font-weight:700; border:none; border-radius:10px; padding:14px 28px; cursor:pointer; font-size:0.95rem; transition: background 0.2s; }
-  .track-btn:hover { background:#2C9A94; }
-  .track-btn:disabled { opacity:0.6; cursor:not-allowed; }
+  .track-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #2DD4BF;
+    background: rgba(45,212,191,0.1);
+    border: 1px solid rgba(45,212,191,0.25);
+    padding: 5px 14px;
+    border-radius: 9999px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    margin-bottom: 18px;
+  }
 
-  .result-card { max-width:720px; margin: 0 auto 0; background:#fff; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.35); padding:36px; position:relative; z-index:2; }
-  .status-badge { display:inline-block; padding:6px 16px; border-radius:9999px; font-size:0.8rem; font-weight:700; letter-spacing:0.03em; }
-  .status-pending { background:#FEF3C7; color:#92400E; }
-  .status-progress { background:#DBEAFE; color:#1E3A8A; }
-  .status-completed { background:#D1FAE5; color:#065F46; }
-  .status-hold { background:#FEE2E2; color:#991B1B; }
+  .track-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.22;
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+  }
 
-  .track-msg { text-align:center; color:#B2F5EA; font-size:0.95rem; margin-top:16px; position:relative; z-index:1; }
-  .track-error { color:#FCA5A5; }
+  .track-sub {
+    font-size: clamp(0.88rem, 2vw, 1.05rem);
+    color: #94A3B8;
+    margin: 0 auto 32px;
+    max-width: 520px;
+    line-height: 1.5;
+  }
+
+  .track-form-wrap {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .track-form {
+    display: flex;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    padding: 8px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+  }
+
+  .track-input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #fff;
+    border-radius: 8px;
+    padding: 13px 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s;
+  }
+  .track-input::placeholder {
+    color: #64748B;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .track-input:focus {
+    border-color: rgba(45,212,191,0.5);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .track-btn {
+    background: #2DD4BF;
+    color: #060C18;
+    font-weight: 800;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 26px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(45,212,191,0.3);
+  }
+  .track-btn:hover:not(:disabled) {
+    background: #14B8A6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(45,212,191,0.45);
+  }
+  .track-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .result-wrap {
+    position: relative;
+    z-index: 2;
+    padding: 0 16px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .result-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    padding: 36px;
+    position: relative;
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F1F5F9;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .status-pending   { background: #FEF3C7; color: #92400E; }
+  .status-progress  { background: #DBEAFE; color: #1E3A8A; }
+  .status-completed { background: #DCFCE7; color: #166534; }
+  .status-hold      { background: #FEE2E2; color: #991B1B; }
+
+  .track-msg {
+    text-align: center;
+    color: #99F6E4;
+    font-size: 0.92rem;
+    margin-top: 18px;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+  }
+  .track-error {
+    color: #FCA5A5;
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.25);
+    padding: 10px 16px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  @media (max-width: 640px) {
+    .track-hero-inner {
+      padding: 48px 16px 40px;
+    }
+    .track-form {
+      flex-direction: column;
+      padding: 8px;
+      gap: 8px;
+    }
+    .track-input {
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+    .track-btn {
+      width: 100%;
+      padding: 13px;
+    }
+    .result-card {
+      padding: 22px 18px;
+      border-radius: 18px;
+    }
+    .result-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
 </style>
 
-<!-- is:global — applied to elements created dynamically by client-side JS
-     (innerHTML), so Astro's scoped CSS can't reach them otherwise. -->
 <style is:global>
   .steps-list {
     margin-top: 32px;
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
   }
+
   .step-item {
     flex: 1;
     display: flex;
@@ -60,94 +249,165 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     text-align: center;
     position: relative;
-    padding: 0 4px;
+    padding: 0 6px;
   }
+
+  /* Connector line on desktop */
   .step-item:not(:last-child)::after {
     content: "";
     position: absolute;
-    top: 15px;
+    top: 18px;
     left: 50%;
     width: 100%;
-    height: 2px;
+    height: 3px;
     background: #E2E8F0;
     z-index: 0;
+    transition: background 0.3s;
   }
   .step-item.step-done:not(:last-child)::after {
-    background: #38B2AC;
+    background: #0D9488;
   }
 
   .step-dot {
     position: relative;
     z-index: 1;
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 800;
     flex-shrink: 0;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.2s;
   }
-  .step-done .step-dot { background: #38B2AC; color: #fff; }
-  .step-current .step-dot { background: #1A202C; color: #fff; box-shadow: 0 0 0 4px rgba(56,178,172,0.25); }
-  .step-upcoming .step-dot { background: #E2E8F0; color: #94A3B8; }
 
-  .step-label { font-weight: 600; color: #1A202C; font-size: 0.9rem; line-height: 1.3; }
+  .step-done .step-dot {
+    background: #0D9488;
+    color: #fff;
+  }
+  .step-current .step-dot {
+    background: #0F172A;
+    color: #2DD4BF;
+    box-shadow: 0 0 0 4px rgba(45,212,191,0.3);
+    animation: pulseDot 2s infinite;
+  }
+  .step-upcoming .step-dot {
+    background: #F1F5F9;
+    color: #94A3B8;
+    border-color: #E2E8F0;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(45,212,191,0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(45,212,191,0.1); }
+  }
+
+  .step-label {
+    font-weight: 600;
+    color: #1E293B;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    word-break: break-word;
+  }
   .step-upcoming .step-label { color: #94A3B8; font-weight: 500; }
-  .step-current .step-label { color: #1A202C; font-weight: 800; }
+  .step-current .step-label { color: #0F172A; font-weight: 800; }
 
+  /* Mobile / Tablet vertical stepper */
   @media (max-width: 640px) {
-    .steps-list { flex-direction: column; }
+    .steps-list {
+      flex-direction: column;
+      margin-top: 24px;
+      padding-left: 6px;
+    }
     .step-item {
       flex-direction: row;
       align-items: flex-start;
       text-align: left;
       width: 100%;
-      padding: 0 0 28px 0;
+      padding: 0 0 24px 0;
     }
-    .step-item:last-child { padding-bottom: 0; }
+    .step-item:last-child {
+      padding-bottom: 0;
+    }
     .step-item:not(:last-child)::after {
-      top: 32px;
-      left: 15px;
-      width: 2px;
-      height: calc(100% - 4px);
+      top: 36px;
+      left: 17px;
+      width: 3px;
+      height: calc(100% - 10px);
     }
-    .step-dot { margin-bottom: 0; margin-right: 16px; border: none; }
-    .step-label { padding-top: 5px; }
+    .step-dot {
+      width: 34px;
+      height: 34px;
+      font-size: 0.78rem;
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
+    .step-label {
+      padding-top: 6px;
+      font-size: 0.88rem;
+    }
   }
 </style>
 
 <section class="track-page">
   <div class="track-hero-inner">
-    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;font-size:0.75rem;margin:0 0 14px;">Track Your Document</p>
-    <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 26px;">Enter your tracking ID to see live status</h1>
-    <form id="trackForm" class="track-form">
-      <input id="trackingIdInput" class="track-input" type="text" placeholder="e.g. IDX-2026-00482" autocomplete="off" required />
-      <button type="submit" id="trackBtn" class="track-btn">Track</button>
-    </form>
+    <div class="track-badge-pill">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      Live Tracking
+    </div>
+    <h1 class="track-title">Track Your Document Status</h1>
+    <p class="track-sub">Enter your unique tracking reference number to see real-time updates and milestone progress.</p>
+    
+    <div class="track-form-wrap">
+      <form id="trackForm" class="track-form">
+        <input id="trackingIdInput" class="track-input" type="text" placeholder="e.g. IDX-2026-00482" autocomplete="off" spellcheck="false" required />
+        <button type="submit" id="trackBtn" class="track-btn">
+          <span>Track</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
     <p id="trackMsg" class="track-msg"></p>
   </div>
 
-  <div style="position:relative;z-index:1;padding:0 24px;">
+  <div class="result-wrap">
     <div id="resultCard" class="result-card" style="display:none;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+      <div class="result-header">
         <div>
-          <p style="color:#94A3B8;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 4px;">Document Type</p>
-          <h2 id="resultDocType" style="font-size:1.4rem;font-weight:800;color:#1A202C;margin:0;"></h2>
+          <p style="color:#64748B;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 4px;">Document Type</p>
+          <h2 id="resultDocType" style="font-size:clamp(1.2rem, 3vw, 1.5rem);font-weight:800;color:#0F172A;margin:0;"></h2>
         </div>
         <span id="resultStatus" class="status-badge"></span>
       </div>
-      <p style="color:#4B5563;font-size:0.9rem;margin:14px 0 0;">Tracking ID: <strong id="resultTrackingId" style="color:#1A202C;"></strong></p>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:14px;padding:10px 14px;background:#F8FAFC;border-radius:10px;border:1px solid #E2E8F0;">
+        <span style="color:#64748B;font-size:0.84rem;font-weight:500;">Reference ID:</span>
+        <strong id="resultTrackingId" style="color:#0F172A;font-family:monospace;font-size:0.95rem;"></strong>
+      </div>
+
       <div id="resultSteps" class="steps-list"></div>
-      <p id="resultRemarks" style="color:#4B5563;font-size:0.92rem;margin-top:24px;display:none;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:14px 16px;"></p>
+
+      <div id="resultRemarksWrap" style="margin-top:24px;display:none;">
+        <div style="background:#F0FDFA;border:1px solid #99F6E4;border-radius:12px;padding:14px 16px;">
+          <p style="color:#0D9488;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 4px;">Status Notes / Remarks</p>
+          <p id="resultRemarks" style="color:#134E4A;font-size:0.9rem;line-height:1.5;margin:0;"></p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<script define:vars={{ STRAPI_URL: import.meta.env.STRAPI_URL }}>
+<script define:vars={{ TRACKING_API_URL: trackingApiUrl }}>
   const form = document.getElementById('trackForm');
   const input = document.getElementById('trackingIdInput');
   const btn = document.getElementById('trackBtn');
@@ -155,13 +415,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   const card = document.getElementById('resultCard');
 
   const statusMeta = {
-    'Pending': { cls: 'status-pending', label: 'Pending' },
+    'Pending':     { cls: 'status-pending', label: 'Pending' },
     'In Progress': { cls: 'status-progress', label: 'In Progress' },
-    'Completed': { cls: 'status-completed', label: 'Completed' },
-    'On Hold': { cls: 'status-hold', label: 'On Hold' },
+    'Completed':   { cls: 'status-completed', label: 'Completed' },
+    'On Hold':     { cls: 'status-hold', label: 'On Hold' },
   };
 
   function renderSteps(steps, currentOrder, isCompleted) {
+    if (!steps || !steps.length) {
+      return '<div style="color:#64748B;font-size:0.88rem;padding:12px 0;">No predefined steps for this document type.</div>';
+    }
     const sorted = [...steps].sort((a, b) => a.order - b.order);
     return sorted.map((s, i) => {
       let state = 'upcoming';
@@ -178,20 +441,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const trackingId = input.value.trim();
+    const trackingId = input.value.trim().toUpperCase();
     if (!trackingId) return;
 
     btn.disabled = true;
-    btn.textContent = 'Searching...';
+    btn.innerHTML = '<span>Searching...</span>';
     msg.textContent = '';
     msg.className = 'track-msg';
     card.style.display = 'none';
 
     try {
-      const res = await fetch(`${STRAPI_URL}/api/track/${encodeURIComponent(trackingId)}`);
+      const res = await fetch(`${TRACKING_API_URL}/api/track/${encodeURIComponent(trackingId)}`);
       if (res.status === 404) {
-        msg.textContent = 'No record found for this tracking ID. Please check and try again.';
-        msg.className = 'track-msg track-error';
+        msg.innerHTML = '<span class="track-error">No record found for tracking ID "<strong>' + trackingId + '</strong>". Please check and try again.</span>';
         return;
       }
       if (!res.ok) throw new Error('Request failed');
@@ -200,7 +462,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const status = data.trackingStatus || 'Pending';
       const meta = statusMeta[status] || statusMeta['Pending'];
       const docType = data.document_type || data.documentType || {};
-      const steps = docType.steps || [];
+      const steps = docType.stepEntries || [];
+      const currentOrder = data.current_step?.order || 1;
       const isCompleted = status === 'Completed';
 
       document.getElementById('resultDocType').textContent = docType.name || 'Document';
@@ -208,23 +471,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const statusEl = document.getElementById('resultStatus');
       statusEl.textContent = meta.label;
       statusEl.className = `status-badge ${meta.cls}`;
-      document.getElementById('resultSteps').innerHTML = renderSteps(steps, data.currentStepOrder || 1, isCompleted);
+      document.getElementById('resultSteps').innerHTML = renderSteps(steps, currentOrder, isCompleted);
 
+      const remarksWrap = document.getElementById('resultRemarksWrap');
       const remarksEl = document.getElementById('resultRemarks');
       if (data.remarks) {
         remarksEl.textContent = data.remarks;
-        remarksEl.style.display = 'block';
+        remarksWrap.style.display = 'block';
       } else {
-        remarksEl.style.display = 'none';
+        remarksWrap.style.display = 'none';
       }
 
       card.style.display = 'block';
     } catch (err) {
-      msg.textContent = 'Something went wrong. Please try again in a moment.';
-      msg.className = 'track-msg track-error';
+      msg.innerHTML = '<span class="track-error">Unable to connect to the tracking server. Please try again in a moment.</span>';
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Track';
+      btn.innerHTML = '<span>Track</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
     }
   });
 </script>

@@ -1,0 +1,103 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+const apiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
+---
+
+<AdminLayout title="Dashboard" currentPage="dashboard">
+  <!-- Stats Grid -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card"><div class="stat-value stat-teal" id="s-total">—</div><div class="stat-label">Total Records</div></div>
+    <div class="stat-card"><div class="stat-value stat-yellow" id="s-pending">—</div><div class="stat-label">Pending</div></div>
+    <div class="stat-card"><div class="stat-value stat-blue" id="s-progress">—</div><div class="stat-label">In Progress</div></div>
+    <div class="stat-card"><div class="stat-value stat-green" id="s-completed">—</div><div class="stat-label">Completed</div></div>
+    <div class="stat-card"><div class="stat-value stat-red" id="s-hold">—</div><div class="stat-label">On Hold</div></div>
+    <div class="stat-card"><div class="stat-value" id="s-doctypes" style="color:#C084FC;">—</div><div class="stat-label">Doc Types</div></div>
+  </div>
+
+  <!-- Recent Records -->
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div class="card-header" style="padding:20px 24px 14px;margin-bottom:0;border-bottom:1px solid var(--border);">
+      <div>
+        <span class="card-title">Recent Tracking Records</span>
+        <p style="font-size:0.75rem;color:var(--muted);margin-top:2px;">Latest document submissions & step updates</p>
+      </div>
+      <a href="/admin/tracking" class="btn btn-primary btn-sm">View All Records →</a>
+    </div>
+    <div class="table-wrap" style="border:none;border-radius:0;">
+      <table>
+        <thead>
+          <tr>
+            <th>Tracking ID</th>
+            <th>Document Type</th>
+            <th>Status</th>
+            <th>Current Step</th>
+            <th>Last Updated</th>
+          </tr>
+        </thead>
+        <tbody id="recentBody">
+          <tr><td colspan="5" class="empty"><span class="loading"></span> Loading records...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</AdminLayout>
+
+<script define:vars={{ API: apiUrl }}>
+  const statusBadge = {
+    'Pending':     '<span class="badge badge-pending">Pending</span>',
+    'In Progress': '<span class="badge badge-progress">In Progress</span>',
+    'Completed':   '<span class="badge badge-completed">Completed</span>',
+    'On Hold':     '<span class="badge badge-hold">On Hold</span>',
+  };
+
+  function fmtDate(d) {
+    if (!d) return '—';
+    return new Date(d).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  }
+
+  async function loadDashboard() {
+    try {
+      const [statsRes, trackRes] = await Promise.all([
+        window.apiFetch(`${API}/api/admin/stats`),
+        window.apiFetch(`${API}/api/admin/tracking?limit=8`),
+      ]);
+
+      if (statsRes.ok) {
+        const s = await statsRes.json();
+        document.getElementById('s-total').textContent     = s.total ?? 0;
+        document.getElementById('s-pending').textContent   = s.pending ?? 0;
+        document.getElementById('s-progress').textContent  = s.in_progress ?? 0;
+        document.getElementById('s-completed').textContent = s.completed ?? 0;
+        document.getElementById('s-hold').textContent      = s.on_hold ?? 0;
+        document.getElementById('s-doctypes').textContent  = s.document_types ?? 0;
+      }
+
+      if (trackRes.ok) {
+        const { data } = await trackRes.json();
+        const tbody = document.getElementById('recentBody');
+        if (!data || !data.length) {
+          tbody.innerHTML = '<tr><td colspan="5" class="empty">No tracking records yet. <a href="/admin/tracking" style="color:var(--primary);font-weight:600;">Create your first record →</a></td></tr>';
+          return;
+        }
+        tbody.innerHTML = data.map(r => `
+          <tr>
+            <td><strong style="color:var(--primary);font-family:monospace;font-size:0.86rem;letter-spacing:0.03em;">${r.tracking_id}</strong></td>
+            <td style="font-weight:600;">${r.doc_type_name || '—'}</td>
+            <td>${statusBadge[r.status] || r.status}</td>
+            <td style="color:var(--secondary);font-size:0.82rem;">${r.current_step_label ? `<span style="display:inline-block;padding:2px 6px;background:rgba(255,255,255,0.06);border-radius:4px;margin-right:6px;font-weight:700;color:var(--primary)">Step ${r.current_step_order}</span>${r.current_step_label}` : '<span style="color:var(--muted)">No step set</span>'}</td>
+            <td style="color:var(--muted);font-size:0.78rem;">${fmtDate(r.updated_at)}</td>
+          </tr>`).join('');
+      }
+    } catch(err) {
+      console.error(err);
+      const tbody = document.getElementById('recentBody');
+      if (tbody) tbody.innerHTML = '<tr><td colspan="5" class="empty" style="color:var(--danger)">Unable to load dashboard data. Check backend connection.</td></tr>';
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadDashboard);
+  } else {
+    loadDashboard();
+  }
+</script>

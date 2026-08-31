@@ -1,0 +1,58 @@
+# ============================================================
+#  docker-compose.yml — Tracking API + Isolated PostgreSQL
+#  Safe to run on VPS alongside Strapi and other services!
+# ============================================================
+services:
+  tracking_db:
+    image: postgres:16-alpine
+    container_name: indexauh_tracking_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-indexauh_tracking}
+      POSTGRES_USER: ${DB_USER:-indexauh_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-jisil123}
+    volumes:
+      - tracking_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-indexauh_user} -d ${DB_NAME:-indexauh_tracking}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - tracking_network
+
+  tracking_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: indexauh_tracking_api
+    restart: unless-stopped
+    ports:
+      # Exposes 3001 on the host for NGINX reverse proxy
+      - "3001:3001"
+    depends_on:
+      tracking_db:
+        condition: service_healthy
+    environment:
+      PORT: 3001
+      DB_HOST: tracking_db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-indexauh_tracking}
+      DB_USER: ${DB_USER:-indexauh_user}
+      DB_PASSWORD: ${DB_PASSWORD:-jisil123}
+      DB_SSL: "false"
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:-$2a$12$r9XQcrqlkDWrJoB2LLRI3Ofl3HBuebkxaPQniclN2Q7v73dE1jJ9O}
+      JWT_SECRET: ${JWT_SECRET:-8f4a3c1e9b2d5f70a1c3e5a7b9d1f3e58f4a3c1e9b2d5f70a1c3e5a7b9d1f3e5}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-https://indexauh.com,https://www.indexauh.com,http://localhost:4321,http://localhost:4322}
+    networks:
+      - tracking_network
+
+networks:
+  tracking_network:
+    driver: bridge
+
+volumes:
+  tracking_postgres_data:
+    name: indexauh_tracking_pgdata

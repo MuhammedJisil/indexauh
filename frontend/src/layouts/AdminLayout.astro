@@ -1,0 +1,492 @@
+---
+/**
+ * AdminLayout.astro — Shared layout for all protected admin pages.
+ * Responsive for Mobile, Tablet, and Desktop screens.
+ */
+interface Props {
+  title: string;
+  currentPage: 'dashboard' | 'documents' | 'tracking';
+}
+const { title, currentPage } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>{title} — Index Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" rel="stylesheet" />
+
+  <script is:inline>
+    // Synchronous auth guard & API helpers
+    (function() {
+      const token = localStorage.getItem('admin_token');
+      if (!token && window.location.pathname !== '/admin') {
+        window.location.replace('/admin');
+      }
+    })();
+
+    window.showToast = function(msg, type = 'ok') {
+      const el = document.getElementById('toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.className = `toast show ${type}`;
+      setTimeout(() => { el.className = 'toast'; }, 3200);
+    };
+
+    window.apiFetch = async function(url, opts = {}) {
+      const token = localStorage.getItem('admin_token');
+      const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      const res = await fetch(url, { ...opts, headers });
+      if (res.status === 401) {
+        localStorage.removeItem('admin_token');
+        window.location.replace('/admin');
+        throw new Error('Unauthenticated');
+      }
+      return res;
+    };
+  </script>
+
+  <style is:global>
+    :root {
+      --bg:        #060C18;
+      --surface:   #0D1424;
+      --card:      #111827;
+      --border:    rgba(255,255,255,0.08);
+      --primary:   #2DD4BF;
+      --primary-d: #0D9488;
+      --text:      #F1F5F9;
+      --muted:     #64748B;
+      --secondary: #94A3B8;
+      --success:   #22C55E;
+      --warning:   #F59E0B;
+      --danger:    #EF4444;
+      --info:      #60A5FA;
+      --sidebar-w: 240px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing:antialiased; }
+    body {
+      font-family:'Inter',system-ui,sans-serif;
+      background:var(--bg) !important;
+      color:var(--text) !important;
+      min-height:100vh;
+      display:flex;
+      overflow-x:hidden;
+    }
+
+    /* ── Sidebar ──────────────────────────────────── */
+    .sidebar {
+      width:var(--sidebar-w);
+      background:var(--surface);
+      border-right:1px solid var(--border);
+      position:fixed; top:0; left:0; height:100vh;
+      display:flex; flex-direction:column;
+      z-index:300;
+      transition:transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sidebar-brand {
+      padding:20px 18px;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .sidebar-brand-name {
+      font-size:1.05rem; font-weight:800; color:var(--primary);
+      letter-spacing:-0.02em;
+    }
+    .sidebar-brand-sub {
+      font-size:0.68rem; color:var(--muted); margin-top:2px;
+      text-transform:uppercase; letter-spacing:0.1em;
+    }
+    .sidebar-close-btn {
+      display:none;
+      background:none; border:none; color:var(--muted);
+      cursor:pointer; padding:4px;
+    }
+    .sidebar-close-btn:hover { color:var(--text); }
+
+    .sidebar-nav {
+      flex:1; padding:16px 12px;
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .nav-link {
+      display:flex; align-items:center; gap:12px;
+      padding:11px 14px; border-radius:10px;
+      color:var(--secondary); text-decoration:none;
+      font-size:0.88rem; font-weight:500;
+      transition:all 0.15s ease;
+    }
+    .nav-link:hover { background:rgba(255,255,255,0.05); color:var(--text); }
+    .nav-link.active { background:rgba(45,212,191,0.12); color:var(--primary); font-weight:700; }
+    .nav-icon { width:18px; height:18px; flex-shrink:0; }
+
+    .sidebar-footer {
+      padding:16px 12px;
+      border-top:1px solid var(--border);
+    }
+    .logout-btn {
+      display:flex; align-items:center; gap:12px;
+      padding:11px 14px; border-radius:10px;
+      background:none; border:none; cursor:pointer;
+      color:var(--muted); font-size:0.88rem; font-weight:500;
+      width:100%; font-family:inherit; transition:all 0.15s;
+    }
+    .logout-btn:hover { background:rgba(239,68,68,0.1); color:var(--danger); }
+
+    .sidebar-backdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,0.65); backdrop-filter:blur(4px);
+      z-index:290; opacity:0; pointer-events:none; transition:opacity 0.25s;
+    }
+    .sidebar-backdrop.show { opacity:1; pointer-events:all; }
+
+    /* ── Main Area ────────────────────────────────── */
+    .main {
+      margin-left:var(--sidebar-w);
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      min-width:0;
+      width:calc(100% - var(--sidebar-w));
+    }
+    .topbar {
+      background:var(--surface); border-bottom:1px solid var(--border);
+      padding:14px 28px;
+      display:flex; align-items:center; justify-content:space-between;
+      position:sticky; top:0; z-index:100;
+    }
+    .topbar-left { display:flex; align-items:center; gap:12px; }
+    .topbar-title { font-size:1.15rem; font-weight:800; letter-spacing:-0.01em; }
+    .topbar-admin { font-size:0.82rem; color:var(--muted); display:flex; align-items:center; gap:8px; }
+    .topbar-admin-dot { width:8px; height:8px; border-radius:50%; background:var(--success); display:inline-block; }
+
+    .menu-toggle-btn {
+      display:none;
+      background:rgba(255,255,255,0.06); border:1px solid var(--border);
+      color:var(--text); border-radius:8px; padding:7px;
+      cursor:pointer; line-height:1;
+    }
+    .menu-toggle-btn:hover { background:rgba(255,255,255,0.1); }
+
+    .content { padding:28px; flex:1; min-width:0; }
+
+    /* ── Cards ────────────────────────────────────── */
+    .card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.25);
+    }
+    .card-header {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:20px; flex-wrap:wrap; gap:10px;
+    }
+    .card-title { font-size:1rem; font-weight:800; }
+
+    /* ── Stats grid ───────────────────────────────── */
+    .stats-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));
+      gap:14px;
+      margin-bottom:24px;
+    }
+    .stat-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:14px; padding:18px 16px;
+      transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .stat-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.35); }
+    .stat-value { font-size:1.85rem; font-weight:800; letter-spacing:-0.03em; line-height:1; margin-bottom:6px; }
+    .stat-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; font-weight:700; }
+    .stat-teal   { color:var(--primary); }
+    .stat-yellow { color:var(--warning); }
+    .stat-blue   { color:var(--info); }
+    .stat-green  { color:var(--success); }
+    .stat-red    { color:var(--danger); }
+
+    /* ── Table Responsive ─────────────────────────── */
+    .table-wrap {
+      overflow-x:auto;
+      border-radius:12px;
+      border:1px solid var(--border);
+      -webkit-overflow-scrolling:touch;
+    }
+    table { width:100%; border-collapse:collapse; min-width:600px; }
+    thead { background:rgba(255,255,255,0.03); }
+    th {
+      padding:12px 14px; text-align:left;
+      font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em;
+      color:var(--muted); font-weight:700;
+      border-bottom:1px solid var(--border);
+      white-space:nowrap;
+    }
+    td {
+      padding:13px 14px; font-size:0.875rem;
+      border-bottom:1px solid var(--border);
+      vertical-align:middle;
+    }
+    tr:last-child td { border-bottom:none; }
+    tbody tr { transition:background 0.15s; }
+    tbody tr:hover { background:rgba(255,255,255,0.025); }
+
+    /* ── Badges ───────────────────────────────────── */
+    .badge {
+      display:inline-flex; align-items:center;
+      padding:3px 10px; border-radius:9999px;
+      font-size:0.7rem; font-weight:800;
+      text-transform:uppercase; letter-spacing:0.05em;
+      white-space:nowrap;
+    }
+    .badge-pending   { background:rgba(245,158,11,0.15); color:var(--warning); }
+    .badge-progress  { background:rgba(96,165,250,0.15); color:var(--info); }
+    .badge-completed { background:rgba(34,197,94,0.15);  color:var(--success); }
+    .badge-hold      { background:rgba(239,68,68,0.15);  color:var(--danger); }
+
+    /* ── Buttons ──────────────────────────────────── */
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:6px; padding:9px 18px; border-radius:9px;
+      font-size:0.86rem; font-weight:700; border:none;
+      cursor:pointer; transition:all 0.15s; font-family:inherit;
+      white-space:nowrap; text-decoration:none;
+    }
+    .btn-primary { background:var(--primary); color:#060C18; }
+    .btn-primary:hover { background:#14B8A6; transform:translateY(-1px); box-shadow:0 4px 16px rgba(45,212,191,0.35); }
+    .btn-ghost { background:rgba(255,255,255,0.07); color:var(--text); }
+    .btn-ghost:hover { background:rgba(255,255,255,0.12); }
+    .btn-danger { background:rgba(239,68,68,0.14); color:var(--danger); border:1px solid rgba(239,68,68,0.25); }
+    .btn-danger:hover { background:rgba(239,68,68,0.25); }
+    .btn-sm { padding:6px 12px; font-size:0.8rem; border-radius:7px; }
+    .btn:disabled { opacity:0.45; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
+
+    /* ── Forms ────────────────────────────────────── */
+    .form-group { margin-bottom:16px; }
+    .form-label {
+      display:block; font-size:0.75rem; font-weight:700;
+      color:var(--secondary); margin-bottom:6px;
+      text-transform:uppercase; letter-spacing:0.06em;
+    }
+    .form-control {
+      width:100%; background:rgba(255,255,255,0.05);
+      border:1px solid var(--border); border-radius:9px;
+      padding:11px 14px; color:var(--text); font-size:0.9rem;
+      font-family:inherit; outline:none; transition:border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-control:focus {
+      border-color:var(--primary);
+      box-shadow:0 0 0 3px rgba(45,212,191,0.15);
+      background:rgba(255,255,255,0.08);
+    }
+    .form-control::placeholder { color:var(--muted); }
+    select.form-control option { background:#1E293B; color:var(--text); }
+    textarea.form-control { resize:vertical; min-height:85px; }
+
+    /* ── Modal ────────────────────────────────────── */
+    .modal-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.72); backdrop-filter:blur(6px);
+      display:none; align-items:center; justify-content:center;
+      z-index:1000; padding:16px;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal-box {
+      background:#0F172A; border:1px solid rgba(255,255,255,0.12); border-radius:20px;
+      padding:28px 24px; width:100%; max-width:480px; max-height:90vh; overflow-y:auto;
+      box-shadow:0 24px 60px rgba(0,0,0,0.7);
+    }
+    .modal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .modal-title { font-size:1.1rem; font-weight:800; }
+    .modal-close { background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer; line-height:1; }
+    .modal-close:hover { color:var(--text); }
+
+    /* ── Toast ────────────────────────────────────── */
+    .toast {
+      position:fixed; bottom:24px; right:24px;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:12px 20px; font-size:0.88rem; font-weight:600;
+      transform:translateY(100px); opacity:0;
+      transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      z-index:3000; max-width:calc(100vw - 48px);
+      box-shadow:0 12px 36px rgba(0,0,0,0.5);
+    }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .toast.ok  { border-color:rgba(34,197,94,0.5); color:var(--success); }
+    .toast.err { border-color:rgba(239,68,68,0.5); color:var(--danger); }
+
+    /* ── Misc ─────────────────────────────────────── */
+    .empty { text-align:center; padding:40px 16px; color:var(--muted); font-size:0.9rem; }
+    .pagination { display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-size:0.82rem; color:var(--muted); flex-wrap:wrap; gap:10px; }
+    .pagination-btns { display:flex; gap:8px; }
+    .loading { display:inline-block; width:18px; height:18px; border:2px solid rgba(255,255,255,0.1); border-top-color:var(--primary); border-radius:50%; animation:spin 0.55s linear infinite; vertical-align:middle; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* ── Mobile & Tablet Responsiveness ──────────── */
+    @media (max-width: 860px) {
+      .sidebar {
+        transform:translateX(-100%);
+        box-shadow:8px 0 32px rgba(0,0,0,0.6);
+      }
+      .sidebar.open {
+        transform:translateX(0);
+      }
+      .sidebar-close-btn {
+        display:block;
+      }
+      .main {
+        margin-left:0;
+        width:100%;
+      }
+      .menu-toggle-btn {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      }
+      .topbar {
+        padding:12px 16px;
+      }
+      .content {
+        padding:18px 14px;
+      }
+      .stats-grid {
+        grid-template-columns:repeat(2, 1fr);
+        gap:10px;
+      }
+      .stat-card {
+        padding:14px 12px;
+      }
+      .stat-value {
+        font-size:1.6rem;
+      }
+      .modal-box {
+        padding:22px 18px;
+        border-radius:16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .card {
+        padding:18px 14px;
+        border-radius:14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Backdrop for mobile drawer -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div>
+      <div class="sidebar-brand-name">Index Office</div>
+      <div class="sidebar-brand-sub">Admin Panel</div>
+    </div>
+    <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="/admin/dashboard" class={`nav-link${currentPage === 'dashboard' ? ' active' : ''}`}>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+      Dashboard
+    </a>
+    <a href="/admin/documents" class={`nav-link${currentPage === 'documents' ? ' active' : ''}`}>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
+      </svg>
+      Document Types
+    </a>
+    <a href="/admin/tracking" class={`nav-link${currentPage === 'tracking' ? ' active' : ''}`}>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+      Tracking Records
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" id="logoutBtn">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+        <polyline points="16 17 21 12 16 7"/>
+        <line x1="21" y1="12" x2="9" y2="12"/>
+      </svg>
+      Logout
+    </button>
+  </div>
+</aside>
+
+<!-- Main Container -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Open Navigation">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <span class="topbar-title">{title}</span>
+    </div>
+    <span class="topbar-admin">
+      <span class="topbar-admin-dot"></span>
+      Admin
+    </span>
+  </div>
+  <div class="content">
+    <slot />
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script is:inline>
+  // Mobile drawer controls
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+  const toggleBtn = document.getElementById('menuToggleBtn');
+  const closeBtn = document.getElementById('sidebarCloseBtn');
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    backdrop.classList.add('show');
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('show');
+  }
+
+  toggleBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  backdrop?.addEventListener('click', closeSidebar);
+
+  document.getElementById('logoutBtn')?.addEventListener('click', () => {
+    localStorage.removeItem('admin_token');
+    window.location.replace('/admin');
+  });
+</script>
+
+</body>
+</html>

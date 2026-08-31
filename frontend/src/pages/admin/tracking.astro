@@ -1,0 +1,479 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+const apiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
+---
+
+<AdminLayout title="Tracking Records" currentPage="tracking">
+
+<style is:global>
+  .tracking-id-mono {
+    font-family: monospace;
+    color: var(--primary);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .action-btns { display: flex; gap: 6px; flex-wrap: nowrap; }
+  .step-list-preview { font-size: 0.82rem; color: var(--secondary); }
+
+  .filters-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .filter-search {
+    flex: 1 1 200px;
+    min-width: 160px;
+  }
+  .filter-select {
+    flex: 0 1 170px;
+    min-width: 140px;
+  }
+  .filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  .edit-panel {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: 420px;
+    max-width: 100vw;
+    background: #0D1424;
+    border-left: 1px solid var(--border);
+    z-index: 500;
+    transform: translateX(100%);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: -16px 0 48px rgba(0,0,0,0.6);
+  }
+  .edit-panel.open { transform: translateX(0); }
+  .edit-panel-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: #0D1424;
+    z-index: 2;
+  }
+  .edit-panel-title { font-size: 1.05rem; font-weight: 800; }
+  .edit-panel-close { background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; line-height: 1; }
+  .edit-panel-close:hover { color: var(--text); }
+  .edit-panel-body { padding: 24px; flex: 1; }
+  .edit-tracking-id {
+    font-family: monospace;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: rgba(45,212,191,0.08);
+    border: 1px solid rgba(45,212,191,0.2);
+    border-radius: 12px;
+    word-break: break-all;
+  }
+
+  .backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    z-index: 490;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .backdrop.show { opacity: 1; pointer-events: all; }
+
+  @media (max-width: 640px) {
+    .filter-actions {
+      width: 100%;
+      justify-content: space-between;
+      margin-left: 0;
+    }
+    .edit-panel {
+      width: 100%;
+    }
+    .edit-panel-body {
+      padding: 18px 16px;
+    }
+  }
+</style>
+
+<!-- Filters & Actions Header -->
+<div class="filters-bar">
+  <div class="filter-search">
+    <input id="searchInput" class="form-control" type="text" placeholder="Search reference ID..." />
+  </div>
+  <div class="filter-select">
+    <select id="statusFilter" class="form-control">
+      <option value="">All Statuses</option>
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option>Completed</option>
+      <option>On Hold</option>
+    </select>
+  </div>
+  <div class="filter-actions">
+    <button class="btn btn-ghost btn-sm" id="refreshBtn">↻ Refresh</button>
+    <button class="btn btn-primary btn-sm" id="createBtn">+ New Record</button>
+  </div>
+</div>
+
+<!-- Table Card -->
+<div class="card" style="padding:0;overflow:hidden;">
+  <div class="table-wrap" style="border:none;border-radius:0;">
+    <table>
+      <thead>
+        <tr>
+          <th>Tracking ID</th>
+          <th>Document Type</th>
+          <th>Current Milestone</th>
+          <th>Status</th>
+          <th>Last Updated</th>
+          <th style="text-align:right;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="trackBody">
+        <tr><td colspan="6" class="empty"><span class="loading"></span> Loading records...</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination" id="paginationRow">
+    <span id="paginationInfo">Showing records...</span>
+    <div class="pagination-btns">
+      <button class="btn btn-ghost btn-sm" id="prevBtn" disabled>← Previous</button>
+      <button class="btn btn-ghost btn-sm" id="nextBtn" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit / Update Slide Panel -->
+<div class="backdrop" id="backdrop"></div>
+<div class="edit-panel" id="editPanel">
+  <div class="edit-panel-header">
+    <div>
+      <span class="edit-panel-title">Update Tracking Record</span>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:2px;">Advance step or modify status</p>
+    </div>
+    <button class="edit-panel-close" id="closeEditPanel" aria-label="Close Panel">×</button>
+  </div>
+  <div class="edit-panel-body">
+    <div class="edit-tracking-id" id="editTrackingId">—</div>
+    <form id="editForm">
+      <input type="hidden" id="editRecordId" />
+      <div class="form-group">
+        <label class="form-label">Current Step / Milestone</label>
+        <select id="editStep" class="form-control">
+          <option value="">— No milestone step —</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tracking Status</label>
+        <select id="editStatus" class="form-control">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+          <option>On Hold</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Customer Remarks <span style="font-weight:400;text-transform:none;font-size:0.72rem;color:var(--muted);">(visible on public tracking page)</span></label>
+        <textarea id="editRemarks" class="form-control" placeholder="e.g. Document submitted to Ministry, awaiting attestation seal."></textarea>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px;">
+        <button type="submit" class="btn btn-primary" id="editSaveBtn" style="flex:1;">Save & Update Status</button>
+      </div>
+    </form>
+    <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);">
+      <button class="btn btn-danger" style="width:100%;" id="deleteRecordBtn">Delete This Record</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Create Record -->
+<div class="modal-overlay" id="createModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <span class="modal-title">New Tracking Entry</span>
+        <p style="font-size:0.75rem;color:var(--muted);margin-top:2px;">Register document and set initial tracking ID</p>
+      </div>
+      <button class="modal-close" id="closeCreateModal">×</button>
+    </div>
+    <form id="createForm">
+      <div class="form-group">
+        <label class="form-label">Tracking ID / Reference <span style="font-weight:400;text-transform:none;font-size:0.7rem;color:var(--muted);">(e.g. IDX-2026-00482)</span></label>
+        <input id="createTrackingId" class="form-control" type="text" placeholder="IDX-2026-XXXXX" required style="text-transform:uppercase;font-family:monospace;letter-spacing:0.04em;" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Document Type</label>
+        <select id="createDocType" class="form-control" required>
+          <option value="">Select document type...</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Initial Milestone Step <span style="font-weight:400;text-transform:none;font-size:0.7rem;color:var(--muted);">(optional)</span></label>
+        <select id="createStep" class="form-control">
+          <option value="">— Select document type first —</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Initial Status</label>
+        <select id="createStatus" class="form-control">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+          <option>On Hold</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Remarks / Customer Note <span style="font-weight:400;text-transform:none;font-size:0.7rem;color:var(--muted);">(optional)</span></label>
+        <textarea id="createRemarks" class="form-control" placeholder="Optional notes..."></textarea>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;">
+        <button type="button" class="btn btn-ghost" id="cancelCreateModal">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="createSaveBtn">Create Tracking Entry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script define:vars={{ API: apiUrl }}>
+  let currentPage   = 1;
+  let totalPages    = 1;
+  let docTypeCache  = [];
+  let currentEditId = null;
+
+  const statusBadge = (s) => ({
+    'Pending':     '<span class="badge badge-pending">Pending</span>',
+    'In Progress': '<span class="badge badge-progress">In Progress</span>',
+    'Completed':   '<span class="badge badge-completed">Completed</span>',
+    'On Hold':     '<span class="badge badge-hold">On Hold</span>',
+  }[s] || s);
+
+  function fmtDate(d) {
+    if (!d) return '—';
+    return new Date(d).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  }
+
+  async function loadRecords(page = 1) {
+    currentPage = page;
+    const search = document.getElementById('searchInput').value.trim();
+    const status = document.getElementById('statusFilter').value;
+    const params = new URLSearchParams({ page, limit:20, ...(search && { search }), ...(status && { status }) });
+
+    const tbody = document.getElementById('trackBody');
+    tbody.innerHTML = '<tr><td colspan="6" class="empty"><span class="loading"></span> Loading records...</td></tr>';
+
+    try {
+      const res  = await window.apiFetch(`${API}/api/admin/tracking?${params}`);
+      const json = await res.json();
+      const { data, pagination } = json;
+
+      totalPages = pagination ? pagination.totalPages : 1;
+      document.getElementById('paginationInfo').textContent =
+        `Showing ${data ? data.length : 0} of ${pagination ? pagination.total : 0} record${(pagination && pagination.total !== 1) ? 's' : ''}`;
+      document.getElementById('prevBtn').disabled = page <= 1;
+      document.getElementById('nextBtn').disabled = page >= totalPages;
+
+      if (!data || !data.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty">No records found. Click "+ New Record" above to add one.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.map(r => `
+        <tr>
+          <td><span class="tracking-id-mono">${r.tracking_id}</span></td>
+          <td style="font-weight:600;">${r.doc_type_name || '—'}</td>
+          <td class="step-list-preview">${r.current_step_label ? `<span style="display:inline-block;padding:2px 6px;background:rgba(255,255,255,0.06);border-radius:4px;margin-right:6px;font-weight:700;color:var(--primary)">Step ${r.current_step_order}</span>${r.current_step_label}` : '<span style="color:var(--muted)">None</span>'}</td>
+          <td>${statusBadge(r.status)}</td>
+          <td style="color:var(--muted);font-size:0.8rem;">${fmtDate(r.updated_at)}</td>
+          <td style="text-align:right;">
+            <div class="action-btns" style="justify-content:flex-end;">
+              <button class="btn btn-ghost btn-sm" onclick="openEditPanel(${r.id})">Update Step</button>
+            </div>
+          </td>
+        </tr>`).join('');
+    } catch(e) {
+      console.error(e);
+      tbody.innerHTML = '<tr><td colspan="6" class="empty" style="color:var(--danger)">Failed to load tracking records.</td></tr>';
+    }
+  }
+
+  let searchTimer;
+  document.getElementById('searchInput').addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => loadRecords(1), 300);
+  });
+  document.getElementById('statusFilter').addEventListener('change', () => loadRecords(1));
+  document.getElementById('refreshBtn').addEventListener('click', () => loadRecords(currentPage));
+  document.getElementById('prevBtn').addEventListener('click', () => loadRecords(currentPage - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => loadRecords(currentPage + 1));
+
+  async function loadDocTypes() {
+    try {
+      const res = await window.apiFetch(`${API}/api/admin/document-types`);
+      docTypeCache = await res.json();
+      const sel = document.getElementById('createDocType');
+      sel.innerHTML = '<option value="">— Select document type —</option>' +
+        docTypeCache.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+    } catch(e) { console.error(e); }
+  }
+
+  document.getElementById('createDocType').addEventListener('change', async function() {
+    const id   = this.value;
+    const ssel = document.getElementById('createStep');
+    if (!id) { ssel.innerHTML = '<option value="">— Select document type first —</option>'; return; }
+    ssel.innerHTML = '<option value="">Loading steps...</option>';
+    try {
+      const res   = await window.apiFetch(`${API}/api/admin/document-types/${id}/steps`);
+      const steps = await res.json();
+      const sorted = [...steps].sort((a,b) => a.order - b.order);
+      ssel.innerHTML = '<option value="">— No initial step —</option>' +
+        sorted.map(s => `<option value="${s.id}">Step ${s.order}: ${s.label}</option>`).join('');
+    } catch(e) { ssel.innerHTML = '<option value="">Failed to load steps</option>'; }
+  });
+
+  const createModal = document.getElementById('createModal');
+  const createForm  = document.getElementById('createForm');
+
+  document.getElementById('createBtn').onclick = () => {
+    createForm.reset();
+    document.getElementById('createStep').innerHTML = '<option value="">— Select document type first —</option>';
+    createModal.classList.add('open');
+    document.getElementById('createTrackingId').focus();
+  };
+  document.getElementById('closeCreateModal').onclick  = () => createModal.classList.remove('open');
+  document.getElementById('cancelCreateModal').onclick = () => createModal.classList.remove('open');
+  createModal.addEventListener('click', e => { if (e.target === createModal) createModal.classList.remove('open'); });
+
+  document.getElementById('createTrackingId').addEventListener('input', function() {
+    const pos = this.selectionStart;
+    this.value = this.value.toUpperCase();
+    this.setSelectionRange(pos, pos);
+  });
+
+  createForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('createSaveBtn');
+    btn.disabled = true; btn.textContent = 'Creating...';
+    const body = {
+      trackingId:     document.getElementById('createTrackingId').value.trim(),
+      documentTypeId: parseInt(document.getElementById('createDocType').value),
+      status:         document.getElementById('createStatus').value,
+      remarks:        document.getElementById('createRemarks').value.trim() || null,
+    };
+    const stepVal = document.getElementById('createStep').value;
+    if (stepVal) body.currentStepId = parseInt(stepVal);
+
+    try {
+      const res = await window.apiFetch(`${API}/api/admin/tracking`, { method:'POST', body:JSON.stringify(body) });
+      const d   = await res.json();
+      if (res.ok) {
+        window.showToast(`Record ${d.tracking_id} registered!`, 'ok');
+        createModal.classList.remove('open');
+        loadRecords(1);
+      } else {
+        window.showToast(d.error || 'Registration failed.', 'err');
+      }
+    } catch(e) { window.showToast('Server communication error.', 'err'); }
+    finally { btn.disabled = false; btn.textContent = 'Create Tracking Entry'; }
+  });
+
+  const editPanel = document.getElementById('editPanel');
+  const backdrop  = document.getElementById('backdrop');
+
+  function closeEditPanel() {
+    editPanel.classList.remove('open');
+    backdrop.classList.remove('show');
+    currentEditId = null;
+  }
+
+  document.getElementById('closeEditPanel').onclick = closeEditPanel;
+  backdrop.addEventListener('click', closeEditPanel);
+
+  window.openEditPanel = async function(id) {
+    currentEditId = id;
+    editPanel.classList.add('open');
+    backdrop.classList.add('show');
+
+    try {
+      const res  = await window.apiFetch(`${API}/api/admin/tracking/${id}`);
+      const data = await res.json();
+
+      document.getElementById('editRecordId').value         = data.id;
+      document.getElementById('editTrackingId').textContent = data.tracking_id;
+      document.getElementById('editStatus').value           = data.status;
+      document.getElementById('editRemarks').value          = data.remarks || '';
+
+      const stepSel = document.getElementById('editStep');
+      const sorted  = [...(data.steps || [])].sort((a,b) => a.order - b.order);
+      stepSel.innerHTML = '<option value="">— No milestone step selected —</option>' +
+        sorted.map(s => `<option value="${s.id}"${s.id === data.current_step_id ? ' selected':''}>Step ${s.order}: ${s.label}</option>`).join('');
+    } catch(e) { window.showToast('Failed to load record details.', 'err'); }
+  };
+
+  document.getElementById('editForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('editSaveBtn');
+    btn.disabled = true; btn.textContent = 'Saving...';
+    const id  = document.getElementById('editRecordId').value;
+    const stepVal = document.getElementById('editStep').value;
+    const body = {
+      status:  document.getElementById('editStatus').value,
+      remarks: document.getElementById('editRemarks').value.trim() || null,
+      ...(stepVal ? { currentStepId: parseInt(stepVal) } : { currentStepId: null }),
+    };
+    try {
+      const res = await window.apiFetch(`${API}/api/admin/tracking/${id}`, { method:'PATCH', body:JSON.stringify(body) });
+      const d   = await res.json();
+      if (res.ok) {
+        window.showToast('Milestone & Status updated!', 'ok');
+        closeEditPanel();
+        loadRecords(currentPage);
+      } else {
+        window.showToast(d.error || 'Update failed.', 'err');
+      }
+    } catch(e) { window.showToast('Server communication error.', 'err'); }
+    finally { btn.disabled = false; btn.textContent = 'Save & Update Status'; }
+  });
+
+  document.getElementById('deleteRecordBtn').addEventListener('click', async () => {
+    const id      = document.getElementById('editRecordId').value;
+    const trackId = document.getElementById('editTrackingId').textContent;
+    if (!confirm(`Delete tracking record "${trackId}"? This cannot be undone.`)) return;
+    try {
+      const res = await window.apiFetch(`${API}/api/admin/tracking/${id}`, { method:'DELETE' });
+      if (res.ok) {
+        window.showToast('Record deleted.', 'ok');
+        closeEditPanel();
+        loadRecords(currentPage);
+      } else {
+        const d = await res.json();
+        window.showToast(d.error || 'Delete failed.', 'err');
+      }
+    } catch(e) { window.showToast('Server communication error.', 'err'); }
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDocTypes();
+      loadRecords(1);
+    });
+  } else {
+    loadDocTypes();
+    loadRecords(1);
+  }
+</script>
+
+</AdminLayout>
