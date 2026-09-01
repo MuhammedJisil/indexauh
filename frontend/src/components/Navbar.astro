@@ -171,10 +171,22 @@
       </div>
 
       <a href="/blogs" class="nav-link">Blog</a>
+      <a href="/track-document/" class="nav-link">Track Document</a>
     </nav>
 
    <div class="nav-actions">
-  <button type="button" class="btn btn-lang" data-lang-toggle>العربية</button>
+  <div class="lang-switcher" id="lang-switcher-desktop">
+    <button type="button" class="lang-current-btn" aria-haspopup="true" aria-expanded="false">
+      <svg class="lang-globe-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span class="lang-current-label">Eng</span>
+      <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+    <div class="lang-dropdown-menu"></div>
+  </div>
   <a href="/contact" class="btn btn-primary">Contact</a>
 </div>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -330,7 +342,19 @@
     </div>
 
    <a href="/blogs" class="mobile-link">Blog</a>
-  <button type="button" class="btn btn-lang" data-lang-toggle style="margin-top: 12px; justify-content: center; align-self: center; padding: 10px 32px; width: 100%;">العربية</button>
+   <a href="/track-document/" class="mobile-link">Track Document</a>
+  <div class="lang-switcher lang-switcher-mobile" id="lang-switcher-mobile" style="margin-top: 12px; align-self: center;">
+    <button type="button" class="lang-current-btn" aria-haspopup="true" aria-expanded="false" style="justify-content: center; padding: 10px 32px; width: 100%;">
+      <svg class="lang-globe-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span class="lang-current-label">Eng</span>
+      <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+    <div class="lang-dropdown-menu" style="left: 0; right: 0; width: 100%;"></div>
+  </div>
   <a href="/contact" class="btn btn-primary" style="margin-top: 12px; justify-content: center; align-self: center; padding: 10px 32px;">Contact</a>
 </div>
 </header>
@@ -447,6 +471,83 @@
       }
     })
   })
+
+  /* ────────────────────────────────────────────────────────────
+     Language switcher — click-to-open dropdown that drives the
+     existing Google Translate widget (loaded in Layout.astro).
+     Reads the `googtrans` cookie Google's widget uses to know
+     the active language, and writes/clears it + reloads when
+     the user picks the other language from the dropdown — same
+     mechanism as the original single toggle button, just with
+     a dropdown UI and short Eng/AR labels on top of it.
+     ──────────────────────────────────────────────────────────── */
+  const LANGS = [
+    { code: 'en', label: 'Eng' },
+    { code: 'ar', label: 'AR' },
+  ]
+
+  function getGoogTransCookie() {
+    const match = document.cookie.match('(^|;)\\s*googtrans\\s*=\\s*([^;]+)')
+    return match ? decodeURIComponent(match[2]) : null
+  }
+
+  function isArabicActive() {
+    const c = getGoogTransCookie()
+    return !!(c && c.includes('/en/ar'))
+  }
+
+  function setGoogTransCookie(toArabic) {
+    if (toArabic) {
+      document.cookie = 'googtrans=/en/ar; path=/;'
+      document.cookie = 'googtrans=/en/ar; path=/; domain=' + location.hostname
+    } else {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + location.hostname
+    }
+  }
+
+  function initLangSwitcher(root) {
+    const toggleBtn = root.querySelector('.lang-current-btn')
+    const label = root.querySelector('.lang-current-label')
+    const menu = root.querySelector('.lang-dropdown-menu')
+    if (!toggleBtn || !label || !menu) return
+
+    function paint() {
+      const currentCode = isArabicActive() ? 'ar' : 'en'
+      const current = LANGS.find(l => l.code === currentCode) || LANGS[0]
+      label.textContent = current.label
+      menu.innerHTML = ''
+      LANGS.filter(l => l.code !== currentCode).forEach(l => {
+        const opt = document.createElement('button')
+        opt.type = 'button'
+        opt.className = 'lang-option'
+        opt.dataset.lang = l.code
+        opt.textContent = l.label
+        opt.addEventListener('click', () => {
+          setGoogTransCookie(l.code === 'ar')
+          location.reload()
+        })
+        menu.appendChild(opt)
+      })
+    }
+
+    paint()
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      const isOpen = root.classList.toggle('is-open')
+      toggleBtn.setAttribute('aria-expanded', String(isOpen))
+    })
+
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target)) {
+        root.classList.remove('is-open')
+        toggleBtn.setAttribute('aria-expanded', 'false')
+      }
+    })
+  }
+
+  document.querySelectorAll('.lang-switcher').forEach(initLangSwitcher)
 </script>
 
 <style is:global>
@@ -756,14 +857,69 @@
   .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(56,178,172,0.25); }
   .btn-primary:hover { background: var(--primary-dark); box-shadow: 0 4px 15px rgba(56,178,172,0.35); }
 
-  .btn-lang {
+  /* ── Language switcher ── */
+  .lang-switcher { position: relative; }
+
+  .lang-current-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
     background: transparent;
     color: var(--primary);
     border: 1.5px solid var(--primary);
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: all 0.2s;
   }
-  .btn-lang:hover {
-    background: var(--primary-light);
+  .lang-current-btn:hover { background: var(--primary-light); }
+  .lang-globe-icon { flex-shrink: 0; opacity: 0.9; }
+  .lang-current-btn .chevron-icon { transition: transform 0.2s; }
+  .lang-switcher.is-open .lang-current-btn .chevron-icon { transform: rotate(180deg); }
+
+  .lang-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1100;
+    min-width: 140px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    padding: 6px;
+    margin-top: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
+  .lang-switcher.is-open .lang-dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .lang-option {
+    display: block;
+    width: 100%;
+    padding: 9px 13px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.18s;
+  }
+  .lang-option:hover { background: var(--primary-light); color: var(--primary); }
 
   /* ── Hide mobile menu on desktop ── */
   .mobile-menu { display: none; }
@@ -880,5 +1036,9 @@
     }
     .mobile-sub-sub-accordion-btn:hover { color: var(--primary); }
     .mobile-sub-sub-accordion-btn.active .chevron-icon { transform: rotate(180deg); }
+
+    .lang-switcher-mobile .lang-current-btn { border-radius: var(--radius-sm); }
+    .lang-switcher-mobile .lang-dropdown-menu { position: static; opacity: 1; pointer-events: auto; transform: none; box-shadow: none; border: none; background: #F9FAFB; margin-top: 4px; display: none; }
+    .lang-switcher-mobile.is-open .lang-dropdown-menu { display: block; }
   }
 </style>

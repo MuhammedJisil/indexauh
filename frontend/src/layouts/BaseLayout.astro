@@ -104,7 +104,15 @@ const {
   <Footer />
   <CallbackPopup />
 
-  <!-- Google Translate widget (hidden UI, driven by the toggle button in Navbar) -->
+  <!--
+    Google Translate widget (hidden UI). The visible language
+    dropdown lives in Navbar.astro and drives this directly by
+    reading/writing the `googtrans` cookie and reloading — see
+    the script at the bottom of Navbar.astro's markup. No other
+    click-wiring is needed here; this block only boots the
+    underlying Google widget so the cookie it reads actually
+    triggers a translation.
+  -->
   <div id="google_translate_element"></div>
   <script is:inline>
     function googleTranslateElementInit() {
@@ -126,52 +134,6 @@ const {
     } else {
       setTimeout(loadGoogleTranslate, 2000);
     }
-  </script>
-
-  <!-- Language toggle logic — pairs with [data-lang-toggle] buttons in Navbar.astro -->
-  <script is:inline>
-    (function () {
-      function getCookie(name) {
-        const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-        return match ? decodeURIComponent(match[2]) : null;
-      }
-
-      function isArabicActive() {
-        const c = getCookie('googtrans');
-        return !!(c && c.includes('/en/ar'));
-      }
-
-      function setToggleLabels() {
-        const arabicActive = isArabicActive();
-        document.querySelectorAll('[data-lang-toggle]').forEach((btn) => {
-          btn.textContent = arabicActive ? 'English' : 'العربية';
-        });
-      }
-
-      function toggleLanguage() {
-        if (isArabicActive()) {
-          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + location.hostname;
-        } else {
-          document.cookie = 'googtrans=/en/ar; path=/;';
-          document.cookie = 'googtrans=/en/ar; path=/; domain=' + location.hostname;
-        }
-        location.reload();
-      }
-
-      function init() {
-        setToggleLabels();
-        document.querySelectorAll('[data-lang-toggle]').forEach((btn) => {
-          btn.addEventListener('click', toggleLanguage);
-        });
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
-    })();
   </script>
 
   <!-- Force-hide the Google Translate banner even after Google's script re-applies its own inline styles -->
