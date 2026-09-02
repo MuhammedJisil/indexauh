@@ -8,12 +8,14 @@ interface Props {
   title?: string
   description?: string
   canonicalURL?: string
+  hideCallbackPopup?: boolean
 }
 
 const {
   title = 'Certificate Attestation Services in UAE — 25 Years of Trust',
   description = 'Certificate attestation services by Index Office Services with 25+ years of experience. Fast processing for 100+ countries.',
-  canonicalURL = new URL(Astro.url.pathname, Astro.site).href
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  hideCallbackPopup = false
 } = Astro.props
 ---
 
@@ -101,8 +103,8 @@ const {
   <main>
     <slot />
   </main>
-  <Footer />
-  <CallbackPopup />
+<Footer />
+{!hideCallbackPopup && <CallbackPopup />}
 
   <!--
     Google Translate widget (hidden UI). The visible language
