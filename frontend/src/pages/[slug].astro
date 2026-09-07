@@ -316,9 +316,8 @@ try {
 
 // If not found in Strapi, return 404
 if (notFound || !post) {
-  return Astro.redirect('/blogs/', 302);
+  return Astro.rewrite('/404');
 }
-
 function formatDate(dateStr: string | null) {
   if (!dateStr) return "";
   try {
