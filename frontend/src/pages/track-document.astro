@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
+const billingApiUrl = import.meta.env.BILLING_API_URL || 'https://api.cashorya.com';
+const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
 ---
 
 <BaseLayout
@@ -396,6 +398,32 @@ const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:300
         <strong id="resultTrackingId" style="color:#0F172A;font-family:monospace;font-size:0.95rem;"></strong>
       </div>
 
+      <div id="resultCustomerWrap" style="margin-top:14px;display:none;">
+        <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px 16px;">
+          <p style="color:#64748B;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 8px;">Customer Details</p>
+          <p style="margin:0 0 4px;color:#0F172A;font-size:0.92rem;"><strong id="resultCustomerName"></strong></p>
+          <p style="margin:0 0 4px;color:#475569;font-size:0.85rem;" id="resultCustomerPhone"></p>
+          <p style="margin:0 0 12px;color:#475569;font-size:0.85rem;" id="resultCustomerEmail"></p>
+
+          <p style="color:#64748B;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:12px 0 8px;border-top:1px solid #E2E8F0;padding-top:12px;">Invoice Details</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:0.85rem;color:#334155;">
+            <div>Bill Number: <strong id="resultBillNumber" style="color:#0F172A;"></strong></div>
+            <div>Invoice Status: <strong id="resultInvoiceStatus" style="color:#0F172A;"></strong></div>
+            <div>Bill Date: <strong id="resultBillDate" style="color:#0F172A;"></strong></div>
+            <div>Due Date: <strong id="resultDueDate" style="color:#0F172A;"></strong></div>
+          </div>
+
+          <p style="color:#64748B;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:12px 0 8px;border-top:1px solid #E2E8F0;padding-top:12px;">Payment Summary</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:0.85rem;color:#334155;">
+            <div>Subtotal: <strong id="resultSubtotal" style="color:#0F172A;"></strong></div>
+            <div>Tax: <strong id="resultTax" style="color:#0F172A;"></strong></div>
+            <div>Total: <strong id="resultTotal" style="color:#0F172A;"></strong></div>
+            <div>Paid Amount: <strong id="resultPaidAmount" style="color:#0F172A;"></strong></div>
+          </div>
+          <p style="margin:12px 0 0;color:#0F172A;font-size:0.95rem;">Balance Due: <strong id="resultBalance"></strong></p>
+        </div>
+      </div>
+
       <div id="resultSteps" class="steps-list"></div>
 
       <div id="resultRemarksWrap" style="margin-top:24px;display:none;">
@@ -408,7 +436,7 @@ const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:300
   </div>
 </section>
 
-<script define:vars={{ TRACKING_API_URL: trackingApiUrl }}>
+<script define:vars={{ TRACKING_API_URL: trackingApiUrl, BILLING_API_URL: billingApiUrl, BILLING_STORE_ID: billingStoreId }}>
   const form = document.getElementById('trackForm');
   const input = document.getElementById('trackingIdInput');
   const btn = document.getElementById('trackBtn');
@@ -440,6 +468,42 @@ const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:300
     }).join('');
   }
 
+  async function loadCustomerDetails(trackingId) {
+    const customerWrap = document.getElementById('resultCustomerWrap');
+    try {
+      const billRes = await fetch(
+        `${BILLING_API_URL}/api/v2/billing/details/${BILLING_STORE_ID}/${encodeURIComponent(trackingId)}`
+      );
+      if (!billRes.ok) {
+        customerWrap.style.display = 'none';
+        return;
+      }
+      const bill = await billRes.json();
+
+      const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+      const fmtMoney = (n) => `₹ ${Number(n || 0).toFixed(2)}`;
+
+      document.getElementById('resultCustomerName').textContent = bill.customer?.name?.trim() || '—';
+      document.getElementById('resultCustomerPhone').textContent = bill.customer?.phoneNumber || '—';
+      document.getElementById('resultCustomerEmail').textContent = bill.customer?.email || '—';
+
+      document.getElementById('resultBillNumber').textContent = bill.billNumber || '—';
+      document.getElementById('resultInvoiceStatus').textContent = bill.invoiceStatus || '—';
+      document.getElementById('resultBillDate').textContent = fmtDate(bill.billDate);
+      document.getElementById('resultDueDate').textContent = fmtDate(bill.dueDate);
+
+      document.getElementById('resultSubtotal').textContent = fmtMoney(bill.subtotal);
+      document.getElementById('resultTax').textContent = fmtMoney(bill.tax);
+      document.getElementById('resultTotal').textContent = fmtMoney(bill.total);
+      document.getElementById('resultPaidAmount').textContent = fmtMoney(bill.paidAmount);
+      document.getElementById('resultBalance').textContent = fmtMoney(bill.balance);
+
+      customerWrap.style.display = 'block';
+    } catch {
+      customerWrap.style.display = 'none';
+    }
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const trackingId = input.value.trim().toUpperCase();
@@ -450,6 +514,7 @@ const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:300
     msg.textContent = '';
     msg.className = 'track-msg';
     card.style.display = 'none';
+    document.getElementById('resultCustomerWrap').style.display = 'none';
 
     try {
       const res = await fetch(`${TRACKING_API_URL}/api/track/${encodeURIComponent(trackingId)}`);
@@ -484,6 +549,9 @@ const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:300
       }
 
       card.style.display = 'block';
+
+      // Enrich with customer/billing details, if this tracking ID matches a bill — non-blocking
+      loadCustomerDetails(trackingId);
     } catch (err) {
       msg.innerHTML = '<span class="track-error">Unable to connect to the tracking server. Please try again in a moment.</span>';
     } finally {

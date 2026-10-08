@@ -1,0 +1,685 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const stats = [
+  { value: "2000", label: "Established, 25+ years of experience" },
+  { value: "400,000+", label: "Clients served" },
+  { value: "100+", label: "Countries covered" },
+  { value: "200+", label: "Attestation professionals" },
+]
+
+const whatItsFor = [
+  "Your spouse residence visa",
+  "Birth registration for your children",
+  "Insurance, banking and housing",
+  "Any future divorce or inheritance case",
+]
+
+const routeFit = [
+  { title: "Non Muslim couples", desc: "Can choose civil marriage. Dubai needs one partner with Dubai residence, and both partners must be 21 or older. Marriage registration in Abu Dhabi also welcomes visitors, so destination couples often choose it." },
+  { title: "Muslim couples", desc: "Register a court marriage contract. Expect premarital screening, male witnesses and a guardian where the law requires one." },
+  { title: "Embassy or consulate", desc: "Some nationalities register at their own embassy or consulate. For example, the Indian Consulate in Dubai asks for three witnesses and a singleness certificate." },
+  { title: "Married abroad", desc: "Couples married abroad attest the foreign certificate for UAE use." },
+  { title: "Complex cases", desc: "Need extra proof, such as a previous marriage, a guardian abroad or a name mismatch." },
+]
+
+const compareCols = ["Dubai civil marriage", "Abu Dhabi civil marriage", "Muslim court marriage", "Embassy registration"]
+const compareRows = [
+  { point: "Who it suits", vals: ["Couples who are not Muslim", "Non Muslim couples, and some non UAE Muslims", "Muslim couples and UAE nationals", "Citizens of that country"] },
+  { point: "Residence", vals: ["One partner lives in Dubai", "Residents and visitors", "At least one partner holds UAE residency", "Often a UAE residence visa"] },
+  { point: "Witnesses", vals: ["Check the live service card", "Not needed for the ceremony", "Male witnesses", "Often three witnesses"] },
+  { point: "Premarital screening", vals: ["Confirm on the live service card", "Exempt for eligible applicants", "Expected", "Ask the embassy"] },
+  { point: "Certificate", vals: ["English", "Bilingual", "Court issued", "Embassy issued"] },
+  { point: "Where we help", vals: ["Attested and translated documents", "Document check and attestation", "Translation and Power of Attorney", "Attestation and document check"] },
+]
+
+const civilSteps = [
+  { num: "01", title: "Dubai: Apply and Consent", desc: "In Dubai, you apply through a Dubai Courts service centre. Both partners then give consent before the authentication judge." },
+  { num: "02", title: "Abu Dhabi: Online Application", desc: "In Abu Dhabi, you apply online through the Civil Family Court. The court reviews your file, takes payment and schedules the ceremony." },
+  { num: "03", title: "Optional Marriage Agreement", desc: "Abu Dhabi also offers an optional marriage agreement service." },
+  { num: "04", title: "Attested and Translated Documents", desc: "Authorities ask for attested and translated documents. Preparing them is where many files stall. Therefore, start with a document check before you apply." },
+]
+
+const muslimConditions = [
+  "Premarital screening through an approved health provider",
+  "A guardian for the bride where the law requires one",
+  "Eligible witnesses who attend and sign",
+  "Proof that any previous marriage ended",
+]
+
+const docsRequired = [
+  "Original passports and Emirates IDs, with residence visa copies",
+  "Your original marriage certificate for marriages held abroad",
+  "Single status or no impediment certificate obtained through your embassy",
+  "Divorce certificate or spouse death certificate for a previous marriage",
+  "Premarital medical certificate for the Muslim court route",
+  "Witness passports and IDs for routes that need witnesses",
+  "Venue certificate or hotel letter, for embassy registration after a church, temple or hotel wedding",
+  "A Power of Attorney when a representative acts for you",
+  "Certified Arabic translation of every foreign document",
+  "Home country, embassy and MOFA stamps on foreign documents",
+]
+
+const processSteps = [
+  { num: "01", title: "Free Document Check", desc: "We review your route, nationality and documents." },
+  { num: "02", title: "Route Confirmation", desc: "We check the live rules of the court, embassy or consulate." },
+  { num: "03", title: "Home Country Stage", desc: "Our team handles notarisation or apostille formalities as required for your document." },
+  { num: "04", title: "Embassy Stage", desc: "We complete embassy attestation for the issuing country." },
+  { num: "05", title: "MOFA Stage", desc: "We complete MOFA attestation in the UAE." },
+  { num: "06", title: "Translation", desc: "A legal translator prepares your Arabic copy, and we match every name." },
+  { num: "07", title: "Submission Support", desc: "We prepare your file, and you attend where the authority requires." },
+  { num: "08", title: "Delivery", desc: "We return your documents to your door and update you at each stage." },
+]
+
+const afterCert = [
+  "Check every name, date and ID number in Arabic and English",
+  "Save the digital copy and the verification reference",
+  "Order certified copies for visa, school and insurance files",
+  "Ask for corrections at once when you find an error",
+  "Keep the original unlaminated until all attestations finish",
+  "Attest the certificate at MOFA and the destination embassy for use abroad",
+]
+
+const countryPoints = [
+  "Some countries use an apostille for the first stage.",
+  "Others need foreign office attestation and UAE embassy attestation before MOFA.",
+  "Document language, validity dates and name formats also differ.",
+]
+
+const timeFactors = [
+  "Your route and the authority's appointment availability",
+  "Document readiness and name accuracy",
+  "The number of attestation stages",
+  "Translation and any correction rounds",
+]
+
+const costFactors = [
+  "Authority fees for your route",
+  "Embassy and MOFA attestation fees",
+  "Certified translation volume",
+  "Urgency and doorstep pickup",
+]
+
+const mistakes = [
+  "Stopping early. A home country stamp alone does not finish the chain.",
+  "Using an uncertified translation. Authorities expect certified Arabic.",
+  "Mismatched names across passports, IDs and certificates.",
+  "Choosing the wrong route, then filing for a service you cannot use.",
+  "Expired documents. Many authorities count validity from the issue date.",
+  "A weak Power of Attorney that does not cover marriage matters.",
+  "Relying on a religious certificate without court or embassy registration.",
+  "Skipping the guardian step on the Muslim route.",
+  "Assuming an English certificate needs no Arabic translation.",
+]
+
+const whyUs = [
+  { title: "400,000+ Clients Served", desc: "400,000+ clients served since 2000." },
+  { title: "End-to-End Handling", desc: "End to end handling across home country, embassy and MOFA stages." },
+  { title: "200+ Professionals", desc: "200+ attestation professionals and dedicated compliance experts." },
+  { title: "Real Time Updates", desc: "Real time updates on your file." },
+  { title: "Doorstep Pickup & Delivery", desc: "Doorstep document pickup and delivery across the UAE." },
+  { title: "Dubai Office", desc: "Dubai office at Conrad Hotel Business Tower, Sheikh Zayed Road." },
+  { title: "Abu Dhabi Office", desc: "Abu Dhabi office on Electra Street." },
+]
+
+const related = [
+  "Divorce certificate attestation for a previous marriage",
+  "Death certificate attestation for a widowed applicant",
+  "Birth certificate attestation for your children",
+  "Apostille service for countries that use apostille",
+  "Certificate attestation for all other personal documents",
+]
+
+const faqs = [
+  { q: "How do I complete marriage registration in Abu Dhabi?", a: "Marriage registration in Abu Dhabi runs through its Civil Family Court as a civil marriage service. The process has an online application, document review, payment and a ceremony. However, files often stall on attested and translated documents or proof of an earlier marriage ending. We check your file first, so your application starts correctly." },
+  { q: "Can non Muslims register a civil marriage in the UAE?", a: "Yes. Federal law now allows civil marriage for eligible non Muslims. Dubai needs both partners to be non Muslim and one partner to live in Dubai. The minimum age is 21. Abu Dhabi has its own civil court route. We can confirm the live rules for your case before you apply." },
+  { q: "Can tourists register a civil marriage in Abu Dhabi?", a: "Yes, in many cases. Abu Dhabi's civil court route accepts eligible non Muslim visitors as well as residents. Each applicant must meet age, consent and single status rules. Rules can change, so ask us to confirm the live position before you book travel. We can then review your documents." },
+  { q: "Does every marriage need premarital screening?", a: "No. Screening applies to the Muslim court route, but civil routes can differ. Abu Dhabi's civil framework exempts eligible applicants from the medical certificate. Therefore, confirm your route before you book any tests. Our team can check the live requirement for you." },
+  { q: "Do I need to attest my foreign marriage certificate?", a: "Yes, in most cases. A foreign certificate usually needs attestation in the issuing country, at the UAE embassy and at MOFA. Some countries use an apostille for the first stage. The receiving office decides the exact requirement, so ask us before you start." },
+  { q: "Do both partners need to attend in person?", a: "Usually yes. Courts and embassies often ask for both partners, original passports and witnesses on the day. Some services allow an authorised representative with a valid Power of Attorney. We prepare your documents and Power of Attorney, but we cannot replace a required personal appearance." },
+]
+---
+
+<BaseLayout title="Marriage Registration UAE | 25+ Years of Trust"
+description="Marriage registration in the UAE, explained. Get expert document help for civil, Muslim and foreign marriages. Free consultation."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+
+  .step-card { display:flex; align-items:flex-start; gap:18px; padding:24px; background:#fff; border:1px solid #eef0f6; border-radius:16px; transition:all 0.25s; }
+  .step-card:hover { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.1); transform:translateY(-3px); }
+
+  .info-card { background:#fff; border:1px solid #eef0f6; border-radius:16px; padding:24px; }
+  .info-card h3 { font-size:0.95rem; font-weight:800; color:#1A202C; margin:0 0 14px; border-left:3px solid #38B2AC; padding-left:12px; }
+  .info-card .info-intro { font-size:0.85rem; color:#6B7280; line-height:1.6; margin:0 0 12px; }
+  .info-list-item { display:flex; align-items:flex-start; gap:10px; font-size:0.9rem; color:#4B5563; margin:0 0 9px; line-height:1.6; }
+
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .stat-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; padding: 16px 12px; }
+
+  .cmp-wrap { overflow-x:auto; border:1px solid #eef0f6; border-radius:16px; background:#fff; }
+  .cmp-table { width:100%; border-collapse:collapse; min-width:760px; font-size:0.88rem; }
+  .cmp-table th { background:#2D3748; color:#fff; text-align:left; padding:14px 16px; font-weight:700; font-size:0.82rem; }
+  .cmp-table th:first-child { color:#38B2AC; }
+  .cmp-table td { padding:13px 16px; color:#4B5563; line-height:1.55; border-top:1px solid #eef0f6; vertical-align:top; }
+  .cmp-table td:first-child { font-weight:700; color:#1A202C; background:#F0FFFE; }
+
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 260px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  @media(max-width:900px){
+    .two-col { flex-direction:column !important; grid-template-columns:1fr !important; }
+    .two-col > div { width:100% !important; }
+    .grid-2 { grid-template-columns:1fr !important; }
+    .grid-3 { grid-template-columns:1fr !important; }
+    .grid-4 { grid-template-columns:1fr 1fr !important; }
+  }
+  @media(max-width:640px){
+    .steps-grid { grid-template-columns:1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img src="/images/img-16.webp" alt="Marriage Registration in the UAE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;" loading="eager" fetchpriority="high" width="1200" height="600" />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.9) 0%,rgba(45,55,72,0.84) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:center;">
+      <span class="idx-pill">25+ years</span>
+      <span class="idx-pill">100+ countries</span>
+      <span class="idx-pill">Free consultation</span>
+    </div>
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;font-size:0.75rem;margin:0 0 14px;">Marriage Registration Services</p>
+    <h1 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">Marriage Registration in the UAE<span style="color:#38B2AC;"> For Civil, Muslim and Foreign Marriages</span></h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:640px;">
+      Marriage registration in the UAE goes wrong when one document is missing or one stamp is wrong. That can delay your spouse visa by weeks. We prepare, attest and translate your documents, so your file is right the first time.
+    </p>
+
+    <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 auto 32px;max-width:760px;">
+      {stats.map(s => (
+        <div class="stat-card">
+          <p style="color:#38B2AC;font-size:1.4rem;font-weight:900;margin:0 0 4px;">{s.value}</p>
+          <p style="color:#CBD5E0;font-size:0.75rem;line-height:1.4;margin:0;">{s.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/971529300200" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        WhatsApp Us Now
+      </a>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">
+        Free Consultation &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHAT IS MARRIAGE REGISTRATION ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:-60px;right:-60px;width:400px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex-shrink:0;width:420px;">
+        <div style="position:relative;border-radius:20px;overflow:hidden;height:380px;">
+          <img src="/images/marriage-registration.webp" alt="What is marriage registration in the UAE" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(26,32,44,0.72));"></div>
+          <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+            <p style="color:#81E6D9;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px;">Legally Recorded</p>
+            <p style="color:#fff;font-size:0.95rem;font-weight:700;margin:0;">An official certificate from a UAE authority</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is Marriage Registration?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">Marriage registration is the legal recording of your marriage with a UAE authority. You then receive an official certificate.</p>
+        <p style="color:#1A202C;font-size:1rem;font-weight:600;margin:0 0 10px;">This certificate matters for many everyday tasks:</p>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:16px 20px;margin-bottom:16px;">
+          {whatItsFor.map(item => (
+            <div class="info-list-item"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{item}</div>
+          ))}
+        </div>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin:0;">A religious ceremony alone does not give you this record. Therefore, register your marriage properly and keep certified copies.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW DOES IT WORK + WHICH ROUTE ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(56,178,172,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:flex-start;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>The Process</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">How Does Marriage Registration Work in the UAE?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:14px;">Marriage registration in the UAE depends on your route. Muslim couples register a marriage contract through the court. Eligible non Muslim couples can choose a civil marriage in Dubai or Abu Dhabi. Couples married abroad need marriage certificate attestation instead.</p>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:0;">Therefore, confirm your route first. Then prepare your documents, attestation and certified Arabic translation.</p>
+      </div>
+
+      <div style="flex-shrink:0;width:380px;">
+        <img src="/images/img-78.webp" alt="Marriage registration documents" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.12);" loading="lazy" width="800" height="450" />
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin:56px 0 32px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Find Your Route</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 12px;">Marriage Registration in Abu Dhabi and Dubai: Which Route Fits You?</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:720px;margin:0 auto;">Your religion, residence and marriage history decide your route.</p>
+    </div>
+
+    <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      {routeFit.map(r => (
+        <div class="info-card">
+          <h3>{r.title}</h3>
+          <p style="font-size:0.9rem;color:#6B7280;line-height:1.65;margin:0;">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ ROUTES COMPARED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Quick Comparison</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Marriage Registration Routes Compared: Dubai, Abu Dhabi, Court and Embassy</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:720px;margin:0 auto;">Use this quick comparison to see where you fit. Rules change, so we confirm the live position for you.</p>
+    </div>
+
+    <div class="cmp-wrap">
+      <table class="cmp-table">
+        <thead>
+          <tr>
+            <th>Point</th>
+            {compareCols.map(c => <th>{c}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {compareRows.map(row => (
+            <tr>
+              <td>{row.point}</td>
+              {row.vals.map(v => <td>{v}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CIVIL + MUSLIM ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Civil Marriage</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Civil Marriage in Dubai and Abu Dhabi: What the Process Looks Like</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:720px;margin:0 auto;">Both emirates use an application, a review and a signing. However, each follows its own rules.</p>
+    </div>
+
+    <div class="steps-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:56px;">
+      {civilSteps.map(s => (
+        <div class="step-card">
+          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+          <div>
+            <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
+            <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:32px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin:0 0 8px;">Muslim Route</p>
+      <h2 style="font-size:1.6rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Muslim Marriage Registration: Guardian, Witnesses and Screening</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 14px;">The court records your marriage contract. Several conditions apply:</p>
+      <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px 24px;margin-bottom:18px;">
+        {muslimConditions.map(c => (
+          <div class="info-list-item" style="margin:0;"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{c}</div>
+        ))}
+      </div>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 12px;">Special cases need court direction, not private arrangements. For example, a guardian abroad or a disputed guardian needs legal advice first. Interfaith couples should also confirm the rules before booking, because Sharia conditions apply.</p>
+      <p style="color:#1A202C;font-size:0.95rem;font-weight:600;line-height:1.8;margin:0;">We flag these cases early. As a result, you avoid a wasted appointment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:44px;">
+      <img src="/images/img-7.webp" alt="Documents required for marriage registration" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;" loading="lazy" width="800" height="450" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Requirements</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:480px;line-height:1.25;">Documents Required for Marriage Registration</h2>
+      </div>
+    </div>
+
+    <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+      <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Your Document Checklist</h3>
+      <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Your exact list depends on your route and nationality. However, most files include these items:</p>
+      <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px 24px;margin-bottom:14px;">
+        {docsRequired.map(d => (
+          <div class="info-list-item" style="margin:0;"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}</div>
+        ))}
+      </div>
+      <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">Also, we check your list against the live service card before you submit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ STEP BY STEP PROCESS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Step by Step</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Our Step by Step Marriage Registration Process</h2>
+    </div>
+
+    <div class="steps-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      {processSteps.map(s => (
+        <div class="step-card">
+          <div style="width:44px;height:44px;border-radius:12px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.num}</div>
+          <div>
+            <p style="font-size:0.9rem;font-weight:700;color:#1A202C;margin:0 0 5px;">{s.title}</p>
+            <p style="font-size:0.98rem;color:#6B7280;line-height:1.65;margin:0;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px 22px;margin-top:24px;">
+      <p style="font-size:0.9rem;color:#4B5563;line-height:1.7;margin:0;">Documents issued in the UAE usually start at MOFA.</p>
+    </div>
+
+    <div style="background:#1A202C;border-radius:16px;padding:28px;margin-top:24px;text-align:center;">
+      <p style="color:#B2F5EA;font-size:0.95rem;font-weight:600;margin:0 0 16px;">Real time updates | Doorstep pickup | Free consultation.</p>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Check My Documents</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ AFTER CERTIFICATE ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="info-card" style="padding:32px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin:0 0 8px;">After Registration</p>
+      <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">What to Do After You Receive Your Marriage Certificate?</h2>
+      <p style="color:#4B5563;font-size:1rem;line-height:1.8;margin:0 0 16px;">Review your certificate on the same day. Small errors cause big delays later.</p>
+      <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px 24px;margin-bottom:16px;">
+        {afterCert.map(a => (
+          <div class="info-list-item" style="margin:0;"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{a}</div>
+        ))}
+      </div>
+      <p style="color:#1A202C;font-size:0.95rem;font-weight:600;margin:0;">We handle that last stage for you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ATTESTATION BY COUNTRY ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="two-col" style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>By Country</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.1rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 16px;">Marriage Certificate Attestation: How Does the Process Change by Country?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">The chain is not the same everywhere. Each country has its own issuing office, notary rules and embassy process.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+          {countryPoints.map(p => (
+            <div class="info-list-item" style="margin:0;"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{p}</div>
+          ))}
+        </div>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin:0;">We handle documents from countries such as India, Pakistan, the Philippines, the UK and the USA. Therefore, the same certificate can need different stamps in different places.</p>
+      </div>
+      <div style="flex-shrink:0;width:380px;">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          {["India","Pakistan","Philippines","United Kingdom","USA"].map(c => (
+            <span style="display:inline-block;padding:10px 20px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:9999px;font-size:0.9rem;font-weight:600;color:#2D3748;">{c}</span>
+          ))}
+          <span style="display:inline-block;padding:10px 20px;background:#2D3748;border-radius:9999px;font-size:0.9rem;font-weight:600;color:#fff;">100+ countries covered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TIME & COST ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Timelines & Charges</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Processing Time and Cost Factors</h2>
+      <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;max-width:720px;margin:0 auto;">We do not promise fixed timelines. Government stages set the pace.</p>
+    </div>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      <div class="info-card">
+        <h3>Time Depends On</h3>
+        {timeFactors.map(f => (
+          <div class="info-list-item"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}</div>
+        ))}
+      </div>
+      <div class="info-card">
+        <h3>Cost Depends On</h3>
+        {costFactors.map(f => (
+          <div class="info-list-item"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}</div>
+        ))}
+      </div>
+    </div>
+
+    <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:14px;padding:18px 22px;margin-top:20px;">
+      <p style="font-size:0.9rem;color:#4B5563;line-height:1.7;margin:0;">For an exact figure, contact us for a quote after your free document check.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMMON MISTAKES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Marriage Registration Mistakes and Rejection Reasons</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">We see the same problems often. Most are easy to avoid.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {mistakes.map(r => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{r}</p>
+            </div>
+          ))}
+        </div>
+        <div style="background:#F8FAFF;border:1px solid #e0e7ef;border-radius:12px;padding:16px 20px;margin-top:16px;">
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.7;margin:0 0 10px;"><span style="color:#1A202C;font-weight:700;">A case we often see:</span> one couple marries abroad and applies for a spouse visa. The certificate has a home country stamp but no MOFA stamp. As a result, the visa office returns the file, and the couple loses time and money.</p>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.7;margin:0;"><span style="color:#1A202C;font-weight:700;">Tip from our team:</span> check every spelling before you pay for attestation. A name error costs more to fix after the stamps.</p>
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-40.webp" alt="Common marriage registration mistakes" style="width:100%;height:380px;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Get It Right the First Time</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">One missing document can delay your spouse visa by weeks</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="two-col">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Offices in Dubai and Abu Dhabi. Free consultation.</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index Office Services for Marriage Registration Services?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 20px;">You need a team that knows every stage. Here is what you get:</p>
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Talk to an Expert</a>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="grid-3">
+      {whyUs.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ RELATED SERVICES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Related Services</p>
+    <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Related Documents and Countries We Handle</h2>
+    <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin:0 auto 36px;max-width:720px;">We cover 100+ countries. Related services include:</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+      {related.map(r => (
+        <div style="display:flex;align-items:center;gap:10px;padding:14px 20px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;font-size:0.92rem;color:#1A202C;font-weight:500;text-align:left;">
+          <span style="width:20px;height:20px;border-radius:50%;background:#38B2AC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 6L9 17l-5-5"/></svg>
+          </span>
+          {r}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Marriage Registration</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT CTA ════ -->
+<section id="contact" style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:360px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <!-- Left -->
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Contact Us</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">Ready to Start Your Marriage Registration?</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+        <div class="info-list-item" style="color:#B2F5EA;margin:0;"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>Free consultation with a document expert</div>
+        <div class="info-list-item" style="color:#B2F5EA;margin:0;"><span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>Doorstep pickup and delivery across the UAE</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+        <a href="https://wa.me/971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:700;padding:13px 24px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);width:fit-content;">
+          WhatsApp Us Now
+        </a>
+        <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:600;padding:13px 24px;border-radius:9999px;text-decoration:none;width:fit-content;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          Phone and WhatsApp: (+971) 529 300 200
+        </a>
+        <a href="mailto:info@indexauh.com" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:600;padding:13px 24px;border-radius:9999px;text-decoration:none;width:fit-content;">
+          Email: info@indexauh.com
+        </a>
+      </div>
+      <p style="color:#CBD5E0;font-size:0.92rem;line-height:1.8;margin:0 0 4px;"><span style="color:#fff;font-weight:700;">Dubai:</span> Conrad Hotel Business Tower, Sheikh Zayed Road</p>
+      <p style="color:#CBD5E0;font-size:0.92rem;line-height:1.8;margin:0;"><span style="color:#fff;font-weight:700;">Abu Dhabi:</span> Electra Street</p>
+    </div>
+
+    <!-- Right: form -->
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        x.querySelector('.faq-a').classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>
