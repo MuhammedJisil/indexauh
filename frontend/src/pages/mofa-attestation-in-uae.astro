@@ -68,19 +68,40 @@ const documentTypes = [
   {
     title: "Educational documents",
     desc: "Used for employment, higher education, professional licensing and visa purposes.",
-    items: ["Diploma certificate attestation", "Mark sheets and transcripts attestation", "School leaving certificate attestation", "Equivalency certificate", "Experience certificate attestation", "Professional qualification certificate attestation"],
+    items: [
+      { t: "Diploma certificate attestation", href: "/diploma-certificate-attestation/" },
+      { t: "Mark sheets and transcripts attestation", href: "/educational-certificate-attestation-in-dubai/" },
+      { t: "School leaving certificate attestation", href: "/transfer-certificate-attestation/" },
+      { t: "Equivalency certificate", href: "/equivalency-certificate/" },
+      { t: "Experience certificate attestation", href: "/experience-certificate-attestation/" },
+      { t: "Professional qualification certificate attestation" }
+    ],
     extra: ""
   },
   {
     title: "Personal documents",
     desc: "Used for identity, family relationships and civil status, including family visa, spouse sponsorship and dependent visa files.",
-    items: ["Divorce certificate attestation", "Death certificate attestation", "Medical certificate attestation", "Police clearance certificate (PCC) attestation", "Power of attorney attestation"],
+    items: [
+      { t: "Divorce certificate attestation", href: "/divorce-certificate-attestation/" },
+      { t: "Death certificate attestation", href: "/death-certificate-attestation/" },
+      { t: "Medical certificate attestation", href: "/medical-certificate-attestation/" },
+      { t: "Police clearance certificate (PCC) attestation", href: "/police-clearance-certificate/" },
+      { t: "Power of attorney attestation", href: "/power-of-attorney-notarization/" }
+    ],
     extra: ""
   },
   {
     title: "Commercial documents",
     desc: "Used for business operations, trade licensing, bank approvals and legal transactions.",
-    items: ["Memorandum of Association (MOA) attestation", "Articles of Association (AOA) attestation", "Commercial licence attestation", "Commercial invoice attestation", "Board resolution attestation", "Company agreement attestation", "Corporate power of attorney"],
+    items: [
+      { t: "Memorandum of Association (MOA) attestation", href: "/commercial-documents-attestation/" },
+      { t: "Articles of Association (AOA) attestation" },
+      { t: "Commercial licence attestation" },
+      { t: "Commercial invoice attestation" },
+      { t: "Board resolution attestation" },
+      { t: "Company agreement attestation" },
+      { t: "Corporate power of attorney", href: "/corporate-power-of-attorney/" }
+    ],
     extra: `See also our <a href='/business-setup-in-the-uae/' style='${linkStyle}'>business setup in the UAE</a> service.`
   },
   {
@@ -386,7 +407,8 @@ description="MOFA attestation made simple. 25+ years of experience, 100+ countri
           <div style="display:flex;flex-direction:column;gap:6px;">
             {d.items.map(i => (
               <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#4B5563;line-height:1.5;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span> {i}
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">•</span>
+                {i.href ? <a href={i.href} style={linkStyle + "font-weight:600;"}>{i.t}</a> : <span>{i.t}</span>}
               </div>
             ))}
           </div>
