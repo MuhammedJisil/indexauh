@@ -1,0 +1,529 @@
+---
+// URL slug: /certified-true-copy/
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const stats = [
+  { num: "2000", label: "Established in" },
+  { num: "25+", label: "Years of experience" },
+  { num: "400,000+", label: "Clients served" },
+  { num: "100+", label: "Countries covered" },
+  { num: "200+", label: "Attestation professionals" },
+]
+
+const whoNeeds = [
+  { icon: "🛂", title: "Visa or residency files", desc: "Files that need passport copies." },
+  { icon: "🎓", title: "University applications", desc: "Applications with degree or transcript copies." },
+  { icon: "🏦", title: "Bank accounts and KYC checks", desc: "Checks that need ID or company documents." },
+  { icon: "🏢", title: "Company formation and free zone filings", desc: "Filings that need certified company documents." },
+  { icon: "🌍", title: "Work, study or family matters abroad", desc: "Matters where an overseas party keeps your original." },
+]
+
+const certifiers = [
+  { icon: "📄", title: "Official documents", desc: "A passport, degree or birth certificate usually needs the issuing authority or another competent body. Some receiving parties also accept a lawyer. Others do not." },
+  { icon: "📑", title: "Private and commercial documents", desc: "Contracts, resolutions and company records are usually certified by a licensed lawyer or notary public." },
+  { icon: "🚫", title: "Not accepted", desc: "Self signed copies and typing centre stamps rarely count." },
+]
+
+const requiredDocs = [
+  "The original document, because the certifier must see it",
+  "A clear copy of every page, with no marks or cropped edges",
+  "Your valid passport or Emirates ID",
+  "Written instructions from the bank, embassy or university",
+  "The name of the organisation receiving the copy",
+  "The number of sets and the language you need",
+  "The name of the person handing over the original, so we can confirm any authorisation",
+]
+
+const differences = [
+  { title: "Photocopy", desc: "No verification, no stamp and no weight for official use." },
+  { title: "Self attested copy", desc: "You sign it yourself. UAE banks and authorities rarely accept it." },
+  { title: "Certified true copy", desc: "A qualified certifier compares it with your original and applies a true copy certification stamp." },
+  { title: "Notarised copy", desc: "The notary public applies the stamp. MOFA normally attests this version for use abroad." },
+]
+
+const docTypes = [
+  { title: "Passport", desc: "Certify the data page and, for residents, the current visa page." },
+  { title: "Degrees and transcripts", desc: "Certify every page, not only the first." },
+  { title: "Bank statements", desc: "A bank stamped original is safest. Printed online statements may fail strict checks." },
+  { title: "Company documents", desc: "Certify the full set. Some banks want a resolution notarised first." },
+  { title: "Renewed or amended papers", desc: "Certify the new version, since old copies lose value." },
+]
+
+const whyIndex = [
+  { title: "Dedicated compliance experts", desc: "They check requirements first." },
+  { title: "End to end handling", desc: "Across home country, embassy and MOFA stages." },
+  { title: "Real time updates", desc: "So you always know the status." },
+  { title: "Doorstep document pickup and delivery", desc: "Across the UAE." },
+  { title: "Offices in Dubai and Abu Dhabi", desc: "Sheikh Zayed Road and Electra Street." },
+  { title: "One phone and WhatsApp line", desc: "(+971) 529 300 200" },
+]
+
+const mistakes = [
+  "Certifying a copy of a copy, because the certifier needs a copy taken from the original",
+  "Sending a scan, since the certifier must see the original",
+  "Choosing the wrong certifier for the document type",
+  "Using old certification dates when the bank asks for recent ones",
+  "Missing pages, such as a passport without the current visa page",
+  "Ignoring the language the receiving party requires",
+  "Skipping a notary or MOFA stage that the destination needs",
+]
+
+const related = [
+  { label: "Certificate attestation", href: "/certificate-attestation/" },
+  { label: "Degree certificate attestation", href: "/degree-certificate-attestation/" },
+  { label: "Birth certificate attestation", href: "/birth-certificate-attestation-in-uae/" },
+  { label: "Commercial documents attestation", href: "/commercial-documents-attestation/" },
+  { label: "Power of attorney notarisation", href: "/power-of-attorney-notarization/" },
+]
+
+const faqs = [
+  {
+    q: "Can I get a certified true copy online?",
+    a: "You can start online or on WhatsApp. However, the certifier must see your original, so a scan or video call rarely works. As a result, we collect your documents from your door. Also, the receiving party decides which digital copies it accepts."
+  },
+  {
+    q: "How long does a certified true copy stay valid?",
+    a: "No single expiry date applies to every certified copy. However, the receiving party sets its own limit. Banks, for example, often ask for recent dates. Therefore, certify shortly before you submit. Certify again once your original changes, such as after a passport renewal."
+  },
+  {
+    q: "Does a certified true copy replace my original?",
+    a: "No. It acts as a substitute only where the receiving party does not need the original. For example, courts and property transfers may still ask to see it. Therefore, keep your original safe and check the requirement list before you submit."
+  },
+  {
+    q: "Can someone else hand over my original for me?",
+    a: "Often yes, but requirements differ by document and receiving party. Therefore, share your document details first. We then confirm which ID and written authorisation we need before collection. Please also tell us who will attend the handover, so the collection runs smoothly."
+  },
+  {
+    q: "What should a true copy certification stamp include?",
+    a: "A proper certification carries a line such as “certified to be true copy”, plus the certifier’s name, signature, stamp and date. Every page needs the mark, or the pages should be bound and sealed as a set. Otherwise, you hold only a photocopy."
+  },
+  {
+    q: "How can I verify a certified true copy?",
+    a: "Contact the certifier named on the stamp and quote the date and document. Licensed firms usually keep records of what they certify. For MOFA attested papers, you can use the ministry’s online verification service. Next, ask the receiving party how it prefers to verify."
+  },
+]
+---
+
+<BaseLayout
+  title="Certified True Copy in Dubai | Trusted UAE Service"
+  description="Get your certified true copy checked, stamped and delivered with clear guidance. Doorstep pickup across the UAE. Request a free quote."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .svc-arrow-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px; transition: all 0.25s; }
+  .svc-arrow-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .box-card { background: #fff; border: 1px solid #eef0f6; border-radius: 20px; padding: 32px; transition: all 0.25s; }
+  .box-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .in-link { color: #38B2AC; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .in-link:hover { color: #2C9A94; }
+  .rel-link { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 16px 20px; color: #1A202C; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: all 0.25s; }
+  .rel-link:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); color: #2C9A94; }
+  .step-num { flex-shrink: 0; width: 38px; height: 38px; border-radius: 9999px; background: #38B2AC; color: #fff; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; }
+  .btn-main { display: inline-flex; align-items: center; gap: 8px; background: #38B2AC; color: #fff; font-weight: 700; font-size: 0.9rem; padding: 13px 28px; border-radius: 9999px; text-decoration: none; box-shadow: 0 4px 20px rgba(56,178,172,0.4); }
+  details summary { list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] { border-color: #B2F5EA !important; }
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img src="/images/img-75.webp" alt="Certified true copy attestation in Dubai" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;" loading="eager" fetchpriority="high" width="1200" height="600" />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Established in 2000</span>
+      <span class="idx-pill">25+ Years of Experience</span>
+      <span class="idx-pill">400,000+ Clients Served</span>
+      <span class="idx-pill">100+ Countries Covered</span>
+      <span class="idx-pill">200+ Attestation Professionals</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">Certified True Copy Attestation in Dubai and Across the UAE</h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:720px;">
+      One wrong stamp can delay your visa by weeks. A certified true copy is a photocopy that a certifier has compared with your original. The certifier stamps, signs and dates it to confirm an exact match. However, it does not prove the original is genuine. At Index Office Services, we handle true copy attestation in Dubai from start to finish. We confirm who must certify your document, collect your original from your door and manage every extra stage. As a result, you avoid rejected copies and repeat visits.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/971529300200" class="btn-main" target="_blank" rel="noopener">WhatsApp Us Now &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ STATS STRIP ════ -->
+<section style="background:#1A202C;padding:40px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner stats-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:24px;text-align:center;">
+    {stats.map(s => (
+      <div>
+        <p style="font-size:2rem;font-weight:900;color:#38B2AC;margin:0;">{s.num}</p>
+        <p style="color:#81E6D9;font-size:0.78rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ════ WHO NEEDS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.9fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Who Needs a Certified True Copy, and When?</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 20px;">
+        Organisations ask for a certified true copy when they cannot keep your original. For example, you may need one for:
+      </p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+        {whoNeeds.map(item => (
+          <div class="svc-arrow-card">
+            <div style="font-size:1.3rem;flex-shrink:0;">{item.icon}</div>
+            <div>
+              <p style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 4px;">{item.title}</p>
+              <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        Therefore, ask the receiving party which certification it accepts. That one question prevents most repeat visits.
+      </p>
+    </div>
+
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-55.webp" alt="Certified true copy UAE" style="width:100%;height:440px;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">True Copy Attestation in Dubai</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Checked · Stamped · Delivered</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHO CAN CERTIFY ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:40px;">
+      <img src="/images/img-41.webp" alt="Who can certify a true copy in the UAE" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" loading="lazy" width="800" height="450" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Certifiers</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">WHO CAN CERTIFY A TRUE COPY IN THE UAE?</h2>
+      </div>
+    </div>
+
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 24px;">The certifier depends on the document. First, identify its type.</p>
+
+    <div class="two-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+      {certifiers.map(item => (
+        <div class="svc-arrow-card" style="gap:16px;">
+          <div style="font-size:1.5rem;flex-shrink:0;">{item.icon}</div>
+          <div>
+            <p style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{item.title}</p>
+            <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+      Acceptance always rests with the receiving party. As a result, we confirm the accepted certifier before we start.
+    </p>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Checklist</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Documents Are Required?</h2>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 24px;">Bring these items to begin:</p>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      {requiredDocs.map(item => (
+        <div class="svc-arrow-card">
+          <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;">✓</span>
+          <p style="font-size:0.92rem;color:#1A202C;line-height:1.65;margin:0;font-weight:600;">{item}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Our Process</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">How Does Our Step by Step Process Work?</h2>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 24px;">Our true copy attestation services follow a clear order.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;">
+      <div class="svc-arrow-card"><span class="step-num">1</span><p style="font-size:0.92rem;color:#4B5563;line-height:1.7;margin:0;"><strong style="color:#1A202C;">Share your details.</strong> Send the document type and purpose by WhatsApp, phone or form.</p></div>
+      <div class="svc-arrow-card"><span class="step-num">2</span><p style="font-size:0.92rem;color:#4B5563;line-height:1.7;margin:0;"><strong style="color:#1A202C;">Confirm the route.</strong> We check who must certify your document.</p></div>
+      <div class="svc-arrow-card"><span class="step-num">3</span><p style="font-size:0.92rem;color:#4B5563;line-height:1.7;margin:0;"><strong style="color:#1A202C;">Hand over your documents.</strong> We collect your original and copies from your door.</p></div>
+      <div class="svc-arrow-card"><span class="step-num">4</span><p style="font-size:0.92rem;color:#4B5563;line-height:1.7;margin:0;"><strong style="color:#1A202C;">Certification.</strong> The certifier compares each page, then applies the stamp, signature and date.</p></div>
+      <div class="svc-arrow-card"><span class="step-num">5</span><p style="font-size:0.92rem;color:#4B5563;line-height:1.7;margin:0;"><strong style="color:#1A202C;">Extra stages.</strong> In case your destination needs <a href="/notary-attestation-services/" class="in-link">notary</a>, MOFA or embassy steps, we handle those too.</p></div>
+      <div class="svc-arrow-card"><span class="step-num">6</span><p style="font-size:0.92rem;color:#4B5563;line-height:1.7;margin:0;"><strong style="color:#1A202C;">Delivery.</strong> You receive the certified copies and your original back.</p></div>
+    </div>
+
+    <a href="#get-in-touch" class="btn-main">Check My Documents &rarr;</a>
+  </div>
+</section>
+
+<!-- ════ DIFFERENCES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;text-align:center;margin-bottom:8px;">Know the Difference</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;text-align:center;margin:0 0 18px;">How Is It Different From a Notarised or Self Attested Copy?</h2>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;text-align:center;margin:0 auto 32px;max-width:720px;">People mix these terms often. Here is the difference:</p>
+
+    <div class="two-col" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;">
+      {differences.map(item => (
+        <div class="box-card" style="padding:26px;">
+          <p style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{item.title}</p>
+          <p style="font-size:0.9rem;color:#4B5563;line-height:1.7;margin:0;">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;text-align:center;margin:0 auto;max-width:720px;">
+      However, some organisations use these terms as equals. Therefore, check the exact wording on your requirement list.
+    </p>
+  </div>
+</section>
+
+<!-- ════ MOFA / EMBASSY ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.4fr;gap:52px;align-items:center;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+      <img src="/images/img-8.webp" alt="MOFA attestation and embassy legalisation" style="width:100%;height:440px;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+        <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Later Stages</p>
+        <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">MOFA · Embassy · Apostille</p>
+      </div>
+    </div>
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Next Stages</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Do You Also Need MOFA Attestation or Embassy Legalisation?</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 24px;">
+        A certified true copy only confirms that the copy matches. It does not replace later stages.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+        <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">Certified true copy:</strong> The copy matches your original.</p></div>
+        <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">MOFA attestation:</strong> The UAE authority’s stamp or signature is genuine.</p></div>
+        <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">Embassy legalisation:</strong> The destination country recognises the document.</p></div>
+        <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">Apostille:</strong> This applies to destinations that belong to the Hague Convention.</p></div>
+      </div>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0;">
+        Government or court use abroad often needs these stages. The destination country decides. Learn more about
+        <a href="/mofa-attestation-in-uae/" class="in-link">MOFA attestation</a>,
+        <a href="/embassy-attestation-in-uae/" class="in-link">embassy legalisation</a> and
+        <a href="/apostille-service-uae/" class="in-link">apostille support</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;text-align:center;margin-bottom:8px;">By Document</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;text-align:center;margin:0 0 18px;">What Should You Know for Each Document Type?</h2>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;text-align:center;margin:0 auto 32px;max-width:720px;">Each document has its own habits. Our team sees these points most often.</p>
+
+    <div class="two-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      {docTypes.map(item => (
+        <div class="box-card" style="padding:26px;">
+          <p style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{item.title}</p>
+          <p style="font-size:0.9rem;color:#4B5563;line-height:1.7;margin:0;">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ TIME & COST ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Time &amp; Cost</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Affects Processing Time and Cost?</h2>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 12px;">
+      We do not quote fixed times or prices, because each case differs. Contact us for a quote based on your documents.
+    </p>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 20px;">These factors affect both:</p>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">The document type and the certifying party</p></div>
+      <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">The number of pages and certified sets</p></div>
+      <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">Extra stages, such as <a href="/notary-attestation-services/" class="in-link">notary</a>, <a href="/mofa-attestation-in-uae/" class="in-link">MOFA</a> or <a href="/embassy-attestation-in-uae/" class="in-link">embassy</a> steps</p></div>
+      <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">Government and embassy timelines, which those authorities set</p></div>
+      <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><a href="/legal-translation-in-uae/" class="in-link">Legal translation</a>, when Arabic or English is required</p></div>
+      <div class="svc-arrow-card"><span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">Pickup and delivery needs</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">WHY CHOOSE INDEX OFFICE SERVICES?</h2>
+    <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 32px;">
+      You deserve a team that explains each stage before you pay. Here is what you get:
+    </p>
+
+    <div class="two-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px;">
+      {whyIndex.map(item => (
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:22px;">
+          <p style="font-size:0.95rem;font-weight:800;color:#fff;margin:0 0 6px;">{item.title}</p>
+          <p style="font-size:0.88rem;color:#94A3B8;line-height:1.65;margin:0;">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <a href="#get-in-touch" class="btn-main">Talk to an Expert &rarr;</a>
+  </div>
+</section>
+
+<!-- ════ MISTAKES ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Avoid Delays</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Are the Common Mistakes and Rejection Reasons?</h2>
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 24px;">Most rejections come from small errors. Avoid these:</p>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+      {mistakes.map(item => (
+        <div class="svc-arrow-card">
+          <span style="color:#E53E3E;font-weight:900;flex-shrink:0;">✕</span>
+          <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">{item}</p>
+        </div>
+      ))}
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #38B2AC;border-radius:14px;padding:22px 26px;box-shadow:0 8px 24px rgba(0,0,0,0.05);">
+      <p style="font-size:0.92rem;color:#4B5563;line-height:1.8;margin:0;">
+        <strong style="color:#1A202C;">Typical scenario:</strong> A student needs a passport copy for a university abroad. He uses a copy stamped by a typing centre. However, the university rejects it. As a result, he repeats the process and loses several days.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ LOCATIONS & RELATED ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Locations</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Where Do We Offer Certified True Copy Services?</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 20px;">We work from two offices and collect documents across the UAE.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="svc-arrow-card"><span style="font-size:1.2rem;flex-shrink:0;">📍</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">Dubai:</strong> Sheikh Zayed Road, Conrad Hotel Business Tower</p></div>
+        <div class="svc-arrow-card"><span style="font-size:1.2rem;flex-shrink:0;">📍</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">Abu Dhabi:</strong> Electra Street</p></div>
+        <div class="svc-arrow-card"><span style="font-size:1.2rem;flex-shrink:0;">🚚</span><p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">Sharjah and other emirates:</strong> Doorstep pickup and delivery</p></div>
+      </div>
+    </div>
+
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Related Services</p>
+      <h2 style="font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Related services you may need next:</h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {related.map(link => (
+          <a href={link.href} class="rel-link"><span style="color:#38B2AC;font-weight:900;">→</span>{link.label}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:860px;margin:0 auto;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;text-align:center;margin-bottom:10px;">Have Questions?</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;text-align:center;margin:0 0 40px;">Frequently Asked Questions</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      {faqs.map((f, i) => (
+        <details style="border:1px solid #eef0f6;border-radius:14px;overflow:hidden;background:#fff;">
+          <summary style="list-style:none;cursor:pointer;padding:18px 22px;font-size:0.88rem;font-weight:700;color:#1A202C;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;">
+            <span>{i + 1}. {f.q}</span>
+            <span style="color:#38B2AC;font-size:1.3rem;font-weight:900;flex-shrink:0;line-height:1;">+</span>
+          </summary>
+          <div style="padding:0 22px 18px;font-size:0.88rem;color:#4B5563;line-height:1.75;">{f.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ START WITH A DOCUMENT CHECK ════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Document Check</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">START WITH A DOCUMENT CHECK</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Tell us your document and where you will submit it.
+      </p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        We confirm the right certification route before you proceed.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Check My Documents</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('details').forEach(details => {
+    const icon = details.querySelector('summary span:last-child');
+    if (!icon) return;
+    details.addEventListener('toggle', () => {
+      icon.textContent = details.open ? '−' : '+';
+    });
+  });
+</script>
+
+</BaseLayout>
