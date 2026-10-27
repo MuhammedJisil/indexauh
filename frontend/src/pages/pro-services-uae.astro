@@ -1,0 +1,488 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const needs = [
+  "Register a new company and complete the required government procedures.",
+  "Apply for employment, investor, partner, and family visas.",
+  "Renew or amend trade licences within the required time.",
+  "Process Emirates ID and medical fitness applications.",
+  "Submit documents to labour, immigration, and licensing authorities.",
+  "Obtain approvals from the relevant government departments.",
+  "Complete document attestation and legal translation for official use.",
+  "Keep company records updated to meet regulatory requirements.",
+  "Reduce the chances of application delays caused by incomplete documentation.",
+  "Stay focused on business growth while experienced professionals manage administrative requirements.",
+]
+
+const services = [
+  { title: "Employment Visa Services", intro: "Our team manages the documentation and government procedures involved in employment visas.", items: ["New employment visa applications.", "Employment visa renewals.", "Employment visa cancellations.", "Work permit support.", "Document preparation and submission.", "Application follow-up with the relevant authorities."] },
+  { title: "Family Visa Services", intro: "We help families complete the required procedures with clear guidance from start to finish.", items: ["Family visa applications.", "Family visa renewals.", "Dependent sponsorship support.", "Document verification.", "Application submission and follow-up."] },
+  { title: "Investor and Partner Visa Services", intro: "Business owners receive support throughout the investor and partner visa process.", items: ["Investor visa applications.", "Partner visa processing.", "Residence visa renewals.", "Government documentation.", "Application tracking and updates."] },
+  { title: "Trade Licence Services", intro: "Keeping your trade licence up to date helps your business continue operating without disruption.", items: ["Trade licence renewals.", "Trade licence amendments.", "Business activity changes.", "Licence cancellation support.", "Government submissions."] },
+  { title: "Labour and Immigration Services", intro: "We assist businesses with employment-related government requirements.", items: ["Labour permit applications.", "Immigration approvals.", "Labour card services.", "Quota applications.", "Employment documentation."] },
+  { title: "Emirates ID and Medical Services", intro: "These services are an important part of many UAE visa procedures.", items: ["Emirates ID applications.", "Emirates ID renewals.", "Medical fitness appointment coordination.", "Support for visa-related medical requirements."] },
+  { title: "Corporate PRO Services", intro: "Our PRO services UAE support businesses with ongoing government and administrative requirements.", items: ["Company document processing.", "Government liaison support.", "Regulatory documentation.", "Corporate approvals.", "Compliance assistance."] },
+  { title: "Document Attestation and Legal Translation", intro: "Many official applications require properly attested or translated documents. We provide these services as part of our complete PRO services in the UAE.", items: ["Educational certificate attestation.", "Personal document attestation.", "Commercial document attestation.", "Certified legal translation.", "Document preparation for government submissions."] },
+]
+
+const authorities = [
+  ["Ministry of Human Resources and Emiratisation (MOHRE)", "Employment permits, labour contracts, and workforce-related services."],
+  ["Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)", "Residence visas, Emirates ID services, and immigration-related applications."],
+  ["General Directorate of Residency and Foreigners Affairs (GDRFA)", "Visa and residency services for Dubai."],
+  ["Dubai Department of Economy and Tourism (DET)", "Business registration, trade licences, and commercial activities in Dubai."],
+  ["Ministry of Foreign Affairs (MOFA)", "Attestation of documents for official use inside the UAE."],
+  ["Federal Tax Authority (FTA)", "VAT registration and tax-related services for eligible businesses."],
+  ["Dubai Municipality", "Approvals and permits for specific business activities and regulated sectors."],
+  ["Free Zone Authorities", "Company registration, licensing, and administrative services for businesses operating within UAE free zones."],
+]
+
+const audiences = [
+  { title: "Startups", items: ["Registering a new business.", "Applying for initial licences and approvals.", "Processing investor and employee visas.", "Managing government documentation from the beginning."] },
+  { title: "Small and Medium Businesses (SMEs)", items: ["Renewing trade licences.", "Applying for new employee visas.", "Managing labour and immigration requirements.", "Keeping company records updated."] },
+  { title: "Large Companies", items: ["Handling high-volume visa processing.", "Managing employee onboarding documentation.", "Supporting multiple government transactions.", "Coordinating ongoing compliance requirements."] },
+  { title: "Foreign Investors", items: ["Applying for investor or partner visas.", "Completing company registration procedures.", "Managing business-related government approvals.", "Processing official documents for UAE use."] },
+  { title: "Mainland Businesses", items: ["Support with trade licences and amendments.", "Labour and immigration procedures.", "Government approvals for business operations.", "Ongoing administrative assistance."] },
+  { title: "Free Zone Companies", items: ["Company licence services.", "Visa processing for employees and investors.", "Document submissions to free zone authorities.", "Business compliance support."] },
+]
+
+const steps = [
+  ["Initial Consultation", "We begin by understanding your business requirements and identifying the government procedures involved."],
+  ["Document Review", "Our team reviews the submitted documents and lets you know about any additional requirements before the application moves forward."],
+  ["Application Preparation", "The required forms and supporting documents are prepared according to the relevant government authority's requirements."],
+  ["Government Submission", "Applications are submitted to the appropriate department, and our team follows the progress throughout the process."],
+  ["Updates and Follow-up", "We track your application, handle any additional requirements from the authorities, and provide regular updates throughout the process."],
+  ["Approval and Completion", "Once the application is approved, we complete the remaining formalities and arrange the collection or delivery of the documents, depending on the service requested."],
+]
+
+const docs = [
+  { title: "For Employment Visa Services", items: ["Passport copy.", "Passport-sized photograph.", "Entry permit, where applicable.", "Educational or professional certificates, based on the job role.", "Employment-related documents requested by the authorities."] },
+  { title: "For Family Visa Services", items: ["Sponsor's passport and Emirates ID copy.", "Family member's passport copy.", "Passport-sized photographs.", "Attested marriage certificate or birth certificate, depending on the application.", "Proof of accommodation and other supporting documents, where required."] },
+  { title: "For Investor and Partner Visa Services", items: ["Passport copy.", "Passport-sized photograph.", "Trade licence copy.", "Company incorporation documents.", "Shareholder or partnership documents."] },
+  { title: "For Corporate PRO Services", items: ["Valid trade licence.", "Establishment card.", "Emirates ID and passport copies of authorised signatories.", "Company documents related to the requested service.", "Government application forms, where applicable."] },
+]
+
+const compare = [
+  ["Save time on government procedures.", "Staff spend valuable time on administrative tasks."],
+  ["Better understanding of documentation requirements.", "Higher chance of missing documents or application requirements."],
+  ["Regular follow-up with the relevant authorities.", "Multiple visits and follow-ups may be needed."],
+  ["Help keep licence and visa deadlines on track.", "Missed deadlines can affect business operations."],
+  ["Support across different government services from one team.", "Different procedures often require separate coordination."],
+  ["More time to focus on business growth and daily operations.", "Administrative work can reduce productivity."],
+]
+
+const industries = [
+  ["Retail", "Trade licence support, employee visas, and business documentation."],
+  ["Construction", "Labour and immigration services, licence renewals, and workforce documentation."],
+  ["Healthcare", "Professional licensing support, visa processing, and regulatory documentation."],
+  ["Hospitality", "Employee visa management, licence services, and government approvals."],
+  ["Information Technology (IT)", "Company documentation, investor visas, and compliance support."],
+  ["Manufacturing", "Workforce documentation, labour services, and operational approvals."],
+  ["Education", "Visa services, document processing, and regulatory assistance."],
+  ["Logistics and Transportation", "Employment documentation, licensing support, and government procedures."],
+  ["Real Estate", "Business documentation, trade licence services, and investor visa support."],
+  ["Professional Services", "Ongoing administrative support, company documentation, and government liaison services."],
+]
+
+const times = [
+  ["Employment Visa", "Varies based on the application stage and government approvals."],
+  ["Family Visa", "Depends on document verification and approval requirements."],
+  ["Investor or Partner Visa", "Varies according to company type and supporting documents."],
+  ["Trade Licence Renewal", "Usually processed after all required documents are submitted."],
+  ["Emirates ID Services", "Based on appointment availability and government processing."],
+  ["Document Attestation", "Depends on the issuing country, document type, and authority involved."],
+]
+
+const costs = [
+  ["Type of service", "Visa processing, trade licence services, company documentation, and government approvals have different requirements."],
+  ["Government fees", "Official fees vary based on the authority and the service requested."],
+  ["Business structure", "Mainland companies, free zone businesses, and branch offices may have different procedures."],
+  ["Number of applications", "Businesses handling multiple visas or government transactions may have different service requirements."],
+  ["Supporting documents", "Some applications require attestation, legal translation, or additional approvals."],
+  ["Processing requirements", "Certain services involve more stages and documentation than others."],
+]
+
+const challenges = [
+  "Missing or incomplete documents during submission.",
+  "Delays caused by incorrect application details.",
+  "Trade licence renewal deadlines being overlooked.",
+  "Employment or family visa processing taking longer than expected.",
+  "Keeping up with changing government requirements.",
+  "Managing multiple applications at the same time.",
+  "Coordinating with different government authorities for a single process.",
+  "Spending valuable business hours on administrative work instead of core operations.",
+]
+
+const whyUs = [
+  ["25+ years of industry experience", "supporting businesses across the UAE."],
+  ["Experienced PRO specialists", "who understand current government procedures and documentation requirements."],
+  ["Complete service support,", "from document review to final approval."],
+  ["Clear communication", "with regular updates on your application status."],
+  ["Careful document handling", "to help reduce delays caused by incomplete submissions."],
+  ["Support for businesses of all sizes,", "including startups, SMEs, and established companies."],
+  ["Assistance across multiple government services,", "making it easier to manage different business requirements through one team."],
+  ["Timely follow-up", "with the relevant authorities to keep applications moving."],
+  ["Client-focused approach,", "taking the time to understand your business requirements before recommending the right solution."],
+]
+
+const faqs = [
+  ["Can businesses use PRO services for a single requirement?", "Yes. Businesses may seek support for one specific requirement, such as a visa application, trade licence renewal, or document processing, without using ongoing PRO support."],
+  ["Are PRO services available for mainland and free zone companies?", "Yes. Both mainland and free zone businesses can use PRO services. The process and required approvals vary depending on the licensing authority and business structure."],
+  ["Can foreign investors use PRO services in the UAE?", "Yes. Foreign investors often use PRO services to manage government procedures related to company registration, investor visas, and other official documentation."],
+  ["Do government requirements change over time?", "Yes. Government procedures and documentation requirements may change from time to time. Checking the latest requirements before submitting an application helps avoid unnecessary delays."],
+  ["Can multiple government services be processed together?", "In many cases, yes. Some business requirements involve more than one government procedure, such as visa processing, Emirates ID applications, and medical fitness requirements. The sequence depends on the type of application."],
+  ["What should businesses do before submitting an application?", "Review the document checklist, confirm that all records are up to date, and ensure the information provided matches the official documents. Careful preparation helps reduce processing delays."],
+  ["Can incomplete applications affect processing?", "Yes. Missing documents or incorrect information can result in additional document requests or longer processing times. Submitting complete and accurate information helps the application move forward more smoothly."],
+]
+---
+
+<BaseLayout
+  title="PRO Services UAE | Professional PRO Services in Dubai"
+  description="Professional PRO services in Dubai & UAE for visas, trade licences and government approvals. Index Office Services brings 25+ years of experience."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .sec { padding: 76px 24px; position: relative; overflow: hidden; }
+  .sec-alt { background: #F8FAFF; }
+  .sec-white { background: #fff; }
+  .bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+  .bg-diag { position:absolute; inset:0; background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px); pointer-events:none; z-index:0; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .eyebrow { color:#2D3748; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; font-size:0.75rem; display:flex; align-items:center; gap:8px; margin:0 0 12px; }
+  .eyebrow::before { content:""; display:inline-block; width:28px; height:1px; background:#2D3748; }
+  .h2 { font-size:clamp(1.7rem,3vw,2.2rem); font-weight:900; color:#1A202C; line-height:1.2; margin:0 0 18px; }
+  .h3 { font-size:1.05rem; font-weight:800; color:#1A202C; margin:0 0 8px; border-left:4px solid #38B2AC; padding-left:12px; }
+  .p { color:#4B5563; font-size:0.95rem; line-height:1.8; margin:0 0 16px; }
+  .p-sm { color:#4B5563; font-size:0.9rem; line-height:1.7; margin:0 0 12px; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .svc-arrow-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px; transition: all 0.25s; }
+  .svc-arrow-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .box-card { background: #fff; border: 1px solid #eef0f6; border-radius: 20px; padding: 28px; transition: all 0.25s; }
+  .box-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .arrow-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+  .arrow-list li { display:flex; align-items:flex-start; gap:10px; font-size:0.88rem; color:#4B5563; line-height:1.65; }
+  .arrow-list li::before { content:"→"; color:#38B2AC; font-weight:900; flex-shrink:0; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .split-grid { display:grid; grid-template-columns:1.2fr 0.9fr; gap:52px; align-items:center; }
+  .tbl-wrap { overflow-x:auto; border-radius:16px; border:1px solid #eef0f6; box-shadow:0 12px 32px rgba(0,0,0,0.04); background:#fff; }
+  .tbl { width:100%; border-collapse:collapse; min-width:560px; }
+  .tbl th { background:#2D3748; color:#fff; text-align:left; font-size:0.82rem; letter-spacing:0.05em; text-transform:uppercase; padding:14px 18px; }
+  .tbl td { padding:14px 18px; font-size:0.9rem; color:#4B5563; line-height:1.6; border-top:1px solid #eef0f6; vertical-align:top; }
+  .tbl td:first-child { color:#1A202C; font-weight:700; width:36%; }
+  .tbl tr:nth-child(even) td { background:#F8FAFF; }
+  .step-num { flex-shrink:0; width:42px; height:42px; border-radius:9999px; background:#38B2AC; color:#fff; font-weight:900; display:flex; align-items:center; justify-content:center; }
+  .faq { background:#fff; border:1px solid #eef0f6; border-radius:14px; padding:0; margin-bottom:12px; transition:all 0.25s; }
+  .faq[open] { border-color:#B2F5EA; box-shadow:0 12px 32px rgba(56,178,172,0.08); }
+  .faq summary { cursor:pointer; list-style:none; padding:18px 22px; font-weight:700; color:#1A202C; font-size:0.95rem; display:flex; justify-content:space-between; gap:16px; }
+  .faq summary::-webkit-details-marker { display:none; }
+  .faq summary::after { content:"+"; color:#38B2AC; font-weight:900; font-size:1.2rem; line-height:1; }
+  .faq[open] summary::after { content:"–"; }
+  .faq p { margin:0; padding:0 22px 20px; color:#4B5563; font-size:0.9rem; line-height:1.75; }
+  .note { color:#6B7280; font-size:0.8rem; line-height:1.7; margin:14px 0 0; font-style:italic; }
+  @media(max-width:900px){
+    .grid-3 { grid-template-columns:repeat(2,1fr); }
+  }
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid, .grid-3, .grid-2 { grid-template-columns: 1fr !important; gap: 24px !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img src="/images/img-16.webp" alt="PRO Services UAE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;" loading="eager" fetchpriority="high" width="1200" height="600" />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Visas</span>
+      <span class="idx-pill">Trade Licences</span>
+      <span class="idx-pill">Government Approvals</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">PRO Services UAE | Professional PRO Services UAE</h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:720px;">
+      Managing visas, trade licences, government approvals, and business documents can take valuable time away from running your business. PRO Services UAE help businesses handle these essential tasks smoothly while staying compliant with government requirements. At Index Office Services, we bring over 25 years of experience supporting businesses across the UAE with professional document and government liaison services. Explore this page to understand our PRO services in Dubai, what we offer, and how our team can support your business needs.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Started &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY BUSINESSES NEED PRO ════ -->
+<section class="sec sec-alt">
+  <div class="bg-grid"></div>
+  <div class="sec-inner wrap">
+    <div class="split-grid">
+      <div>
+        <p class="eyebrow">Why PRO Services</p>
+        <h2 class="h2">Why Businesses Need PRO Services in the UAE</h2>
+        <p class="p">Government procedures are part of almost every stage of running a business in the UAE. From starting a company to hiring employees and renewing licences, each process requires accurate documentation and timely submissions. Missing a requirement can lead to delays, extra costs, or interruptions to business operations.</p>
+        <p class="p" style="margin:0;">With more than 25 years of experience, Index Office Services has supported businesses across the UAE through these government procedures. Our team understands the documentation standards, application processes, and compliance requirements that help businesses move forward with greater confidence.</p>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-55.webp" alt="PRO Services in the UAE" style="width:100%;height:380px;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional PRO Services UAE</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visas · Trade Licences · Approvals · Attestation</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="color:#1A202C;font-weight:700;font-size:1rem;margin:44px 0 18px;">Businesses usually need PRO services to:</p>
+    <div class="grid-2">
+      {needs.map(item => (
+        <div class="svc-arrow-card">
+          <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+          <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;">{item}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ OUR PRO SERVICES IN DUBAI ════ -->
+<section class="sec sec-white">
+  <div class="bg-diag"></div>
+  <div class="sec-inner wrap">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:40px;">
+      <img src="/images/img-41.webp" alt="PRO services in Dubai" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" loading="lazy" width="800" height="450" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">What We Cover</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">OUR PRO SERVICES IN DUBAI</h2>
+      </div>
+    </div>
+
+    <p class="p" style="max-width:900px;">Every business has different administrative requirements. Some need support with employee visas, while others require help with company documentation or government approvals. At Index Office Services, we provide a wide range of PRO services in Dubai to support businesses at every stage.</p>
+
+    <div class="grid-2" style="margin-top:28px;">
+      {services.map(s => (
+        <div class="box-card">
+          <h3 class="h3">{s.title}</h3>
+          <p class="p-sm" style="margin-bottom:14px;">{s.intro}</p>
+          <ul class="arrow-list">{s.items.map(i => <li>{i}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ GOVERNMENT AUTHORITIES ════ -->
+<section class="sec sec-alt">
+  <div class="bg-grid"></div>
+  <div class="sec-inner wrap">
+    <p class="eyebrow">Coordination</p>
+    <h2 class="h2">Government Authorities We Coordinate With</h2>
+    <p class="p" style="max-width:900px;">Many business procedures involve approvals from different government authorities. Knowing which department handles each process helps avoid confusion and keeps applications moving in the right direction. At Index Office Services, our team coordinates with the relevant authorities based on the service required.</p>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Government Authority</th><th>Purpose</th></tr></thead>
+        <tbody>{authorities.map(([a, b]) => <tr><td>{a}</td><td>{b}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p class="p" style="margin:20px 0 0;">Every business has different requirements, and the authorities involved can vary depending on the type of company, visa, or government service needed. Our experience allows us to guide businesses through the correct process while helping them prepare the required documentation for each stage.</p>
+  </div>
+</section>
+
+<!-- ════ WHO CAN BENEFIT ════ -->
+<section class="sec sec-white">
+  <div class="bg-diag"></div>
+  <div class="sec-inner wrap">
+    <p class="eyebrow">Who We Help</p>
+    <h2 class="h2">Who Can Benefit from PRO Services?</h2>
+    <p class="p" style="max-width:900px;">Businesses of every size need government support at different stages of their journey. Some require help during company formation, while others need ongoing assistance with visas, licences, and compliance. Our PRO services UAE are suitable for:</p>
+    <div class="grid-3" style="margin-top:28px;">
+      {audiences.map(a => (
+        <div class="box-card">
+          <h3 class="h3">{a.title}</h3>
+          <ul class="arrow-list" style="margin-top:14px;">{a.items.map(i => <li>{i}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ OUR PROCESS ════ -->
+<section class="sec sec-alt">
+  <div class="bg-grid"></div>
+  <div class="sec-inner wrap">
+    <p class="eyebrow">How It Works</p>
+    <h2 class="h2">Our PRO Service Process</h2>
+    <p class="p" style="max-width:900px;">Every business requirement is different, but most PRO services follow a clear process. At Index Office Services, we keep clients informed at every stage so they know what to expect.</p>
+    <div class="grid-3" style="margin-top:28px;">
+      {steps.map(([t, d], i) => (
+        <div class="box-card" style="display:flex;gap:16px;align-items:flex-start;">
+          <span class="step-num">{i + 1}</span>
+          <div>
+            <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 6px;">{t}</h3>
+            <p class="p-sm" style="margin:0;">{d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="p" style="margin:24px 0 0;">A clear process helps reduce unnecessary delays and ensures every application receives the attention it needs from start to finish.</p>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS REQUIRED ════ -->
+<section class="sec sec-white">
+  <div class="bg-diag"></div>
+  <div class="sec-inner wrap">
+    <p class="eyebrow">Checklist</p>
+    <h2 class="h2">Documents Required for PRO Services</h2>
+    <p class="p" style="max-width:900px;">The documents needed depend on the type of service you are applying for. Preparing the correct documents in advance helps avoid delays during the application process.</p>
+    <div class="grid-2" style="margin-top:28px;">
+      {docs.map(d => (
+        <div class="box-card">
+          <h3 class="h3">{d.title}</h3>
+          <ul class="arrow-list" style="margin-top:14px;">{d.items.map(i => <li>{i}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+    <p class="p" style="margin:24px 0 0;">The exact document checklist can vary based on the service and the requirements of the relevant government authority. At Index Office Services, our team reviews your documents before submission to help make the application process smoother.</p>
+  </div>
+</section>
+
+<!-- ════ BENEFITS ════ -->
+<section class="sec sec-alt">
+  <div class="bg-grid"></div>
+  <div class="sec-inner wrap">
+    <p class="eyebrow">Benefits</p>
+    <h2 class="h2">Benefits of Choosing Professional PRO Services</h2>
+    <p class="p" style="max-width:900px;">Managing government procedures takes time and careful attention. Working with an experienced team helps businesses stay organised while reducing the administrative workload.</p>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Professional PRO Services</th><th>Managing Everything Internally</th></tr></thead>
+        <tbody>{compare.map(([a, b]) => <tr><td style="width:50%;font-weight:600;color:#2C7A7B;">✓ {a}</td><td>{b}</td></tr>)}</tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════ INDUSTRIES ════ -->
+<section class="sec sec-white">
+  <div class="bg-diag"></div>
+  <div class="sec-inner wrap">
+    <p class="eyebrow">Sectors</p>
+    <h2 class="h2">Industries We Support</h2>
+    <p class="p" style="max-width:900px;">Businesses across different industries have unique documentation, licensing, and government compliance requirements. At Index Office Services, we provide PRO services UAE to organisations of all sizes, supporting their day-to-day administrative and government-related needs.</p>
+    <p class="p" style="max-width:900px;">Our services are trusted by businesses across many industries, including:</p>
+    <div class="grid-2" style="margin-top:20px;">
+      {industries.map(([t, d]) => (
+        <div class="svc-arrow-card">
+          <span style="color:#38B2AC;font-weight:900;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+          <p style="font-size:0.9rem;color:#4B5563;line-height:1.65;margin:0;"><strong style="color:#1A202C;">{t}</strong> – {d}</p>
+        </div>
+      ))}
+    </div>
+    <p class="p" style="margin:24px 0 0;">No matter the industry, our team works closely with businesses to understand their operational requirements and provide practical PRO services in UAE that support smooth business operations.</p>
+  </div>
+</section>
+
+<!-- ════ PROCESSING TIME ════ -->
+<section class="sec sec-alt">
+  <div class="bg-grid"></div>
+  <div class="sec-inner wrap">
+    <p class="eyebrow">Timelines</p>
+    <h2 class="h2">Processing Time for Common PRO Services</h2>
+    <p class="p" style="max-width:900px;">The time needed to complete a service depends on the type of application, the documents submitted, and the approval process of the relevant government authority. Some services are completed quickly, while others may take longer because they involve multiple approvals.</p>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Service</th><th>Typical Processing Time*</th></tr></thead>
+        <tbody>{times.map(([a, b]) => <tr><td>{a}</td><td>{b}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p class="note">*Processing times are estimates and may change based on government procedures, public holidays, additional document requests, or application-specific requirements.</p>
+  </div>
+</section>
+
+<!-- ════ COSTS + CHALLENGES ════ -->
+<section class="sec sec-white">
+  <div class="bg-diag"></div>
+  <div class="sec-inner wrap grid-2" style="align-items:start;gap:32px;">
+    <div class="box-card">
+      <h2 style="font-size:1.3rem;font-weight:900;color:#1A202C;border-left:4px solid #38B2AC;padding-left:14px;margin:0 0 18px;">FACTORS THAT AFFECT PRO SERVICE COSTS</h2>
+      <p class="p-sm">The cost of PRO services UAE can vary because every business has different requirements. The final cost depends on the type of service, the government fees involved, and the complexity of the application.</p>
+      <p class="p-sm">Some of the main factors include:</p>
+      <ul class="arrow-list" style="margin-bottom:16px;">
+        {costs.map(([t, d]) => <li><span><strong style="color:#1A202C;">{t}</strong> – {d}</span></li>)}
+      </ul>
+      <p class="p-sm" style="margin:0;">At Index Office Services, we explain the process clearly before your application begins, helping you understand the services required and the factors that may influence the overall cost.</p>
+    </div>
+
+    <div class="box-card">
+      <h2 style="font-size:1.3rem;font-weight:900;color:#1A202C;border-left:4px solid #38B2AC;padding-left:14px;margin:0 0 18px;">COMMON CHALLENGES WITH GOVERNMENT PROCEDURES</h2>
+      <p class="p-sm">Government processes often involve multiple steps, strict documentation, and approval timelines. Even a small mistake can slow down an application or create additional work.</p>
+      <p class="p-sm">Some of the most common challenges businesses face include:</p>
+      <ul class="arrow-list" style="margin-bottom:16px;">{challenges.map(c => <li>{c}</li>)}</ul>
+      <p class="p-sm" style="margin:0;">At Index Office Services, we help businesses prepare the right documents, understand the required procedures, and manage applications from start to finish. Our experience with PRO services in UAE allows us to identify potential issues early and help clients move through the process with greater confidence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section class="sec" style="background:#1A202C;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:960px;margin:0 auto;">
+    <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 18px;">WHY CHOOSE INDEX OFFICE SERVICES?</h2>
+    <p style="color:#B2F5EA;font-size:1.02rem;line-height:1.8;margin-bottom:12px;">Choosing the right partner for PRO services UAE is about more than completing paperwork. It is about working with a team that understands government procedures and values clear communication throughout the process.</p>
+    <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin-bottom:32px;">Here's what sets Index Office Services apart:</p>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;">
+      {whyUs.map(([t, d]) => (
+        <li style="display:flex;gap:12px;align-items:flex-start;color:#CBD5E0;font-size:0.95rem;line-height:1.7;">
+          <span style="color:#38B2AC;font-weight:900;flex-shrink:0;">→</span>
+          <span><strong style="color:#fff;">{t}</strong> {d}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section class="sec sec-alt">
+  <div class="bg-grid"></div>
+  <div class="sec-inner" style="max-width:900px;margin:0 auto;">
+    <p class="eyebrow">FAQ</p>
+    <h2 class="h2" style="margin-bottom:28px;">Frequently Asked Questions</h2>
+    {faqs.map(([q, a]) => (
+      <details class="faq">
+        <summary>{q}</summary>
+        <p>{a}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<!-- ════ GET IN TOUCH ════ -->
+<section id="get-in-touch" class="sec" style="background:#2D3748;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get Started</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">READY TO GET STARTED?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        Every business has different requirements, and choosing the right process from the beginning can save valuable time. At Index Office Services, our team is here to answer your questions, explain the next steps, and help you move forward with confidence.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL NOW: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+  </div>
+</section>
+
+</BaseLayout>
