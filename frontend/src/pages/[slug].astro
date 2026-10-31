@@ -255,6 +255,23 @@ import { marked } from 'marked';
 
 const { slug } = Astro.params;
 
+// Task 7: Delete blog post (return 404)
+if (slug === 'usa-certificate-attestation-in-uae') {
+  return Astro.rewrite('/404');
+}
+
+// Task 8: 301 Permanent Blog Redirects
+const blogRedirects: Record<string, string> = {
+  'how-to-establish-business-in-dubai': '/how-to-set-up-a-business-in-dubai-2026-guide/',
+  'how-to-start-a-company-in-dubai-2026': '/how-to-set-up-a-business-in-dubai-2026-guide/',
+  'how-to-apply-for-equivalency-certificate-in-uae': '/how-to-get-an-equivalency-certificate-in-uae/',
+  'how-to-get-police-clearance-in-dubai-2026': '/how-to-get-police-clearance-certificate-uae/',
+};
+
+if (slug && blogRedirects[slug]) {
+  return Astro.redirect(blogRedirects[slug], 301);
+}
+
 const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
 
 // Fetch this specific post by slug

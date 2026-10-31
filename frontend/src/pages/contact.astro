@@ -4,6 +4,18 @@ import ContactForm from "../components/ContactForm.astro";
 
 const offices = [
   {
+    city: "Abu Dhabi",
+    icon: "🇦🇪",
+    address:
+      "Electra Street - Near Ritaj Restaurant - Al Danah - Zone 1 - Abu Dhabi - United Arab Emirates",
+    mob: {
+      label: "+971 52 524 5208",
+      href: "https://api.whatsapp.com/send/?phone=971525245208",
+    },
+    tel: { label: "(+971) 263 115 60", href: "tel:+97126311560" },
+    email: { label: "info@indexauh.com", href: "mailto:info@indexauh.com" },
+  },
+  {
     city: "Dubai",
     icon: "🇦🇪",
     address:
@@ -13,18 +25,6 @@ const offices = [
       href: "https://api.whatsapp.com/send/?phone=971525245208",
     },
     tel: { label: "(+971) 422 799 16", href: "tel:+97142279916" },
-    email: { label: "info@indexauh.com", href: "mailto:info@indexauh.com" },
-  },
-  {
-    city: "Abu Dhabi",
-    icon: "🇦🇪",
-    address:
-      "Ground Floor, Behind Marks & Spencer, Electra Street, Abu Dhabi, UAE",
-    mob: {
-      label: "+971 52 524 5208",
-      href: "https://api.whatsapp.com/send/?phone=971525245208",
-    },
-    tel: { label: "(+971) 263 115 60", href: "tel:+97126311560" },
     email: { label: "info@indexauh.com", href: "mailto:info@indexauh.com" },
   },
   {
@@ -632,22 +632,28 @@ const offices = [
               <div class="c-info-item">
                 <div class="c-info-icon">📍</div>
                 <div>
+                  <strong>Abu Dhabi Office</strong>
+                  <span
+                    >Electra Street - Near Ritaj Restaurant - Al Danah - Zone 1 - Abu Dhabi - United Arab Emirates</span
+                  >
+                  <a
+                    href="https://maps.app.goo.gl/ezLcEKRd74UMTiJU6"
+                    target="_blank"
+                    rel="noopener"
+                    style="display:inline-block;margin-top:4px;font-size:0.85rem;color:#38B2AC;text-decoration:underline;"
+                    >View on Google Maps &rarr;</a
+                  >
+                </div>
+              </div>
+              <div class="c-info-item">
+                <div class="c-info-icon">📍</div>
+                <div>
                   <strong>Dubai Office</strong>
                   <span
                     >BurJuman Metro Station, Business Tower - Burjuman - S2
                     Floor (2nd Floor) - Office No. 001 Exit 3 - Dubai - United
                     Arab Emirates
                   </span>
-                </div>
-              </div>
-              <div class="c-info-item">
-                <div class="c-info-icon">📍</div>
-                <div>
-                  <strong>Abu Dhabi Office</strong>
-                  <span
-                    >Ground Floor, Behind Marks & Spencer, Electra Street, Abu
-                    Dhabi, UAE</span
-                  >
                 </div>
               </div>
               <div class="c-info-item">
@@ -701,13 +707,13 @@ const offices = [
     <!-- ════ MAP ════ -->
     <section class="c-map">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.566066414323!2d55.29844791043359!3d25.251536529405463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6be506ab2a01edd9%3A0x79cc8bbff0e63cd9!2sHelpline%20Group%20UAE!5e0!3m2!1sen!2sin!4v1793163196544!5m2!1sen!2sin"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3630.858485292858!2d54.35856937611847!3d24.485516078174152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e6619bc07c671%3A0x8c705b718ef06478!2sIndex%20Office%20Services!5e0!3m2!1sen!2sae!4v1730355000000!5m2!1sen!2sae"
         width="100%"
         height="400"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        title="Index Office Services Dubai Location"></iframe>
+        title="Index Office Services Abu Dhabi Location"></iframe>
     </section>
 
     <!-- ════ OFFICES ════ -->
