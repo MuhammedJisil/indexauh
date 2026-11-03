@@ -48,6 +48,10 @@ export default defineConfig({
       status: 301,
       destination: '/bahrain-company-formation/',
     },
+    '/sitemap': {
+      status: 301,
+      destination: '/sitemap.xml',
+    },
   },
   vite: {
     plugins: [tailwindcss()]
