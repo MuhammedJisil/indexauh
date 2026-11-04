@@ -100,6 +100,21 @@ function getLinkForDoc(docName: string, country?: string) {
     return "/notary-attestation-services/";
   }
 
+  // 13. Educational Certificate (A Level / O Level etc.)
+  if (name.includes("educational certificate")) {
+    return "/educational-certificate-attestation/";
+  }
+
+  // 14. Certificate of Incorporation / Good Standing
+  if (name.includes("incorporation") || name.includes("good standing")) {
+    return "https://indexauh.com/certificate-of-incorporation-uae/";
+  }
+
+  // 15. Memorandum of Association
+  if (name.includes("memorandum of association")) {
+    return "https://indexauh.com/memorandum-of-association/";
+  }
+
   return null;
 }
 ---
