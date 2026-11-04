@@ -253,6 +253,66 @@ import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { marked } from 'marked';
 
+interface TocItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
+function cleanHeadingText(rawHtml: string): string {
+  return rawHtml
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .trim();
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function extractTocAndInjectIds(html: string): { contentWithIds: string; toc: TocItem[] } {
+  const toc: TocItem[] = [];
+  const slugCounts: Record<string, number> = {};
+
+  const contentWithIds = html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi, (match, levelStr, attrs, innerHtml) => {
+    const level = parseInt(levelStr, 10);
+    const text = cleanHeadingText(innerHtml);
+    if (!text) return match;
+
+    let slug = slugify(text);
+    if (!slug) slug = `section-${toc.length + 1}`;
+
+    if (slugCounts[slug] !== undefined) {
+      slugCounts[slug]++;
+      slug = `${slug}-${slugCounts[slug]}`;
+    } else {
+      slugCounts[slug] = 0;
+    }
+
+    toc.push({ id: slug, text, level });
+
+    let newAttrs = attrs;
+    if (/id=["'][^"']*["']/i.test(newAttrs)) {
+      newAttrs = newAttrs.replace(/id=["'][^"']*["']/i, `id="${slug}"`);
+    } else {
+      newAttrs = ` id="${slug}"${newAttrs}`;
+    }
+    return `<h${level}${newAttrs}>${innerHtml}</h${level}>`;
+  });
+
+  return { contentWithIds, toc };
+}
+
 const { slug } = Astro.params;
 
 // Task 7: Delete blog post (return 404)
@@ -287,11 +347,15 @@ try {
     const data = await res.json();
     if (data.data && data.data.length > 0) {
       const raw = data.data[0];
+      const parsedHtml = (await marked.parse(raw.content || "", { breaks: true })) as string;
+      const { contentWithIds, toc } = extractTocAndInjectIds(parsedHtml);
+
       post = {
         id: raw.id,
         title: raw.title || "Untitled",
         slug: raw.Slug || raw.slug || slug,
-        content: marked.parse(raw.content || "", { breaks: true }),
+        content: contentWithIds,
+        toc,
         excerpt: raw.excerpt || "",
         authorName: raw.authorName || "Index Office Services",
         publishedDate: raw.publishedDate || raw.publishedAt || null,
@@ -303,6 +367,14 @@ try {
         categories: (raw.categories || []).map((c: any) => c.name || c),
         faq: raw.faq || [],
       };
+
+      if (post.faq && post.faq.length > 0) {
+        post.toc.push({
+          id: "faq-section",
+          text: "Frequently Asked Questions",
+          level: 2,
+        });
+      }
 
       // Fetch related posts (same category, exclude current)
       if (post.categories.length > 0) {
@@ -353,9 +425,126 @@ function formatDate(dateStr: string | null) {
 >
 
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* ── Layout ── */
   .post-layout { display: grid; grid-template-columns: 1fr 320px; gap: 48px; max-width: 1280px; margin: 0 auto; padding: 56px 24px 80px; align-items: start; }
   @media (max-width: 1100px) { .post-layout { grid-template-columns: 1fr; } .post-sidebar { display: none; } }
+
+  /* ── Table of Contents ── */
+  .post-content h2,
+  .post-content h3,
+  .post-content h4,
+  .faq-section-heading {
+    scroll-margin-top: 100px;
+  }
+
+  .toc-container {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-left: 4px solid #38B2AC;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 0 0 36px 0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    transition: all 0.25s ease;
+  }
+  .toc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .toc-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1A202C;
+    letter-spacing: -0.01em;
+  }
+  .toc-icon {
+    color: #38B2AC;
+    flex-shrink: 0;
+  }
+  .toc-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F0FFFE;
+    color: #237A76;
+    border: 1px solid #B2F5EA;
+    border-radius: 9999px;
+    padding: 4px 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .toc-toggle:hover {
+    background: #E6FFFA;
+    border-color: #38B2AC;
+  }
+  .toc-chevron {
+    transition: transform 0.25s ease;
+  }
+  .toc-container.collapsed .toc-chevron {
+    transform: rotate(-90deg);
+  }
+  .toc-container.collapsed #tocNav {
+    display: none;
+  }
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid #F0F4F8;
+    padding-top: 14px;
+  }
+  .toc-item {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .toc-item.level-3 {
+    padding-left: 20px;
+    font-size: 0.9rem;
+  }
+  .toc-link {
+    color: #4A5568 !important;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+  }
+  .toc-bullet {
+    color: #38B2AC;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .toc-item.level-3 .toc-bullet {
+    color: #A0AEC0;
+  }
+  .toc-link:hover {
+    color: #38B2AC !important;
+    background: #F0FFFE;
+  }
+  .toc-link.active {
+    color: #237A76 !important;
+    font-weight: 700 !important;
+    background: #E6FFFA;
+  }
 
   /* ── Article typography ── */
   .post-content { font-size: 1.05rem; line-height: 1.85; color: #374151; }
@@ -537,13 +726,50 @@ function formatDate(dateStr: string | null) {
         <span style="color:#1A202C;font-weight:600;">{post.title}</span>
       </nav>
 
+      <!-- Table of Contents (after blog image & meta) -->
+      {post.toc && post.toc.length > 0 && (
+        <aside class="toc-container" aria-label="Table of Contents">
+          <div class="toc-header" id="tocHeader" role="button" tabindex="0" aria-expanded="true" aria-controls="tocNav">
+            <div class="toc-title">
+              <svg class="toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+              <span>Table of Contents</span>
+            </div>
+            <button class="toc-toggle" type="button" aria-label="Toggle Table of Contents" id="tocToggleBtn">
+              <span id="tocToggleText">Hide</span>
+              <svg class="toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <nav id="tocNav">
+            <ol class="toc-list" id="tocList">
+              {post.toc.map((item: any) => (
+                <li class={`toc-item level-${item.level}`}>
+                  <a href={`#${item.id}`} class="toc-link">
+                    <span class="toc-bullet">&bull;</span>
+                    <span>{item.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+      )}
+
       <!-- Rich text content from Strapi -->
       <div class="post-content" set:html={post.content} />
 
       <!-- FAQ section (if any) -->
       {post.faq && post.faq.length > 0 && (
         <div style="margin-top:48px;">
-          <h2 style="font-size:1.6rem;font-weight:900;color:#1A202C;margin-bottom:20px;">Frequently Asked Questions</h2>
+          <h2 id="faq-section" class="faq-section-heading" style="font-size:1.6rem;font-weight:900;color:#1A202C;margin-bottom:20px;">Frequently Asked Questions</h2>
           <div id="postFaqList">
             {post.faq.map((f: any, i: number) => (
               <div class="faq-item" id={`pfaq-${i}`}>
@@ -824,6 +1050,77 @@ function formatDate(dateStr: string | null) {
     if (!isOpen) item.classList.add('open');
   }
   window.toggleFaq = toggleFaq;
+
+  // Table of Contents toggle
+  const tocContainer = document.querySelector('.toc-container');
+  const tocHeader = document.getElementById('tocHeader');
+  const tocToggleText = document.getElementById('tocToggleText');
+
+  function toggleToc() {
+    if (!tocContainer) return;
+    const isCollapsed = tocContainer.classList.toggle('collapsed');
+    if (tocToggleText) {
+      tocToggleText.textContent = isCollapsed ? 'Show' : 'Hide';
+    }
+    if (tocHeader) {
+      tocHeader.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+    }
+  }
+
+  if (tocHeader) {
+    tocHeader.addEventListener('click', () => {
+      toggleToc();
+    });
+    tocHeader.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleToc();
+      }
+    });
+  }
+
+  // Smooth scroll & anchor jump for TOC links
+  const tocLinks = document.querySelectorAll('.toc-link');
+  tocLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, '', href);
+        }
+      }
+    });
+  });
+
+  // Highlight active TOC item on scroll (ScrollSpy)
+  if ('IntersectionObserver' in window && tocLinks.length > 0) {
+    const headingObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            if (id) {
+              tocLinks.forEach((l) => {
+                if (l.getAttribute('href') === `#${id}`) {
+                  l.classList.add('active');
+                } else {
+                  l.classList.remove('active');
+                }
+              });
+            }
+          }
+        });
+      },
+      { rootMargin: '-90px 0px -70% 0px' }
+    );
+
+    document.querySelectorAll('.post-content h2, .post-content h3, #faq-section').forEach((h) => {
+      if (h.id) headingObserver.observe(h);
+    });
+  }
 </script>
 
 </BaseLayout>
