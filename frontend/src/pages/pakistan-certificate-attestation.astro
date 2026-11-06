@@ -17,6 +17,7 @@ const whoNeeds = [
   { icon: "🏢", title: "Business Owners", desc: "Signing a Power of Attorney, MOA, or AOA" },
 ]
 
+// Items are rendered with set:html so they can contain links
 const docGroups = [
   { icon: "📄", title: "Every application", items: [
     "Original certificate",
@@ -43,8 +44,7 @@ const docGroups = [
     "Child’s passport copy",
   ]},
   { icon: "⚖️", title: "Power of Attorney and commercial papers", items: [
-    "Stamp paper with notary attestation and magistrate attestation",
-    "A physical MOFA visit, since MOFA handles legal documents through walk in service",
+    "Stamp paper with <a class='in-link' href='/notary-attestation-services/'>notary attestation</a> and magistrate attestation",
   ]},
 ]
 
@@ -54,7 +54,7 @@ const steps = [
   { step: "03", title: "Issuing body, HEC, or IBCC attestation", desc: "The board, university, or department verifies the document. HEC handles degrees, and IBCC handles Matric and Intermediate." },
   { step: "04", title: "MOFA Pakistan attestation", desc: "MOFA in Islamabad or a liaison office checks and stamps the earlier attestation." },
   { step: "05", title: "UAE Embassy attestation in Islamabad", desc: "The embassy legalizes the document for UAE use." },
-  { step: "06", title: "UAE MOFA attestation", desc: "The final attestation makes the document valid across the UAE." },
+  { step: "06", title: "<a class='in-link' href='/mofa-attestation-in-uae/'>UAE MOFA attestation</a>", desc: "The final attestation makes the document valid across the UAE." },
   { step: "07", title: "Delivery", desc: "We return your documents to your door and share updates throughout." },
 ]
 
@@ -102,10 +102,10 @@ const benefits = [
 const faqs = [
   { q: "Can another person submit my documents for attestation?", a: "Yes. A family member, employer, or agency can submit on your behalf. In that case, authorities may ask for an authorization letter. A copy of your passport or Emirates ID may also be needed. We confirm the exact papers during your document check." },
   { q: "Can laminated or damaged Pakistani certificates be attested?", a: "Usually not. Authorities expect certificates in their original, unaltered state. Therefore, the issuing body may need to remove lamination or reissue the document. Plan for this before you apply, because it adds time. Contact us and we explain the options for your certificate." },
-  { q: "Does apostille replace UAE embassy attestation for Pakistani documents?", a: "Not automatically. Pakistan joined the Hague Apostille Convention, and MOFA now issues apostilles. However, UAE use depends on your document and the receiving authority. Therefore, we confirm the correct route before we start, so you avoid a wasted stage. For details, see our apostille service." },
+  { q: "Does apostille replace UAE embassy attestation for Pakistani documents?", a: "Not automatically. Pakistan joined the Hague Apostille Convention, and MOFA now issues apostilles. However, UAE use depends on your document and the receiving authority. Therefore, we confirm the correct route before we start, so you avoid a wasted stage. For details, see our <a class='in-link' href='/apostille-service-uae/'>apostille service</a>." },
   { q: "Is the process different for free zone and mainland use?", a: "The attestation stages stay the same for both. Your purpose decides which documents you need. For example, a visa application, a job contract, and a trade licence ask for different papers. Tell us your goal, and we list the right documents." },
-  { q: "Do I need to travel to Pakistan?", a: "No. You hand over your originals in the UAE. We then manage the Pakistan stages, the embassy, and UAE MOFA. Meanwhile, you follow progress on our document tracking page. Therefore, you keep working while the process runs." },
-  { q: "How can I check that my attested document is genuine?", a: "UAE MOFA offers an online verification page. Enter the attestation reference number and the issue date to confirm validity. You can open it at verify.mofa.gov.ae. Keep a scan of every stamped page, so you can answer any query quickly. Check the reference number on delivery." },
+  { q: "Do I need to travel to Pakistan?", a: "No. You hand over your originals in the UAE. We then manage the Pakistan stages, the embassy, and UAE MOFA. Meanwhile, you follow progress on our <a class='in-link' href='/track-document/'>document tracking page</a>. Therefore, you keep working while the process runs." },
+  { q: "How can I check that my attested document is genuine?", a: "UAE MOFA offers an online verification page. Enter the attestation reference number and the issue date to confirm validity. You can open it at <a class='in-link' href='http://verify.mofa.gov.ae' target='_blank' rel='noopener'>verify.mofa.gov.ae</a>. Keep a scan of every stamped page, so you can answer any query quickly. Check the reference number on delivery." },
 ]
 ---
 
@@ -137,6 +137,12 @@ const faqs = [
     .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .three-col { grid-template-columns: 1fr !important; }
   }
+</style>
+
+<!-- Global so it styles links injected via set:html -->
+<style is:global>
+  a.in-link { color: #2C9A94; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+  a.in-link:hover { color: #1F7A75; }
 </style>
 
 <!-- ════════════ HERO ════════════ -->
@@ -206,7 +212,7 @@ const faqs = [
           <div style="display:flex;flex-direction:column;gap:8px;">
             {g.items.map(i => (
               <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;line-height:1.5;">
-                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✓</span>{i}
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">✓</span><span set:html={i} />
               </div>
             ))}
           </div>
@@ -237,7 +243,7 @@ const faqs = [
         <div class="step-card">
           <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
           <div>
-            <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+            <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
             <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
           </div>
         </div>
@@ -369,7 +375,7 @@ const faqs = [
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-a">
-            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;" set:html={f.a}></p>
           </div>
         </div>
       ))}
