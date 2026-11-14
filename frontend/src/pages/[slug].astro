@@ -332,7 +332,7 @@ if (slug && blogRedirects[slug]) {
   return Astro.redirect(blogRedirects[slug], 301);
 }
 
-const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
+const strapiUrl = import.meta.env.STRAPI_URL || "https://api.indexauh.com";
 
 // Fetch this specific post by slug
 let post: any = null;
@@ -341,7 +341,7 @@ let notFound = false;
 
 try {
   const res = await fetch(
-    `${strapiUrl}/api/index-blogs?filters[Slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=categories&populate[2]=faq`
+    `${strapiUrl}/api/index-blogs?filters[Slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=faq`
   );
   if (res.ok) {
     const data = await res.json();
@@ -362,7 +362,7 @@ try {
         metaTitle: raw.metaTitle || raw.title || "Blog",
         metaDescription: raw.metaDescription || raw.excerpt || "",
         featuredImage: raw.featuredImage?.url
-          ? `${strapiUrl}${raw.featuredImage.url}`
+          ? (raw.featuredImage.url.startsWith('http') ? raw.featuredImage.url : `${strapiUrl}${raw.featuredImage.url}`)
           : null,
         categories: (raw.categories || []).map((c: any) => c.name || c),
         faq: raw.faq || [],
@@ -376,10 +376,10 @@ try {
         });
       }
 
-      // Fetch related posts (same category, exclude current)
-      if (post.categories.length > 0) {
+      // Fetch related posts (recent posts, excluding current)
+      try {
         const relRes = await fetch(
-          `${strapiUrl}/api/index-blogs?filters[categories][name][$eq]=${encodeURIComponent(post.categories[0])}&filters[Slug][$ne]=${slug}&populate[0]=featuredImage&pagination[pageSize]=3`
+          `${strapiUrl}/api/index-blogs?filters[Slug][$ne]=${slug}&populate[0]=featuredImage&pagination[pageSize]=3&sort=publishedDate:desc`
         );
         if (relRes.ok) {
           const relData = await relRes.json();
@@ -387,10 +387,14 @@ try {
             title: item.title,
             slug: item.Slug || item.slug,
             excerpt: item.excerpt || "",
-            featuredImage: item.featuredImage?.url ? `${strapiUrl}${item.featuredImage.url}` : null,
+            featuredImage: item.featuredImage?.url
+              ? (item.featuredImage.url.startsWith('http') ? item.featuredImage.url : `${strapiUrl}${item.featuredImage.url}`)
+              : null,
             categories: (item.categories || []).map((c: any) => c.name || c),
           }));
         }
+      } catch (relErr) {
+        console.warn("Failed to fetch related posts:", relErr);
       }
     } else {
       notFound = true;

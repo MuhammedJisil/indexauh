@@ -5,7 +5,7 @@ export const prerender = false;
 import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
+const strapiUrl = import.meta.env.STRAPI_URL || "https://api.indexauh.com";
 
 // Fetch all published index-blog posts from Strapi
 let posts: any[] = [];
@@ -14,7 +14,7 @@ let fetchError = false;
 
 try {
   const res = await fetch(
-    `${strapiUrl}/api/index-blogs?populate[0]=featuredImage&populate[1]=categories&sort=publishedDate:desc&pagination[pageSize]=100`
+    `${strapiUrl}/api/index-blogs?populate[0]=featuredImage&sort=publishedDate:desc&pagination[pageSize]=100`
   );
   if (res.ok) {
     const data = await res.json();
@@ -26,11 +26,11 @@ try {
       authorName: item.authorName || "Index Office Services",
       publishedDate: item.publishedDate || item.publishedAt || null,
       featuredImage: item.featuredImage?.url
-        ? `${strapiUrl}${item.featuredImage.url}`
+        ? (item.featuredImage.url.startsWith('http') ? item.featuredImage.url : `${strapiUrl}${item.featuredImage.url}`)
         : item.featuredImage?.formats?.medium?.url
-        ? `${strapiUrl}${item.featuredImage.formats.medium.url}`
+        ? (item.featuredImage.formats.medium.url.startsWith('http') ? item.featuredImage.formats.medium.url : `${strapiUrl}${item.featuredImage.formats.medium.url}`)
         : item.featuredImage?.formats?.thumbnail?.url
-        ? `${strapiUrl}${item.featuredImage.formats.thumbnail.url}`
+        ? (item.featuredImage.formats.thumbnail.url.startsWith('http') ? item.featuredImage.formats.thumbnail.url : `${strapiUrl}${item.featuredImage.formats.thumbnail.url}`)
         : null,
       categories: (item.categories || []).map((c: any) => c.name || c.displayName || c),
     }));
@@ -40,6 +40,7 @@ try {
     categories = Array.from(catSet);
   } else {
     fetchError = true;
+    console.warn("Strapi response not ok:", res.status, res.statusText);
   }
 } catch (e) {
   fetchError = true;
@@ -100,7 +101,7 @@ const fallbackPosts = [
 ];
 
 const displayPosts = posts.length > 0 ? posts : fallbackPosts;
-const displayCategories = categories.length > 0 ? categories : ["Attestation", "Business Setup", "PCC"];
+const displayCategories = categories.length > 0 ? categories : (posts.length === 0 ? ["Attestation", "Business Setup", "PCC"] : []);
 
 // Fallback image used whenever a post has no featuredImage
 const FALLBACK_IMG = "/fallback.webp";
@@ -177,12 +178,14 @@ const FALLBACK_IMG = "/fallback.webp";
   <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;">
 
     <!-- Category filter -->
-    <div class="filter-bar" id="filterBar">
-      <button class="filter-pill active" data-cat="all">All Posts</button>
-      {displayCategories.map(cat => (
-        <button class="filter-pill" data-cat={cat}>{cat}</button>
-      ))}
-    </div>
+    {displayCategories.length > 0 && (
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-pill active" data-cat="all">All Posts</button>
+        {displayCategories.map(cat => (
+          <button class="filter-pill" data-cat={cat}>{cat}</button>
+        ))}
+      </div>
+    )}
 
     <!-- Two-column layout: grid + sidebar -->
     <div class="blog-layout">

@@ -8,7 +8,7 @@ try {
   const strapiUrl =
     import.meta.env.STRAPI_URL ||
     process.env.STRAPI_URL ||
-    "http://localhost:1337";
+    "https://api.indexauh.com";
   if (strapiUrl) {
     const res = await fetch(`${strapiUrl}/api/testimonials?populate=img`);
     if (res.ok) {

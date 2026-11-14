@@ -10,7 +10,7 @@ function isBrowserHtmlRequest(request: Request, url: URL): boolean {
 }
 
 export const GET: APIRoute = async ({ request, url }) => {
-  const strapiUrl = import.meta.env.STRAPI_URL || 'http://localhost:1337';
+  const strapiUrl = import.meta.env.STRAPI_URL || 'https://api.indexauh.com';
   let posts: any[] = [];
 
   try {
