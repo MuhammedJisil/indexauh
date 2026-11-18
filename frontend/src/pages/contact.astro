@@ -27,79 +27,6 @@ const offices = [
     tel: { label: "(+971) 422 799 16", href: "tel:+97142279916" },
     email: { label: "info@indexauh.com", href: "mailto:info@indexauh.com" },
   },
-  {
-    city: "Qatar",
-    icon: "🇶🇦",
-    address:
-      "1st Floor, Office No: 6, Street No. 230, Building No: 153, Zone: 42, C-Ring Road, Doha, Qatar",
-    mob: {
-      label: "(+974) 706 580 00",
-      href: "https://api.whatsapp.com/send?phone=97470658000",
-    },
-    tel: { label: "(+974) 442 711 00", href: "tel:+97444271100" },
-    extra:
-      "Lusail Office: Office No. 3, 5th Floor, Rafal Tower, Marina, Zone 69, Lusail, Qatar",
-  },
-  {
-    city: "Thrissur",
-    icon: "🇮🇳",
-    address:
-      "Ram Nagar, 3rd St, Punkunnam, Thrissur, Kerala, India",
-    mob: {
-      label: "+91 984 671 6800",
-      href: "https://api.whatsapp.com/send?phone=919846716800",
-    },
-    tel: { label: "+91 984 671 6800", href: "tel:+919846716800" },
-    email: {
-      label: "customercare@helplinegroups.com",
-      href: "mailto:customercare@helplinegroups.com",
-    },
-  },
-  {
-    city: "Kuwait",
-    icon: "🇰🇼",
-    address:
-      "6th Floor, Office No: 4, Grand Majestic Hotel Building, Abdulla Al Mubarak St, Kuwait City 13013",
-    mob: {
-      label: "+965 603 055 58",
-      href: "https://api.whatsapp.com/send?phone=96560305558",
-    },
-    tel: { label: "+965 224 151 82", href: "tel:+96522415182" },
-    email: {
-      label: "info.enq@kuwaithelplinegroup.com",
-      href: "mailto:info.enq@kuwaithelplinegroup.com",
-    },
-  },
-  {
-    city: "Bahrain",
-    icon: "🇧🇭",
-    address:
-      "Flat No: 34, Building No: 4119, 3rd Floor, Road No: 1173, Block No: 0711, Tubli Area, Kingdom of Bahrain",
-    mob: {
-      label: "+973 39 413 777",
-      href: "https://api.whatsapp.com/send?phone=+97339413777",
-    },
-    tel: { label: "+973 17 413 777", href: "tel:+97317413777" },
-    email: {
-      label: "info@bahrainhelplinegroup.com",
-      href: "mailto:info@bahrainhelplinegroup.com",
-    },
-  },
-  {
-    city: "Saudi Arabia",
-    icon: "🇸🇦",
-    address:
-      "Office #28, 1st Floor, Raden Commercial Center, Al Muruj, Olaya Street, Riyadh 12281",
-    mob: {
-      label: "+966 567 988 129",
-      href: "https://api.whatsapp.com/send?phone=966567988129",
-    },
-    tel: { label: "+966 112 334 455", href: "tel:+966112334455" },
-    email: {
-      label: "info@saudihelplinegroup.com",
-      href: "mailto:info@saudihelplinegroup.com",
-    },
-  },
 ];
 ---
 
@@ -457,6 +384,8 @@ const offices = [
       border: 1px solid rgba(255, 255, 255, 0.09);
       border-radius: 14px;
       padding: 22px;
+      display: flex;
+      flex-direction: column;
       transition:
         border-color 0.25s,
         box-shadow 0.25s,
@@ -468,6 +397,30 @@ const offices = [
       box-shadow: 0 10px 30px rgba(56, 178, 172, 0.1);
       transform: translateY(-2px);
       background: rgba(255, 255, 255, 0.06);
+    }
+
+    .c-branch-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .c-branch-tag {
+      background: rgba(56, 178, 172, 0.12);
+      border: 1px solid rgba(56, 178, 172, 0.28);
+      color: #b2f5ea;
+      font-size: 0.76rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      padding: 4px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .c-office-card:hover .c-branch-tag {
+      border-color: rgba(56, 178, 172, 0.45);
+      background: rgba(56, 178, 172, 0.18);
     }
 
     .c-office-hd {
@@ -505,7 +458,7 @@ const offices = [
       gap: 4px;
       border-top: 1px solid rgba(255, 255, 255, 0.07);
       padding-top: 10px;
-      margin-top: 4px;
+      margin-top: auto;
     }
     .c-office-row {
       display: flex;
@@ -532,6 +485,11 @@ const offices = [
     @media (max-width: 960px) {
       .c-offices-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 960px) and (min-width: 769px) {
+      .c-office-card--branches {
+        grid-column: span 2;
       }
     }
 
@@ -721,10 +679,9 @@ const offices = [
       <div class="c-wrap">
         <div class="c-offices-head">
           <div class="c-badge">Our Offices</div>
-          <h2>We Are Present Across the GCC &amp; India</h2>
+          <h2>We Are Present Across the UAE &amp; Region</h2>
           <p>
-            With offices in the UAE, Qatar, Kuwait, Bahrain, Saudi Arabia, and
-            India — Index is wherever you need us.
+            Visit our primary offices in Abu Dhabi and Dubai, or connect with our branches across Qatar, Kuwait, Bahrain, Saudi Arabia, and India.
           </p>
         </div>
 
@@ -761,6 +718,38 @@ const offices = [
               </div>
             ))
           }
+
+          <!-- Additional Regional & International Branches Card -->
+          <div class="c-office-card c-office-card--branches">
+            <div class="c-office-hd">
+              <span class="c-office-flag">🌐</span>
+              <span class="c-office-city">Other Regional Branches</span>
+            </div>
+            <p class="c-office-addr">
+              We also have established branch offices and dedicated teams ready to assist you across:
+            </p>
+            <div class="c-branch-tags">
+              <span class="c-branch-tag">🇶🇦 Qatar</span>
+              <span class="c-branch-tag">🇧🇭 Bahrain</span>
+              <span class="c-branch-tag">🇸🇦 Saudi Arabia</span>
+              <span class="c-branch-tag">🇰🇼 Kuwait</span>
+              <span class="c-branch-tag">🇮🇳 India</span>
+            </div>
+            <div class="c-office-contacts">
+              <div class="c-office-row">
+                <span>Mob</span>
+                <a href="https://api.whatsapp.com/send/?phone=971525245208">+971 52 524 5208</a>
+              </div>
+              <div class="c-office-row">
+                <span>Tel</span>
+                <a href="tel:+97126311560">(+971) 263 115 60</a>
+              </div>
+              <div class="c-office-row">
+                <span>Email</span>
+                <a href="mailto:info@indexauh.com">info@indexauh.com</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
