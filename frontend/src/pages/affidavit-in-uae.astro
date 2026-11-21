@@ -1,0 +1,469 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const L = 'style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;"';
+const LW = 'style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;"';
+
+const affidavitTypes = [
+  { label: "Support", text: "an affidavit of support for a relative or visitor." },
+  { label: "Loss", text: "an affidavit of loss for a passport, certificate or Emirates ID." },
+  { label: "Status", text: "a single status or marital status affidavit." },
+  { label: "Name match", text: "a one and the same person affidavit for spelling differences." },
+  { label: "Consent", text: "child travel or property matters." },
+  { label: "Financial or employment", text: "income, address or employment statements." },
+  { label: "Legal", text: "court cases and company matters." },
+];
+
+const stages = [
+  { label: "Notary", desc: `the signing takes place before a notary public, arranged through our <a href="/notary-attestation-services/" ${L}>notary attestation services</a>.` },
+  { label: `<a href="/mofa-attestation-in-uae/" ${L}>MOFA Attestation</a>`, desc: "the UAE foreign ministry verifies the notary’s seal and signature." },
+  { label: "Embassy", desc: `the destination country’s embassy confirms the document. We handle this through <a href="/embassy-attestation-in-uae/" ${L}>embassy attestation in the UAE</a>.` },
+  { label: "Apostille", desc: `your destination country decides between an apostille and embassy legalisation. We confirm this first, then arrange our <a href="/apostille-service-uae/" ${L}>apostille service</a> when it applies.` },
+  { label: "Translation", desc: `UAE authorities expect Arabic or bilingual text. We arrange <a href="/legal-translation-in-uae/" ${L}>legal translation</a> together with the draft.` },
+];
+
+const handleSteps = [
+  { step: "01", title: "Free review", desc: "We check your details against the receiving authority’s requirements." },
+  { step: "02", title: "Drafting", desc: "Our team prepares the affidavit in the correct format." },
+  { step: "03", title: "Signing", desc: "You sign before the notary. The signer must attend in person." },
+  { step: "04", title: "Attestation", desc: "We complete the MOFA and embassy stages your case needs." },
+  { step: "05", title: "Delivery", desc: "We return the finished document to you." },
+];
+
+const baseDocs = [
+  "Original passport or Emirates ID of the signer.",
+  "Copy of the UAE residence visa.",
+  "The facts the affidavit must state.",
+  "Supporting papers for your purpose.",
+];
+
+const supportingDocs = [
+  { label: "Affidavit of support", text: "salary certificate, labour contract, tenancy contract, bank statement, the visitor’s passport copy and proof of relationship." },
+  { label: "Affidavit of loss", text: "the loss report and a copy of the lost document." },
+];
+
+const feeFactors = [
+  "Number of signatures and copies.",
+  "Attestation stages required.",
+  "Translation needs.",
+  "Pickup and delivery.",
+];
+
+const rejections = [
+  "Your name differs from your passport.",
+  "The wording does not match the authority’s format.",
+  "The Arabic translation is missing.",
+  "An attestation stage is skipped.",
+  "The facts conflict with the supporting papers.",
+  "The date is too old for the receiving office.",
+];
+
+const whyChoose = [
+  { title: "200+ Attestation Professionals", desc: "200+ attestation professionals handle the notary, MOFA and embassy stages." },
+  { title: "Dedicated Compliance Experts", desc: "Dedicated compliance experts review each affidavit before filing." },
+  { title: "Destination Country Rules", desc: "We know the rules that apply in each destination country." },
+  { title: "Doorstep Pickup & Delivery", desc: "Doorstep pickup and delivery across the UAE." },
+  { title: "Clear Quote", desc: "A clear quote before any work begins." },
+];
+
+const faqs = [
+  { q: "How long is an affidavit valid?", a: "No single rule applies. The receiving authority decides, and some want a recent date. We confirm this before drafting." },
+  { q: "Is an affidavit the same as a statutory declaration?", a: "Both are written statements. UAE offices often use the terms in the same way. The receiving authority names the format, and we follow it." },
+  { q: "How is an affidavit different from a power of attorney?", a: `An affidavit states facts. A power of attorney lets a named person act on your behalf. For that need, see our <a href="/power-of-attorney-notarization/" ${L}>power of attorney notarization</a> service.` },
+  { q: "Can someone else sign my affidavit?", a: "No. The person whose statement it is must take the oath personally." },
+  { q: "Is an affidavit of support a UAE visa requirement?", a: "It is not a UAE visa rule. Travellers often present it to immigration officers in the Philippines. Since requirements change, we check the current position for you." },
+  { q: "Can I sign from outside the UAE?", a: "Yes. You sign before a notary or consulate in your country. We then coordinate the UAE stages." },
+  { q: "Can a notarised affidavit be corrected?", a: "Notarised text cannot be edited. You need a new affidavit, which is why our review comes first." },
+];
+---
+
+<BaseLayout
+  title="Affidavit in UAE: Drafting, Notary and Attestation Services"
+  description="Index Office Services handles your affidavit from drafting to final attestation in Dubai and Abu Dhabi. 25+ years of experience."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .route-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; transition: all 0.25s; }
+  .route-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .five-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .five-col { grid-template-columns: 1fr !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img src="/images/img-16.webp" alt="Affidavit in UAE: drafting, notary and attestation" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;" loading="eager" fetchpriority="high" width="1200" height="600" />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Established in 2000</span>
+      <span class="idx-pill">25+ Years of Experience</span>
+      <span class="idx-pill">400,000+ Clients Served</span>
+      <span class="idx-pill">100+ Countries Covered</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">Affidavit in UAE: Drafting, Notary and Attestation Services</h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:700px;">
+      An affidavit is a written statement of facts that you swear is true. Signing happens in front of a notary public, who checks your ID and records the oath. In Dubai and Abu Dhabi, courts, embassies, banks and government offices ask for it as sworn proof.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="https://wa.me/971525245208" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">WhatsApp Us Now: 971 525 245 208</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Affidavits We Prepare and Attest</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        However, one wrong detail can send it back. As a result, your visa, court filing or job paperwork waits for weeks.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Index Office Services handles your affidavit from drafting to final attestation. We manage every stage, so you deal with one team.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:22px;">
+        <strong style="color:#1A202C;">WhatsApp Us Now:</strong> <a href="https://wa.me/971525245208" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">971 525 245 208</a>
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">Each purpose needs its own wording. These are the requests we handle most:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        {affidavitTypes.map(t => (
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:10px 14px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;"><strong>{t.label}:</strong> {t.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/img-1.webp" alt="Affidavit notary and attestation services in UAE" style="width:100%;height:480px;object-fit:cover;display:block;" loading="lazy" width="400" height="260" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Drafting · Notary · Attestation</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">One team for every stage</p>
+        </div>
+        <div style="position:absolute;bottom:90px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ AFFIDAVIT OF SUPPORT ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:900px;margin:0 auto;">
+    <div class="route-card">
+      <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px;">Affidavit of Support</p>
+      <h2 style="font-size:1.6rem;font-weight:900;color:#1A202C;margin:0 0 16px;">Affidavit of support in Dubai, Abu Dhabi and across the UAE</h2>
+      <p style="font-size:0.92rem;color:#4B5563;line-height:1.8;margin:0 0 14px;" set:html={`Filipino sponsors receive the affidavit of support and guarantee from the Philippine Consulate in Dubai or the Embassy in Abu Dhabi. We prepare your file and check your sponsor details. In addition, we attest your supporting papers through our <a href="/philippine-embassy-attestation/" ${L}>Philippine embassy attestation</a> service and guide you through each consulate stage.`} />
+      <p style="font-size:0.92rem;color:#4B5563;line-height:1.8;margin:0;">Income and relationship rules change often. Therefore, we confirm the current requirement before we start.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ NOTARY AND ATTESTATION STAGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:1000px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Step-by-Step</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Notary and Attestation Stages</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.75;margin:0 auto;max-width:620px;">Notarisation comes first. However, many affidavits need more stages before an authority accepts them.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      {stages.map((s, i) => (
+        <div class="step-card">
+          <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{String(i + 1).padStart(2, '0')}</div>
+          <p style="font-size:0.92rem;color:#4B5563;line-height:1.7;margin:0;"><strong style="color:#1A202C;" set:html={s.label + ':'} /> <span set:html={s.desc} /></p>
+        </div>
+      ))}
+    </div>
+    <p style="text-align:center;font-size:0.92rem;color:#2D3748;font-weight:600;line-height:1.7;margin:28px 0 0;">Our compliance experts review each case. As a result, you pay only for the stages your case needs.</p>
+  </div>
+</section>
+
+<!-- ════ HOW WE HANDLE ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How We Handle Your Affidavit</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">First, you share the purpose and the country of use. Then we work in this order:</p>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:left;margin-bottom:36px;" class="five-col">
+      {handleSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:22px;position:relative;">
+          <div style="font-size:2.8rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:12px;">{s.step}</div>
+          <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Check My Documents &rarr;</a>
+  </div>
+</section>
+
+<!-- ════ DOCUMENTS WE ASK FOR ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Requirements</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Documents We Ask For</h2>
+      <p style="color:#4B5563;font-size:0.95rem;line-height:1.75;margin:0 auto;max-width:620px;">Requirements differ by authority. We confirm your exact list during the first call. The usual base set:</p>
+    </div>
+
+    <div class="two-col" style="grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+      <div class="route-card">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Base Set</h3>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {baseDocs.map(d => (
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;line-height:1.5;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="route-card">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Supporting Papers</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Supporting papers depend on the affidavit:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {supportingDocs.map(d => (
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#4B5563;line-height:1.5;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span><span><strong style="color:#1A202C;">{d.label}:</strong> {d.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px 22px;">
+      <p style="font-size:0.9rem;color:#374151;line-height:1.7;margin:0;">For documents issued abroad, the attestation process begins in the country of origin before proceeding with the required UAE procedures.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESSING TIME & FEES ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;text-align:center;margin:0 0 36px;">Processing Time and Fees</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="two-col">
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Processing Time</h3>
+        <p style="font-size:0.9rem;color:#4B5563;line-height:1.75;margin:0;">A simple affidavit can be notarised in one visit. However, MOFA and embassy stages add working days. Timelines depend on the authority and your country. Therefore, we share an estimate after we review your file.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Fees</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Fees depend on these factors:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {feeFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Contact us for a quote. You see the full cost before we start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ REJECTIONS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Why Affidavits Get Rejected</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">These issues cause most returns. We catch them before filing:</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {rejections.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:14px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.9rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);margin-bottom:16px;">
+          <img src="/images/img-40.webp" alt="Why affidavits get rejected in the UAE" style="width:100%;height:300px;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+            <p style="color:#fff;font-size:0.88rem;font-weight:700;margin:0;">We catch these issues before filing</p>
+          </div>
+        </div>
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:18px;">
+          <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 6px;">A Situation We Often See</p>
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.7;margin:0 0 8px;">Here is a situation we often see. A Dubai resident wanted to host his sister, and his first set came back. His salary certificate lacked an attestation, and his name differed from his passport.</p>
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.7;margin:0;">We aligned the name, added the missing stage and prepared the full file. As a result, he reached his next appointment with every paper in order.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office Services affidavit team" style="width:100%;height:340px;object-fit:cover;display:block;" loading="lazy" width="800" height="450" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Index Office Services</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 16px;">
+          Affidavits carry legal weight, so details matter. Here is what you get from us:
+        </p>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0;">Speak to our team about your affidavit today.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;" set:html={f.a} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ START YOUR AFFIDAVIT ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">Start Your Affidavit</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:22px;">
+        Send your documents on WhatsApp, and we tell you which stages your affidavit needs. You can also visit us.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Dubai</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">BurJuman Metro Station, Business Tower, S2 Floor (2nd Floor), Office No. 001, Exit 3, Burjuman, Dubai</p>
+        </div>
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Abu Dhabi</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Electra Street, near Ritaj Restaurant, Al Danah, Zone 1, Abu Dhabi</p>
+        </div>
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Phone and WhatsApp</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">(+971) 529 300 200</p>
+        </div>
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Email</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">info@indexauh.com</p>
+        </div>
+      </div>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Call (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Check My Documents</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        x.querySelector('.faq-a').classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>
