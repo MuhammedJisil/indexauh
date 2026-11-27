@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const trackingApiUrl = import.meta.env.TRACKING_API_URL || 'http://localhost:3001';
 const billingApiUrl = import.meta.env.BILLING_API_URL || 'https://api.cashorya.com';
 const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
+const billingApiKey = import.meta.env.BILLING_API_KEY || 'cashorya_pub_inv_key_2026';
 ---
 
 <BaseLayout
@@ -255,7 +256,6 @@ const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
     padding: 0 6px;
   }
 
-  /* Connector line on desktop */
   .step-item:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -320,7 +320,6 @@ const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
   .step-upcoming .step-label { color: #94A3B8; font-weight: 500; }
   .step-current .step-label { color: #0F172A; font-weight: 800; }
 
-  /* Mobile / Tablet vertical stepper */
   @media (max-width: 640px) {
     .steps-list {
       flex-direction: column;
@@ -413,6 +412,10 @@ const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
             <div>Due Date: <strong id="resultDueDate" style="color:#0F172A;"></strong></div>
           </div>
 
+          <!-- Items & Service Description Section -->
+          <p style="color:#64748B;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:12px 0 8px;border-top:1px solid #E2E8F0;padding-top:12px;">Items & Services</p>
+          <div id="resultItemsWrap" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;"></div>
+
           <p style="color:#64748B;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin:12px 0 8px;border-top:1px solid #E2E8F0;padding-top:12px;">Payment Summary</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:0.85rem;color:#334155;">
             <div>Subtotal: <strong id="resultSubtotal" style="color:#0F172A;"></strong></div>
@@ -436,7 +439,7 @@ const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
   </div>
 </section>
 
-<script define:vars={{ TRACKING_API_URL: trackingApiUrl, BILLING_API_URL: billingApiUrl, BILLING_STORE_ID: billingStoreId }}>
+<script define:vars={{ TRACKING_API_URL: trackingApiUrl, BILLING_API_URL: billingApiUrl, BILLING_STORE_ID: billingStoreId, BILLING_API_KEY: billingApiKey }}>
   const form = document.getElementById('trackForm');
   const input = document.getElementById('trackingIdInput');
   const btn = document.getElementById('trackBtn');
@@ -472,7 +475,13 @@ const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
     const customerWrap = document.getElementById('resultCustomerWrap');
     try {
       const billRes = await fetch(
-        `${BILLING_API_URL}/api/v2/billing/details/${BILLING_STORE_ID}/${encodeURIComponent(trackingId)}`
+        `${BILLING_API_URL}/api/v2/billing/details/${BILLING_STORE_ID}/${encodeURIComponent(trackingId)}`,
+        {
+          headers: {
+            'x-api-key': BILLING_API_KEY,
+            'Content-Type': 'application/json'
+          }
+        }
       );
       if (!billRes.ok) {
         customerWrap.style.display = 'none';
@@ -491,6 +500,22 @@ const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
       document.getElementById('resultInvoiceStatus').textContent = bill.invoiceStatus || '—';
       document.getElementById('resultBillDate').textContent = fmtDate(bill.billDate);
       document.getElementById('resultDueDate').textContent = fmtDate(bill.dueDate);
+
+      // Render Items and Item Descriptions
+      const itemsWrap = document.getElementById('resultItemsWrap');
+      if (bill.items && bill.items.length > 0) {
+        itemsWrap.innerHTML = bill.items.map(item => `
+          <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:8px;padding:8px 12px;font-size:0.85rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-weight:600;color:#0F172A;">
+              <span>${item.name || 'Item'} (x${item.qty || 1})</span>
+              <span>${fmtMoney(item.total)}</span>
+            </div>
+            ${item.description ? `<p style="margin:4px 0 0;color:#64748B;font-size:0.8rem;line-height:1.4;">${item.description}</p>` : ''}
+          </div>
+        `).join('');
+      } else {
+        itemsWrap.innerHTML = '<span style="color:#94A3B8;font-size:0.82rem;">No items listed</span>';
+      }
 
       document.getElementById('resultSubtotal').textContent = fmtMoney(bill.subtotal);
       document.getElementById('resultTax').textContent = fmtMoney(bill.tax);
@@ -550,7 +575,7 @@ const billingStoreId = import.meta.env.BILLING_STORE_ID || '3';
 
       card.style.display = 'block';
 
-      // Enrich with customer/billing details, if this tracking ID matches a bill — non-blocking
+      // Enrich with customer/billing details
       loadCustomerDetails(trackingId);
     } catch (err) {
       msg.innerHTML = '<span class="track-error">Unable to connect to the tracking server. Please try again in a moment.</span>';
