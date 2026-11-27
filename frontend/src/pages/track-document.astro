@@ -453,6 +453,9 @@ const billingApiKey = import.meta.env.BILLING_API_KEY || 'cashorya_pub_inv_key_2
     'On Hold':     { cls: 'status-hold', label: 'On Hold' },
   };
 
+  const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+  const fmtMoney = (n) => `AED ${Number(n || 0).toFixed(2)}`;
+
   function renderSteps(steps, currentOrder, isCompleted) {
     if (!steps || !steps.length) {
       return '<div style="color:#64748B;font-size:0.88rem;padding:12px 0;">No predefined steps for this document type.</div>';
@@ -471,38 +474,19 @@ const billingApiKey = import.meta.env.BILLING_API_KEY || 'cashorya_pub_inv_key_2
     }).join('');
   }
 
-  async function loadCustomerDetails(trackingId) {
+  function displayBillData(bill) {
     const customerWrap = document.getElementById('resultCustomerWrap');
-    try {
-      const billRes = await fetch(
-        `${BILLING_API_URL}/api/v2/billing/details/${BILLING_STORE_ID}/${encodeURIComponent(trackingId)}`,
-        {
-          headers: {
-            'x-api-key': BILLING_API_KEY,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-      if (!billRes.ok) {
-        customerWrap.style.display = 'none';
-        return;
-      }
-      const bill = await billRes.json();
+    document.getElementById('resultCustomerName').textContent = bill.customer?.name?.trim() || '—';
+    document.getElementById('resultCustomerPhone').textContent = bill.customer?.phoneNumber || '—';
+    document.getElementById('resultCustomerEmail').textContent = bill.customer?.email || '—';
 
-      const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
-      const fmtMoney = (n) => `₹ ${Number(n || 0).toFixed(2)}`;
+    document.getElementById('resultBillNumber').textContent = bill.billNumber || '—';
+    document.getElementById('resultInvoiceStatus').textContent = bill.serviceStatus || bill.invoiceStatus || '—';
+    document.getElementById('resultBillDate').textContent = fmtDate(bill.billDate);
+    document.getElementById('resultDueDate').textContent = fmtDate(bill.dueDate);
 
-      document.getElementById('resultCustomerName').textContent = bill.customer?.name?.trim() || '—';
-      document.getElementById('resultCustomerPhone').textContent = bill.customer?.phoneNumber || '—';
-      document.getElementById('resultCustomerEmail').textContent = bill.customer?.email || '—';
-
-      document.getElementById('resultBillNumber').textContent = bill.billNumber || '—';
-      document.getElementById('resultInvoiceStatus').textContent = bill.invoiceStatus || '—';
-      document.getElementById('resultBillDate').textContent = fmtDate(bill.billDate);
-      document.getElementById('resultDueDate').textContent = fmtDate(bill.dueDate);
-
-      // Render Items and Item Descriptions
-      const itemsWrap = document.getElementById('resultItemsWrap');
+    const itemsWrap = document.getElementById('resultItemsWrap');
+    if (itemsWrap) {
       if (bill.items && bill.items.length > 0) {
         itemsWrap.innerHTML = bill.items.map(item => `
           <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:8px;padding:8px 12px;font-size:0.85rem;">
@@ -516,23 +500,41 @@ const billingApiKey = import.meta.env.BILLING_API_KEY || 'cashorya_pub_inv_key_2
       } else {
         itemsWrap.innerHTML = '<span style="color:#94A3B8;font-size:0.82rem;">No items listed</span>';
       }
-
-      document.getElementById('resultSubtotal').textContent = fmtMoney(bill.subtotal);
-      document.getElementById('resultTax').textContent = fmtMoney(bill.tax);
-      document.getElementById('resultTotal').textContent = fmtMoney(bill.total);
-      document.getElementById('resultPaidAmount').textContent = fmtMoney(bill.paidAmount);
-      document.getElementById('resultBalance').textContent = fmtMoney(bill.balance);
-
-      customerWrap.style.display = 'block';
-    } catch {
-      customerWrap.style.display = 'none';
     }
+
+    document.getElementById('resultSubtotal').textContent = fmtMoney(bill.subtotal);
+    document.getElementById('resultTax').textContent = fmtMoney(bill.tax);
+    document.getElementById('resultTotal').textContent = fmtMoney(bill.total);
+    document.getElementById('resultPaidAmount').textContent = fmtMoney(bill.paidAmount);
+    document.getElementById('resultBalance').textContent = fmtMoney(bill.balance);
+
+    customerWrap.style.display = 'block';
+  }
+
+  async function fetchBillingDetails(query) {
+    try {
+      const billRes = await fetch(
+        `${BILLING_API_URL}/api/v2/billing/details/${BILLING_STORE_ID}/${encodeURIComponent(query)}`,
+        {
+          headers: {
+            'x-api-key': BILLING_API_KEY,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      if (billRes.ok) {
+        return await billRes.json();
+      }
+    } catch (err) {
+      console.warn("Failed to fetch from billing API:", err);
+    }
+    return null;
   }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const trackingId = input.value.trim().toUpperCase();
-    if (!trackingId) return;
+    const query = input.value.trim().toUpperCase();
+    if (!query) return;
 
     btn.disabled = true;
     btn.innerHTML = '<span>Searching...</span>';
@@ -540,45 +542,82 @@ const billingApiKey = import.meta.env.BILLING_API_KEY || 'cashorya_pub_inv_key_2
     msg.className = 'track-msg';
     card.style.display = 'none';
     document.getElementById('resultCustomerWrap').style.display = 'none';
+    document.getElementById('resultRemarksWrap').style.display = 'none';
 
     try {
-      const res = await fetch(`${TRACKING_API_URL}/api/track/${encodeURIComponent(trackingId)}`);
-      if (res.status === 404) {
-        msg.innerHTML = '<span class="track-error">No record found for tracking ID "<strong>' + trackingId + '</strong>". Please check and try again.</span>';
+      let isBillSearch = query.startsWith('INV-');
+      let trackData = null;
+      let billData = null;
+
+      // 1. Try tracking server first if not explicitly an invoice number
+      if (!isBillSearch) {
+        try {
+          const res = await fetch(`${TRACKING_API_URL}/api/track/${encodeURIComponent(query)}`);
+          if (res.ok) {
+            trackData = await res.json();
+          }
+        } catch {}
+      }
+
+      // 2. If tracking server didn't find it, or if it is an invoice number, query Cashorya Billing API
+      if (!trackData) {
+        billData = await fetchBillingDetails(query);
+      } else {
+        // Also fetch billing details to enrich the tracking record
+        billData = await fetchBillingDetails(query);
+      }
+
+      // 3. If neither found a record
+      if (!trackData && !billData) {
+        msg.innerHTML = '<span class="track-error">No record found for "<strong>' + query + '</strong>". Please check your tracking ID or invoice number.</span>';
         return;
       }
-      if (!res.ok) throw new Error('Request failed');
 
-      const data = await res.json();
-      const status = data.trackingStatus || 'Pending';
-      const meta = statusMeta[status] || statusMeta['Pending'];
-      const docType = data.document_type || data.documentType || {};
-      const steps = docType.stepEntries || [];
-      const currentOrder = data.current_step?.order || 1;
-      const isCompleted = status === 'Completed';
+      // 4. Render results
+      if (trackData) {
+        const status = trackData.trackingStatus || 'Pending';
+        const meta = statusMeta[status] || statusMeta['Pending'];
+        const docType = trackData.document_type || trackData.documentType || {};
+        const steps = docType.stepEntries || [];
+        const currentOrder = trackData.current_step?.order || 1;
+        const isCompleted = status === 'Completed';
 
-      document.getElementById('resultDocType').textContent = docType.name || 'Document';
-      document.getElementById('resultTrackingId').textContent = data.trackingId;
-      const statusEl = document.getElementById('resultStatus');
-      statusEl.textContent = meta.label;
-      statusEl.className = `status-badge ${meta.cls}`;
-      document.getElementById('resultSteps').innerHTML = renderSteps(steps, currentOrder, isCompleted);
+        document.getElementById('resultDocType').textContent = docType.name || 'Document Attestation';
+        document.getElementById('resultTrackingId').textContent = trackData.trackingId;
+        const statusEl = document.getElementById('resultStatus');
+        statusEl.textContent = meta.label;
+        statusEl.className = `status-badge ${meta.cls}`;
+        document.getElementById('resultSteps').innerHTML = renderSteps(steps, currentOrder, isCompleted);
+        document.getElementById('resultSteps').style.display = 'flex';
 
-      const remarksWrap = document.getElementById('resultRemarksWrap');
-      const remarksEl = document.getElementById('resultRemarks');
-      if (data.remarks) {
-        remarksEl.textContent = data.remarks;
-        remarksWrap.style.display = 'block';
-      } else {
-        remarksWrap.style.display = 'none';
+        if (trackData.remarks) {
+          document.getElementById('resultRemarks').textContent = trackData.remarks;
+          document.getElementById('resultRemarksWrap').style.display = 'block';
+        }
+      } else if (billData) {
+        // Direct Invoice Search from Cashorya
+        const docName = billData.items?.[0]?.name || 'Invoice & Services';
+        document.getElementById('resultDocType').textContent = docName;
+        document.getElementById('resultTrackingId').textContent = billData.billNumber;
+        
+        const statusEl = document.getElementById('resultStatus');
+        const sStatus = billData.serviceStatus || 'Pending';
+        statusEl.textContent = sStatus;
+        statusEl.className = 'status-badge status-progress';
+
+        // Hide tracking milestones step line when viewed directly as an invoice
+        document.getElementById('resultSteps').style.display = 'none';
+      }
+
+      if (billData) {
+        displayBillData(billData);
       }
 
       card.style.display = 'block';
 
-      // Enrich with customer/billing details
-      loadCustomerDetails(trackingId);
     } catch (err) {
-      msg.innerHTML = '<span class="track-error">Unable to connect to the tracking server. Please try again in a moment.</span>';
+      console.error(err);
+      msg.innerHTML = '<span class="track-error">Unable to connect to the server. Please try again in a moment.</span>';
     } finally {
       btn.disabled = false;
       btn.innerHTML = '<span>Track</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
